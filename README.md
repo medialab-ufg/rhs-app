@@ -1,32 +1,54 @@
 # rsh-app
 
-Aplicativo mobile para a Rede Humaniza SUS.
+Aplicativo Android e iOS para a *Rede Humaniza SUS* (RHS).
+Está sendo desenvolvido em Ionic e integra dados através da WP-API do Wordpress.
 
-Instruções de configuração e instalação serão fornecidas aqui em breve.
+## Configurações do ambiente para o projeto:
 
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+**É preciso ter *node*, *npm*, *ionic* e *cordova* instalados para a execução do projeto.**
 
-## How to use this template
+A última versão do **Node** pode ser encontrada [aqui](https://nodejs.org/en/). A versão atualmente utilizada no desenvolvimento é a **7.4.0**. 
+Usuários _Ubuntu/Debian_ podem instalar via apt:
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
+```
+$ sudo apt-get update
+$ sudo apt-get install nodejs
+```
+Geralmente o pacote Node já traz o **npm** junto, mas caso precise instalar, a versão utilizada para desenvolvimento é a **4.0.5**
+Usuários Ubuntu/Debian podem instalar via apt:
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
+```
+$ sudo apt-get install npm
+```
 
-### With the Ionic CLI:
+A instalação da **Ionic CLI** e do **Cordova** é feita via npm:
 
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
-
-```bash
+```
 $ sudo npm install -g ionic cordova
-$ ionic start mySideMenu sidemenu
 ```
 
-Then, to run it, cd into `mySideMenu` and run:
+Dependendo das configurações npm do seu sistema (em geral Mac e Linux) será necessário o *sudo* para o npm ter as permissões de instalação.
 
-```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
+Mais informações sobre a instalação podem ser obtidas na [página da Ionic](https://ionicframework.com/docs/intro/installation/). A versão utilizada neste projeto é a **3.5.0**. Para verificar a versão atual, basta rodar:
+
+```
+$ ionic --version
 ```
 
-Substitute ios for android if not on a Mac.
+## Instalação
+Para que o npm possa baixar os módulos extras necessários para o projeto, navegue para a pasta do projeto e execute a instalação (note a ausência de *sudo*, desta vez, já que a instalação é referente ao projeto local e não ao sistema):
+```
+$ git clone git@github.com:medialab-ufg/rhs-app.git
+$ cd rhs-app/
+$ npm install
+```
+Os módulos necessários são informados no `package.json`, de onde `npm install` automaticamente resolve suas dependências. Possíveis erros na instalação costumam acontecer por incompatilidades nas versões dos módulos. Caso isso ocorra, verifique no console qual a versão do módulo necessária e instale via `npm install`.
+
+## Executando em local server
+Para obter um server de desenvolvimento rodando no navegador, execute:
+```
+$ ionic serve
+``` 
+Navegue para `http://localhost:8100/` ou ainda, `http://localhost:8100/ionic-lab`. O App vai automaticamente se atualizar após qualquer mudança feita nos arquivos fonte.
+
 

@@ -3,6 +3,7 @@
 Aplicativo Android e iOS para a *Rede Humaniza SUS* (RHS).
 Está sendo desenvolvido em Ionic e integra dados através da WP-API do Wordpress.
 
+---------------------------------------
 ## Configurações do ambiente para o projeto:
 
 **É preciso ter *node*, *npm*, *ionic* e *cordova* instalados para a execução do projeto.**
@@ -51,23 +52,24 @@ $ ionic serve
 ``` 
 Navegue para [http://localhost:8100/](http://localhost:8100/) ou ainda, [http://localhost:8100/ionic-lab](http://localhost:8100/ionic-lab). O App vai automaticamente se atualizar após qualquer mudança feita nos arquivos fonte.
 
+-----------------------------------------------------
 ## Build em Android
 
 ### Instalar Java JDK, Android Studio (para utilizar a Android SDK) e dependências. 
- - *Java JDK*: baixando pelo [Site oficial](http://www.oracle.com/technetwork/java/javase/downloads/index-jsp), ou para Ubuntu: 
+ - **Java JDK**: baixando pelo [Site oficial](http://www.oracle.com/technetwork/java/javase/downloads/index-jsp), ou para Ubuntu: 
 
  ```
  $ sudo apt-get install openjdk-8-jdkopenjdk-8-jre
  ```
 
- - *Android Studio*: [Site oficial](https://developer.android.com/studio/install.html) (instalador e dependências) ou, para Ubuntu, via ubuntu-make:
+ - **Android Studio**: [Site oficial](https://developer.android.com/studio/install.html) (instalador e dependências) ou, para Ubuntu, via ubuntu-make:
 
  ```
  $ sudo apt-get install umake
  $ umake android
  ```
 
-- *Dependências* via SDK Manager: Execute sua instalação do Android Studio e vá no menu *Tools -> Android -> SDK Manager*. Na lista para instalar, marque:
+- **Dependências** via SDK Manager: Execute sua instalação do Android Studio e vá no menu *Tools -> Android -> SDK Manager*. Na lista para instalar, marque:
   - Android SDK Tools;
   - Android SDK Platform-tools;
   - Android SDK Build-tools;
@@ -83,7 +85,7 @@ $ npm install --save-dev --save-exact ionic/cli-plugin-cordova@latest
 $ ionic cordova build android
 ```
 
-### Rodando o aplcativo no Android:
+### Rodando o aplicativo no Android:
 
 É preciso ter o cabo USB conectado no celular, além de modo desenvolvedor habilitado. Ao conectar, deve surgir uma notificação relativa ao modo de uso do USB (comumente carregamento). Clique nesta notificação para trocar para modo PTP, ou, em alguns celulares, MTP (varia de hardware para hardware). Se A etapa de `build` ocorreu sem problemas, execute:
 
@@ -94,3 +96,21 @@ $ ionic cordova run android
 O build acontecerá novamente, mas desta vez o .apk gerado será transferido e instalado no seu aparelho.
 
 Uma lista de possíveis problemas e soluções decorrentes dessa etapa <del>estão na lista de Possíveis Problemas</del>(criar lista).
+
+---------------------------------------------------
+
+## Possíveis Problemas encontrados:
+
+- *$ ANDROID_HOME not found*: Caso, ao tentar executar o build, a CLI informe que não consegue encontrar sua instalação Android, configure o path manualmente através dos seguintes comandos:
+
+```
+$ export ANDROID_HOME="/<path_to_android>/Android/Sdk"
+$ export PATH=${PATH}:/<path_to_android>/Android/Sdk/tools
+$ export PATH=${PATH}:/<path_to_android>/Android/Sdk/platform-tools
+```
+
+Substituindo <path_to_android> pelas caminho da sua instalação. Uma maneira de descobrir onde está sua instalação é através do comando `whereis`:
+
+```
+$ whereis android
+```

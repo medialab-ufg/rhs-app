@@ -1,3 +1,9 @@
+# rsh-app
+
+Aplicativo mobile para a Rede Humaniza SUS.
+
+Instruções de configuração e instalação serão fornecidas aqui em breve.
+
 This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
 
 ## How to use this template

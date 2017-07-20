@@ -15,7 +15,7 @@ Usuários _Ubuntu/Debian_ podem instalar via apt:
 $ sudo apt-get update
 $ sudo apt-get install nodejs
 ```
-Geralmente o pacote Node já traz o **npm** junto, mas caso precise instalar, a versão utilizada para desenvolvimento é a **4.0.5**
+Versões inferiores ao Ubuntu 17.10 podem estar com o nodejs desatualizado nos seus repositórios. Caso a versão instalada for interior à 7, siga as instruções do [site oficial](https://nodejs.org/en/download/current/). Geralmente o pacote Node já traz o **npm** junto, mas caso precise instalar, a versão utilizada para desenvolvimento é a **4.0.5**. 
 Usuários Ubuntu/Debian podem instalar via apt:
 
 ```
@@ -59,13 +59,13 @@ Navegue para [http://localhost:8100/](http://localhost:8100/) ou ainda, [http://
  - **Java JDK**: baixando pelo [Site oficial](http://www.oracle.com/technetwork/java/javase/downloads/index-jsp), ou para Ubuntu: 
 
  ```
- $ sudo apt-get install openjdk-8-jdkopenjdk-8-jre
+ $ sudo apt-get install openjdk-8-jdk openjdk-8-jre
  ```
 
  - **Android Studio**: [Site oficial](https://developer.android.com/studio/install.html) (instalador e dependências) ou, para Ubuntu, via ubuntu-make:
 
  ```
- $ sudo apt-get install umake
+ $ sudo apt-get install ubuntu-make
  $ umake android
  ```
 

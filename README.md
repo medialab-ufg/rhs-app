@@ -65,6 +65,8 @@ Navegue para [http://localhost:8100/](http://localhost:8100/) ou ainda, [http://
  - **Android Studio**: [Site oficial](https://developer.android.com/studio/install.html) (instalador e dependências) ou, para Ubuntu, via ubuntu-make:
 
  ```
+ $ sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make
+ $ sudo apt-get update
  $ sudo apt-get install ubuntu-make
  $ umake android
  ```
@@ -134,7 +136,7 @@ Tendo o projeto selecionado, aperte o botão de rodar para executar o simulador 
 
 -------
 
-### Debugando remotamente no Android
+### Depurando remotamente no Android
 
 Um guia completo sobre como usar o Google Chrome para inspecionar elementos e acompanhar logs no console do app rodando no Android pode ser encontrado [aqui](https://developers.google.com/web/tools/chrome-devtools/remote-debugging/?hl=pt-br).
 

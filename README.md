@@ -134,6 +134,12 @@ Tendo o projeto selecionado, aperte o botão de rodar para executar o simulador 
 
 -------
 
+### Debugando remotamente no Android
+
+Um guia completo sobre como usar o Google Chrome para inspecionar elementos e acompanhar logs no console do app rodando no Android pode ser encontrado [aqui](https://developers.google.com/web/tools/chrome-devtools/remote-debugging/?hl=pt-br).
+
+
+-------
 ## Possíveis Problemas encontrados:
 
 - *$ ANDROID_HOME not found*: Caso, ao tentar executar o build, a CLI informe que não consegue encontrar sua instalação Android, configure o path manualmente através dos seguintes comandos:

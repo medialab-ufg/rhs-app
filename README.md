@@ -82,7 +82,7 @@ Navegue para [http://localhost:8100/](http://localhost:8100/) ou ainda, [http://
 
 ```
 $ npm install --save-dev --save-exact ionic/cli-plugin-cordova@latest
-$ ionic corodva platform add android
+$ ionic cordova platform add android
 $ ionic cordova build android
 ```
 
@@ -120,7 +120,7 @@ $ sudo gem install cocoapods
 
 ```
 $ npm install --save-dev --save-exact ionic/cli-plugin-cordova@latest
-$ ionic corodva platform add ios
+$ ionic cordova platform add ios
 $ ionic cordova build ios
 ```
 

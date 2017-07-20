@@ -55,7 +55,7 @@ Navegue para [http://localhost:8100/](http://localhost:8100/) ou ainda, [http://
 -----------------------------------------------------
 ## Build em Android
 
-### Instalar Java JDK, Android Studio (para utilizar a Android SDK) e dependências. 
+### Instalar Java JDK, Android Studio (para utilizar a Android SDK) e dependências: 
  - **Java JDK**: baixando pelo [Site oficial](http://www.oracle.com/technetwork/java/javase/downloads/index-jsp), ou para Ubuntu: 
 
  ```
@@ -78,12 +78,15 @@ Navegue para [http://localhost:8100/](http://localhost:8100/) ou ainda, [http://
 
 ### Compilando o projeto para Android:
 
-Este repositório já possui as *platforms* Android e <del>iOS</del>(adicionar em iMac) adicionadas ao projeto. Entretanto, ainda é necessário ter o plugin cordova para a CLI do Ionic. Caso ainda não tenha sido instalado:
+É necessário ter o plugin cordova para a CLI do Ionic, caso ainda não tenha sido instalado:
 
 ```
 $ npm install --save-dev --save-exact ionic/cli-plugin-cordova@latest
+$ ionic corodva platform add android
 $ ionic cordova build android
 ```
+
+Os últimos dois comandos adicionam os arquivos de build do android ao seu projeto e compilam o mesmo.
 
 ### Rodando o aplicativo no Android:
 
@@ -98,6 +101,38 @@ O build acontecerá novamente, mas desta vez o .apk gerado será transferido e i
 Uma lista de possíveis problemas e soluções decorrentes dessa etapa <del>estão na lista de Possíveis Problemas</del>(criar lista).
 
 ---------------------------------------------------
+
+## Build em iOS
+
+### Instalar xCode e Cocoapods:
+
+Como em qualquer desenvolvimento para iOS, é preciso ter o Xcode instalado. Para tal é necessário criar um [Apple ID](https://appleid.apple.com/pt_br/), e fazer login na Mac App Store, onde você pode [baixar o Xcode](https://itunes.apple.com/br/app/xcode/id497799835?mt=12).
+
+Também é necessário ter o [CocoaPods](https://guides.cocoapods.org/using/getting-started.html), que por ser um pacote ruby pode ser instalado através do `gem`:
+
+```
+$ sudo gem install cocoapods
+``` 
+
+### Compilando o projeto para iOS:
+
+É necessário ter o plugin cordova para a CLI do Ionic, caso ainda não tenha sido instalado:
+
+```
+$ npm install --save-dev --save-exact ionic/cli-plugin-cordova@latest
+$ ionic corodva platform add ios
+$ ionic cordova build ios
+```
+
+Os últimos dois comandos adicionam os arquivos de build do ios ao seu projeto e compilam o mesmo.
+
+### Rodando o aplicativo no iOS:
+
+Após a etapa de build, um arquivo *.xcworkspace* será gerado em seu projeto, dentro da pasta `/platforms/ios/`. Abra este projeto com o Xcode. Pode ser necessário que você configure o 'team' associado ao projeto na aba General -> Signing -> Team, com seus dados de desenvolvedor.
+
+Tendo o projeto selecionado, aperte o botão de rodar para executar o simulador iOS.
+
+-------
 
 ## Possíveis Problemas encontrados:
 

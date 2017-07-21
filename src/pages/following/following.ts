@@ -7,11 +7,12 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class FollowingPage {
 
+  followingView = 'posts';
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FollowingPage');
   }
 
 }

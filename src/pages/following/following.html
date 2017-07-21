@@ -7,9 +7,40 @@
     <ion-title>Seguindo</ion-title>
   </ion-navbar>
 
+  <ion-toolbar color="primary">
+    <ion-segment [(ngModel)]="followingView" color="secondary">
+      <ion-segment-button value="posts">
+        Posts
+      </ion-segment-button>
+      <ion-segment-button value="people">
+        Pessoas
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
 </ion-header>
 
 
 <ion-content padding>
+  <div [ngSwitch]="followingView">
 
+    <ion-list *ngSwitchCase="'posts'">
+      <ion-item>
+        ITEM DE POST SENDO SEGUIDO
+        <button ion-button item-end color="danger">
+          PARAR
+        </button>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'people'">
+      <ion-item>
+        ITEM DE PESSOA SENDO SEGUIDA
+        <button ion-button item-end color="danger">
+          PARAR
+        </button>
+      </ion-item>
+    </ion-list>
+
+  </div>
 </ion-content>

@@ -10,6 +10,7 @@ import { SettingsPage } from './../pages/settings/settings';
 import { NotificationsPage } from './../pages/notifications/notifications';
 import { SearchPage } from './../pages/search/search';
 import { PostPage } from './../pages/post/post';
+import { ProfileEditModal } from './../pages/profile-edit/profile-edit';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -23,11 +24,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SettingsPage,
     SearchPage,
     NotificationsPage,
-    PostPage
+    PostPage,
+    ProfileEditModal
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{
+      pageTransition: 'ios-transition'
+    }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -38,7 +42,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SettingsPage,
     SearchPage,
     NotificationsPage,
-    PostPage
+    PostPage,
+    ProfileEditModal
   ],
   providers: [
     StatusBar,

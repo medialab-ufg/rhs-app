@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
+
+import { ProfileEditModal } from './../profile-edit/profile-edit';
 
 @Component({
   selector: 'page-profile',
@@ -7,11 +9,22 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ProfilePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
   }
+
+  openEditProfileModal(){
+    // Passar um objeto com dados atuais do usuário como segundo parâmetro do modalCtrl.create.
+    let profileModal = this.modalCtrl.create(ProfileEditModal);
+    profileModal.onDidDismiss(data => {
+      // Tratar dados do usuário passados pelo modal.
+    });
+    profileModal.present();
+  }
+  
 
 }

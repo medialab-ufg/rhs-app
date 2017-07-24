@@ -1,5 +1,5 @@
 // http://ionicframework.com/docs/v2/theming/
-
+@import "theme/variables.scss";
 
 // App Global Sass
 // --------------------------------------------------
@@ -14,3 +14,31 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+// Cores do tema RHS
+$primary:    #00B9B4;
+$secondary:  #0C3C46;
+$tertiary:  #F8F8F0;
+$danger:     #f53d3d;
+$light:      #f4f4f4;
+$dark:       #222;
+
+
+ion-menu {
+  .menu-inner {
+    ion-content {
+
+      background-color: $primary;
+
+      .scroll-content {
+        ion-list {
+          button { 
+            color: white;
+            background-color: $primary;
+          }
+        }
+      }
+    }
+  }
+  
+}

@@ -14,6 +14,9 @@ import { ProfileEditModal } from './../pages/profile-edit/profile-edit';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AuthenticationProvider } from '../providers/authentication/authentication';
+import { ApiProvider } from '../providers/api/api';
+import { SettingsProvider } from '../providers/settings/settings';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthenticationProvider,
+    ApiProvider,
+    SettingsProvider
   ]
 })
 export class AppModule {}

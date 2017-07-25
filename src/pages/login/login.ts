@@ -54,11 +54,14 @@ export class LoginPage {
                       this.storage.set('oauth_token_key', finalCredentials.oauthToken);
                       this.storage.set('oauth_token_secret', finalCredentials.oauthTokenSecret);
                       this.storage.set('is_user_logged', true);
-
+                      
                       // Saves in Api Service, for using during requests.
                       this.api.setLogged(true);
                       this.api.setTokenKey(finalCredentials.oauthToken);
                       this.api.setTokenSecret(finalCredentials.oauthTokenSecret);
+
+                      // Informs the subscribed components (as the sidemenu) that use has logged.
+                      this.authentication.userLogged.emit(true);
 
                       // Return user to home page.
                       this.navCtrl.setRoot(PostsPage);

@@ -1,3 +1,4 @@
+import { LoginPage } from './../pages/login/login';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -20,6 +21,8 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = IntroPage;
+  userInfo = '';
+  loadingUserInfo = true;
 
   pages: Array<{title: string, component: any}>;
 
@@ -65,11 +68,17 @@ export class MyApp {
           this.storage.get('oauth_token_key').then((value) => { this.api.setTokenKey(value) });
           this.storage.get('oauth_token_secret').then((value) => { this.api.setTokenSecret(value) });
 
+          this.loadUserInfo();
+
         } else {
           this.api.setLogged(false);
         }
       })
-
+      this.authentication.userLogged.subscribe(value => {
+        if (value === true) {
+          this.loadUserInfo();
+        }
+      })
     });
   }
 
@@ -77,5 +86,21 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  goToLoginPage() {
+    this.nav.setRoot(LoginPage);
+  }
+
+  loadUserInfo() {
+    this.api.getUserInfo().subscribe(
+      userInfo => {
+      this.userInfo = userInfo['userInfo'];
+      console.log(this.userInfo['name']);
+    },
+    err => {
+      console.log('Error ' + err +  ' - On User Data Request.');
+    },
+    () => this.loadingUserInfo = false);
   }
 }

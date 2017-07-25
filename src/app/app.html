@@ -1,7 +1,12 @@
 <ion-menu [content]="content">
-  <ion-header>
-    <ion-toolbar color="secondary">
-      <ion-title>Menu</ion-title>
+
+  <ion-header class="user-info">
+    <ion-toolbar *ngIf="!api.isLogged()" color="secondary">
+      <h3>Você não está logado</h3>
+      <button menuClose ion-button color="primary" (click)="goToLoginPage()">ENTRAR NA RHS</button>
+    </ion-toolbar>
+    <ion-toolbar *ngIf="api.isLogged() && !loadingUserInfo" color="secondary">
+      <h3>Seja bem vindo, {{ userInfo['name'] }}!</h3>
     </ion-toolbar>
   </ion-header>
 
@@ -15,5 +20,4 @@
 
 </ion-menu>
 
-<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { Http, Headers, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { EventEmitter } from '@angular/core';
 
 import { SettingsProvider } from './../settings/settings';
 
@@ -9,6 +10,8 @@ import oauthSignature from 'oauth-signature';
 
 @Injectable()
 export class AuthenticationProvider {
+
+  public userLogged = new EventEmitter();
 
   constructor(public http: Http,
               public settings: SettingsProvider) { }
@@ -87,20 +90,6 @@ export class AuthenticationProvider {
   private handleError(error: Response) {
     console.error(error);
     return Observable.throw(error.status);
-  }
-
-  // Converte queries de uma hash de parâmetros em uma URLSearchParam
-  private serializeQueries(obj: any): URLSearchParams {
-    const params: URLSearchParams = new URLSearchParams();
-
-    for (const key in obj) {
-        if (obj.hasOwnProperty(key)) {
-            const element = obj[key];
-            params.set(key, element);
-        }
-    }
-
-    return params;
   }
 
   // Converts query string to object

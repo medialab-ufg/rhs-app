@@ -2,11 +2,13 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Storage } from '@ionic/storage';
 
 import { PostsPage } from './../pages/posts/posts';
 import { ProfilePage } from './../pages/profile/profile';
 import { FollowingPage } from './../pages/following/following';
 import { SettingsPage } from './../pages/settings/settings';
+import { IntroPage } from './../pages/intro/intro';
 
 @Component({
   templateUrl: 'app.html'
@@ -14,11 +16,14 @@ import { SettingsPage } from './../pages/settings/settings';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = PostsPage;
+  rootPage: any = IntroPage;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, 
+              public statusBar: StatusBar, 
+              public splashScreen: SplashScreen,
+              public storage: Storage) {
     this.initializeApp();
 
     this.pages = [
@@ -32,10 +37,22 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
+
+      this.storage.clear();
+      this.storage.get('introShown').then((result) => {
+
+
+        if (result){
+          this.rootPage = PostsPage;
+        } else {
+          //this.rootPage = IntroPage;
+          this.storage.set('introShown', true);
+        }
+  
+        this.splashScreen.hide();
+      });
+
     });
   }
 

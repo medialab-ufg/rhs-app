@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component';
 import { PostsPage } from './../pages/posts/posts';
@@ -11,6 +12,8 @@ import { NotificationsPage } from './../pages/notifications/notifications';
 import { SearchPage } from './../pages/search/search';
 import { PostPage } from './../pages/post/post';
 import { ProfileEditModal } from './../pages/profile-edit/profile-edit';
+import { LoginPage } from './../pages/login/login';
+import { IntroPage } from './../pages/intro/intro';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -28,13 +31,16 @@ import { SettingsProvider } from '../providers/settings/settings';
     SearchPage,
     NotificationsPage,
     PostPage,
-    ProfileEditModal
+    ProfileEditModal,
+    IntroPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp,{
       pageTransition: 'ios-transition'
     }),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -46,7 +52,9 @@ import { SettingsProvider } from '../providers/settings/settings';
     SearchPage,
     NotificationsPage,
     PostPage,
-    ProfileEditModal
+    ProfileEditModal,
+    IntroPage,
+    LoginPage
   ],
   providers: [
     StatusBar,

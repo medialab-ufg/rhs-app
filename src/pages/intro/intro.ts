@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Slides } from 'ionic-angular';
 
 import { PostsPage } from './../posts/posts';
 import { LoginPage } from './../login/login';
@@ -9,11 +9,18 @@ import { LoginPage } from './../login/login';
   templateUrl: 'intro.html',
 })
 export class IntroPage {
+  @ViewChild(Slides) slides: Slides;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
+  }
+
+  goToLastSlide() {
+    this.slides.slideTo(3, 500);
   }
 
   goToPostsPage() {

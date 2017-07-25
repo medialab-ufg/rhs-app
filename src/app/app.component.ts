@@ -1,6 +1,6 @@
 import { LoginPage } from './../pages/login/login';
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, LoadingController, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
@@ -20,18 +20,22 @@ import { ApiProvider } from './../providers/api/api';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
+  // Page navigation
   rootPage: any = IntroPage;
-  userInfo = '';
-  loadingUserInfo = true;
-
   pages: Array<{title: string, component: any}>;
+
+  // Sidemenu User Info 
+  showUserInfo = false;
+  userInfo = '';
 
   constructor(public platform: Platform, 
               public statusBar: StatusBar, 
               public splashScreen: SplashScreen,
               public storage: Storage,
               public authentication: AuthenticationProvider,
-              public api: ApiProvider) {
+              public api: ApiProvider,
+              public loadingCtrl: LoadingController) {
+
     this.initializeApp();
 
     this.pages = [
@@ -47,9 +51,8 @@ export class MyApp {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
 
-      this.storage.clear();
+      //this.storage.clear();
       this.storage.get('introShown').then((result) => {
-
 
         if (result){
           this.rootPage = PostsPage;
@@ -77,6 +80,8 @@ export class MyApp {
       this.authentication.userLogged.subscribe(value => {
         if (value === true) {
           this.loadUserInfo();
+        } else {
+          this.showUserInfo = false;
         }
       })
     });
@@ -93,14 +98,18 @@ export class MyApp {
   }
 
   loadUserInfo() {
+    // Adds loading spinner 
+    let loading = this.loadingCtrl.create({content: 'Carregando dados do usuário...'});
+    loading.present();
+
     this.api.getUserInfo().subscribe(
       userInfo => {
       this.userInfo = userInfo['userInfo'];
-      console.log(this.userInfo['name']);
+      this.showUserInfo = true;
     },
     err => {
       console.log('Error ' + err +  ' - On User Data Request.');
     },
-    () => this.loadingUserInfo = false);
+    () => loading.dismiss());
   }
 }

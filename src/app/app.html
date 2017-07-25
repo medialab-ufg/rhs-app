@@ -1,11 +1,11 @@
 <ion-menu [content]="content">
 
   <ion-header class="user-info">
-    <ion-toolbar *ngIf="!api.isLogged()" color="secondary">
+    <ion-toolbar *ngIf="!showUserInfo" color="secondary">
       <h3>Você não está logado</h3>
       <button menuClose ion-button color="primary" (click)="goToLoginPage()">ENTRAR NA RHS</button>
     </ion-toolbar>
-    <ion-toolbar *ngIf="api.isLogged() && !loadingUserInfo" color="secondary">
+    <ion-toolbar *ngIf="showUserInfo" color="secondary">
       <h3>Seja bem vindo, {{ userInfo['name'] }}!</h3>
     </ion-toolbar>
   </ion-header>

@@ -83,8 +83,6 @@ export class AuthenticationProvider {
       .catch((error: any) => this.handleError(error));
   }
 
-
-
   // ==== UTILITIES  ======================================================================
   // Redirects errors in case of failed requests
   private handleError(error: Response) {

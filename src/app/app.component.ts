@@ -10,6 +10,9 @@ import { FollowingPage } from './../pages/following/following';
 import { SettingsPage } from './../pages/settings/settings';
 import { IntroPage } from './../pages/intro/intro';
 
+import { AuthenticationProvider } from './../providers/authentication/authentication';
+import { ApiProvider } from './../providers/api/api';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -23,7 +26,9 @@ export class MyApp {
   constructor(public platform: Platform, 
               public statusBar: StatusBar, 
               public splashScreen: SplashScreen,
-              public storage: Storage) {
+              public storage: Storage,
+              public authentication: AuthenticationProvider,
+              public api: ApiProvider) {
     this.initializeApp();
 
     this.pages = [
@@ -52,6 +57,18 @@ export class MyApp {
   
         this.splashScreen.hide();
       });
+      this.storage.get('is_user_logged').then((result) => {
+        
+        if (result) {
+          this.api.setLogged(true);
+          
+          this.storage.get('oauth_token_key').then((value) => { this.api.setTokenKey(value) });
+          this.storage.get('oauth_token_secret').then((value) => { this.api.setTokenSecret(value) });
+
+        } else {
+          this.api.setLogged(false);
+        }
+      })
 
     });
   }

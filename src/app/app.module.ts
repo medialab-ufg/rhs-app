@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
+import { HttpModule } from '@angular/http';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { MyApp } from './app.component';
 import { PostsPage } from './../pages/posts/posts';
@@ -37,6 +39,7 @@ import { SettingsProvider } from '../providers/settings/settings';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp,{
       pageTransition: 'ios-transition'
     }),
@@ -59,6 +62,7 @@ import { SettingsProvider } from '../providers/settings/settings';
   providers: [
     StatusBar,
     SplashScreen,
+    InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthenticationProvider,
     ApiProvider,

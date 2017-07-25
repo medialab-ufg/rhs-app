@@ -13,17 +13,4 @@ export class SettingsProvider {
   //public consumerKey = 'c6t7gamHNaaj';
   //public consumerSecret = 'mNhK1MsImOJAeobRDE9Zjc7Qz0thc9rqhzxtAjh6snF8nHcK';
 
-  // Wordpress settings provided by Authentication Service
-  //private tokenKey: string = null;
-  //private tokenSecret: string = null;
-
-  constructor() { }
-
-  getTokenKey() {
-    
-  }
-
-  getTokenSecret() {
-
-  }
 }

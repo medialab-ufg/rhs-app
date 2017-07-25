@@ -1,5 +1,13 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { Storage } from '@ionic/storage';
+
+import { AuthenticationProvider } from './../../providers/authentication/authentication';
+import { SettingsProvider } from './../../providers/settings/settings';
+import { ApiProvider } from './../../providers/api/api';
+
+import { PostsPage } from './../posts/posts';
 
 @Component({
   selector: 'page-login',
@@ -7,12 +15,73 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public authentication: AuthenticationProvider,
+              public storage: Storage,
+              public inAppBrowser: InAppBrowser,
+              public settings: SettingsProvider,
+              public api: ApiProvider) {
   }
 
   ionViewDidLoad() {
   }
 
-  login() {}
+  login() {
+
+    this.authentication.getTemporaryCredentials().subscribe(
+      temporaryCredentials => {
+
+        if (temporaryCredentials.oauthToken !== null && temporaryCredentials.oauthTokenSecret !== null) {
+          
+          //const browser = this.inAppBrowser.create('http://10.0.1.242/rhs/oauth1/authorize?oauth_token=' + temporaryCredentials.oauthToken + '&oauth_token_secret=' + temporaryCredentials.oauthTokenSecret, '_blank');
+          const browser = this.inAppBrowser.create('http://rhs.dev.medialab.ufg.br/oauth1/authorize?oauth_token=' + temporaryCredentials.oauthToken + '&oauth_token_secret=' + temporaryCredentials.oauthTokenSecret, '_blank');
+          
+          browser.on("loadstop").subscribe((event)=>{
+              let url = new URL(event.url);
+              let oauth_verifier = url.searchParams.get('oauth_verifier');
+              let oauth_token = url.searchParams.get('oauth_token'); 
+
+              if (oauth_verifier !== null && oauth_verifier !== undefined) {
+
+                browser.close(); 
+                
+                this.authentication.getAccessCredentials(temporaryCredentials.oauthToken, temporaryCredentials.oauthTokenSecret, oauth_verifier).subscribe(
+                  finalCredentials => {
+                    if (finalCredentials.oauthToken !== null  && finalCredentials.oauthTokenSecret !== null) {
+                      
+                      // Saves in local storage, for obtaining on app load.
+                      this.storage.set('oauth_token_key', finalCredentials.oauthToken);
+                      this.storage.set('oauth_token_secret', finalCredentials.oauthTokenSecret);
+                      this.storage.set('is_user_logged', true);
+
+                      // Saves in Api Service, for using during requests.
+                      this.api.setLogged(true);
+                      this.api.setTokenKey(finalCredentials.oauthToken);
+                      this.api.setTokenSecret(finalCredentials.oauthTokenSecret);
+
+                      // Return user to home page.
+                      this.navCtrl.setRoot(PostsPage);
+                    }
+                  },
+                  err => {
+                    console.log('Error ' + err +  ' - Final Credentials Request: ');
+                    this.api.setLogged(false);
+                  },
+                  () => {  });
+              } else {
+                if (oauth_token === null) {
+                  this.api.setLogged(false);
+                }
+              }
+          });
+        }
+      },
+      err => {
+        console.log('Error ' + err +  ' - Temporary Credentials Request: ');
+        this.api.setLogged(false);
+      },
+      () => {  });
+  }
 
 }

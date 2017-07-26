@@ -1,6 +1,6 @@
 import { LoginPage } from './../pages/login/login';
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, LoadingController, AlertController } from 'ionic-angular';
+import { Nav, Platform, LoadingController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
@@ -71,10 +71,11 @@ export class MyApp {
           this.storage.get('oauth_token_key').then((value) => { this.api.setTokenKey(value) });
           this.storage.get('oauth_token_secret').then((value) => { this.api.setTokenSecret(value) });
 
-          this.loadUserInfo();
+          this.authentication.userLogged.emit(true);
 
         } else {
           this.api.setLogged(false);
+          this.authentication.userLogged.emit(false);
         }
       })
       this.authentication.userLogged.subscribe(value => {
@@ -94,7 +95,7 @@ export class MyApp {
   }
 
   goToLoginPage() {
-    this.nav.setRoot(LoginPage);
+    this.nav.push(LoginPage);
   }
 
   loadUserInfo() {

@@ -29,7 +29,7 @@ export class ApiProvider {
 
   setLogged(value: boolean) { this.logged = value; }
 
-  isLogged() { return this.isLogged; }
+  isLogged(): boolean { return this.logged }
 
   // == API REQUESTS ====================================================================
   // Obtain user info

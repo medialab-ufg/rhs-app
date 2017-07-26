@@ -13,7 +13,6 @@ export class PostPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PostPage');
   }
 
   sendMessage() {

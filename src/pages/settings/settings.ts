@@ -6,11 +6,15 @@ import { SettingsProvider } from './../../providers/settings/settings';
 import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { ApiProvider } from './../../providers/api/api';
 
+import { LoginPage } from './../login/login';
+
 @Component({
   selector: 'page-settings',
   templateUrl: 'settings.html',
 })
 export class SettingsPage {
+
+  isUserLogged: boolean = false; 
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -19,10 +23,15 @@ export class SettingsPage {
               public settings: SettingsProvider,
               public authentication: AuthenticationProvider,
               public api: ApiProvider) {
+
+    this.authentication.userLogged.subscribe(value => {
+      this.isUserLogged = value;
+    });
+
   }
 
   ionViewDidLoad() {
-    
+    this.isUserLogged = this.api.isLogged();
   }
 
   alertLogout() {
@@ -58,7 +67,12 @@ export class SettingsPage {
 
     // Informs the subscribed components (as the sidemenu) that use has logged.
     this.authentication.userLogged.emit(false);
+    this.isUserLogged = false;
 
+  }
+
+  goToLoginPage() {
+    this.navCtrl.push(LoginPage);
   }
 
 }

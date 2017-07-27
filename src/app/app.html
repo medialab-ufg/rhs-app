@@ -6,7 +6,7 @@
       <button menuClose ion-button color="primary" (click)="goToLoginPage()">ENTRAR NA RHS</button>
     </ion-toolbar>
     <ion-toolbar *ngIf="showUserInfo" color="secondary">
-      <h3>Seja bem vindo, {{ userInfo['name'] }}!</h3>
+      <h3>Seja bem vindo, {{ userInfo.name }}!</h3>
     </ion-toolbar>
   </ion-header>
 

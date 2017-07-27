@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage';
 
 import { AuthenticationProvider } from './../providers/authentication/authentication';
 import { ApiProvider } from './../providers/api/api';
+import { UserModel } from './../providers/models/models';
 
 @Component({
   templateUrl: 'app.html'
@@ -14,12 +15,12 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // Page navigation
-  rootPage: any = 'IntroPage';
+  rootPage: any = 'PostsPage';
   pages: Array<{title: string, component: any}>;
 
   // Sidemenu User Info 
   showUserInfo = false;
-  userInfo = '';
+  userInfo: UserModel;
 
   constructor(public platform: Platform, 
               public statusBar: StatusBar, 
@@ -50,7 +51,7 @@ export class MyApp {
         if (result){
           this.rootPage = 'PostsPage';
         } else {
-          //this.rootPage = IntroPage;
+          this.rootPage = 'IntroPage';
           this.storage.set('introShown', true);
         }
   
@@ -103,12 +104,12 @@ export class MyApp {
 
   loadUserInfo() {
     // Adds loading spinner 
-    let loading = this.loadingCtrl.create({content: 'Carregando dados do usuário...'});
+    let loading = this.loadingCtrl.create({content: 'Carregando...'});
     loading.present();
 
     this.api.getUserInfo().subscribe(
       userInfo => {
-      this.userInfo = userInfo['userInfo'];
+      this.userInfo = userInfo;
       this.showUserInfo = true;
     },
     err => {

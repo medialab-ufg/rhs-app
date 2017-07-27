@@ -4,6 +4,7 @@ import { Http, Headers, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { SettingsProvider } from './../settings/settings';
+import { UserModel, PostModel } from './../models/models';
 
 import oauthSignature from 'oauth-signature';
 
@@ -34,7 +35,7 @@ export class ApiProvider {
   // == API REQUESTS ====================================================================
   // Obtain user info
   getUserInfo():
-      Observable<any> {
+      Observable<UserModel> {
 
         let parameters = {
           oauth_consumer_key: this.settings.consumerKey,
@@ -53,13 +54,47 @@ export class ApiProvider {
       .map((res: Response) => {
         
         let userInfo = JSON.parse(res['_body']);
-
-        return { 
-          userInfo
-        };
+        return userInfo;
       })
       .catch((error: any) => this.handleError(error));
-  } 
+  }
+  
+  // Obtain list of posts
+  getPostList(authenticated: boolean):
+    Observable<[PostModel]> {
+
+    if (authenticated) {
+      let parameters = {
+        oauth_consumer_key: this.settings.consumerKey,
+        oauth_token: this.tokenKey,
+        oauth_signature_method: 'HMAC-SHA1',
+        oauth_timestamp: new String(new Date().getTime()).substr(0,10),
+        oauth_nonce: this.generateNonce(),
+        oauth_version: '1.0' 
+      };
+
+      let signature = oauthSignature.generate('GET', this.settings.apiURL + 'wp-json/wp/v2/posts', parameters, this.settings.consumerSecret, this.tokenSecret);
+      let headers = new Headers();
+      headers.append('Authorization', 'OAuth oauth_consumer_key="' + this.settings.consumerKey + '",oauth_token="' + this.tokenKey + '",oauth_signature_method="HMAC-SHA1",oauth_timestamp="' + parameters.oauth_timestamp + '",oauth_nonce="' + parameters.oauth_nonce + '",oauth_version="1.0",oauth_signature="' + signature + '"');
+
+      return this.http.get(this.settings.apiURL + 'wp-json/wp/v2/posts', {headers: headers})
+        .map((res: Response) => {
+          
+          let postList = JSON.parse(res['_body']);
+          return postList;
+        })
+        .catch((error: any) => this.handleError(error));
+
+    } else {
+      return this.http.get(this.settings.apiURL + 'wp-json/wp/v2/posts')
+        .map((res: Response) => {
+          
+          let postList = JSON.parse(res['_body']);
+          return postList;
+        })
+        .catch((error: any) => this.handleError(error));
+    }
+  }
 
   // ==== UTILITIES  ======================================================================
   // Trata o casos de falha baseado no código de erro

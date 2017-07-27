@@ -17,13 +17,13 @@
 
   <ion-toolbar color="primary">
     <ion-segment [(ngModel)]="postsView" color="secondary">
-      <ion-segment-button value="home">
+      <ion-segment-button value="home" (ionSelect)="loadPosts('home')">
         Principal
       </ion-segment-button>
-      <ion-segment-button value="queue">
+      <ion-segment-button value="queue" (ionSelect)="loadPosts('queue')">
         Fila de Votação
       </ion-segment-button>
-      <ion-segment-button value="following">
+      <ion-segment-button value="following" (ionSelect)="loadPosts('following')">
         Seguindo
       </ion-segment-button>
     </ion-segment>
@@ -31,27 +31,30 @@
 
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
   <div [ngSwitch]="postsView">
     <ion-list *ngSwitchCase="'home'">
-      <ion-card (click)="goToPostPage()">   
+      <ion-card *ngFor="let post of homePostList" (click)="goToPostPage()">   
         <ion-card-header>
-          POST DA PRINCIPAL
+          {{ post.title['rendered'] }}
         </ion-card-header>
         <ion-card-content>
-          <!-- Conteúdo...-->
+          {{ post.content['rendered'] }}
         </ion-card-content>
       </ion-card>
     </ion-list>
+    <!--<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>-->
 
     <ion-list *ngSwitchCase="'queue'">
-      <ion-card (click)="goToPostPage()">
+      <ion-card *ngFor="let post of queuePostList" (click)="goToPostPage()">
         <ion-card-header>
-          POST DA FILA
+          {{ post.title['rendered'] }}
         </ion-card-header>
         <ion-card-content>
-          <!-- Conteúdo...-->
+          {{ post.content['rendered'] }}
         </ion-card-content>
       </ion-card>
     </ion-list>

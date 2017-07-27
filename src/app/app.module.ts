@@ -12,6 +12,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthenticationProvider } from '../providers/authentication/authentication';
 import { ApiProvider } from '../providers/api/api';
 import { SettingsProvider } from '../providers/settings/settings';
+import { UserModel, PostModel } from '../providers/models/models';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,9 @@ import { SettingsProvider } from '../providers/settings/settings';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthenticationProvider,
     ApiProvider,
-    SettingsProvider
+    SettingsProvider,
+    UserModel,
+    PostModel
   ]
 })
 export class AppModule {}

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ViewController } from 'ionic-angular';
+import { ViewController, IonicPage } from 'ionic-angular';
 
+@IonicPage()
 @Component({
   selector: 'page-profile-edit',
   templateUrl: 'profile-edit.html',

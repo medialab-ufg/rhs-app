@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, IonicPage } from 'ionic-angular';
 
-import { ProfileEditModal } from './../profile-edit/profile-edit';
-
+@IonicPage()
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html',
@@ -19,7 +18,7 @@ export class ProfilePage {
 
   openEditProfileModal(){
     // Passar um objeto com dados atuais do usuário como segundo parâmetro do modalCtrl.create.
-    let profileModal = this.modalCtrl.create(ProfileEditModal);
+    let profileModal = this.modalCtrl.create('ProfileEditModal');
     profileModal.onDidDismiss(data => {
       // Tratar dados do usuário passados pelo modal.
     });

@@ -6,16 +6,6 @@ import { HttpModule } from '@angular/http';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { MyApp } from './app.component';
-import { PostsPage } from './../pages/posts/posts';
-import { ProfilePage } from './../pages/profile/profile';
-import { FollowingPage } from './../pages/following/following';
-import { SettingsPage } from './../pages/settings/settings';
-import { NotificationsPage } from './../pages/notifications/notifications';
-import { SearchPage } from './../pages/search/search';
-import { PostPage } from './../pages/post/post';
-import { ProfileEditModal } from './../pages/profile-edit/profile-edit';
-import { LoginPage } from './../pages/login/login';
-import { IntroPage } from './../pages/intro/intro';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -25,17 +15,7 @@ import { SettingsProvider } from '../providers/settings/settings';
 
 @NgModule({
   declarations: [
-    MyApp,
-    PostsPage,
-    ProfilePage,
-    FollowingPage,
-    SettingsPage,
-    SearchPage,
-    NotificationsPage,
-    PostPage,
-    ProfileEditModal,
-    IntroPage,
-    LoginPage
+    MyApp
   ],
   imports: [
     BrowserModule,
@@ -47,17 +27,7 @@ import { SettingsProvider } from '../providers/settings/settings';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    PostsPage,
-    ProfilePage,
-    FollowingPage,
-    SettingsPage,
-    SearchPage,
-    NotificationsPage,
-    PostPage,
-    ProfileEditModal,
-    IntroPage,
-    LoginPage
+    MyApp
   ],
   providers: [
     StatusBar,

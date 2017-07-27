@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, IonicPage } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { SettingsProvider } from './../../providers/settings/settings';
 import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { ApiProvider } from './../../providers/api/api';
 
-import { LoginPage } from './../login/login';
-
+@IonicPage()
 @Component({
   selector: 'page-settings',
   templateUrl: 'settings.html',
@@ -56,8 +55,7 @@ export class SettingsPage {
 
   logout() {
     // Saves in local storage, for obtaining on app load.
-    this.storage.set('oauth_token_key', null);
-    this.storage.set('oauth_token_secret', null);
+    this.storage.set('oauth_token', null);
     this.storage.set('is_user_logged', false);
     
     // Saves in Api Service, for using during requests.
@@ -72,7 +70,7 @@ export class SettingsPage {
   }
 
   goToLoginPage() {
-    this.navCtrl.push(LoginPage);
+    this.navCtrl.push('LoginPage');
   }
 
 }

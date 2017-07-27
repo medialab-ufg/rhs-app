@@ -67,7 +67,7 @@ export class ApiProvider {
     console.error(error);
     return Observable.throw(error.status);
   }
-
+/*
   // Converte queries de uma hash de parâmetros em uma URLSearchParam
   private serializeQueries(obj: any): URLSearchParams {
     const params: URLSearchParams = new URLSearchParams();
@@ -81,7 +81,7 @@ export class ApiProvider {
 
     return params;
   }
-
+*/
   // 
   public queryToObject(query: string) {
     return JSON.parse('{"' + decodeURI(query).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');

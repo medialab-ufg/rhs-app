@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 
+@IonicPage()
 @Component({
   selector: 'page-notifications',
   templateUrl: 'notifications.html',
@@ -11,7 +12,6 @@ export class NotificationsPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NotificationsPage');
   }
 
 }

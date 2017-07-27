@@ -1,9 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Slides } from 'ionic-angular';
+import { NavController, NavParams, Slides, IonicPage } from 'ionic-angular';
 
-import { PostsPage } from './../posts/posts';
-import { LoginPage } from './../login/login';
-
+@IonicPage()
 @Component({
   selector: 'page-intro',
   templateUrl: 'intro.html',
@@ -24,11 +22,11 @@ export class IntroPage {
   }
 
   goToPostsPage() {
-    this.navCtrl.setRoot(PostsPage);
+    this.navCtrl.setRoot('PostsPage');
   }
 
   goToLoginPage() {
-    this.navCtrl.setRoot(LoginPage);
+    this.navCtrl.setRoot('LoginPage');
   }
 
 }

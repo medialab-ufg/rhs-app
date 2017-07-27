@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ActionSheetController } from 'ionic-angular';
+import { NavController, NavParams, ActionSheetController, IonicPage } from 'ionic-angular';
 
+@IonicPage()
 @Component({
   selector: 'page-post',
   templateUrl: 'post.html',
@@ -16,7 +17,6 @@ export class PostPage {
   }
 
   sendMessage() {
-
   }
 
   openShareActionSheet() {

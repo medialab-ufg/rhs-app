@@ -1,15 +1,8 @@
-import { LoginPage } from './../pages/login/login';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, LoadingController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
-
-import { PostsPage } from './../pages/posts/posts';
-import { ProfilePage } from './../pages/profile/profile';
-import { FollowingPage } from './../pages/following/following';
-import { SettingsPage } from './../pages/settings/settings';
-import { IntroPage } from './../pages/intro/intro';
 
 import { AuthenticationProvider } from './../providers/authentication/authentication';
 import { ApiProvider } from './../providers/api/api';
@@ -21,7 +14,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // Page navigation
-  rootPage: any = IntroPage;
+  rootPage: any = 'IntroPage';
   pages: Array<{title: string, component: any}>;
 
   // Sidemenu User Info 
@@ -39,10 +32,10 @@ export class MyApp {
     this.initializeApp();
 
     this.pages = [
-      { title: 'Posts', component: PostsPage },
-      { title: 'Meu Perfil', component: ProfilePage },
-      { title: 'Seguindo', component: FollowingPage },
-      { title: 'Configurações', component: SettingsPage },
+      { title: 'Posts', component: 'PostsPage' },
+      { title: 'Meu Perfil', component: 'ProfilePage' },
+      { title: 'Seguindo', component:  'FollowingPage' },
+      { title: 'Configurações', component: 'SettingsPage' },
     ];
 
   }
@@ -50,12 +43,12 @@ export class MyApp {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
-
-      //this.storage.clear();
+      
+      // Decides wheter the Intro page should be shown or not.
       this.storage.get('introShown').then((result) => {
 
         if (result){
-          this.rootPage = PostsPage;
+          this.rootPage = 'PostsPage';
         } else {
           //this.rootPage = IntroPage;
           this.storage.set('introShown', true);
@@ -63,21 +56,31 @@ export class MyApp {
   
         this.splashScreen.hide();
       });
+
+      // Checks on Storage if user is logged
       this.storage.get('is_user_logged').then((result) => {
         
         if (result) {
           this.api.setLogged(true);
-          
-          this.storage.get('oauth_token_key').then((value) => { this.api.setTokenKey(value) });
-          this.storage.get('oauth_token_secret').then((value) => { this.api.setTokenSecret(value) });
 
-          this.authentication.userLogged.emit(true);
+          this.storage.get('oauth_token').then((value) => { 
+            this.api.setTokenKey(value.key); 
+            this.api.setTokenSecret(value.secret); 
+            this.authentication.userLogged.emit(true);
+          });
 
         } else {
+          // Saves in Api Service, for using during requests.
           this.api.setLogged(false);
+          this.api.setTokenKey(null);
+          this.api.setTokenSecret(null);
+
+          // Informs subscribed ones (as the sidemenu and settings page) that user logged out.
           this.authentication.userLogged.emit(false);
         }
-      })
+      });
+
+      // Register 
       this.authentication.userLogged.subscribe(value => {
         if (value === true) {
           this.loadUserInfo();
@@ -95,7 +98,7 @@ export class MyApp {
   }
 
   goToLoginPage() {
-    this.nav.push(LoginPage);
+    this.nav.push('LoginPage');
   }
 
   loadUserInfo() {

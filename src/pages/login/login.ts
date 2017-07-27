@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Storage } from '@ionic/storage';
 
@@ -7,8 +7,7 @@ import { AuthenticationProvider } from './../../providers/authentication/authent
 import { SettingsProvider } from './../../providers/settings/settings';
 import { ApiProvider } from './../../providers/api/api';
 
-import { PostsPage } from './../posts/posts';
-
+@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -51,8 +50,7 @@ export class LoginPage {
                     if (finalCredentials.oauthToken !== null  && finalCredentials.oauthTokenSecret !== null) {
                       
                       // Saves in local storage, for obtaining on app load.
-                      this.storage.set('oauth_token_key', finalCredentials.oauthToken);
-                      this.storage.set('oauth_token_secret', finalCredentials.oauthTokenSecret);
+                      this.storage.set('oauth_token', { key: finalCredentials.oauthToken, secret: finalCredentials.oauthTokenSecret });
                       this.storage.set('is_user_logged', true);
                       
                       // Saves in Api Service, for using during requests.
@@ -64,7 +62,7 @@ export class LoginPage {
                       this.authentication.userLogged.emit(true);
 
                       // Return user to home page.
-                      this.navCtrl.setRoot(PostsPage);
+                      this.navCtrl.setRoot('PostsPage');
                     }
                   },
                   err => {

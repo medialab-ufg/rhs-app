@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 
-import { PostPage } from './../post/post';
-import { NotificationsPage } from './../notifications/notifications';
-import { SearchPage } from './../search/search';
-
+@IonicPage()
 @Component({
   selector: 'page-posts',
   templateUrl: 'posts.html',
@@ -21,15 +18,15 @@ export class PostsPage {
   }
 
   goToPostPage() {
-    this.navCtrl.push(PostPage);
+    this.navCtrl.push('PostPage');
   }
 
   goToSearchPage() {
-    this.navCtrl.push(SearchPage);
+    this.navCtrl.push('SearchPage');
   }
 
   goToNotificationsPage() {
-    this.navCtrl.push(NotificationsPage);
+    this.navCtrl.push('NotificationsPage');
   }
 
 }

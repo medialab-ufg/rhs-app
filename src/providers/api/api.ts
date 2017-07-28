@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { SettingsProvider } from './../settings/settings';
@@ -37,7 +37,7 @@ export class ApiProvider {
   getUserInfo():
       Observable<UserModel> {
 
-        let parameters = {
+        let queries = {
           oauth_consumer_key: this.settings.consumerKey,
           oauth_token: this.tokenKey,
           oauth_signature_method: 'HMAC-SHA1',
@@ -46,9 +46,9 @@ export class ApiProvider {
           oauth_version: '1.0' 
         };
 
-        let signature = oauthSignature.generate('GET', this.settings.apiURL + 'wp-json/wp/v2/users/me', parameters, this.settings.consumerSecret, this.tokenSecret);
+        let signature = oauthSignature.generate('GET', this.settings.apiURL + 'wp-json/wp/v2/users/me', queries, this.settings.consumerSecret, this.tokenSecret);
         let headers = new Headers();
-        headers.append('Authorization', 'OAuth oauth_consumer_key="' + this.settings.consumerKey + '",oauth_token="' + this.tokenKey + '",oauth_signature_method="HMAC-SHA1",oauth_timestamp="' + parameters.oauth_timestamp + '",oauth_nonce="' + parameters.oauth_nonce + '",oauth_version="1.0",oauth_signature="' + signature + '"');
+        headers.append('Authorization', 'OAuth oauth_consumer_key="' + this.settings.consumerKey + '",oauth_token="' + this.tokenKey + '",oauth_signature_method="HMAC-SHA1",oauth_timestamp="' + queries.oauth_timestamp + '",oauth_nonce="' + queries.oauth_nonce + '",oauth_version="1.0",oauth_signature="' + signature + '"');
 
     return this.http.get(this.settings.apiURL + 'wp-json/wp/v2/users/me', {headers: headers})
       .map((res: Response) => {
@@ -60,40 +60,33 @@ export class ApiProvider {
   }
   
   // Obtain list of posts
-  getPostList(authenticated: boolean):
+  getPostList(authenticated: boolean, queries: { [query: string]: String } ):
     Observable<[PostModel]> {
 
+    let headers = new Headers();
+    let search = this.serializeQueries(queries);
+
     if (authenticated) {
-      let parameters = {
-        oauth_consumer_key: this.settings.consumerKey,
-        oauth_token: this.tokenKey,
-        oauth_signature_method: 'HMAC-SHA1',
-        oauth_timestamp: new String(new Date().getTime()).substr(0,10),
-        oauth_nonce: this.generateNonce(),
-        oauth_version: '1.0' 
-      };
 
-      let signature = oauthSignature.generate('GET', this.settings.apiURL + 'wp-json/wp/v2/posts', parameters, this.settings.consumerSecret, this.tokenSecret);
-      let headers = new Headers();
-      headers.append('Authorization', 'OAuth oauth_consumer_key="' + this.settings.consumerKey + '",oauth_token="' + this.tokenKey + '",oauth_signature_method="HMAC-SHA1",oauth_timestamp="' + parameters.oauth_timestamp + '",oauth_nonce="' + parameters.oauth_nonce + '",oauth_version="1.0",oauth_signature="' + signature + '"');
+      queries['oauth_consumer_key'] = this.settings.consumerKey;
+      queries['oauth_token'] = this.tokenKey;
+      queries['oauth_signature_method'] = 'HMAC-SHA1';
+      queries['oauth_timestamp'] = new String(new Date().getTime()).substr(0,10);
+      queries['oauth_nonce'] = this.generateNonce();
+      queries['oauth_version'] = '1.0'; 
 
-      return this.http.get(this.settings.apiURL + 'wp-json/wp/v2/posts', {headers: headers})
-        .map((res: Response) => {
-          
-          let postList = JSON.parse(res['_body']);
-          return postList;
-        })
-        .catch((error: any) => this.handleError(error));
-
-    } else {
-      return this.http.get(this.settings.apiURL + 'wp-json/wp/v2/posts')
-        .map((res: Response) => {
-          
-          let postList = JSON.parse(res['_body']);
-          return postList;
-        })
-        .catch((error: any) => this.handleError(error));
+      let signature = oauthSignature.generate('GET', this.settings.apiURL + 'wp-json/wp/v2/posts?' + search.toString(), queries, this.settings.consumerSecret, this.tokenSecret);
+      headers.append('Authorization', 'OAuth oauth_consumer_key="' + this.settings.consumerKey + '",oauth_token="' + this.tokenKey + '",oauth_signature_method="HMAC-SHA1",oauth_timestamp="' + queries['oauth_timestamp'] + '",oauth_nonce="' + queries['oauth_nonce'] + '",oauth_version="1.0",oauth_signature="' + signature + '"');
     }
+    
+    return this.http.get(this.settings.apiURL + 'wp-json/wp/v2/posts?' + search.toString(), {headers: headers})
+      .map((res: Response) => {
+        
+        let postList = JSON.parse(res['_body']);
+
+        return postList;
+      })
+      .catch((error: any) => this.handleError(error));
   }
 
   // ==== UTILITIES  ======================================================================
@@ -102,7 +95,7 @@ export class ApiProvider {
     console.error(error);
     return Observable.throw(error.status);
   }
-/*
+
   // Converte queries de uma hash de parâmetros em uma URLSearchParam
   private serializeQueries(obj: any): URLSearchParams {
     const params: URLSearchParams = new URLSearchParams();
@@ -116,8 +109,7 @@ export class ApiProvider {
 
     return params;
   }
-*/
-  // 
+
   public queryToObject(query: string) {
     return JSON.parse('{"' + decodeURI(query).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
   }

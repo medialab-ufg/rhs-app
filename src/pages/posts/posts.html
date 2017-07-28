@@ -1,5 +1,5 @@
 <ion-header>
-
+  
   <ion-navbar align-title="center" color="secondary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -17,13 +17,13 @@
 
   <ion-toolbar color="primary">
     <ion-segment [(ngModel)]="postsView" color="secondary">
-      <ion-segment-button value="home" (ionSelect)="loadPosts('home')">
+      <ion-segment-button value="home" (ionSelect)="loadPosts('home', null)">
         Principal
       </ion-segment-button>
-      <ion-segment-button value="queue" (ionSelect)="loadPosts('queue')">
+      <ion-segment-button value="queue" (ionSelect)="loadPosts('queue', null)">
         Fila de Votação
       </ion-segment-button>
-      <ion-segment-button value="following" (ionSelect)="loadPosts('following')">
+      <ion-segment-button value="following" (ionSelect)="loadPosts('following', null)">
         Seguindo
       </ion-segment-button>
     </ion-segment>
@@ -33,20 +33,24 @@
 
 <ion-content>
 
+  <ion-refresher pullMin="100" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingText="Puxe e solte para atualizar."
+      refreshingText="Carregando posts...">
+    </ion-refresher-content>
+  </ion-refresher>
+
   <div [ngSwitch]="postsView">
+    
     <ion-list *ngSwitchCase="'home'">
       <ion-card *ngFor="let post of homePostList" (click)="goToPostPage()">   
         <ion-card-header>
           {{ post.title['rendered'] }}
         </ion-card-header>
         <ion-card-content>
-          {{ post.content['rendered'] }}
         </ion-card-content>
       </ion-card>
     </ion-list>
-    <!--<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-      <ion-infinite-scroll-content></ion-infinite-scroll-content>
-    </ion-infinite-scroll>-->
 
     <ion-list *ngSwitchCase="'queue'">
       <ion-card *ngFor="let post of queuePostList" (click)="goToPostPage()">
@@ -54,21 +58,24 @@
           {{ post.title['rendered'] }}
         </ion-card-header>
         <ion-card-content>
-          {{ post.content['rendered'] }}
         </ion-card-content>
       </ion-card>
     </ion-list>
 
     <ion-list *ngSwitchCase="'following'">
-      <ion-card (click)="goToPostPage()">
+      <ion-card *ngFor="let post of followingPostList" (click)="goToPostPage()">
         <ion-card-header>
-          POST SENDO SEGUIDO
+          {{ post.title['rendered'] }}
         </ion-card-header>
         <ion-card-content>
-          <!-- Conteúdo...-->
         </ion-card-content>
       </ion-card>
     </ion-list>
+
   </div>
+
+  <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

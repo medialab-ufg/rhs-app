@@ -13,6 +13,7 @@ import { AuthenticationProvider } from '../providers/authentication/authenticati
 import { ApiProvider } from '../providers/api/api';
 import { SettingsProvider } from '../providers/settings/settings';
 import { UserModel, PostModel } from '../providers/models/models';
+import { UpdateProvider } from '../providers/update/update';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { UserModel, PostModel } from '../providers/models/models';
     ApiProvider,
     SettingsProvider,
     UserModel,
-    PostModel
+    PostModel,
+    UpdateProvider
   ]
 })
 export class AppModule {}

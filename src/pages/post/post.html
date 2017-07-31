@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header id="shrinkHeader">
 
   <ion-navbar color="secondary">
     <ion-title><img alt="RHS" height="36" src="./assets/logo-rhs.svg"/></ion-title>
@@ -11,13 +11,12 @@
 
 </ion-header>
 
-
-<ion-content padding>
+<ion-content padding fullscreen shrink-header>
 
   <div *ngIf="isLoading"><ion-spinner></ion-spinner></div>
   <div *ngIf="!isLoading">
     <h1>{{ post.title['rendered'] }}</h1>
-    {{ post.content['rendered'] }}
+    <div [innerHTML]="post.content['rendered']"></div>
 
   </div>
 

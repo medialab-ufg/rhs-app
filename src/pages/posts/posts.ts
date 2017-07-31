@@ -23,6 +23,8 @@ export class PostsPage {
   queuePostQueries: { [query: string]: String } = {};
   followingPostQueries: { [query: string]: String } = {};
 
+  showSpinner = false;
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public loadingCtrl: LoadingController,
@@ -32,21 +34,25 @@ export class PostsPage {
 
   ionViewDidLoad() {
     
+    this.showSpinner = true;
     this.loadPosts(this.postsView, false);
 
     // Uses update service to re-load after a time period without loading.
     this.update.homePostsOutdated.subscribe(() => {
       if (this.postsView === 'home') {
+        this.showSpinner = true;
         this.loadPosts(this.postsView, false);
       }
     });
     this.update.queuePostsOutdated.subscribe(() => {
       if (this.postsView === 'queue') {
+        this.showSpinner = true;
         this.loadPosts(this.postsView, false);
       }
     });
     this.update.followingPostsOutdated.subscribe(() => {
       if (this.postsView === 'following') {
+        this.showSpinner = true;
         this.loadPosts(this.postsView, false);
       }
     });
@@ -90,6 +96,7 @@ export class PostsPage {
           //  Switching segment controller calls
           else {
             if (this.homePostList.length === 0) {
+              this.showSpinner = true;
               this.homePostQueries['page'] = '1';
             }     
           }
@@ -102,7 +109,7 @@ export class PostsPage {
           err => {
             console.log('Error ' + err +  ' - On User Data Request.');
           },
-          () => resolve());
+          () => { this.showSpinner = false; resolve() });
         break;
 
         case 'queue':
@@ -123,6 +130,7 @@ export class PostsPage {
             //  Switching segment controller calls
             else {
               if (this.queuePostList.length === 0) {
+                this.showSpinner = true;
                 this.queuePostQueries['page'] = '1';
               }     
             }
@@ -130,12 +138,12 @@ export class PostsPage {
             // Perform the request to the api service
             this.api.getPostList(true, this.queuePostQueries).subscribe(
               postList => {
-              this.queuePostList = postList;
+              this.queuePostList = this.queuePostList.concat(postList);
             },
             err => {
               console.log('Error ' + err +  ' - On User Data Request.');
             },
-            () => resolve());
+            () => { this.showSpinner = false; resolve() });
           } else {
             this.authentication.userLogged.subscribe(value => {
               if (value === true) {
@@ -163,6 +171,7 @@ export class PostsPage {
             //  Switching segment controller calls
             else {
               if (this.followingPostList.length === 0) {
+                this.showSpinner = true;
                 this.followingPostQueries['page'] = '1';
               }     
             }
@@ -170,12 +179,12 @@ export class PostsPage {
             // Perform the request to the api service
             this.api.getPostList(true, this.followingPostQueries).subscribe(
               postList => {
-              this.followingPostList = postList;
+              this.followingPostList = this.followingPostList.concat(postList);
             },
             err => {
               console.log('Error ' + err +  ' - On User Data Request.');
             },
-            () => resolve());
+            () => { this.showSpinner = false; resolve() });
           } else {
             this.authentication.userLogged.subscribe(value => {
               if (value === true) {
@@ -191,6 +200,7 @@ export class PostsPage {
   }
 
   doRefresh(refresher) {
+    this.showSpinner = false;
     this.loadPosts(this.postsView, false).then(() => refresher.complete());
   }
 

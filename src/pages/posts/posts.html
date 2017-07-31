@@ -43,6 +43,7 @@
   <div [ngSwitch]="postsView">
     
     <ion-list *ngSwitchCase="'home'">
+      <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
       <ion-card *ngFor="let post of homePostList" (click)="goToPostPage()">   
         <ion-card-header>
           {{ post.title['rendered'] }}
@@ -53,6 +54,7 @@
     </ion-list>
 
     <ion-list *ngSwitchCase="'queue'">
+      <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
       <ion-card *ngFor="let post of queuePostList" (click)="goToPostPage()">
         <ion-card-header>
           {{ post.title['rendered'] }}
@@ -63,6 +65,7 @@
     </ion-list>
 
     <ion-list *ngSwitchCase="'following'">
+      <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
       <ion-card *ngFor="let post of followingPostList" (click)="goToPostPage()">
         <ion-card-header>
           {{ post.title['rendered'] }}

@@ -61,7 +61,10 @@ export class ApiProvider {
   
   // Obtain list of posts
   getPostList(authenticated: boolean, queries: { [query: string]: String } ):
-    Observable<[PostModel]> {
+    Observable<Array<PostModel>> {
+
+    // This ensures we receive a response without the whole content of the post
+    queries['context'] = 'embed';
 
     let headers = new Headers();
     let search = this.serializeQueries(queries);

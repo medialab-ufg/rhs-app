@@ -1,7 +1,7 @@
-import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage, LoadingController } from 'ionic-angular';
 
+import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { ApiProvider } from './../../providers/api/api';
 import { UpdateProvider } from './../../providers/update/update';
 import { PostModel } from './../../providers/models/models';
@@ -22,6 +22,11 @@ export class PostsPage {
   homePostQueries: { [query: string]: String } = {};
   queuePostQueries: { [query: string]: String } = {};
   followingPostQueries: { [query: string]: String } = {};
+
+  noMoreResultsOnHome: boolean = false;
+  noMoreResultsOnQueue: boolean = false;
+  noMoreResultsOnFollowing: boolean = false;
+  noMoreResults: boolean = false;
 
   showSpinner = false;
 
@@ -102,11 +107,15 @@ export class PostsPage {
           }
           
           // Perform the request to the api service
-          this.api.getPostList(false, this.homePostQueries).subscribe(
+          this.api.getPostList(this.api.isLogged(), this.homePostQueries).subscribe(
             postList => {
-            this.homePostList = this.homePostList.concat(postList);     
+            this.homePostList = this.homePostList.concat(postList);
+            this.noMoreResultsOnHome = false;     
           },
           err => {
+            if (err === 400) {
+              this.noMoreResultsOnHome = true;
+            }
             console.log('Error ' + err +  ' - On User Data Request.');
           },
           () => { this.showSpinner = false; resolve() });
@@ -134,13 +143,16 @@ export class PostsPage {
                 this.queuePostQueries['page'] = '1';
               }     
             }
-
             // Perform the request to the api service
             this.api.getPostList(true, this.queuePostQueries).subscribe(
               postList => {
               this.queuePostList = this.queuePostList.concat(postList);
+              this.noMoreResultsOnQueue = false;
             },
             err => {
+              if (err === 400) {
+                this.noMoreResultsOnQueue = true;
+              }
               console.log('Error ' + err +  ' - On User Data Request.');
             },
             () => { this.showSpinner = false; resolve() });
@@ -180,8 +192,12 @@ export class PostsPage {
             this.api.getPostList(true, this.followingPostQueries).subscribe(
               postList => {
               this.followingPostList = this.followingPostList.concat(postList);
+              this.noMoreResultsOnFollowing = false;
             },
             err => {
+              if (err === 400) {
+                this.noMoreResultsOnFollowing = true;
+              }
               console.log('Error ' + err +  ' - On User Data Request.');
             },
             () => { this.showSpinner = false; resolve() });

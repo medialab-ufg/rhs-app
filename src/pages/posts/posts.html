@@ -51,6 +51,9 @@
         <ion-card-content>
         </ion-card-content>
       </ion-card>
+      <ion-item-divider *ngIf="noMoreResultsOnHome">
+        Não foram encontrados mais resultados.  
+      </ion-item-divider>
     </ion-list>
 
     <ion-list *ngSwitchCase="'queue'">
@@ -62,6 +65,9 @@
         <ion-card-content>
         </ion-card-content>
       </ion-card>
+      <ion-item-divider *ngIf="noMoreResultsOnQueue">
+        Não foram encontrados mais resultados.  
+      </ion-item-divider>
     </ion-list>
 
     <ion-list *ngSwitchCase="'following'">
@@ -73,11 +79,14 @@
         <ion-card-content>
         </ion-card-content>
       </ion-card>
+      <ion-item-divider *ngIf="noMoreResultsOnFollowing">
+        Não foram encontrados mais resultados.  
+      </ion-item-divider>
     </ion-list>
 
   </div>
 
-  <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())">
+  <ion-infinite-scroll [enabled]="postsView === 'home' ? !noMoreResultsOnHome : postsView === 'queue' ? !noMoreResultsOnQueue : !noMoreResultsOnFollowing" (ionInfinite)="$event.waitFor(doInfinite())">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
 

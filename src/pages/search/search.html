@@ -1,10 +1,39 @@
 <ion-header>
 
-  <ion-navbar color="primary">
-    <ion-searchbar (input)="searchPosts($event)"></ion-searchbar>
-  </ion-navbar>
+  <ion-toolbar color="primary">
+    <ion-searchbar animated="true"
+                   placeholder="Pesquisar posts na RHS"
+                   autocomplete="on"
+                   showCancelButton="true"
+                   cancelButtonText="Cancelar"
+                   (ionCancel)="onCancel($event)"
+                   [(ngModel)]="searchTerm" 
+                   [formControl]="searchControl"></ion-searchbar>
+  </ion-toolbar>
 
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+
+  <ion-list>
+    <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
+    <ion-card *ngFor="let post of postList" (click)="goToPostPage()">   
+      <ion-card-header>
+        {{ post.title['rendered'] }}
+      </ion-card-header>
+      <ion-card-content>
+      </ion-card-content>
+    </ion-card>
+    <ion-item-divider *ngIf="noMoreResults">
+      Não foram encontrados mais resultados.  
+    </ion-item-divider>
+    <ion-item-divider *ngIf="postList.length == 0">
+      Nenhum resultado encontrado.
+    </ion-item-divider>
+  </ion-list>
+
+  <ion-infinite-scroll [enabled]="!noMoreResults" (ionInfinite)="$event.waitFor(doInfinite())">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 </ion-content>

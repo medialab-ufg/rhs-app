@@ -14,15 +14,22 @@
 
 <ion-content padding>
 
-  <ion-footer>
-    <ion-toolbar>
-      <ion-input type="text" value="" placeholder="Digite aqui seu comentário."></ion-input>
-      <ion-buttons end>
-        <button ion-button icon-only (click)="sendMessage()">
-          <ion-icon name="send"></ion-icon>
-        </button>
-      </ion-buttons> 
-    </ion-toolbar>
-  </ion-footer>
+  <div *ngIf="isLoading"><ion-spinner></ion-spinner></div>
+  <div *ngIf="!isLoading">
+    <h1>{{ post.title['rendered'] }}</h1>
+    {{ post.content['rendered'] }}
+
+  </div>
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-input type="text" value="" placeholder="Digite aqui seu comentário."></ion-input>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="sendMessage()">
+        <ion-icon name="send"></ion-icon>
+      </button>
+    </ion-buttons> 
+  </ion-toolbar>
+</ion-footer>

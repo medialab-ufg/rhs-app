@@ -4,7 +4,6 @@ import { FormControl } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
-import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { ApiProvider } from './../../providers/api/api';
 import { PostModel } from './../../providers/models/models';
 
@@ -26,8 +25,7 @@ export class SearchPage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public api: ApiProvider,
-              public authentication: AuthenticationProvider) {
+              public api: ApiProvider) {
     this.searchControl = new FormControl();
   }
 
@@ -38,8 +36,8 @@ export class SearchPage {
                           .subscribe(search => this.searchPosts(false));
   }
 
-  goToPostPage() {
-    this.navCtrl.push('PostPage');
+  goToPostPage(id: number) {
+    this.navCtrl.push('PostPage', {'postId': id});
   }
 
   searchPosts(isLoadingMore: boolean): Promise<any> {

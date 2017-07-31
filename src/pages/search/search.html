@@ -17,7 +17,7 @@
 
   <ion-list>
     <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
-    <ion-card *ngFor="let post of postList" (click)="goToPostPage()">   
+    <ion-card *ngFor="let post of postList" (click)="goToPostPage(post.id)">   
       <ion-card-header>
         {{ post.title['rendered'] }}
       </ion-card-header>

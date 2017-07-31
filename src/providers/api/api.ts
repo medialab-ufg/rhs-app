@@ -86,11 +86,44 @@ export class ApiProvider {
       .map((res: Response) => {
         
         let postList = JSON.parse(res['_body']);
-
+ 
         return postList;
       })
       .catch((error: any) => this.handleError(error));
   }
+
+    
+  // Obtain list of posts
+  getPostInfo(postId: number, authenticated: boolean ):
+    Observable<PostModel> {
+
+    let headers = new Headers();
+    let queries: URLSearchParams = new URLSearchParams();
+
+    if (authenticated) {
+
+      queries['oauth_consumer_key'] = this.settings.consumerKey;
+      queries['oauth_token'] = this.tokenKey;
+      queries['oauth_signature_method'] = 'HMAC-SHA1';
+      queries['oauth_timestamp'] = new String(new Date().getTime()).substr(0,10);
+      queries['oauth_nonce'] = this.generateNonce();
+      queries['oauth_version'] = '1.0'; 
+
+      let signature = oauthSignature.generate('GET', this.settings.apiURL + 'wp-json/wp/v2/posts/' + postId, queries, this.settings.consumerSecret, this.tokenSecret);
+      headers.append('Authorization', 'OAuth oauth_consumer_key="' + this.settings.consumerKey + '",oauth_token="' + this.tokenKey + '",oauth_signature_method="HMAC-SHA1",oauth_timestamp="' + queries['oauth_timestamp'] + '",oauth_nonce="' + queries['oauth_nonce'] + '",oauth_version="1.0",oauth_signature="' + signature + '"');
+    }
+    
+    return this.http.get(this.settings.apiURL + 'wp-json/wp/v2/posts/' + postId, {headers: headers})
+      .map((res: Response) => {
+
+        let postList = JSON.parse(res['_body']);
+ 
+        return postList;
+      })
+      .catch((error: any) => this.handleError(error));
+  }
+
+
 
   // ==== UTILITIES  ======================================================================
   // Trata o casos de falha baseado no código de erro

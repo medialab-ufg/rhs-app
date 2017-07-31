@@ -12,6 +12,14 @@ page-post {
       -webkit-justify-content: center;
       justify-content: center;
     }
+
+    ion-spinner {
+      position: absolute;
+      margin-left: -1em;
+      margin-top: -1em;
+      left: 50%;
+      top: 50%;
+    }
   }
 
 }

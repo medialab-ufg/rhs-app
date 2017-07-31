@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 
 import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { ApiProvider } from './../../providers/api/api';
@@ -32,7 +32,6 @@ export class PostsPage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public loadingCtrl: LoadingController,
               public api: ApiProvider,
               public authentication: AuthenticationProvider,
               public update: UpdateProvider) { }
@@ -64,8 +63,8 @@ export class PostsPage {
 
   }
 
-  goToPostPage() {
-    this.navCtrl.push('PostPage');
+  goToPostPage(id: number) {
+    this.navCtrl.push('PostPage', {'postId': id});
   }
 
   goToSearchPage() {

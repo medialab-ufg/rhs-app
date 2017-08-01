@@ -18,6 +18,23 @@
 
     <h1 [innerHTML]="post.title['rendered']"></h1>
     <div [innerHTML]="post.content['rendered']"></div>
+    
+    <div *ngIf="isLoadingAuthor"><ion-spinner></ion-spinner></div>
+    <div *ngIf="!isLoadingAuthor">
+      <h2>{{ author.name }}</h2>
+      <ion-avatar item-start>
+        <img src="{{ author.avatar_urls[48] }}">
+      </ion-avatar>
+    </div>
+    <h4>Publicado em {{ post.date }}</h4>
+
+    <div *ngIf="isLoadingTags"><ion-spinner></ion-spinner></div>
+    <div *ngIf="!isLoadingTags && tags.length > 0">
+      <h3>Tags ({{ tags.length }})</h3>
+      <ion-buttons>
+        <button ion-button round small outline *ngFor="let tag of tags">{{ tag.name }}</button>
+      </ion-buttons>
+    </div>
     <ion-buttons>
       <button ion-button (click)="commentPost()">Comentar</button>
       <button ion-button (click)="votePost()">Votar</button>
@@ -26,7 +43,7 @@
 
     <div *ngIf="isLoadingComments"><ion-spinner></ion-spinner></div>
     <div *ngIf="!isLoadingComments">
-      <p>{{ comments.length }} comentários.</p>
+      <h3>{{ comments.length }} comentários.</h3>
       <ion-list>
         <ion-item *ngFor="let comment of comments">
           <ion-avatar item-start>
@@ -34,7 +51,7 @@
           </ion-avatar>
           <h2>{{ comment.author_name }}</h2>
           <p [innerHtml]="comment.content['rendered']"></p>
-          <button ion-button clear icon-only (click)="commentOnComment()">
+          <button ion-button clear icon-only item-end (click)="commentOnComment()">
             <ion-icon name="redo"></ion-icon>
           </button>
         </ion-item>

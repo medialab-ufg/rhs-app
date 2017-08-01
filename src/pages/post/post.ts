@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ActionSheetController, AlertController, IonicPage } from 'ionic-angular';
 
 import { ApiProvider } from './../../providers/api/api';
-import { PostModel, CommentModel } from './../../providers/models/models';
+import { PostModel, CommentModel, TagModel, UserModel } from './../../providers/models/models';
 
 @IonicPage()
 @Component({
@@ -14,9 +14,13 @@ export class PostPage {
   postId: number;
   post: PostModel;
   comments: [CommentModel];
+  tags: [TagModel];
+  author: UserModel;
 
   isLoadingPost: boolean = false;
   isLoadingComments: boolean = false;
+  isLoadingTags: boolean = false;
+  isLoadingAuthor: boolean = false;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -38,10 +42,22 @@ export class PostPage {
 
     this.isLoadingPost = true;
     this.isLoadingComments = true;
+    this.isLoadingTags = true;
 
     this.api.getPostInfo(this.postId, this.api.isLogged()).subscribe(
       postInfo => {
       this.post = postInfo;
+
+      this.isLoadingAuthor = true;
+      this.api.getAuthorInfo(this.post.author, this.api.isLogged()).subscribe(
+        authorInfo => {
+        this.author = authorInfo;
+        console.log(this.author);
+        },
+      err => {
+        console.log('Error ' + err +  ' - On Author Data Request.');
+      },
+      () => this.isLoadingAuthor = false);
     },
     err => {
       console.log('Error ' + err +  ' - On Post Data Request.');
@@ -51,12 +67,20 @@ export class PostPage {
     this.api.getPostComments(this.postId, this.api.isLogged()).subscribe(
       commentsInfo => {
       this.comments = commentsInfo;
-      console.log(this.comments);
     },
     err => {
       console.log('Error ' + err +  ' - On Comments Data Request.');
     },
     () => this.isLoadingComments = false);
+
+    this.api.getPostTags(this.postId, this.api.isLogged()).subscribe(
+      tagsInfo => {
+      this.tags = tagsInfo;
+    },
+    err => {
+      console.log('Error ' + err +  ' - On Tags Data Request.');
+    },
+    () => this.isLoadingTags = false);
     
   }
 

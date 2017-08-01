@@ -4,7 +4,7 @@ import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { SettingsProvider } from './../settings/settings';
-import { UserModel, PostModel, CommentModel } from './../models/models';
+import { UserModel, PostModel, CommentModel, TagModel } from './../models/models';
 
 import oauthSignature from 'oauth-signature';
 
@@ -93,7 +93,7 @@ export class ApiProvider {
   }
 
     
-  // Obtain list of posts
+  // Obtain post info
   getPostInfo(postId: number, authenticated: boolean ):
     Observable<PostModel> {
 
@@ -117,16 +117,16 @@ export class ApiProvider {
     return this.http.get(this.settings.apiURL + 'wp-json/wp/v2/posts/' + postId, {headers: headers})
       .map((res: Response) => {
 
-        let postList = JSON.parse(res['_body']);
+        let postInfo = JSON.parse(res['_body']);
  
-        return postList;
+        return postInfo;
       })
       .catch((error: any) => this.handleError(error));
   }
 
-  // Obtain list of comments in post
-  getPostComments(postId: number, authenticated: boolean ):
-    Observable<[CommentModel]> {
+    // Obtain post info
+  getAuthorInfo(authorId: number, authenticated: boolean ):
+    Observable<UserModel> {
 
     let headers = new Headers();
 
@@ -141,16 +141,83 @@ export class ApiProvider {
         oauth_version: '1.0' 
       };
 
-      let signature = oauthSignature.generate('GET', this.settings.apiURL + 'wp-json/wp/v2/comments/?post=' + postId, queries, this.settings.consumerSecret, this.tokenSecret);
+      let signature = oauthSignature.generate('GET', this.settings.apiURL + 'wp-json/wp/v2/users/' + authorId, queries, this.settings.consumerSecret, this.tokenSecret);
       headers.append('Authorization', 'OAuth oauth_consumer_key="' + this.settings.consumerKey + '",oauth_token="' + this.tokenKey + '",oauth_signature_method="HMAC-SHA1",oauth_timestamp="' + queries['oauth_timestamp'] + '",oauth_nonce="' + queries['oauth_nonce'] + '",oauth_version="1.0",oauth_signature="' + signature + '"');
     }
     
-    return this.http.get(this.settings.apiURL + 'wp-json/wp/v2/comments/?post=' + postId, {headers: headers})
+    return this.http.get(this.settings.apiURL + 'wp-json/wp/v2/users/' + authorId, {headers: headers})
+      .map((res: Response) => {
+
+        let authorInfo = JSON.parse(res['_body']);
+ 
+        return authorInfo;
+      })
+      .catch((error: any) => this.handleError(error));
+  }
+
+
+  // Obtain list of comments in post
+  getPostComments(postId: number, authenticated: boolean ):
+    Observable<[CommentModel]> {
+
+    let headers = new Headers();
+
+    let queries = new URLSearchParams();
+    queries['post'] = postId;
+    let search = this.serializeQueries(queries);
+
+    if (authenticated) {
+
+      queries['oauth_consumer_key'] = this.settings.consumerKey;
+      queries['oauth_token'] = this.tokenKey;
+      queries['oauth_signature_method'] = 'HMAC-SHA1';
+      queries['oauth_timestamp'] = new String(new Date().getTime()).substr(0,10);
+      queries['oauth_nonce'] = this.generateNonce();
+      queries['oauth_version'] = '1.0'; 
+
+      let signature = oauthSignature.generate('GET', this.settings.apiURL + 'wp-json/wp/v2/comments?' + search.toString(), queries, this.settings.consumerSecret, this.tokenSecret);
+      headers.append('Authorization', 'OAuth oauth_consumer_key="' + this.settings.consumerKey + '",oauth_token="' + this.tokenKey + '",oauth_signature_method="HMAC-SHA1",oauth_timestamp="' + queries['oauth_timestamp'] + '",oauth_nonce="' + queries['oauth_nonce'] + '",oauth_version="1.0",oauth_signature="' + signature + '"');
+    }
+    
+    return this.http.get(this.settings.apiURL + 'wp-json/wp/v2/comments?' + search.toString(), {headers: headers})
       .map((res: Response) => {
 
         let commentList = JSON.parse(res['_body']);
  
         return commentList;
+      })
+      .catch((error: any) => this.handleError(error));
+  }
+
+    // Obtain list of comments in post
+  getPostTags(postId: number, authenticated: boolean ):
+    Observable<[TagModel]> {
+
+    let headers = new Headers();
+
+    let queries = new URLSearchParams();
+    queries['post'] = postId;
+    let search = this.serializeQueries(queries);
+
+    if (authenticated) {
+
+      queries['oauth_consumer_key'] = this.settings.consumerKey;
+      queries['oauth_token'] = this.tokenKey;
+      queries['oauth_signature_method'] = 'HMAC-SHA1';
+      queries['oauth_timestamp'] = new String(new Date().getTime()).substr(0,10);
+      queries['oauth_nonce'] = this.generateNonce();
+      queries['oauth_version'] = '1.0'; 
+
+      let signature = oauthSignature.generate('GET', this.settings.apiURL + 'wp-json/wp/v2/tags?' + search.toString(), queries, this.settings.consumerSecret, this.tokenSecret);
+      headers.append('Authorization', 'OAuth oauth_consumer_key="' + this.settings.consumerKey + '",oauth_token="' + this.tokenKey + '",oauth_signature_method="HMAC-SHA1",oauth_timestamp="' + queries['oauth_timestamp'] + '",oauth_nonce="' + queries['oauth_nonce'] + '",oauth_version="1.0",oauth_signature="' + signature + '"');
+    }
+    
+    return this.http.get(this.settings.apiURL + 'wp-json/wp/v2/tags?' + search.toString(), {headers: headers})
+      .map((res: Response) => {
+
+        let tagList = JSON.parse(res['_body']);
+ 
+        return tagList;
       })
       .catch((error: any) => this.handleError(error));
   }

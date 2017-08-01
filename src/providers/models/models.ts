@@ -70,7 +70,6 @@ export class UserModel {
 
 }
 
-
 @Injectable()
 export class CommentModel {
 
@@ -104,6 +103,21 @@ export class CommentModel {
       'up': [{any}],
       'in-reply-to': [{any}]
     }]
+    ) {}
+
+}
+
+@Injectable()
+export class TagModel {
+
+  constructor(
+    public id: number,
+    public count: number,
+    public description: string,
+    public link: string,
+    public name: string,
+    public slug: string,
+    public taxonomy: string
     ) {}
 
 }

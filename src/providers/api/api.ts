@@ -4,7 +4,7 @@ import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { SettingsProvider } from './../settings/settings';
-import { UserModel, PostModel, CommentModel, TagModel } from './../models/models';
+import { UserModel, PostModel, CommentModel, TagModel, CategoryModel } from './../models/models';
 
 import oauthSignature from 'oauth-signature';
 
@@ -189,7 +189,7 @@ export class ApiProvider {
       .catch((error: any) => this.handleError(error));
   }
 
-    // Obtain list of comments in post
+  // Obtain list of tags in post
   getPostTags(postId: number, authenticated: boolean ):
     Observable<[TagModel]> {
 
@@ -218,6 +218,39 @@ export class ApiProvider {
         let tagList = JSON.parse(res['_body']);
  
         return tagList;
+      })
+      .catch((error: any) => this.handleError(error));
+  }
+
+    // Obtain list of tags in post
+  getPostCategories(postId: number, authenticated: boolean ):
+    Observable<[CategoryModel]> {
+
+    let headers = new Headers();
+
+    let queries = new URLSearchParams();
+    queries['post'] = postId;
+    let search = this.serializeQueries(queries);
+
+    if (authenticated) {
+
+      queries['oauth_consumer_key'] = this.settings.consumerKey;
+      queries['oauth_token'] = this.tokenKey;
+      queries['oauth_signature_method'] = 'HMAC-SHA1';
+      queries['oauth_timestamp'] = new String(new Date().getTime()).substr(0,10);
+      queries['oauth_nonce'] = this.generateNonce();
+      queries['oauth_version'] = '1.0'; 
+
+      let signature = oauthSignature.generate('GET', this.settings.apiURL + 'wp-json/wp/v2/categories?' + search.toString(), queries, this.settings.consumerSecret, this.tokenSecret);
+      headers.append('Authorization', 'OAuth oauth_consumer_key="' + this.settings.consumerKey + '",oauth_token="' + this.tokenKey + '",oauth_signature_method="HMAC-SHA1",oauth_timestamp="' + queries['oauth_timestamp'] + '",oauth_nonce="' + queries['oauth_nonce'] + '",oauth_version="1.0",oauth_signature="' + signature + '"');
+    }
+    
+    return this.http.get(this.settings.apiURL + 'wp-json/wp/v2/categories?' + search.toString(), {headers: headers})
+      .map((res: Response) => {
+
+        let categoryList = JSON.parse(res['_body']);
+ 
+        return categoryList;
       })
       .catch((error: any) => this.handleError(error));
   }

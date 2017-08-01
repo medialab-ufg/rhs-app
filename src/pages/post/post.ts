@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ActionSheetController, AlertController, IonicPage } from 'ionic-angular';
 
 import { ApiProvider } from './../../providers/api/api';
-import { PostModel, CommentModel, TagModel, UserModel } from './../../providers/models/models';
+import { PostModel, CommentModel, TagModel, UserModel, CategoryModel } from './../../providers/models/models';
 
 @IonicPage()
 @Component({
@@ -15,11 +15,13 @@ export class PostPage {
   post: PostModel;
   comments: [CommentModel];
   tags: [TagModel];
+  categories: [CategoryModel];
   author: UserModel;
 
   isLoadingPost: boolean = false;
   isLoadingComments: boolean = false;
   isLoadingTags: boolean = false;
+  isLoadingCategories: boolean = false;
   isLoadingAuthor: boolean = false;
 
   constructor(public navCtrl: NavController, 
@@ -43,6 +45,7 @@ export class PostPage {
     this.isLoadingPost = true;
     this.isLoadingComments = true;
     this.isLoadingTags = true;
+    this.isLoadingCategories = true;
 
     this.api.getPostInfo(this.postId, this.api.isLogged()).subscribe(
       postInfo => {
@@ -52,7 +55,6 @@ export class PostPage {
       this.api.getAuthorInfo(this.post.author, this.api.isLogged()).subscribe(
         authorInfo => {
         this.author = authorInfo;
-        console.log(this.author);
         },
       err => {
         console.log('Error ' + err +  ' - On Author Data Request.');
@@ -81,6 +83,15 @@ export class PostPage {
       console.log('Error ' + err +  ' - On Tags Data Request.');
     },
     () => this.isLoadingTags = false);
+
+    this.api.getPostCategories(this.postId, this.api.isLogged()).subscribe(
+      categoriesInfo => {
+      this.categories = categoriesInfo;
+    },
+    err => {
+      console.log('Error ' + err +  ' - On Categories Data Request.');
+    },
+    () => this.isLoadingCategories = false);
     
   }
 

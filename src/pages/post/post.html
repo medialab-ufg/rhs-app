@@ -16,9 +16,21 @@
   <div *ngIf="isLoadingPost"><ion-spinner></ion-spinner></div>
   <div *ngIf="!isLoadingPost">
 
+    <!-- POST TITLE -->
     <h1 [innerHTML]="post.title['rendered']"></h1>
+
+    <!-- POST CATEGORIES -->
+    <div *ngIf="isLoadingCategories"><ion-spinner></ion-spinner></div>
+    <div *ngIf="!isLoadingCategories && categories.length > 0">
+      <ion-buttons>
+        <button ion-button round small clear *ngFor="let category of categories">{{ category.name }}</button>
+      </ion-buttons>
+    </div>
+
+    <!-- POST CONTENT -->
     <div [innerHTML]="post.content['rendered']"></div>
     
+    <!-- POST AUTHOR-->
     <div *ngIf="isLoadingAuthor"><ion-spinner></ion-spinner></div>
     <div *ngIf="!isLoadingAuthor">
       <h2>{{ author.name }}</h2>
@@ -28,6 +40,7 @@
     </div>
     <h4>Publicado em {{ post.date }}</h4>
 
+    <!-- POST TAGS -->
     <div *ngIf="isLoadingTags"><ion-spinner></ion-spinner></div>
     <div *ngIf="!isLoadingTags && tags.length > 0">
       <h3>Tags ({{ tags.length }})</h3>
@@ -35,12 +48,15 @@
         <button ion-button round small outline *ngFor="let tag of tags">{{ tag.name }}</button>
       </ion-buttons>
     </div>
+
+    <!-- POST ACTION BUTTONS-->
     <ion-buttons>
       <button ion-button (click)="commentPost()">Comentar</button>
       <button ion-button (click)="votePost()">Votar</button>
       <button ion-button (click)="openShareActionSheet()">Compartilhar</button>
     </ion-buttons>
 
+    <!-- POST COMMENTS -->
     <div *ngIf="isLoadingComments"><ion-spinner></ion-spinner></div>
     <div *ngIf="!isLoadingComments">
       <h3>{{ comments.length }} comentários.</h3>

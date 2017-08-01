@@ -1,0 +1,41 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Resposta ao comentário</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-avatar item-start>
+      <img src="{{ comment.author_avatar_urls[24] }}">
+    </ion-avatar>
+    <h2>{{ comment.author_name }}</h2>
+    <p [innerHtml]="comment.content['rendered']"></p>
+  </ion-item>
+
+  <ion-spinner *ngIf="isPostingResponse"></ion-spinner>
+
+  <ion-item *ngIf="!isPostingResponse && response !== null">
+    <ion-avatar item-start>
+      <img src="{{ response.author_avatar_urls[24] }}">
+    </ion-avatar>
+    <h2>{{ response.author_name }}</h2>
+    <p [innerHtml]="response.content['rendered']"></p>
+  </ion-item>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-input #responseInput type="text" [(ngModel)]="responseContent" placeholder="Digite aqui seu comentário."></ion-input>
+    <ion-buttons end>
+      <ion-spinner *ngIf="isPostingResponse"></ion-spinner>
+      <button *ngIf="!isPostingResponse" [color]="responseContent.length > 0 ? 'primary' : 'default'" ion-button icon-only (click)="postResponse()">
+        <ion-icon name="send"></ion-icon>
+      </button>
+    </ion-buttons> 
+  </ion-toolbar>
+</ion-footer>

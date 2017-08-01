@@ -10,8 +10,7 @@ import { PostModel, CommentModel, TagModel, UserModel, CategoryModel } from './.
   templateUrl: 'post.html',
 })
 export class PostPage {
-
-  @ViewChild('commentInput') commentInput ;
+  @ViewChild('commentInput') commentInput;
 
   postId: number;
   post: PostModel;
@@ -28,7 +27,6 @@ export class PostPage {
   isPostingComment: boolean = false;
 
   commentContent: string = '';
-  commentParent: number = 0;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -38,20 +36,19 @@ export class PostPage {
      
     this.postId = this.navParams.get('postId');
     this.loadPost();
+    this.loadCategories();
+    this.loadTags();
   }
 
   ionViewDidLoad() {
   }
 
-  sendMessage() {
+  ionViewDidEnter() {
+    this.loadComments();
   }
 
   loadPost() {
-
     this.isLoadingPost = true;
-    this.isLoadingComments = true;
-    this.isLoadingTags = true;
-    this.isLoadingCategories = true;
 
     this.api.getPostInfo(this.postId, this.api.isLogged()).subscribe(
       postInfo => {
@@ -70,7 +67,11 @@ export class PostPage {
     err => {
       console.log('Error ' + err +  ' - On Post Data Request.');
     },
-    () => this.isLoadingPost = false);
+    () => this.isLoadingPost = false);    
+  }
+
+  loadComments() {
+    this.isLoadingComments = true;
 
     this.api.getPostComments(this.postId, this.api.isLogged()).subscribe(
       commentsInfo => {
@@ -80,6 +81,23 @@ export class PostPage {
       console.log('Error ' + err +  ' - On Comments Data Request.');
     },
     () => this.isLoadingComments = false);
+  }
+
+  loadCategories() {
+    this.isLoadingCategories = true;
+
+    this.api.getPostCategories(this.postId, this.api.isLogged()).subscribe(
+      categoriesInfo => {
+      this.categories = categoriesInfo;
+    },
+    err => {
+      console.log('Error ' + err +  ' - On Categories Data Request.');
+    },
+    () => this.isLoadingCategories = false); 
+  }
+
+  loadTags() {
+    this.isLoadingTags = true;
 
     this.api.getPostTags(this.postId, this.api.isLogged()).subscribe(
       tagsInfo => {
@@ -89,23 +107,12 @@ export class PostPage {
       console.log('Error ' + err +  ' - On Tags Data Request.');
     },
     () => this.isLoadingTags = false);
-
-    this.api.getPostCategories(this.postId, this.api.isLogged()).subscribe(
-      categoriesInfo => {
-      this.categories = categoriesInfo;
-    },
-    err => {
-      console.log('Error ' + err +  ' - On Categories Data Request.');
-    },
-    () => this.isLoadingCategories = false);
-    
   }
 
   commentPost() {
     
     if (this.api.isLogged()) {
 
-      this.commentParent = 0;
       this.commentInput.setFocus();
 
     } else {
@@ -120,12 +127,11 @@ export class PostPage {
     }
   }
 
-  commentOnComment(parentId: number) {
+  commentOnComment(commentIndex: number) {
 
     if (this.api.isLogged()) {
 
-      this.commentParent = parentId;
-      this.commentInput.setFocus();
+      this.navCtrl.push('CommentPage', {'comment': this.comments[commentIndex], 'postId': this.postId});
 
     } else {
       
@@ -158,7 +164,7 @@ export class PostPage {
     
     this.isPostingComment = true;
 
-    this.api.commentOnPost(this.postId, 37038, this.commentContent, this.commentParent).subscribe(
+    this.api.commentOnPost(this.postId, 37038, this.commentContent, 0).subscribe(
       commentResponse => {
       
         this.comments.unshift(commentResponse);

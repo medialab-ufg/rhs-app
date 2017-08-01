@@ -14,17 +14,17 @@ export class PostPage {
 
   postId: number;
   post: PostModel;
-  comments: [CommentModel];
+  comments: Array<CommentModel> = new Array<CommentModel>();
   tags: [TagModel];
   categories: [CategoryModel];
   author: UserModel;
 
-  isLoadingPost: boolean = false;
-  isLoadingComments: boolean = false;
-  isLoadingTags: boolean = false;
-  isLoadingCategories: boolean = false;
-  isLoadingAuthor: boolean = false;
-  isPostingComment: boolean = false;
+  isLoadingPost: boolean = true;
+  isLoadingComments: boolean = true;
+  isLoadingTags: boolean = true;
+  isLoadingCategories: boolean = true;
+  isLoadingAuthor: boolean = true;
+  isPostingComment: boolean = true;
 
   commentContent: string = '';
 
@@ -41,9 +41,10 @@ export class PostPage {
   }
 
   ionViewDidLoad() {
+    
   }
 
-  ionViewDidEnter() {
+  ionViewWillEnter() {
     this.loadComments();
   }
 

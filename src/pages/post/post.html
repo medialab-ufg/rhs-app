@@ -11,11 +11,11 @@
 
 </ion-header>
 
-<ion-content padding fullscreen shrink-header>
+<ion-content padding fullscreen shrink-header="12px">
 
   <div *ngIf="isLoading"><ion-spinner></ion-spinner></div>
   <div *ngIf="!isLoading">
-    <h1>{{ post.title['rendered'] }}</h1>
+    <h1 [innerHTML]="post.title['rendered']"></h1>
     <div [innerHTML]="post.content['rendered']"></div>
 
   </div>

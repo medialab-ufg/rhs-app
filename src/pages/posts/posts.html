@@ -45,10 +45,20 @@
     <ion-list *ngSwitchCase="'home'">
       <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
       <ion-card *ngFor="let post of homePostList" (click)="goToPostPage(post.id)">   
-        <ion-card-header [innerHtml]="post.title['rendered']">
-        </ion-card-header>
-        <ion-card-content [innerHtml]="post.excerpt['rendered']">
-        </ion-card-content>
+        <img src="../../assets/images/1.jpg" style="height: 117px; object-position: center top; object-fit: cover;">
+        <ion-card-header [innerHtml]="post.title['rendered']"></ion-card-header>
+        <ion-card-content [innerHtml]="post.excerpt['rendered']"></ion-card-content>
+        <ion-item style="background-color:lightgrey;">
+                <ion-avatar item-start>
+                  <img src="../../assets/images/1.png">
+                </ion-avatar>
+                <h2 style="color: #00b4b4; font-weight: bold;">Fabiano Alencar</h2>
+                <p style="color: #0C3C46">01/08/2017</p>
+                <ion-note text-right center>
+                  <p>11 votos</p>
+                  <p>11 comentários</p>
+                </ion-note> 
+        </ion-item>
       </ion-card>
       <ion-item-divider *ngIf="noMoreResultsOnHome">
         Não foram encontrados mais resultados.  

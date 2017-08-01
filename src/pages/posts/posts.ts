@@ -109,6 +109,7 @@ export class PostsPage {
           this.api.getPostList(this.api.isLogged(), this.homePostQueries).subscribe(
             postList => {
             this.homePostList = this.homePostList.concat(postList);
+            console.log(this.homePostList);
             this.noMoreResultsOnHome = false;     
           },
           err => {

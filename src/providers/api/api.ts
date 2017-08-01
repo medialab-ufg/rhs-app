@@ -98,16 +98,17 @@ export class ApiProvider {
     Observable<PostModel> {
 
     let headers = new Headers();
-    let queries: URLSearchParams = new URLSearchParams();
 
     if (authenticated) {
 
-      queries['oauth_consumer_key'] = this.settings.consumerKey;
-      queries['oauth_token'] = this.tokenKey;
-      queries['oauth_signature_method'] = 'HMAC-SHA1';
-      queries['oauth_timestamp'] = new String(new Date().getTime()).substr(0,10);
-      queries['oauth_nonce'] = this.generateNonce();
-      queries['oauth_version'] = '1.0'; 
+      let queries = {
+        oauth_consumer_key: this.settings.consumerKey,
+        oauth_token: this.tokenKey,
+        oauth_signature_method: 'HMAC-SHA1',
+        oauth_timestamp: new String(new Date().getTime()).substr(0,10),
+        oauth_nonce: this.generateNonce(),
+        oauth_version: '1.0' 
+      };
 
       let signature = oauthSignature.generate('GET', this.settings.apiURL + 'wp-json/wp/v2/posts/' + postId, queries, this.settings.consumerSecret, this.tokenSecret);
       headers.append('Authorization', 'OAuth oauth_consumer_key="' + this.settings.consumerKey + '",oauth_token="' + this.tokenKey + '",oauth_signature_method="HMAC-SHA1",oauth_timestamp="' + queries['oauth_timestamp'] + '",oauth_nonce="' + queries['oauth_nonce'] + '",oauth_version="1.0",oauth_signature="' + signature + '"');
@@ -126,7 +127,7 @@ export class ApiProvider {
 
 
   // ==== UTILITIES  ======================================================================
-  // Trata o casos de falha baseado no código de erro
+  // Fowards error status.
   private handleError(error: Response) {
     console.error(error);
     return Observable.throw(error.status);

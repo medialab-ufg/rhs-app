@@ -17,12 +17,16 @@
   <div *ngIf="!isLoading">
     <h1 [innerHTML]="post.title['rendered']"></h1>
     <div [innerHTML]="post.content['rendered']"></div>
-
+    <ion-buttons>
+      <button ion-button (click)="commentPost()">Comentar</button>
+      <button ion-button (click)="votePost()">Votar</button>
+      <button ion-button (click)="openShareActionSheet()">Compartilhar</button>
+    </ion-buttons>
   </div>
 
 </ion-content>
 
-<ion-footer>
+<ion-footer *ngIf="this.api.isLogged()">
   <ion-toolbar>
     <ion-input type="text" value="" placeholder="Digite aqui seu comentário."></ion-input>
     <ion-buttons end>

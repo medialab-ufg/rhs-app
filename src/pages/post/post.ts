@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, ActionSheetController, AlertController, IonicPage } from 'ionic-angular';
 
 import { ApiProvider } from './../../providers/api/api';
@@ -10,6 +10,8 @@ import { PostModel, CommentModel, TagModel, UserModel, CategoryModel } from './.
   templateUrl: 'post.html',
 })
 export class PostPage {
+
+  @ViewChild('commentInput') commentInput ;
 
   postId: number;
   post: PostModel;
@@ -23,6 +25,10 @@ export class PostPage {
   isLoadingTags: boolean = false;
   isLoadingCategories: boolean = false;
   isLoadingAuthor: boolean = false;
+  isPostingComment: boolean = false;
+
+  commentContent: string = '';
+  commentParent: number = 0;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -96,7 +102,11 @@ export class PostPage {
   }
 
   commentPost() {
+    
     if (this.api.isLogged()) {
+
+      this.commentParent = 0;
+      this.commentInput.setFocus();
 
     } else {
       
@@ -110,9 +120,12 @@ export class PostPage {
     }
   }
 
-  commentOnComment() {
+  commentOnComment(parentId: number) {
 
     if (this.api.isLogged()) {
+
+      this.commentParent = parentId;
+      this.commentInput.setFocus();
 
     } else {
       
@@ -139,6 +152,22 @@ export class PostPage {
       voteAlert.present();
 
     }
+  }
+
+  postComment() {
+    
+    this.isPostingComment = true;
+
+    this.api.commentOnPost(this.postId, 37038, this.commentContent, this.commentParent).subscribe(
+      commentResponse => {
+      
+        this.comments.unshift(commentResponse);
+        this.commentContent = '';
+    },
+    err => {
+      console.log('Error ' + err +  ' - On Comment Data posting.');
+    },
+    () => this.isPostingComment = false);
   }
 
   openShareActionSheet() {

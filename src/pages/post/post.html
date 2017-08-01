@@ -67,7 +67,7 @@
           </ion-avatar>
           <h2>{{ comment.author_name }}</h2>
           <p [innerHtml]="comment.content['rendered']"></p>
-          <button ion-button clear icon-only item-end (click)="commentOnComment()">
+          <button ion-button clear icon-only item-end (click)="commentOnComment(comment.id)">
             <ion-icon name="redo"></ion-icon>
           </button>
         </ion-item>
@@ -79,9 +79,10 @@
 
 <ion-footer *ngIf="this.api.isLogged()">
   <ion-toolbar>
-    <ion-input type="text" value="" placeholder="Digite aqui seu comentário."></ion-input>
+    <ion-input #commentInput type="text" [(ngModel)]="commentContent" placeholder="Digite aqui seu comentário."></ion-input>
     <ion-buttons end>
-      <button ion-button icon-only (click)="sendMessage()">
+      <ion-spinner *ngIf="isPostingComment"></ion-spinner>
+      <button *ngIf="!isPostingComment" [color]="commentContent.length > 0 ? 'primary' : 'default'" ion-button icon-only (click)="postComment()">
         <ion-icon name="send"></ion-icon>
       </button>
     </ion-buttons> 

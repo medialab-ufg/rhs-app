@@ -69,3 +69,41 @@ export class UserModel {
   ) {}
 
 }
+
+
+@Injectable()
+export class CommentModel {
+
+  constructor(
+    public id: number,
+    public post: number,
+    public parent: number,
+    public author: number,
+    public author_name: string,
+    public author_url: string,
+    public date: string,
+    public date_gmt: string,
+    public content: [{
+      'rendered': string,
+      'protected': boolean
+    }],
+    public status: string,
+    public type: string,
+    public link: string,
+    public author_avatar_urls: [{
+      '24': string, // access it like userInfo.avatar_urls['24'];
+      '48': string,
+      '96': string
+    }],
+    public meta: [any],
+    public categories: [number],
+    public tags: [any],
+    public _links: [{
+      'self': [{string}],
+      'author': [{any}],
+      'up': [{any}],
+      'in-reply-to': [{any}]
+    }]
+    ) {}
+
+}

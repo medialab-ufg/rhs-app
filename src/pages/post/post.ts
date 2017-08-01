@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ActionSheetController, AlertController, IonicPage } from 'ionic-angular';
 
 import { ApiProvider } from './../../providers/api/api';
-import { PostModel } from './../../providers/models/models';
+import { PostModel, CommentModel } from './../../providers/models/models';
 
 @IonicPage()
 @Component({
@@ -13,8 +13,10 @@ export class PostPage {
 
   postId: number;
   post: PostModel;
+  comments: [CommentModel];
 
-  isLoading: boolean = false;
+  isLoadingPost: boolean = false;
+  isLoadingComments: boolean = false;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -34,16 +36,27 @@ export class PostPage {
 
   loadPost() {
 
-    this.isLoading = true;
+    this.isLoadingPost = true;
+    this.isLoadingComments = true;
 
     this.api.getPostInfo(this.postId, this.api.isLogged()).subscribe(
       postInfo => {
       this.post = postInfo;
     },
     err => {
-      console.log('Error ' + err +  ' - On User Data Request.');
+      console.log('Error ' + err +  ' - On Post Data Request.');
     },
-    () => this.isLoading = false);
+    () => this.isLoadingPost = false);
+
+    this.api.getPostComments(this.postId, this.api.isLogged()).subscribe(
+      commentsInfo => {
+      this.comments = commentsInfo;
+      console.log(this.comments);
+    },
+    err => {
+      console.log('Error ' + err +  ' - On Comments Data Request.');
+    },
+    () => this.isLoadingComments = false);
     
   }
 
@@ -54,7 +67,23 @@ export class PostPage {
       
       let commentAlert = this.alertCtrl.create({
         title: 'Ops... você não está logado!',
-        subTitle: 'Entre na RHS para poder comentar neste posts.',
+        subTitle: 'Entre na RHS para poder comentar neste post.',
+        buttons: ['OK']
+      });
+      commentAlert.present();
+
+    }
+  }
+
+  commentOnComment() {
+
+    if (this.api.isLogged()) {
+
+    } else {
+      
+      let commentAlert = this.alertCtrl.create({
+        title: 'Ops... você não está logado!',
+        subTitle: 'Entre na RHS para poder comentar neste post.',
         buttons: ['OK']
       });
       commentAlert.present();

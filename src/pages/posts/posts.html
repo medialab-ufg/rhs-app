@@ -45,11 +45,9 @@
     <ion-list *ngSwitchCase="'home'">
       <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
       <ion-card *ngFor="let post of homePostList" (click)="goToPostPage(post.id)">   
-        <ion-card-header>
-          {{ post.title['rendered'] }}
+        <ion-card-header [innerHtml]="post.title['rendered']">
         </ion-card-header>
-        <ion-card-content>
-          {{ post.excerpt['rendered'] }}
+        <ion-card-content [innerHtml]="post.excerpt['rendered']">
         </ion-card-content>
       </ion-card>
       <ion-item-divider *ngIf="noMoreResultsOnHome">
@@ -60,11 +58,9 @@
     <ion-list *ngSwitchCase="'queue'">
       <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
       <ion-card *ngFor="let post of queuePostList" (click)="goToPostPage(post.id)">
-        <ion-card-header>
-          {{ post.title['rendered'] }}
+        <ion-card-header [innerHtml]="post.title['rendered']">
         </ion-card-header>
-        <ion-card-content>
-          {{ post.excerpt['rendered'] }}
+        <ion-card-content [innerHtml]="post.excerpt['rendered']">
         </ion-card-content>
       </ion-card>
       <ion-item-divider *ngIf="noMoreResultsOnQueue">
@@ -75,11 +71,9 @@
     <ion-list *ngSwitchCase="'following'">
       <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
       <ion-card *ngFor="let post of followingPostList" (click)="goToPostPage(post.id)">
-        <ion-card-header>
-          {{ post.title['rendered'] }}
+        <ion-card-header [innerHtml]="post.title['rendered']">
         </ion-card-header>
-        <ion-card-content>
-          {{ post.excerpt['rendered'] }}
+        <ion-card-content [innerHtml]="post.excerpt['rendered']">
         </ion-card-content>
       </ion-card>
       <ion-item-divider *ngIf="noMoreResultsOnFollowing">

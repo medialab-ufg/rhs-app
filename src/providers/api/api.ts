@@ -4,7 +4,7 @@ import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { SettingsProvider } from './../settings/settings';
-import { UserModel, PostModel } from './../models/models';
+import { UserModel, PostModel, CommentModel } from './../models/models';
 
 import oauthSignature from 'oauth-signature';
 
@@ -124,7 +124,36 @@ export class ApiProvider {
       .catch((error: any) => this.handleError(error));
   }
 
+  // Obtain list of comments in post
+  getPostComments(postId: number, authenticated: boolean ):
+    Observable<[CommentModel]> {
 
+    let headers = new Headers();
+
+    if (authenticated) {
+
+      let queries = {
+        oauth_consumer_key: this.settings.consumerKey,
+        oauth_token: this.tokenKey,
+        oauth_signature_method: 'HMAC-SHA1',
+        oauth_timestamp: new String(new Date().getTime()).substr(0,10),
+        oauth_nonce: this.generateNonce(),
+        oauth_version: '1.0' 
+      };
+
+      let signature = oauthSignature.generate('GET', this.settings.apiURL + 'wp-json/wp/v2/comments/?post=' + postId, queries, this.settings.consumerSecret, this.tokenSecret);
+      headers.append('Authorization', 'OAuth oauth_consumer_key="' + this.settings.consumerKey + '",oauth_token="' + this.tokenKey + '",oauth_signature_method="HMAC-SHA1",oauth_timestamp="' + queries['oauth_timestamp'] + '",oauth_nonce="' + queries['oauth_nonce'] + '",oauth_version="1.0",oauth_signature="' + signature + '"');
+    }
+    
+    return this.http.get(this.settings.apiURL + 'wp-json/wp/v2/comments/?post=' + postId, {headers: headers})
+      .map((res: Response) => {
+
+        let commentList = JSON.parse(res['_body']);
+ 
+        return commentList;
+      })
+      .catch((error: any) => this.handleError(error));
+  }
 
   // ==== UTILITIES  ======================================================================
   // Fowards error status.

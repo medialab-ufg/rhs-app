@@ -69,7 +69,7 @@ export class SearchPage {
           if (err === 400) {
             this.noMoreResults = true;
           }
-          console.log('Error ' + err +  ' - On User Data Request.');
+          console.log('Error ' + err +  ' - On Search Data Request.');
         },
         () => { this.showSpinner = false; resolve() });
 

@@ -61,13 +61,13 @@
     <div *ngIf="!isLoadingComments">
       <h3>{{ comments.length }} comentários.</h3>
       <ion-list>
-        <ion-item *ngFor="let comment of comments">
+        <ion-item *ngFor="let comment of comments; let i = index">
           <ion-avatar item-start>
             <img src="{{ comment.author_avatar_urls[24] }}">
           </ion-avatar>
           <h2>{{ comment.author_name }}</h2>
           <p [innerHtml]="comment.content['rendered']"></p>
-          <button ion-button clear icon-only item-end (click)="commentOnComment(comment.id)">
+          <button ion-button clear icon-only item-end (click)="commentOnComment(i)">
             <ion-icon name="redo"></ion-icon>
           </button>
         </ion-item>

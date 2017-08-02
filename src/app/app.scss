@@ -41,6 +41,27 @@ ion-menu {
       &.menuToggle{
         .scroll-content{
           overflow-y: hidden !important;
+          ion-list{
+            &:first-child{
+              margin-left: 9px;
+              margin-top: 17px;
+            }
+            button{
+              .item-inner{
+                border-bottom: none !important;
+              }
+              ion-label{
+                ion-icon{
+                  margin-right: 20px;
+                }
+              }
+              &.item-block{
+                &:last-child, &:first-child{
+                  border: none !important;
+                }
+              }
+            }
+          }
         }
       }
     }

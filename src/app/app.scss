@@ -15,22 +15,12 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-// Cores do tema RHS
-$primary:    #00B9B4;
-$secondary:  #0C3C46;
-$tertiary:  #F8F8F0;
-$danger:     #f53d3d;
-$ligth-gray: #ececec; // Used in page background when using cards  
-$light:      #f2f2f2;
-$dark:       #222;
-
-
 ion-menu {
   .menu-inner {
 
     .user-info {
       text-align: center;
-      background-color: $secondary;
+      background: color($colors, secondary);
       background-image: none;
       color: white;
       padding: 0px 10px 20px 10px;
@@ -38,13 +28,13 @@ ion-menu {
 
     ion-content {
 
-      background-color: $primary;
+      background: color($colors, primary);
 
       .scroll-content {
         ion-list {
           button { 
             color: white;
-            background-color: $primary;
+            background: color($colors, primary);
           }
         }
       }

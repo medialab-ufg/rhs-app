@@ -36,10 +36,11 @@ $app-direction: ltr;
 $colors: (
   primary:    #00B9B4,
   secondary:  #0C3C46,
-  tertiary:  #F8F8F0,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  tertiary:   #F8F8F0,
+  danger:     #F53D3d,
+  ligth-gray: #ECECEC, // Used in page background when using cards  
+  light:      #F2F2F2,
+  dark:       #222222
 );
 
 

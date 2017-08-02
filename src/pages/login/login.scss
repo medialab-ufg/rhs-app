@@ -2,7 +2,7 @@ page-login {
 
   .content {
     text-align: center;
-    background-color: $secondary;
+    background: color($colors, secondary);
     color: white;
 
     img {

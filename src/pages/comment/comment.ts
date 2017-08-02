@@ -34,7 +34,7 @@ export class CommentPage {
     
     this.isPostingResponse = true;
 
-    this.api.commentOnPost(this.postId, 37038, this.responseContent, this.comment.id).subscribe(
+    this.api.commentOnPost(this.postId, this.responseContent, this.comment.id).subscribe(
       commentResponse => {
       
         this.responseContent = '';

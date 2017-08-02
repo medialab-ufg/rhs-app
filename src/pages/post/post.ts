@@ -24,7 +24,7 @@ export class PostPage {
   isLoadingTags: boolean = true;
   isLoadingCategories: boolean = true;
   isLoadingAuthor: boolean = true;
-  isPostingComment: boolean = true;
+  isPostingComment: boolean = false;
 
   commentContent: string = '';
 
@@ -77,6 +77,7 @@ export class PostPage {
     this.api.getPostComments(this.postId, this.api.isLogged()).subscribe(
       commentsInfo => {
       this.comments = commentsInfo;
+      this.sortComments();
     },
     err => {
       console.log('Error ' + err +  ' - On Comments Data Request.');
@@ -165,7 +166,7 @@ export class PostPage {
     
     this.isPostingComment = true;
 
-    this.api.commentOnPost(this.postId, 37038, this.commentContent, 0).subscribe(
+    this.api.commentOnPost(this.postId, this.commentContent, 0).subscribe(
       commentResponse => {
       
         this.comments.unshift(commentResponse);
@@ -204,4 +205,10 @@ export class PostPage {
     });
     actionSheet.present();
   }
+
+  sortComments() {
+
+    let sortedComments: {'level': number, 'comments': [CommentModel]}
+
+  };
 }

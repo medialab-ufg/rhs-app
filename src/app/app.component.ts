@@ -109,6 +109,9 @@ export class MyApp {
 
     this.api.getUserInfo().subscribe(
       userInfo => {
+
+      this.api.setUserId(userInfo.id);
+
       this.userInfo = userInfo;
       this.showUserInfo = true;
     },

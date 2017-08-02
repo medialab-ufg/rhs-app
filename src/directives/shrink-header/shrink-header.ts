@@ -10,7 +10,6 @@ export class ShrinkHeader {
  
   header: any;
   headerHeight: any;
-  translateAmt: any;
   previousTop: number = 0;
 
   constructor(public element: ElementRef, public renderer: Renderer) {  }
@@ -35,8 +34,8 @@ export class ShrinkHeader {
       }
     } else {
       if (ev.scrollTop > 0) {
-        this.translateAmt = -ev.scrollTop / 2;    
-        this.renderer.setElementStyle(this.header, 'webkitTransform', 'translate3d(0,' + this.translateAmt + 'px,0)');
+        
+        this.renderer.setElementStyle(this.header, 'webkitTransform', 'translate3d(0,' + -ev.scrollTop + 'px,0)');
       }  
     }
     

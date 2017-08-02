@@ -15,7 +15,9 @@ export class ApiProvider {
   private tokenKey: string = null;
   private tokenSecret: string = null;
   
+  // Status and info provided by Authentication Service
   private logged: boolean = false;
+  private userId: number = 0;
 
   JSON: any = JSON;
 
@@ -31,6 +33,8 @@ export class ApiProvider {
   setLogged(value: boolean) { this.logged = value; }
 
   isLogged(): boolean { return this.logged }
+
+  setUserId(userId: number) { this.userId = userId; }
 
   // == API REQUESTS ====================================================================
   // Obtain user info
@@ -65,6 +69,7 @@ export class ApiProvider {
 
     // This ensures we receive a response without the whole content of the post
     queries['context'] = 'embed';
+    queries['_embed'] = 'true';
 
     let headers = new Headers();
     let search = this.serializeQueries(queries);
@@ -255,14 +260,14 @@ export class ApiProvider {
       .catch((error: any) => this.handleError(error));
   }
 
-  commentOnPost(postId: number, authorId: number, commentContent: string, parent: number):
+  commentOnPost(postId: number, commentContent: string, parent: number):
     Observable<CommentModel> {
     
     let headers = new Headers();
 
     let queries = new URLSearchParams();
     queries['post'] = postId;
-    queries['author'] = authorId;
+    queries['author'] = this.userId;
     queries['content'] = commentContent;
     if (parent !== 0) { queries['parent'] = parent };
 

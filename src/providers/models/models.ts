@@ -45,7 +45,14 @@ export class PostModel {
       'wp:attatchment': [{any}],
       'wp:term': [{any}],
       'curies': [{any}]
-    }]
+    }],
+    public _embedded: [{
+      'author': [{any}],
+      'replies': [{any}],
+      'wp:featuredmedia': [{any}],
+      'wp:attatchment': [{any}],
+      'wp:term': [{any}]
+    }],
     ) {}
 
 }

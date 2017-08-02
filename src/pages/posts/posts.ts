@@ -110,6 +110,7 @@ export class PostsPage {
             postList => {
             this.homePostList = this.homePostList.concat(postList);
             console.log(this.homePostList);
+            console.log(this.homePostList[0]._embedded['author'][0]);
             this.noMoreResultsOnHome = false;     
           },
           err => {

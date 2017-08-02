@@ -16,7 +16,7 @@ export class MyApp {
 
   // Page navigation
   rootPage: any = 'PostsPage';
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, icon: string}>;
 
   // Sidemenu User Info 
   showUserInfo = false;
@@ -33,10 +33,10 @@ export class MyApp {
     this.initializeApp();
 
     this.pages = [
-      { title: 'Posts', component: 'PostsPage' },
-      { title: 'Meu Perfil', component: 'ProfilePage' },
-      { title: 'Seguindo', component:  'FollowingPage' },
-      { title: 'Configurações', component: 'SettingsPage' },
+      { title: 'Posts', component: 'PostsPage', icon: 'md-document' },
+      { title: 'Meu Perfil', component: 'ProfilePage', icon: 'md-contact' },
+      { title: 'Seguindo', component:  'FollowingPage', icon: 'logo-rss' },
+      { title: 'Configurações', component: 'SettingsPage', icon: 'md-settings' },
     ];
 
   }

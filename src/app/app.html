@@ -10,9 +10,10 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content>
+  <ion-content class="menuToggle">
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon name="{{ p.icon }}"></ion-icon>
         {{p.title}}
       </button>
     </ion-list>

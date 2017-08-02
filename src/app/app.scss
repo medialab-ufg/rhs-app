@@ -38,6 +38,11 @@ ion-menu {
           }
         }
       }
+      &.menuToggle{
+        .scroll-content{
+          overflow-y: hidden !important;
+        }
+      }
     }
   }
   

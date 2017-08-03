@@ -15,7 +15,7 @@
     </ion-buttons>
   </ion-navbar>
 
-  <ion-toolbar color="primary">
+  <ion-toolbar class="toolbar-rhs" color="primary">
     <ion-segment [(ngModel)]="postsView" color="secondary">
       <ion-segment-button value="home" (ionSelect)="loadPosts('home', null)">
         Principal
@@ -45,7 +45,7 @@
     <ion-list *ngSwitchCase="'home'">
       <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
       <ion-card *ngFor="let post of homePostList" (click)="goToPostPage(post.id)">   
-        <img src="../../assets/images/1.jpg">
+        <img src="./assets/images/1.jpg">
         <ion-card-header [innerHtml]="post.title['rendered']"></ion-card-header>
         <ion-card-content [innerHtml]="post.excerpt['rendered']"></ion-card-content>
         <ion-item color="light">

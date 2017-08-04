@@ -26,7 +26,11 @@ export class PostPage {
   isLoadingAuthor: boolean = true;
   isPostingComment: boolean = false;
 
+  // String inserted on Comment Input Footer
   commentContent: string = '';
+
+  // HTML dinamically inserted comment boxes
+  commentBoxes: string = '';
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -77,7 +81,7 @@ export class PostPage {
     this.api.getPostComments(this.postId, this.api.isLogged()).subscribe(
       commentsInfo => {
       this.comments = commentsInfo;
-      this.sortComments();
+      this.generateCommentBoxes();
     },
     err => {
       console.log('Error ' + err +  ' - On Comments Data Request.');
@@ -206,9 +210,24 @@ export class PostPage {
     actionSheet.present();
   }
 
-  sortComments() {
+  generateCommentBoxes() {
+  
+    this.commentBoxes = '<ion-list>';
+    this.printCommentBox(0, 0);
+    this.commentBoxes += '</ion-list>';
+                            
+  }
 
-    let sortedComments: {'level': number, 'comments': [CommentModel]}
+  printCommentBox(parentId: number, commentDepth: number) {
+    
+    for (let comment of this.comments) {
+      if (comment.parent != parentId ) {    
+        continue;
+      } 
+      console.log(commentDepth);
+      this.commentBoxes += '<comment-box depth="' + commentDepth + '" author="' + comment.author_name + '" message="' + comment.content['rendered'] + '"></comment-box>';
+      this.printCommentBox(comment.id, commentDepth + 1);
+    }
+  }
 
-  };
 }

@@ -60,7 +60,7 @@
     <div *ngIf="isLoadingComments"><ion-spinner></ion-spinner></div>
     <div *ngIf="!isLoadingComments">
       <h3>{{ comments.length }} comentários.</h3>
-      <ion-list>
+      <!--<ion-list>
         <ion-item *ngFor="let comment of comments; let i = index">
           <ion-avatar item-start>
             <img src="{{ comment.author_avatar_urls[24] }}">
@@ -71,7 +71,8 @@
             <ion-icon name="redo"></ion-icon>
           </button>
         </ion-item>
-      </ion-list>
+      </ion-list>-->
+      <dynamic-html [content]="commentBoxes"></dynamic-html>
     </div>
   </div>
 

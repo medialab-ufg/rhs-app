@@ -1,0 +1,12 @@
+<div>
+  <ion-item [ngStyle]="{ 'padding-left': (16 + depthValue*20) + 'px'} ">
+    <ion-avatar item-start>
+      <img src="">
+    </ion-avatar>
+    <h2 #authorContent><ng-content></ng-content></h2>
+    <p #messageContent><ng-content></ng-content></p>
+    <button ion-button clear icon-only item-end>
+      <ion-icon name="redo"></ion-icon>
+    </button>
+  </ion-item>
+</div>

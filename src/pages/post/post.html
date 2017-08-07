@@ -27,7 +27,7 @@
     </div>
 
     <!-- POST CONTENT -->
-    <div [innerHTML]="post.content['rendered']"></div>
+    <article [ngStyle]="{ 'font-size': settings.postContentFontSizeOptions[settings.currentFontSize] }" [innerHTML]="post.content['rendered']"></article>
     
     <!-- POST AUTHOR-->
     <div *ngIf="isLoadingAuthor"><ion-spinner></ion-spinner></div>

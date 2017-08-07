@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, ActionSheetController, AlertController, IonicPage } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
+import { SettingsProvider } from './../../providers/settings/settings';
 import { ApiProvider } from './../../providers/api/api';
 import { PostModel, CommentModel, TagModel, UserModel, CategoryModel } from './../../providers/models/models';
 
@@ -37,13 +38,14 @@ export class PostPage {
               public actionSheetCtrl: ActionSheetController,
               public api: ApiProvider,
               public alertCtrl: AlertController,
-              public socialSharing: SocialSharing) {
-     
+              public socialSharing: SocialSharing,
+              public settings: SettingsProvider) {
+
     this.postId = this.navParams.get('postId');
     this.loadPost();
     this.loadCategories();
     this.loadTags();
-  }
+     }
 
   ionViewDidLoad() { }
 

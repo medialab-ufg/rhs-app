@@ -13,9 +13,18 @@
 <ion-content padding>
   <ion-list>
     <ion-list-header>
-      Um tipo de configuração.
+      Página de Posts
     </ion-list-header>
-    <ion-item>Configuração 1</ion-item>
+    <ion-item>
+      <ion-label>Tamanho da fonte dos posts: </ion-label>  
+      <ion-select [(ngModel)]="articleFontSize">
+        <ion-option value="extra-small">Muito pequeno</ion-option>
+        <ion-option value="small">Pequeno</ion-option>
+        <ion-option value="medium">Médio</ion-option>
+        <ion-option value="large">Grande</ion-option>
+        <ion-option value="extra-large">Enorme</ion-option>
+      </ion-select>
+    </ion-item>
     <ion-item>Configuração 2</ion-item>
 
     <ion-list-header>

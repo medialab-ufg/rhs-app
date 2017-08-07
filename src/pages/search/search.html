@@ -20,7 +20,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [ngClass]="(tagFiltering || categoryFiltering) ? 'has-subheader' : ''">
 
   <ion-list>
     <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
@@ -33,7 +33,7 @@
           <img src="{{ post._embedded['author'][0].avatar_urls[48] }}">
         </ion-avatar>
         <h2>{{ post._embedded['author'][0].name }}</h2>
-        <p class="data">01/08/2017</p>
+        <p class="data">{{ post.date | date: 'dd/MM/yyyy' }}</p>
         <div float-right small class="votos_comentarios">
             <span><strong>12</strong> votos</span>
             <span><strong>4</strong> comentários</span>

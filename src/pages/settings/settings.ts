@@ -15,6 +15,8 @@ export class SettingsPage {
 
   isUserLogged: boolean = false; 
 
+  articleFontSize: string = 'medium';
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public alertCtrl: AlertController,

@@ -14,7 +14,80 @@
 
 </ion-header>
 
+<ion-content>
 
-<ion-content padding>
+  <div *ngIf="!isUserLogged">
+    <p>Você não está logado na RHS. Use o Menu lateral para entrar na Rede.</p>
+  </div>
+  <div *ngIf="isUserLogged">
+
+    <div *ngIf="isLoadingUser"><ion-spinner></ion-spinner></div>
+    
+    <div *ngIf="!isLoadingUser">
+      <img [src]="user['avatar_urls'][96]">
+      <h1>{{ user.name }}</h1>
+      <p>{{ userPostsList.length }} Posts</p>
+
+      <ion-toolbar class="toolbar-rhs" color="primary">
+        <ion-segment [(ngModel)]="userInfoView" color="secondary">
+          <ion-segment-button value="posts">
+            Publicações
+          </ion-segment-button>
+          <ion-segment-button value="personal">
+            Pessoal
+          </ion-segment-button>
+          <ion-segment-button value="interests">
+            Interesses
+          </ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
+
+      <div [ngSwitch]="userInfoView">
+
+        <ion-list *ngSwitchCase="'posts'">
+          <div *ngIf="isLoadingUserPosts"><ion-spinner></ion-spinner></div>
+          <ion-card *ngFor="let post of userPostsList" (click)="goToPostPage(post.id)">   
+            <img src="./assets/images/1.jpg">
+            <ion-card-header [innerHtml]="post.title['rendered']"></ion-card-header>
+            <ion-card-content [innerHtml]="post.excerpt['rendered']"></ion-card-content>
+            <ion-item color="light">
+              <ion-avatar item-start>
+                <img src="{{ post._embedded['author'][0].avatar_urls[48] }}">
+              </ion-avatar>
+              <h2>{{ post._embedded['author'][0].name }}</h2>
+              <p class="data">01/08/2017</p>
+              <div float-right small class="votos_comentarios">
+                  <span><strong>12</strong> votos</span>
+                  <span><strong>4</strong> comentários</span>
+              </div>
+            </ion-item>
+          </ion-card>
+          <ion-item-divider *ngIf="userPostsList.length == 0">
+            Você ainda não possui nenhuma publicação! 
+          </ion-item-divider>
+          <ion-item-divider *ngIf="noMoreResults">
+            Não foram encontrados mais resultados.  
+          </ion-item-divider>
+        </ion-list>
+
+        <ion-infinite-scroll [enabled]="userInfoView == 'posts' && !noMoreResults" (ionInfinite)="$event.waitFor(doInfinite())">
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+
+        <ion-list *ngSwitchCase="'personal'">
+          <ion-item>
+            {{ user.description }}
+          </ion-item>
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'interests'">
+          <ion-item>
+            {{ user.description }}
+          </ion-item>
+        </ion-list>
+
+      </div>
+    </div>
+  </div>
 
 </ion-content>

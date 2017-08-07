@@ -4,10 +4,13 @@ import { PostPage } from './post';
 
 import { ShrinkHeader } from '../../directives/shrink-header/shrink-header';
 
+import { SocialSharing } from '@ionic-native/social-sharing';
+
 @NgModule({
   declarations: [PostPage, ShrinkHeader],
   imports: [
     IonicPageModule.forChild(PostPage)
-  ]
+  ],
+  providers: [SocialSharing]
   })
 export class PostPageModule { }

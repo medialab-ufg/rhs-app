@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, ActionSheetController, AlertController, IonicPage } from 'ionic-angular';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { ApiProvider } from './../../providers/api/api';
 import { PostModel, CommentModel, TagModel, UserModel, CategoryModel } from './../../providers/models/models';
@@ -35,7 +36,8 @@ export class PostPage {
               public navParams: NavParams,
               public actionSheetCtrl: ActionSheetController,
               public api: ApiProvider,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              public socialSharing: SocialSharing) {
      
     this.postId = this.navParams.get('postId');
     this.loadPost();
@@ -43,9 +45,7 @@ export class PostPage {
     this.loadTags();
   }
 
-  ionViewDidLoad() {
-    
-  }
+  ionViewDidLoad() { }
 
   ionViewWillEnter() {
     this.loadComments();
@@ -192,31 +192,13 @@ export class PostPage {
   }
 
   openShareActionSheet() {
-    let actionSheet = this.actionSheetCtrl.create({
-      title: 'Compartilhe esse post',
-      buttons: [
-        { text: 'WhatsApp',
-          handler: () => {
-            // Rotina para compartilhar no WhatsApp
-          }
-        },{
-          text: 'Twitter',
-          handler: () => {
-            // Rotina para compartilhar no Twitter
-          }
-        },{
-          text: 'Facebook',
-          handler: () => {
-            // Rotina para compartilhar no Facebook
-          }
-        },{
-          text: 'Cancelar',
-          role: 'cancel',
-          handler: () => {}
-        }
-      ]
-    });
-    actionSheet.present();
+
+    let sharingOptions = {
+      message: this.strip(this.post.title['rendered']), // not supported on some apps (Facebook, Instagram)
+      subject: 'Publicação da Rede Humaniza SUS: ' + this.post.title['rendered'], // for email
+      url: this.post.link
+    }
+    this.socialSharing.shareWithOptions(sharingOptions);
   }
 
   generateCommentBoxes() {
@@ -235,6 +217,14 @@ export class PostPage {
 
       this.fillCommentBox(comment.id, commentDepth + 1);
     }
+  }
+
+  // Used for striping html formating from title in sharing options
+  // (not needed in template, where we can use [innerHtml])
+  strip(html) {
+    var tmp = document.createElement("DIV");
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || "";
   }
 
 }

@@ -10,7 +10,14 @@
                    [(ngModel)]="searchTerm" 
                    [formControl]="searchControl" autofocus></ion-searchbar>
   </ion-toolbar>
-
+  <ion-toolbar padding-left padding-right color="tertiary" *ngIf="tagFiltering || categoryFiltering">
+    Filtrando por:  <ion-chip #filterChip color="primary">  
+                      <ion-label color="white">{{ filterName }}</ion-label>
+                      <button ion-button clear color="secondary" (click)="deleteFilter(filterChip)">
+                          <ion-icon name="close-circle"></ion-icon>
+                      </button>
+                    </ion-chip>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>

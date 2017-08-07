@@ -109,7 +109,8 @@ export class CommentModel {
       'author': [{any}],
       'up': [{any}],
       'in-reply-to': [{any}]
-    }]
+    }],
+    public depth: number
     ) {}
 
 }

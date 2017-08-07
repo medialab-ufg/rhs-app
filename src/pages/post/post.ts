@@ -14,10 +14,12 @@ export class PostPage {
 
   postId: number;
   post: PostModel;
-  comments: Array<CommentModel> = new Array<CommentModel>();
   tags: [TagModel];
   categories: [CategoryModel];
   author: UserModel;
+  comments: Array<CommentModel> = new Array<CommentModel>();
+   // Ordered comments
+  commentBoxes: Array<CommentModel> =  new Array<CommentModel>();
 
   isLoadingPost: boolean = true;
   isLoadingComments: boolean = true;
@@ -28,9 +30,6 @@ export class PostPage {
 
   // String inserted on Comment Input Footer
   commentContent: string = '';
-
-  // HTML dinamically inserted comment boxes
-  commentBoxes: string = '';
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -85,8 +84,8 @@ export class PostPage {
     },
     err => {
       console.log('Error ' + err +  ' - On Comments Data Request.');
-    },
-    () => this.isLoadingComments = false);
+      this.isLoadingComments = false;
+    });
   }
 
   loadCategories() {
@@ -133,7 +132,9 @@ export class PostPage {
     }
   }
 
-  commentOnComment(commentIndex: number) {
+  commentOnComment(commentIndex: any) {
+
+    console.log("CLICOU");
 
     if (this.api.isLogged()) {
 
@@ -182,6 +183,14 @@ export class PostPage {
     () => this.isPostingComment = false);
   }
 
+  goToSearchWithTag(tag: TagModel) {
+    this.navCtrl.push('SearchPage', {'tagId': tag.id, 'tagName': tag.name});
+  }
+
+  goToSearchWithCategory(category: CategoryModel) {
+    this.navCtrl.push('SearchPage', {'categoryId': category.id, 'categoryName': category.name, });
+  }
+
   openShareActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Compartilhe esse post',
@@ -211,22 +220,20 @@ export class PostPage {
   }
 
   generateCommentBoxes() {
-  
-    this.commentBoxes = '<ion-list>';
-    this.printCommentBox(0, 0);
-    this.commentBoxes += '</ion-list>';
-                            
+    this.fillCommentBox(0, 0);
+    this.isLoadingComments = false
   }
 
-  printCommentBox(parentId: number, commentDepth: number) {
+  fillCommentBox(parentId: number, commentDepth: number) {
     
     for (let comment of this.comments) {
       if (comment.parent != parentId ) {    
         continue;
       } 
-      console.log(commentDepth);
-      this.commentBoxes += '<comment-box depth="' + commentDepth + '" author="' + comment.author_name + '" message="' + comment.content['rendered'] + '"></comment-box>';
-      this.printCommentBox(comment.id, commentDepth + 1);
+      comment.depth = commentDepth;
+      this.commentBoxes.push(comment);
+
+      this.fillCommentBox(comment.id, commentDepth + 1);
     }
   }
 

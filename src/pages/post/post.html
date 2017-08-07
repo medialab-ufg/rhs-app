@@ -8,7 +8,6 @@
       </button>
     </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
 <ion-content padding fullscreen shrink-header="12px">
@@ -23,7 +22,7 @@
     <div *ngIf="isLoadingCategories"><ion-spinner></ion-spinner></div>
     <div *ngIf="!isLoadingCategories && categories.length > 0">
       <ion-buttons>
-        <button ion-button round small clear *ngFor="let category of categories">{{ category.name }}</button>
+        <button ion-button round small clear *ngFor="let category of categories" (click)="goToSearchWithCategory(category)">{{ category.name }}</button>
       </ion-buttons>
     </div>
 
@@ -45,7 +44,7 @@
     <div *ngIf="!isLoadingTags && tags.length > 0">
       <h3>Tags ({{ tags.length }})</h3>
       <ion-buttons>
-        <button ion-button round small outline *ngFor="let tag of tags">{{ tag.name }}</button>
+        <button ion-button round small outline *ngFor="let tag of tags" (click)="goToSearchWithTag(tag)">{{ tag.name }}</button>
       </ion-buttons>
     </div>
 
@@ -59,9 +58,9 @@
     <!-- POST COMMENTS -->
     <div *ngIf="isLoadingComments"><ion-spinner></ion-spinner></div>
     <div *ngIf="!isLoadingComments">
-      <h3>{{ comments.length }} comentários.</h3>
-      <!--<ion-list>
-        <ion-item *ngFor="let comment of comments; let i = index">
+      <h3>{{ commentBoxes.length }} comentários.</h3>
+      <ion-list>
+        <ion-item *ngFor="let comment of commentBoxes; let i = index" [ngStyle]="{ 'padding-left': (16 + comment.depth*20) + 'px'} ">
           <ion-avatar item-start>
             <img src="{{ comment.author_avatar_urls[24] }}">
           </ion-avatar>
@@ -71,8 +70,7 @@
             <ion-icon name="redo"></ion-icon>
           </button>
         </ion-item>
-      </ion-list>-->
-      <dynamic-html [content]="commentBoxes"></dynamic-html>
+      </ion-list>
     </div>
   </div>
 

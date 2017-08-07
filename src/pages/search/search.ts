@@ -23,10 +23,28 @@ export class SearchPage {
   showSpinner = false;
   noMoreResults = false;
 
+  categoryFiltering = false;
+  tagFiltering = false;
+  filterName = '';
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public api: ApiProvider) {
     this.searchControl = new FormControl();
+    
+    if (this.navParams.get('tagId')) { 
+      this.postQueries['tags'] = this.navParams.get('tagId'); 
+      this.filterName = this.navParams.get('tagName'); 
+      this.tagFiltering = true;
+
+      this.searchPosts(false);
+    }
+    if (this.navParams.get('categoryId')) {
+      this.postQueries['categories'] = this.navParams.get('categoryId'); 
+      this.filterName = this.navParams.get('categoryName'); 
+      this.categoryFiltering = true;
+      this.searchPosts(false);
+    }
   }
 
   ionViewDidLoad() {
@@ -44,7 +62,7 @@ export class SearchPage {
 
     return new Promise((resolve) => {
 
-      if (this.searchTerm && this.searchTerm.trim()) {
+      if ((this.searchTerm && this.searchTerm.trim()) || this.categoryFiltering || this.tagFiltering) {
 
         // New search begins
         if (isLoadingMore === false) {
@@ -91,6 +109,15 @@ export class SearchPage {
 
   onCancel(event) {
     this.navCtrl.pop();
+  }
+
+  deleteFilter(filterChip: Element) {
+    this.postQueries['tags'] = null;
+    this.postQueries['categories'] = null;
+    this.categoryFiltering = false;
+    this.tagFiltering = false;
+    filterChip.remove();
+    this.searchPosts(false);
   }
 
 }

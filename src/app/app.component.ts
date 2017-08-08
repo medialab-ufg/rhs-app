@@ -1,5 +1,6 @@
+import { Network } from '@ionic-native/network';
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, LoadingController } from 'ionic-angular';
+import { Nav, Platform, LoadingController, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
@@ -28,7 +29,9 @@ export class MyApp {
               public storage: Storage,
               public authentication: AuthenticationProvider,
               public api: ApiProvider,
-              public loadingCtrl: LoadingController) {
+              public loadingCtrl: LoadingController,
+              public network: Network,
+              public toastCtrl: ToastController) {
 
     this.initializeApp();
 
@@ -38,6 +41,32 @@ export class MyApp {
       { title: 'Seguindo', component:  'FollowingPage', icon: 'logo-rss' },
       { title: 'Configurações', component: 'SettingsPage', icon: 'md-settings' },
     ];
+
+    // Watch network for a disconnect
+    let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
+      let toast = this.toastCtrl.create({
+        message: 'Conexão com a internet perdida... :(',
+        duration: 6000
+      });
+      toast.present();
+    });
+
+    // Watch network for a connection
+    let connectSubscription = this.network.onConnect().subscribe(() => {
+
+      // We just got a connection but we need to wait briefly
+      // before we determine the connection type. Might need to wait.
+      // prior to doing any api requests as well.
+      setTimeout(() => {
+        if (this.network.type === '2g' || this.network.type === '3g' || this.network.type === 'cellular') {
+          let toast = this.toastCtrl.create({
+            message: 'Conexão fraca. Carregamento por demorar...',
+            duration: 3000
+          });
+          toast.present();
+        }
+      }, 3000);
+    });
 
   }
 

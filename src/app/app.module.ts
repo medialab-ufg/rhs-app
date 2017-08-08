@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { Network } from '@ionic-native/network';
 
 import { MyApp } from './app.component';
 
@@ -35,6 +36,7 @@ import { UpdateProvider } from '../providers/update/update';
     StatusBar,
     SplashScreen,
     InAppBrowser,
+    Network,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthenticationProvider,
     ApiProvider,

@@ -51,19 +51,29 @@
     </ion-list>
 
     <ion-list *ngSwitchCase="'queue'">
-      <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
-      <post-card [post-data]="post" *ngFor="let post of queuePostList" (click)="goToPostPage(post.id)"></post-card>   
-      <ion-item-divider *ngIf="noMoreResultsOnQueue">
-        Não foram encontrados mais resultados.  
-      </ion-item-divider>
+      <div *ngIf="!isUserLogged">
+        <information [message]="'Somente para usuários da RHS'" [detail]="'É preciso estar logado para acessar essa sessão.'"></information>
+      </div>
+      <div *ngIf="isUserLogged">
+        <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
+        <post-card [post-data]="post" *ngFor="let post of queuePostList" (click)="goToPostPage(post.id)"></post-card>   
+        <ion-item-divider *ngIf="noMoreResultsOnQueue">
+          Não foram encontrados mais resultados.  
+        </ion-item-divider>
+      </div>
     </ion-list>
 
     <ion-list *ngSwitchCase="'following'">
-      <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
-      <post-card [post-data]="post" *ngFor="let post of followingPostList" (click)="goToPostPage(post.id)"></post-card>   
-      <ion-item-divider *ngIf="noMoreResultsOnFollowing">
-        Não foram encontrados mais resultados.  
-      </ion-item-divider>
+      <div *ngIf="!isUserLogged">
+        <information [message]="'Somente para usuários da RHS'" [detail]="'É preciso estar logado para acessar essa sessão.'"></information>
+      </div>
+      <div *ngIf="isUserLogged">
+        <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
+        <post-card [post-data]="post" *ngFor="let post of followingPostList" (click)="goToPostPage(post.id)"></post-card>   
+        <ion-item-divider *ngIf="noMoreResultsOnFollowing">
+          Não foram encontrados mais resultados.  
+        </ion-item-divider>
+      </div>
     </ion-list>
 
   </div>

@@ -29,6 +29,7 @@ export class PostsPage {
   noMoreResults: boolean = false;
 
   showSpinner = false;
+  isUserLogged: boolean = false;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -38,6 +39,7 @@ export class PostsPage {
 
   ionViewDidLoad() {
     
+    this.isUserLogged = this.api.isLogged();
     this.showSpinner = true;
     this.loadPosts(this.postsView, false);
 

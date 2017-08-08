@@ -30,6 +30,7 @@ export class ProfilePage {
               public alertCtrl: AlertController,
               public api: ApiProvider) {
     this.isUserLogged = this.api.isLogged();
+    
     if (this.isUserLogged) { this.loadUser() }
   }
 

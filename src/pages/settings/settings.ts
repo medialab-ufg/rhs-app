@@ -33,6 +33,14 @@ export class SettingsPage {
 
   ionViewDidLoad() {
     this.isUserLogged = this.api.isLogged();
+
+    // Loads post font size to settings service.
+    this.storage.get('article_font_size').then((result) => {
+      if (this.settings.postContentFontSizeOptions[result]) {
+        this.articleFontSize = result;
+        this.settings.currentFontSize = this.articleFontSize;
+      }
+    });
   }
 
   alertLogout() {
@@ -73,6 +81,12 @@ export class SettingsPage {
 
   goToLoginPage() {
     this.navCtrl.push('LoginPage');
+  }
+
+  changePostFontSize(value: string) {
+    this.articleFontSize = value;
+    this.settings.currentFontSize = this.articleFontSize;
+    this.storage.set('article_font_size', this.articleFontSize);
   }
 
 }

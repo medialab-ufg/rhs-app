@@ -7,6 +7,8 @@ import { Storage } from '@ionic/storage';
 
 import { AuthenticationProvider } from './../providers/authentication/authentication';
 import { ApiProvider } from './../providers/api/api';
+import { SettingsProvider } from './../providers/settings/settings';
+
 import { UserModel } from './../providers/models/models';
 
 @Component({
@@ -31,7 +33,8 @@ export class MyApp {
               public api: ApiProvider,
               public loadingCtrl: LoadingController,
               public network: Network,
-              public toastCtrl: ToastController) {
+              public toastCtrl: ToastController,
+              public settings: SettingsProvider) {
 
     this.initializeApp();
 
@@ -43,7 +46,7 @@ export class MyApp {
     ];
 
     // Watch network for a disconnect
-    let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
+    this.network.onDisconnect().subscribe(() => {
       let toast = this.toastCtrl.create({
         message: 'Conexão com a internet perdida... :(',
         duration: 6000
@@ -52,7 +55,7 @@ export class MyApp {
     });
 
     // Watch network for a connection
-    let connectSubscription = this.network.onConnect().subscribe(() => {
+    this.network.onConnect().subscribe(() => {
 
       // We just got a connection but we need to wait briefly
       // before we determine the connection type. Might need to wait.
@@ -110,7 +113,7 @@ export class MyApp {
         }
       });
 
-      // Register 
+      // Register for checking if user is logged 
       this.authentication.userLogged.subscribe(value => {
         if (value === true) {
           this.loadUserInfo();
@@ -118,6 +121,15 @@ export class MyApp {
           this.showUserInfo = false;
         }
       })
+      
+      // Loads post font size to settings service.
+      this.storage.get('article_font_size').then((result) => {
+        if (this.settings.postContentFontSizeOptions[result]) {
+          console.log("RESULT=" + result);
+          this.settings.currentFontSize = result;
+        }
+      });
+
     });
   }
 

@@ -1,0 +1,16 @@
+<ion-card>   
+  <img src="./assets/images/1.jpg">
+  <ion-card-header [innerHtml]="post.title['rendered']"></ion-card-header>
+  <ion-card-content [innerHtml]="post.excerpt['rendered']"></ion-card-content>
+  <ion-item color="light">
+    <ion-avatar item-start>
+      <img src="{{ post._embedded['author'][0].avatar_urls[48] }}">
+    </ion-avatar>
+    <h2>{{ post._embedded['author'][0].name }}</h2>
+    <p class="data">{{ post.date | date: 'dd/MM/yyyy' }}</p>
+    <div float-right small class="votos_comentarios">
+        <span><strong>12</strong> votos</span>
+        <span><strong>4</strong> comentários</span>
+    </div>
+  </ion-item>
+</ion-card>

@@ -44,22 +44,7 @@
     
     <ion-list *ngSwitchCase="'home'">
       <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
-      <ion-card *ngFor="let post of homePostList" (click)="goToPostPage(post.id)">   
-        <img src="./assets/images/1.jpg">
-        <ion-card-header [innerHtml]="post.title['rendered']"></ion-card-header>
-        <ion-card-content [innerHtml]="post.excerpt['rendered']"></ion-card-content>
-        <ion-item color="light">
-          <ion-avatar item-start>
-            <img src="{{ post._embedded['author'][0].avatar_urls[48] }}">
-          </ion-avatar>
-          <h2>{{ post._embedded['author'][0].name }}</h2>
-          <p class="data">01/08/2017</p>
-          <div float-right small class="votos_comentarios">
-              <span><strong>12</strong> votos</span>
-              <span><strong>4</strong> comentários</span>
-          </div>
-        </ion-item>
-      </ion-card>
+      <post-card [post-data]="post" *ngFor="let post of homePostList" (click)="goToPostPage(post.id)"></post-card>   
       <ion-item-divider *ngIf="noMoreResultsOnHome">
         Não foram encontrados mais resultados.  
       </ion-item-divider>
@@ -67,12 +52,7 @@
 
     <ion-list *ngSwitchCase="'queue'">
       <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
-      <ion-card *ngFor="let post of queuePostList" (click)="goToPostPage(post.id)">
-        <ion-card-header [innerHtml]="post.title['rendered']">
-        </ion-card-header>
-        <ion-card-content [innerHtml]="post.excerpt['rendered']">
-        </ion-card-content>
-      </ion-card>
+      <post-card [post-data]="post" *ngFor="let post of queuePostList" (click)="goToPostPage(post.id)"></post-card>   
       <ion-item-divider *ngIf="noMoreResultsOnQueue">
         Não foram encontrados mais resultados.  
       </ion-item-divider>
@@ -80,12 +60,7 @@
 
     <ion-list *ngSwitchCase="'following'">
       <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
-      <ion-card *ngFor="let post of followingPostList" (click)="goToPostPage(post.id)">
-        <ion-card-header [innerHtml]="post.title['rendered']">
-        </ion-card-header>
-        <ion-card-content [innerHtml]="post.excerpt['rendered']">
-        </ion-card-content>
-      </ion-card>
+      <post-card [post-data]="post" *ngFor="let post of followingPostList" (click)="goToPostPage(post.id)"></post-card>   
       <ion-item-divider *ngIf="noMoreResultsOnFollowing">
         Não foram encontrados mais resultados.  
       </ion-item-divider>

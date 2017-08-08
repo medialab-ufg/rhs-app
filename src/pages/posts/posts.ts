@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
-import { Network } from '@ionic-native/network';
 
 import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { ApiProvider } from './../../providers/api/api';
@@ -32,17 +31,25 @@ export class PostsPage {
   showSpinner = false;
   isUserLogged: boolean = false;
 
-
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public api: ApiProvider,
               public authentication: AuthenticationProvider,
               public update: UpdateProvider) {
+
+    this.isUserLogged = this.api.isLogged();
+    this.authentication.userLogged.subscribe(value => {
+      if (value === true) {
+        this.isUserLogged = this.api.isLogged();
+        if (this.postsView !== 'home') {
+          this.loadPosts(this.postsView, false);
+        }
+      }
+    });
   }
 
   ionViewDidLoad() {
     
-    this.isUserLogged = this.api.isLogged();
     this.showSpinner = true;
     this.loadPosts(this.postsView, false);
 
@@ -165,7 +172,7 @@ export class PostsPage {
           } else {
             this.authentication.userLogged.subscribe(value => {
               if (value === true) {
-                this.isUserLogged = true;
+                this.isUserLogged = this.api.isLogged();
                 this.loadPosts('queue', isLoadingMore);
               }
             });

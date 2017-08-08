@@ -60,6 +60,9 @@
         <ion-item-divider *ngIf="noMoreResultsOnQueue">
           Não foram encontrados mais resultados.  
         </ion-item-divider>
+        <div *ngIf="queuePostList.length == 0 && !showSpinner">
+          <information [message]="'Não há nenhum post na fila de votação.'"></information>
+        </div>
       </div>
     </ion-list>
 
@@ -73,6 +76,9 @@
         <ion-item-divider *ngIf="noMoreResultsOnFollowing">
           Não foram encontrados mais resultados.  
         </ion-item-divider>
+        <div *ngIf="followingPostList.length == 0 && !showSpinner">
+          <information [message]="'Você ainda não está seguindo nenhum post.'"></information>
+        </div>
       </div>
     </ion-list>
 

@@ -29,9 +29,12 @@
     <ion-item-divider *ngIf="noMoreResults">
       Não foram encontrados mais resultados.  
     </ion-item-divider>
-    <ion-item-divider *ngIf="postList.length == 0">
-      Nenhum resultado encontrado.
-    </ion-item-divider>
+    <div *ngIf="postList.length == 0 && !showSpinner && searchTerm && searchTerm.trim()">
+      <information [message]="'Nenhum post encontrado.'" [detail]="'Verifique se digitou corretamente o termo de busca, ou tente ser menos específico.'"></information>
+    </div>
+    <div *ngIf="postList.length == 0 && !showSpinner && !searchTerm && !searchTerm.trim()">
+      <information [message]="'Busque por posts na RHS.'"></information>
+    </div>
   </ion-list>
 
   <ion-infinite-scroll [enabled]="!noMoreResults" (ionInfinite)="$event.waitFor(doInfinite())">

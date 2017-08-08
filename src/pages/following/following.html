@@ -22,25 +22,24 @@
 
 
 <ion-content padding>
-  <div [ngSwitch]="followingView">
+  <div *ngIf="!isUserLogged">
+    <information [message]="'Você não está logado na RHS'" [detail]="'Use o Menu lateral para entrar na Rede.'"></information>
+  </div>
+  <div *ngIf="isUserLogged">
+    <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
 
-    <ion-list *ngSwitchCase="'posts'">
-      <ion-item>
-        ITEM DE POST SENDO SEGUIDO
-        <button ion-button item-end color="danger">
-          PARAR
-        </button>
-      </ion-item>
-    </ion-list>
+    <div [ngSwitch]="followingView">
+      <ion-list *ngSwitchCase="'posts'">
+        <div *ngIf="postList.length == 0 && !showSpinner">
+          <information [message]="'Você ainda não está seguindo nenhum post.'"></information>
+        </div>
+      </ion-list>
 
-    <ion-list *ngSwitchCase="'people'">
-      <ion-item>
-        ITEM DE PESSOA SENDO SEGUIDA
-        <button ion-button item-end color="danger">
-          PARAR
-        </button>
-      </ion-item>
-    </ion-list>
-
+      <ion-list *ngSwitchCase="'people'">
+        <div *ngIf="userList.length == 0 && !showSpinner">
+          <information [message]="'Você ainda não está seguindo nenhum usuário.'"></information>
+        </div>
+      </ion-list>
+    </div>
   </div>
 </ion-content>

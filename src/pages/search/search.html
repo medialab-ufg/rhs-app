@@ -9,7 +9,7 @@
                    cancelButtonText="Cancelar"
                    (ionCancel)="onCancel($event)"
                    [(ngModel)]="searchTerm" 
-                   [formControl]="searchControl" autofocus></ion-searchbar>
+                   [formControl]="searchControl"></ion-searchbar>
   </ion-toolbar>
   <ion-toolbar padding-left padding-right color="tertiary" *ngIf="tagFiltering || categoryFiltering">
     Filtrando por:  <ion-chip #filterChip color="primary">  

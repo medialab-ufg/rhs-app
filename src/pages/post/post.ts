@@ -156,7 +156,7 @@ export class PostPage {
 
   votePost() {
     if (this.api.isLogged()) {
-
+      // insert voting logic here.
     } else {
 
       let voteAlert = this.alertCtrl.create({
@@ -203,6 +203,7 @@ export class PostPage {
     this.socialSharing.shareWithOptions(sharingOptions);
   }
 
+  // Used for ordering and finding level of comments
   generateCommentBoxes() {
     this.fillCommentBox(0, 0);
     this.isLoadingComments = false

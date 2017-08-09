@@ -61,7 +61,7 @@
           Não foram encontrados mais resultados.  
         </ion-item-divider>
         <div *ngIf="queuePostList.length == 0 && !showSpinner">
-          <information [message]="'Não há nenhum post na fila de votação.'"></information>
+          <information [message]="'Ainda não encontramos nenhum post na fila de votação.'"></information>
         </div>
       </div>
     </ion-list>
@@ -77,7 +77,7 @@
           Não foram encontrados mais resultados.  
         </ion-item-divider>
         <div *ngIf="followingPostList.length == 0 && !showSpinner">
-          <information [message]="'Você ainda não está seguindo nenhum post.'"></information>
+          <information [message]="'Ainda encontramos não há nenhum post sendo seguido.'"></information>
         </div>
       </div>
     </ion-list>

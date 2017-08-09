@@ -57,7 +57,6 @@ export class SearchPage {
 
   ionViewDidEnter(){
     this.searchBar.setFocus();
-    
   }
 
   goToPostPage(id: number) {

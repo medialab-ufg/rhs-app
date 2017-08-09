@@ -10,7 +10,18 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding fullscreen shrink-header="12px">
+<!-- POST CATEGORIES -->
+
+<ion-content padding fullscreen shrink-header="12px" class="content has-header">
+
+  <ion-list class="categoria-vote">
+    <div *ngIf="isLoadingCategories"><ion-spinner></ion-spinner></div>
+    <div *ngIf="!isLoadingCategories && categories.length > 0">
+      <ion-buttons class="categoria">
+        <button ion-button round small clear *ngFor="let category of categories" (click)="goToSearchWithCategory(category)">{{ category.name }}</button>
+      </ion-buttons>
+    </div>
+  </ion-list>
 
   <div *ngIf="isLoadingPost"><ion-spinner></ion-spinner></div>
   <div *ngIf="!isLoadingPost">
@@ -18,16 +29,8 @@
     <!-- POST TITLE -->
     <h1 [innerHTML]="post.title['rendered']"></h1>
 
-    <!-- POST CATEGORIES -->
-    <div *ngIf="isLoadingCategories"><ion-spinner></ion-spinner></div>
-    <div *ngIf="!isLoadingCategories && categories.length > 0">
-      <ion-buttons>
-        <button ion-button round small clear *ngFor="let category of categories" (click)="goToSearchWithCategory(category)">{{ category.name }}</button>
-      </ion-buttons>
-    </div>
-
     <!-- POST CONTENT -->
-    <article [ngStyle]="{ 'font-size': settings.postContentFontSizeOptions[settings.currentFontSize] }" [innerHTML]="post.content['rendered']"></article>
+    <article [ngStyle]="{ 'font-size': settings.postContentFontSizeOptions['small'] }" [innerHTML]="post.content['rendered']"></article>
     
     <!-- POST AUTHOR-->
     <div *ngIf="isLoadingAuthor"><ion-spinner></ion-spinner></div>

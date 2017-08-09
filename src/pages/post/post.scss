@@ -1,7 +1,7 @@
 page-post {
   
-    ion-header {
-    // Centraliza o ion-title, mesmo no Android
+  ion-header {
+  // Centraliza o ion-title, mesmo no Android
     .toolbar-title {
       display: -webkit-flex;
       display: flex;
@@ -22,7 +22,28 @@ page-post {
     top: 50%;
   }
 
-  article {
+  ion-content{
+    &.content{
+      .categoria-vote{
+        min-height: 50px !important;
+        background: #00b9b4;
+        padding: 7px;
+        margin: -16px -16px 16px;
+        ion-buttons{
+          button{
+            color: #fff;
+          }
+        }
+      }
+      h1{
+        font-weight: 100;
+        color: color($colors, secondary);
+        text-transform: capitalize;
+      }
+
+    }
+    article {
+    }
   }
 
 }

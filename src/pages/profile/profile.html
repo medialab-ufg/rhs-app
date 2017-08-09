@@ -15,9 +15,9 @@
 </ion-header>
 
 <ion-content>
-
+  
   <div *ngIf="!isUserLogged">
-    <p>Você não está logado na RHS. Use o Menu lateral para entrar na Rede.</p>
+    <information [message]="'Somente para usuários da RHS'" [detail]="'É preciso estar logado para acessar essa sessão.'"></information>
   </div>
   <div *ngIf="isUserLogged">
 
@@ -47,9 +47,9 @@
         <ion-list *ngSwitchCase="'posts'">
           <div *ngIf="isLoadingUserPosts"><ion-spinner></ion-spinner></div>
           <post-card [post-data]="post" *ngFor="let post of userPostsList" (click)="goToPostPage(post.id)"></post-card>   
-          <ion-item-divider *ngIf="userPostsList.length == 0">
-            Você ainda não possui nenhuma publicação! 
-          </ion-item-divider>
+          <div *ngIf="userPostsList.length == 0 && !isLoadingUserPosts">
+            <information [message]="'Não possui nenhuma publicação.'"></information>
+          </div>
           <ion-item-divider *ngIf="noMoreResults">
             Não foram encontrados mais resultados.  
           </ion-item-divider>

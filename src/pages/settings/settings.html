@@ -17,12 +17,12 @@
     </ion-list-header>
     <ion-item>
       <ion-label>Tamanho da fonte dos posts: </ion-label>  
-      <ion-select [(ngModel)]="articleFontSize">
-        <ion-option value="extra-small">Muito pequeno</ion-option>
-        <ion-option value="small">Pequeno</ion-option>
-        <ion-option value="medium">Médio</ion-option>
-        <ion-option value="large">Grande</ion-option>
-        <ion-option value="extra-large">Enorme</ion-option>
+      <ion-select #select [(ngModel)]="articleFontSize" (ionChange)="changePostFontSize(select.value)">
+        <ion-option [attr.selected]="articleFontSize == 'extra-small'" value="extra-small">Muito pequeno</ion-option>
+        <ion-option [attr.selected]="articleFontSize == 'small'" value="small">Pequeno</ion-option>
+        <ion-option [attr.selected]="articleFontSize == 'medium'" value="medium">Médio</ion-option>
+        <ion-option [attr.selected]="articleFontSize == 'large'" value="large">Grande</ion-option>
+        <ion-option [attr.selected]="articleFontSize == 'extra-large'" value="extra-large">Enorme</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>Configuração 2</ion-item>

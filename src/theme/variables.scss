@@ -52,7 +52,13 @@ $colors: (
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
-
+$searchbar-md-input-clear-icon-color: white;
+$searchbar-md-input-background-color: color($colors, primary);
+$searchbar-md-input-text-color: color($colors, secondary);
+$searchbar-md-input-box-shadow: none;
+$searchbar-md-input-search-icon-size: none;
+$searchbar-md-input-placeholder-color: #eee;
+$searchbar-md-input-border-radius: 0px;
 
 // App Windows Variables
 // --------------------------------------------------

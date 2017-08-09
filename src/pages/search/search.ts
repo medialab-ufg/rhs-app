@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, IonicPage, Searchbar, Platform } from 'ionic-angular';
 import { FormControl } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -13,6 +13,7 @@ import { PostModel } from './../../providers/models/models';
   templateUrl: 'search.html',
 })
 export class SearchPage {
+  @ViewChild('searchBar') searchBar: Searchbar;
 
   postList: Array<PostModel> = new Array<PostModel>();
   postQueries: { [query: string]: String } = {};
@@ -29,7 +30,9 @@ export class SearchPage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public api: ApiProvider) {
+              public api: ApiProvider,
+              public platform: Platform) {
+      
     this.searchControl = new FormControl();
     
     if (this.navParams.get('tagId')) { 
@@ -52,6 +55,10 @@ export class SearchPage {
                           .debounceTime(600)
                           .distinctUntilChanged()
                           .subscribe(search => this.searchPosts(false));
+  }
+
+  ionViewDidEnter(){
+    this.searchBar.setFocus();
   }
 
   goToPostPage(id: number) {

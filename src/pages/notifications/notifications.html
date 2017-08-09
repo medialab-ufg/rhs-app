@@ -8,5 +8,15 @@
 
 
 <ion-content padding>
-  
+  <div *ngIf="isUserLogged">
+
+    <div *ngIf="notifications.length == 0">
+      <information [message]="'Nenhuma notificação.'"></information>
+    </div>
+
+  </div>
+  <div *ngIf="!isUserLogged">
+    <information [message]="'Somente para usuários da RHS'" [detail]="'É preciso estar logado para acessar essa sessão.'"></information>
+  </div>
+
 </ion-content>

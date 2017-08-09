@@ -30,7 +30,9 @@ export class SearchPage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public api: ApiProvider) {
+              public api: ApiProvider,
+              public platform: Platform) {
+      
     this.searchControl = new FormControl();
     
     if (this.navParams.get('tagId')) { 

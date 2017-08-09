@@ -1,13 +1,20 @@
 <ion-header>
 
   <ion-toolbar color="primary">
-    <ion-searchbar #searchBar
+    <ion-buttons left>
+      <button padding-left *ngIf="!platform.is('ios')" (click)="onCancel()" icon-only clear ion-button large>
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+      <button *ngIf="platform.is('ios')" (click)="onCancel()" ion-button icon-left clear>
+        <ion-icon name="arrow-back"></ion-icon>
+        Voltar
+      </button>
+    </ion-buttons>
+    <ion-searchbar color="primary" #searchBar
                    animated="true"
+                   showClearButton="true"
                    placeholder="Pesquisar posts na RHS"
                    autocomplete="on"
-                   showCancelButton="true"
-                   cancelButtonText="Cancelar"
-                   (ionCancel)="onCancel($event)"
                    [(ngModel)]="searchTerm" 
                    [formControl]="searchControl"></ion-searchbar>
   </ion-toolbar>

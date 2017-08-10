@@ -8,7 +8,7 @@
   </ion-navbar>
 
   <ion-toolbar color="primary">
-    <ion-segment [(ngModel)]="followingView" color="secondary">
+    <ion-segment [(ngModel)]="followingView" (ionChange)="onSegmentChanged($event)" color="secondary">
       <ion-segment-button value="posts">
         Posts
       </ion-segment-button>
@@ -20,26 +20,30 @@
 
 </ion-header>
 
-
 <ion-content padding>
-  <div *ngIf="!isUserLogged">
-    <information [message]="'Você não está logado na RHS'" [detail]="'Use o Menu lateral para entrar na Rede.'"></information>
-  </div>
-  <div *ngIf="isUserLogged">
-    <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
 
-    <div [ngSwitch]="followingView">
-      <ion-list *ngSwitchCase="'posts'">
+  <ion-slides #segmentSlider (ionSlideDidChange)="onSlideChanged($event)">
+    
+    <ion-slide >
+      <information *ngIf="!isUserLogged" [message]="'Você não está logado na RHS'" [detail]="'Use o Menu lateral para entrar na Rede.'"></information>
+      <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
+      <ion-list *ngIf="isUserLogged && followingView == 'posts'">
         <div *ngIf="postList.length == 0 && !showSpinner">
           <information [message]="'Você ainda não está seguindo nenhum post.'"></information>
         </div>
       </ion-list>
+    </ion-slide>
 
-      <ion-list *ngSwitchCase="'people'">
+    <ion-slide >
+      <information *ngIf="!isUserLogged" [message]="'Você não está logado na RHS'" [detail]="'Use o Menu lateral para entrar na Rede.'"></information>
+      <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
+      <ion-list *ngIf="isUserLogged && followingView == 'people'">
         <div *ngIf="userList.length == 0 && !showSpinner">
           <information [message]="'Você ainda não está seguindo nenhum usuário.'"></information>
         </div>
       </ion-list>
-    </div>
-  </div>
+    </ion-slide>
+
+  </ion-slides>
+
 </ion-content>

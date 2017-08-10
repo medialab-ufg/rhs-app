@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, IonicPage, Slides } from 'ionic-angular';
 
 import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { ApiProvider } from './../../providers/api/api';
@@ -12,6 +12,7 @@ import { PostModel, UserModel } from './../../providers/models/models';
   templateUrl: 'following.html',
 })
 export class FollowingPage {
+  @ViewChild('segmentSlider') slider: Slides;
 
   followingView = 'posts';
 
@@ -42,10 +43,26 @@ export class FollowingPage {
   }
 
   ionViewDidLoad() {
-  
+ 
   }
 
   loadPosts(isLoadingMore: boolean) {}
 
   loadUsers(isLoadingMore: boolean) {}
+
+  onSegmentChanged(segmentButton) {
+    if (segmentButton.value == 'posts'){
+      this.slider.slideTo(0);
+    } else {
+      this.slider.slideTo(1);
+    }
+  }
+
+  onSlideChanged(slider) {
+    if (slider.getActiveIndex() == 0) {
+      this.followingView = 'posts';
+    } else {
+      this.followingView = 'people';
+    }
+  }
 }

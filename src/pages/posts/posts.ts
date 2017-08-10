@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, IonicPage, Slides } from 'ionic-angular';
 
 import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { ApiProvider } from './../../providers/api/api';
@@ -12,6 +12,7 @@ import { PostModel } from './../../providers/models/models';
   templateUrl: 'posts.html',
 })
 export class PostsPage {
+  @ViewChild('segmentSlider') slider: Slides;
 
   postsView: string = 'home';
 
@@ -239,6 +240,26 @@ export class PostsPage {
     return new Promise((resolve) => {
       this.loadPosts(this.postsView, true).then(() => resolve());
     });
+  }
+ 
+  onSegmentChanged(segmentButton) {
+    if (segmentButton.value == 'home'){
+      this.slider.slideTo(0);
+    } else if (segmentButton.value == 'queue') {
+      this.slider.slideTo(1);
+    } else {
+      this.slider.slideTo(2);
+    }
+  }
+
+  onSlideChanged(slider) {
+    if (slider.getActiveIndex() == 0) {
+      this.postsView = 'home';
+    } else if (slider.getActiveIndex() == 1){
+      this.postsView = 'queue';
+    } else {
+      this.postsView = 'following';
+    }
   }
 
 }

@@ -10,32 +10,35 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding fullscreen shrink-header="12px" class="content has-header">
+<ion-content fullscreen shrink-header="12px" class="content has-header">
 
   <div *ngIf="isLoadingPost"><ion-spinner></ion-spinner></div>
   <div *ngIf="!isLoadingPost">
 
     <!-- POST TITLE -->
-    <h1 [innerHTML]="post.title['rendered']"></h1>
+    <h1 padding [innerHTML]="post.title['rendered']"></h1>
 
     <!-- POST CONTENT -->
     <article [ngStyle]="{ 'font-size': settings.postContentFontSizeOptions['small'] }" [innerHTML]="post.content['rendered']"></article>
-    
+
+    <!--DIVISOR-->
+    <div no-lines class="top-border"></div>
+
     <!-- POST AUTHOR-->
     <div *ngIf="isLoadingAuthor"><ion-spinner></ion-spinner></div>
-    <div *ngIf="!isLoadingAuthor" class="author">
+    <div padding *ngIf="!isLoadingAuthor" class="author">
       <ion-item>
         <ion-avatar item-start>
           <img src="{{ author.avatar_urls[48] }}">
         </ion-avatar>
         <h2>{{ author.name }}</h2>
-        <p>Publicado em {{ post.date }}</p>
+        <p>Publicado em {{ post.date | date: 'dd/MM/yyyy' }}</p>
       </ion-item>
     </div>
 
     <!-- POST CATEGORIES -->
     <div *ngIf="isLoadingCategories"><ion-spinner></ion-spinner></div>
-    <div *ngIf="!isLoadingCategories && categories.length > 0">
+    <div padding *ngIf="!isLoadingCategories && categories.length > 0" class="category">
       <h4><ion-icon name="pricetags"></ion-icon> Categorias</h4>
       <ion-buttons class="categoria">
         <button ion-button round small clear *ngFor="let category of categories" (click)="goToSearchWithCategory(category)">{{ category.name }}</button>
@@ -43,7 +46,7 @@
     </div>
     <!-- POST TAGS -->
     <div *ngIf="isLoadingTags"><ion-spinner></ion-spinner></div>
-    <div *ngIf="!isLoadingTags && tags.length > 0">
+    <div padding *ngIf="!isLoadingTags && tags.length > 0" class="tags">
       <h4><ion-icon name="bookmark"></ion-icon> Tags</h4>
       <ion-buttons>
         <button ion-button round small outline *ngFor="let tag of tags" (click)="goToSearchWithTag(tag)">{{ tag.name }}</button>
@@ -51,16 +54,29 @@
     </div>
 
     <!-- POST ACTION BUTTONS-->
-    <ion-buttons>
-      <button ion-button (click)="commentPost()">Comentar</button>
-      <button ion-button (click)="votePost()">Votar</button>
-      <button ion-button (click)="openShareActionSheet()">Compartilhar</button>
+    <ion-buttons class="action_buttons">
+      <ion-grid>
+        <ion-row text-center>
+          <ion-col col-4 class="divide">
+            <p>{{ commentBoxes.length }} Comentários</p>
+            <button ion-button (click)="commentPost()" class="comentar">Comentar</button>
+          </ion-col>
+          <ion-col col-3>
+            <p>0 Votos</p>
+            <button ion-button (click)="votePost()" class="votar">Votar</button>
+          </ion-col>
+          <ion-col col-5>
+            <p>0 Compartilhamentos</p>
+            <button ion-button (click)="openShareActionSheet()" class="compartilhar">Compartilhar</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-buttons>
 
     <!-- POST COMMENTS -->
     <div *ngIf="isLoadingComments"><ion-spinner></ion-spinner></div>
-    <div *ngIf="!isLoadingComments">
-      <h3>{{ commentBoxes.length }} comentários.</h3>
+    <div padding *ngIf="!isLoadingComments" class="comentarios">
+      <h4>{{ commentBoxes.length }} comentários.</h4>
       <ion-list>
         <ion-item *ngFor="let comment of commentBoxes; let i = index" [ngStyle]="{ 'padding-left': (16 + comment.depth*20) + 'px'} ">
           <ion-avatar item-start>

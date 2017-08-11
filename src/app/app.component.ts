@@ -20,6 +20,7 @@ export class MyApp {
   // Page navigation
   rootPage: any = 'PostsPage';
   pages: Array<{title: string, component: any, icon: string}>;
+  activePage: any;
 
   // Sidemenu User Info 
   showUserInfo = false;
@@ -44,6 +45,8 @@ export class MyApp {
       { title: 'Seguindo', component:  'FollowingPage', icon: 'logo-rss' },
       { title: 'Configurações', component: 'SettingsPage', icon: 'md-settings' },
     ];
+
+    this.activePage = this.pages[0];
 
     // Watch network for a disconnect
     this.network.onDisconnect().subscribe(() => {
@@ -136,6 +139,7 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
+    this.activePage = page;
     this.nav.setRoot(page.component);
   }
 

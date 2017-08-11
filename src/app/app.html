@@ -34,7 +34,7 @@
 
   <ion-content class="menuToggle">
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      <button menuClose ion-item [ngClass]="{'active-menu-item': p == activePage}" *ngFor="let p of pages" (click)="openPage(p)">
         <ion-icon name="{{ p.icon }}"></ion-icon>
         {{p.title}}
       </button>

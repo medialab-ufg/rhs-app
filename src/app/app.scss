@@ -29,6 +29,10 @@ ion-menu {
         border-radius: 50%;
       }
     }
+
+    .active-menu-item {
+      color: color($colors, secondary) !important;
+    }    
     
     ion-content {
 

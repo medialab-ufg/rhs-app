@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController, IonicPage, AlertController } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, AlertController } from 'ionic-angular';
 
 import { ApiProvider } from './../../providers/api/api';
 import { UserModel, PostModel } from './../../providers/models/models';
@@ -26,7 +26,7 @@ export class ProfilePage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public modalCtrl: ModalController,
+              //public modalCtrl: ModalController,
               public alertCtrl: AlertController,
               public api: ApiProvider) {
     this.isUserLogged = this.api.isLogged();
@@ -85,7 +85,7 @@ export class ProfilePage {
   goToPostPage(postId: number) {
     this.navCtrl.push('PostPage', {'postId': postId});
   }
-
+/*
   openEditProfileModal(){
 
     if (this.isUserLogged) {
@@ -108,7 +108,7 @@ export class ProfilePage {
 
     }
   }
-
+*/
   doInfinite(): Promise<any> {
     return new Promise((resolve) => {
       this.loadUserPosts(true).then(() => resolve());

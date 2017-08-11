@@ -6,7 +6,29 @@
       <button menuClose ion-button color="primary" (click)="goToLoginPage()">ENTRAR NA RHS</button>
     </ion-toolbar>
     <ion-toolbar *ngIf="showUserInfo" color="secondary">
-      <h3>Seja bem vindo, {{ userInfo.name }}!</h3>
+      <div class="user-info">
+        <img [src]="user['avatar_urls'][96]"> 
+        <h1>{{ user.name }}</h1>
+        <ion-grid>
+          <ion-row nowrap>
+            <ion-col>
+              x <ion-icon color="primary" name="document"></ion-icon>
+              <br>
+              Posts
+            </ion-col>
+            <ion-col>
+              x <ion-icon color="primary" name="chatboxes"></ion-icon>
+              <br>
+              Comentários 
+            </ion-col>
+            <ion-col>
+              x 
+              <br>
+              Votos
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
     </ion-toolbar>
   </ion-header>
 

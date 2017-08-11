@@ -31,15 +31,13 @@ page-posts {
       height: auto;
     }
 
-    ion-list {
-      ion-spinner {
-        position: absolute;
-        margin-left: -1em;
-        margin-top: -1em;
-        left: 50%;
-        top: 50%;
-      }
-    }
   }
   
+  ion-spinner {
+    position: absolute;
+    margin-left: -1em;
+    margin-top: -1em;
+    left: 50%;
+    top: 50%;
+  }
 }

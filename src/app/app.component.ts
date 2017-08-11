@@ -23,7 +23,7 @@ export class MyApp {
 
   // Sidemenu User Info 
   showUserInfo = false;
-  userInfo: UserModel;
+  user: UserModel;
 
   constructor(public platform: Platform, 
               public statusBar: StatusBar, 
@@ -153,8 +153,9 @@ export class MyApp {
 
       this.api.setUserId(userInfo.id);
 
-      this.userInfo = userInfo;
+      this.user = userInfo;
       this.showUserInfo = true;
+      console.log(this.user);
     },
     err => {
       console.log('Error ' + err +  ' - On User Data Request.');

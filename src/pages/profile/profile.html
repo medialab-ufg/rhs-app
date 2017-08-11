@@ -1,15 +1,15 @@
-<ion-header>
+<ion-header no-border>
 
   <ion-navbar color="secondary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Meu Perfil da RHS</ion-title>
-    <ion-buttons end>
+    <!--<ion-buttons end>
       <button ion-button icon-only (click)="openEditProfileModal()">
         <ion-icon name="create"></ion-icon>
       </button>
-    </ion-buttons>
+    </ion-buttons>-->
   </ion-navbar>
 
 </ion-header>
@@ -24,9 +24,29 @@
     <div *ngIf="isLoadingUser"><ion-spinner></ion-spinner></div>
     
     <div *ngIf="!isLoadingUser">
-      <img [src]="user['avatar_urls'][96]">
-      <h1>{{ user.name }}</h1>
-      <p>{{ userPostsList.length }} Posts</p>
+      <div class="user-info">
+        <img [src]="user['avatar_urls'][96]"> 
+        <h1>{{ user.name }}</h1>
+        <ion-grid>
+          <ion-row nowrap>
+            <ion-col>
+              {{ userPostsList.length }} <ion-icon color="primary" name="document"></ion-icon>
+              <br>
+              Posts
+            </ion-col>
+            <ion-col>
+              x <ion-icon color="primary" name="chatboxes"></ion-icon>
+              <br>
+              Comentários 
+            </ion-col>
+            <ion-col>
+              x 
+              <br>
+              Votos
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
 
       <ion-toolbar class="toolbar-rhs" color="primary">
         <ion-segment [(ngModel)]="userInfoView" color="secondary">

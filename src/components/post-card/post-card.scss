@@ -5,10 +5,11 @@ post-card {
 		border-radius: 4px !important;
 		text-align: left;
 		
-		img{
-				height: 117px;
+		&>img{
+				height: 200px !important;
+				width: 100% !important;
 				object-fit: cover;
-				object-position: center top;
+				object-position: center center;
 		}
 		ion-card-header{
 				color: color($colors, secondary) !important;

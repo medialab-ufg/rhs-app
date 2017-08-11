@@ -1,3 +1,23 @@
 page-profile {
 
+  .user-info {
+    text-align: center;
+    background-color: color($colors, secondary);
+    color: white;
+    padding: 15px;
+
+    img {
+      border-radius: 50%;
+    }
+
+  }
+
+  .toolbar-rhs {
+    padding: 0;
+    min-height: 50px !important;
+    .segment-md{
+      margin-bottom: -7px !important;
+    }
+  }
+
 }

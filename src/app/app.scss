@@ -19,13 +19,17 @@ ion-menu {
   .menu-inner {
 
     .user-info {
+ 
       text-align: center;
-      background: color($colors, secondary);
-      background-image: none;
+      background-color: color($colors, secondary);
       color: white;
-      padding: 0px 10px 20px 10px;
-    }
+      padding: 10px;
 
+      img {
+        border-radius: 50%;
+      }
+    }
+    
     ion-content {
 
       background: color($colors, primary);

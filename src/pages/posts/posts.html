@@ -16,7 +16,7 @@
   </ion-navbar>
 
   <ion-toolbar class="toolbar-rhs" color="primary">
-    <ion-segment [(ngModel)]="postsView" (ionChange)="onSegmentChanged($event)" color="secondary">
+    <ion-segment [(ngModel)]="postsView" color="secondary">
       <ion-segment-button value="home" (ionSelect)="loadPosts('home', null)">
         Principal
       </ion-segment-button>
@@ -40,19 +40,16 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <ion-slides #segmentSlider (ionSlideDidChange)="onSlideChanged($event)">
-   
- <!-- <div [ngSwitch]="postsView">-->
+  <div [ngSwitch]="postsView">
     
-    <ion-slide>
+    <div *ngSwitchCase="'home'">
       <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
       <post-card [post-data]="post" *ngFor="let post of homePostList" (click)="goToPostPage(post.id)"></post-card>   
       <ion-item-divider *ngIf="noMoreResultsOnHome">
         Não foram encontrados mais resultados.  
       </ion-item-divider>
-    </ion-slide>
-
-    <ion-slide>
+    </div>
+    <div *ngSwitchCase="'queue'">
       <div *ngIf="!isUserLogged">
         <information [message]="'Somente para usuários da RHS'" [detail]="'É preciso estar logado para acessar essa sessão.'"></information>
       </div>
@@ -66,9 +63,8 @@
           <information [message]="'Ainda não encontramos nenhum post na fila de votação.'"></information>
         </div>
       </div>
-    </ion-slide>
-
-    <ion-slide>
+    </div>
+    <div *ngSwitchCase="'following'">
       <div *ngIf="!isUserLogged">
         <information [message]="'Somente para usuários da RHS'" [detail]="'É preciso estar logado para acessar essa sessão.'"></information>
       </div>
@@ -82,13 +78,12 @@
           <information [message]="'Ainda encontramos não há nenhum post sendo seguido.'"></information>
         </div>
       </div>
-    </ion-slide>
+    </div>
 
     <ion-infinite-scroll [enabled]="postsView === 'home' ? !noMoreResultsOnHome : postsView === 'queue' ? !noMoreResultsOnQueue : !noMoreResultsOnFollowing" (ionInfinite)="$event.waitFor(doInfinite())">
       <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
-  <!--</div>-->
+  </div>
 
-  </ion-slides>
 
 </ion-content>

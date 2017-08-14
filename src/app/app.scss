@@ -72,6 +72,16 @@ ion-menu {
           }
         }
       }
+
+      .rhs-watermark {
+        text-align: center;
+        position: absolute;
+        bottom: 10px;
+        left: auto;
+        right: auto;
+        width: 100%;
+      }
+
     }
   }
   

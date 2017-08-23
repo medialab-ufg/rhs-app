@@ -40,13 +40,17 @@ page-post {
 
       div[no-lines]{
         &.top-border { 
-          border-top: 1px solid #00b4b4; 
+          border-top: 1px solid #00b4b4;
         }
       }
       
       .author{
+        padding: 0px 16px;
         ion-item{
           padding: 0;
+          ion-avatar{
+            img { border: 2px solid color($colors, secondary) }
+          }
           .item-inner{
             padding: 0;
             border: none;
@@ -86,14 +90,15 @@ page-post {
       }
 
       div.tags{
-        padding-top: 7px;
-        margin-bottom: 36px;
+        padding: 15px;
+        margin-bottom: 12px;
         h4{
           font-size: 1.5rem;
           margin-bottom: 2px;
         }
         ion-buttons{
           padding-top: 5px;
+          display: inline-block;
           @extend #button;
         }
       }
@@ -148,24 +153,34 @@ page-post {
       }
 
       .comentarios{
-        background: color($colors, backComments);
+        background: color($colors, ligth-gray);
+        border-top: 2px solid color($colors, secondary);
         ion-list{
           ion-item{
-            background: color($colors, backComments_items);
+            background: transparent;
             margin-bottom: 5px;
+            ion-avatar{
+              img { border: 2px solid color($colors, primary) }
+            }
+            ion-avatar.avatar-author{
+              img { border: 2px solid color($colors, secondary) }
+            }
             .item-inner{
               background: white;
-              padding: 0 5px;
+              border: 1px solid darken(color($colors, ligth-gray), 18%);
+              border-radius: 2px;
+              padding: 0 8px;
               ion-label{
                 h2{
                   font-size: 1.3rem;
+                  line-height: 1.5em;
                   color: color($colors, primary);
                   span{
                     color: color($colors, secondary);
                     font-size: 10px;
                     top: 8px;
                     position: absolute;
-                    right: 3px;
+                    right: 5px;
                   }
                 }
                 p{

@@ -62,15 +62,15 @@
         <ion-row text-center>
           <ion-col col-4 class="divide">
             <p>{{ commentBoxes.length }} Comentários</p>
-            <button ion-button (click)="commentPost()" class="comentar">Comentar</button>
+            <button small ion-button (click)="commentPost()" class="comentar">Comentar</button>
           </ion-col>
           <ion-col col-3>
             <p>0 Votos</p>
-            <button ion-button (click)="votePost()" class="votar">Votar</button>
+            <button small  ion-button (click)="votePost()" class="votar">Votar</button>
           </ion-col>
           <ion-col col-5>
             <p>0 Compartilhamentos</p>
-            <button ion-button (click)="openShareActionSheet()" class="compartilhar">Compartilhar</button>
+            <button small ion-button (click)="openShareActionSheet()" class="compartilhar">Compartilhar</button>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -80,8 +80,8 @@
     <div *ngIf="isLoadingComments"><ion-spinner></ion-spinner></div>
     <div padding *ngIf="!isLoadingComments" class="comentarios">
       <ion-list>
-        <ion-item *ngFor="let comment of commentBoxes; let i = index" [ngStyle]="{ 'padding-left': (16 + comment.depth*20) + 'px'} ">
-          <ion-avatar item-start class="avatar">
+        <ion-item *ngFor="let comment of commentBoxes; let i = index" text-wrap [ngStyle]="{ 'padding-left': comment.depth*20 + 'px'} ">
+          <ion-avatar item-start class="avatar" [ngClass]="{'avatar-author': author ? comment.author_name == author.name : false }">
             <img src="{{ comment.author_avatar_urls[24] }}">
           </ion-avatar>
             <h2>{{ comment.author_name }} <span>{{ comment.date | date: 'dd/MM/yyyy' }}</span></h2>

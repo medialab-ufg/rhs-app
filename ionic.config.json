@@ -1,5 +1,8 @@
 {
   "name": "rhs-app",
   "app_id": "0d9ddb4d",
-  "type": "ionic-angular"
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
 }

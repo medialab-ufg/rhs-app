@@ -10,7 +10,7 @@
     <p class="data">{{ post.date | date: 'dd/MM/yyyy' }}</p>
     <div float-right small class="votos_comentarios">
         <span><strong>x</strong> votos</span>
-        <span><strong>{{ post._embedded['replies'] !== undefined ? post._embedded['replies'].length : 0 }}</strong> comentários</span>
+        <span><strong>{{ post._embedded['replies'] !== undefined ? post._embedded['replies'][0].length : 0 }}</strong>{{ post._embedded['replies'] !== undefined ? post._embedded['replies'][0].length == 1 ? ' comentário' : ' comentários' : ' comentários' }}</span>
     </div>
   </ion-item>
 </ion-card>

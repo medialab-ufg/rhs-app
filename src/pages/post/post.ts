@@ -83,7 +83,9 @@ export class PostPage {
     this.api.getPostComments(this.postId, this.api.isLogged()).subscribe(
       commentsInfo => {
       this.comments = commentsInfo;
+      console.log(this.comments);
       this.generateCommentBoxes();
+      console.log(this.commentBoxes.length);
     },
     err => {
       console.log('Error ' + err +  ' - On Comments Data Request.');
@@ -137,7 +139,6 @@ export class PostPage {
 
   commentOnComment(commentIndex: any) {
 
-    console.log("CLICOU");
 
     if (this.api.isLogged()) {
 
@@ -213,9 +214,11 @@ export class PostPage {
   fillCommentBox(parentId: number, commentDepth: number) {
     
     for (let comment of this.comments) {
+
       if (comment.parent != parentId ) {    
         continue;
       } 
+      
       comment.depth = commentDepth;
       this.commentBoxes.push(comment);
 

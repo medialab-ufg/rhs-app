@@ -19,7 +19,7 @@
     <h1 padding [innerHTML]="post.title['rendered']"></h1>
 
     <!-- POST CONTENT -->
-    <article [ngStyle]="{ 'font-size': settings.postContentFontSizeOptions['small'] }" [innerHTML]="post.content['rendered']"></article>
+    <article [ngStyle]="{ 'font-size': settings.postContentFontSizeOptions['small'] }" [innerHTML]="post.content['rendered'] | innerHtmlPost"></article>
 
     <!-- POST CATEGORIES -->
     <div *ngIf="isLoadingCategories"><ion-spinner></ion-spinner></div>

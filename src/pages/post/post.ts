@@ -60,6 +60,7 @@ export class PostPage {
       postInfo => {
       this.post = postInfo;
 
+
       this.isLoadingAuthor = true;
       this.api.getAuthorInfo(this.post.author, this.api.isLogged()).subscribe(
         authorInfo => {

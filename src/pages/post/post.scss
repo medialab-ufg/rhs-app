@@ -31,10 +31,15 @@ page-post {
       }
       
       article{
-          padding: 10px;
+          padding: 16px;
           img{
             width: 100%;
             height: auto;
+          }
+          iframe {
+            width: 100%;
+            height: auto;
+            min-height: 250px;
           }
       }
 

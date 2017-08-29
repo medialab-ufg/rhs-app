@@ -1,3 +1,62 @@
 page-comment {
-
+  background: color($colors, ligth-gray) !important;
+  .comentarios{
+    height: 100%;
+    background: color($colors, ligth-gray);
+    ion-list{
+      ion-item{
+        background: transparent;
+        margin-bottom: 10px;
+        align-items: normal;
+        ion-avatar{
+          margin: 12px 12px 0px 0px;
+          img { border: 2px solid color($colors, primary) }
+        }
+        ion-avatar.avatar-author{
+          img { border: 2px solid color($colors, secondary) }
+        }
+        .item-inner{
+          background: white;
+          border: 1px solid darken(color($colors, ligth-gray), 18%) !important;
+          border-radius: 2px;
+          padding: 0 10px;
+          ion-label{
+            h2{
+              font-size: 1.3rem;
+              font-weight: bold;
+              line-height: 1.5em;
+              color: color($colors, primary);
+              span{
+                font-weight: normal;
+                color: color($colors, secondary);
+                font-size: 10px;
+                top: 1px;
+                position: absolute;
+                right: 5px;
+              }
+            }
+            p{
+              font-size: 1.3rem;
+            }
+          }
+          button[icon-only]{
+            bottom: 0;
+            margin: 0;
+            position: absolute;
+            right: 5px;
+          }
+        }
+      }
+      &.list-ios{
+        .item-ios{
+          &:first-child{
+            border: none;
+          }
+          &:last-child{
+            border: none;
+          }
+        }
+      }
+    }
+  }
 }

@@ -16,7 +16,7 @@
   <div *ngIf="!isLoadingPost">
 
     <!-- POST TITLE -->
-    <h1 padding [innerHTML]="post.title['rendered']"></h1>
+    <h1 padding-horizontal [innerHTML]="post.title['rendered']"></h1>
 
     <!-- POST CONTENT -->
     <article [ngStyle]="{ 'font-size': settings.postContentFontSizeOptions['small'] }" [innerHTML]="post.content['rendered'] | innerHtmlPost"></article>
@@ -91,6 +91,7 @@
             </button>
         </ion-item>
       </ion-list>
+      <div text-center *ngIf="false"><button clear round ion-button (click)="commentsOffset = commentsOffset + settings.commentsPerPage; loadComments();">Mais comentários</button></div>
     </div>
   </div>
 
@@ -101,7 +102,7 @@
     <ion-input #commentInput type="text" [(ngModel)]="commentContent" placeholder="Digite aqui seu comentário."></ion-input>
     <ion-buttons end>
       <ion-spinner *ngIf="isPostingComment"></ion-spinner>
-      <button *ngIf="!isPostingComment" [color]="commentContent.length > 0 ? 'primary' : 'default'" ion-button icon-only (click)="postComment()">
+      <button *ngIf="!isPostingComment" [disabled]="commentContent.length <= 0 " [color]="commentContent.length > 0 ? 'primary' : 'default'" ion-button icon-only (click)="postComment()">
         <ion-icon name="send"></ion-icon>
       </button>
     </ion-buttons> 

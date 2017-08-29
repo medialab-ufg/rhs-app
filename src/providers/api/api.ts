@@ -162,13 +162,17 @@ export class ApiProvider {
 
 
   // Obtain list of comments in post
-  getPostComments(postId: number, authenticated: boolean ):
+  getPostComments(postId: number, offset: number, authenticated: boolean ):
     Observable<[CommentModel]> {
 
     let headers = new Headers();
 
     let queries = new URLSearchParams();
     queries['post'] = postId;
+    //queries['post'] = 63578;
+    queries['offset'] = '' + offset;
+    queries['per_page'] = this.settings.commentsPerPage;
+
     let search = this.serializeQueries(queries);
 
     if (authenticated) {

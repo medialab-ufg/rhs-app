@@ -14,15 +14,21 @@ import { PostModel, CommentModel, TagModel, UserModel, CategoryModel } from './.
 export class PostPage {
   @ViewChild('commentInput') commentInput;
 
+  // Received from Post list
   postId: number;
+
+  // To be loaded from API
   post: PostModel;
   tags: [TagModel];
   categories: [CategoryModel];
   author: UserModel;
   comments: Array<CommentModel> = new Array<CommentModel>();
-   // Ordered comments
-  commentBoxes: Array<CommentModel> =  new Array<CommentModel>();
 
+  // Ordered comments
+  commentBoxes: Array<CommentModel> =  new Array<CommentModel>();
+  commentsOffset = 0;
+
+  // Loading Spinners controll
   isLoadingPost: boolean = true;
   isLoadingComments: boolean = true;
   isLoadingTags: boolean = true;
@@ -60,7 +66,6 @@ export class PostPage {
       postInfo => {
       this.post = postInfo;
 
-
       this.isLoadingAuthor = true;
       this.api.getAuthorInfo(this.post.author, this.api.isLogged()).subscribe(
         authorInfo => {
@@ -80,12 +85,14 @@ export class PostPage {
   loadComments() {
     this.isLoadingComments = true;
 
-    this.api.getPostComments(this.postId, this.api.isLogged()).subscribe(
+    this.api.getPostComments(this.postId, this.commentsOffset, this.api.isLogged()).subscribe(
       commentsInfo => {
-      this.comments = commentsInfo;
-      console.log(this.comments);
+      if (this.commentsOffset <= 0) {
+        this.comments = commentsInfo;
+      } else {
+        this.comments = this.comments.concat(commentsInfo);
+      }
       this.generateCommentBoxes();
-      console.log(this.commentBoxes.length);
     },
     err => {
       console.log('Error ' + err +  ' - On Comments Data Request.');
@@ -207,8 +214,11 @@ export class PostPage {
 
   // Used for ordering and finding level of comments
   generateCommentBoxes() {
+
+    this.commentBoxes = new Array<CommentModel>();
     this.fillCommentBox(0, 0);
-    this.isLoadingComments = false
+    this.isLoadingComments = false;
+
   }
 
   fillCommentBox(parentId: number, commentDepth: number) {

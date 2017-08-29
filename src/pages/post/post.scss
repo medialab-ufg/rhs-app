@@ -31,7 +31,7 @@ page-post {
       }
       
       article{
-          padding: 16px;
+          padding: 4px 16px;
           img{
             width: 100%;
             height: auto;
@@ -163,8 +163,10 @@ page-post {
         ion-list{
           ion-item{
             background: transparent;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
+            align-items: normal;
             ion-avatar{
+              margin: 12px 12px 0px 0px;
               img { border: 2px solid color($colors, primary) }
             }
             ion-avatar.avatar-author{
@@ -172,18 +174,20 @@ page-post {
             }
             .item-inner{
               background: white;
-              border: 1px solid darken(color($colors, ligth-gray), 18%);
+              border: 1px solid darken(color($colors, ligth-gray), 18%) !important;
               border-radius: 2px;
-              padding: 0 8px;
+              padding: 0 10px;
               ion-label{
                 h2{
                   font-size: 1.3rem;
+                  font-weight: bold;
                   line-height: 1.5em;
                   color: color($colors, primary);
                   span{
+                    font-weight: normal;
                     color: color($colors, secondary);
                     font-size: 10px;
-                    top: 8px;
+                    top: 1px;
                     position: absolute;
                     right: 5px;
                   }

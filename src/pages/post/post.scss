@@ -24,8 +24,11 @@ page-post {
       
       article{
         color: color($colors, dark);
-        padding: 4px 16px;
+        
         user-select: text !important;
+        p {
+          padding: 4px 16px;
+        }
         img{
           width: 100% !important;
           height: auto !important;
@@ -35,7 +38,12 @@ page-post {
           height: auto;
           min-height: 250px;
         }
-        
+        p img, p iframe {
+          margin: -4px -16px;
+          display: block;
+          width: calc(100% + 32px) !important;
+          max-width: calc(100% + 32px) !important;
+        }
       }
 
       div[no-lines]{

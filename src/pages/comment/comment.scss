@@ -59,4 +59,20 @@ page-comment {
       }
     }
   }
+  ion-footer {
+    ion-toolbar {
+      padding: 0px 4px;
+      .toolbar-content{
+        padding: 0px 6px 6px 6px;
+        ion-textarea {
+          textarea {
+            height: 18px;
+            min-height: 18px;
+            margin: 8px;
+            overflow: scroll !important;
+          }
+        }
+      }
+    }
+  }
 }

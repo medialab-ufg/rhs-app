@@ -78,7 +78,7 @@
 
     <!-- POST COMMENTS -->
     <div *ngIf="isLoadingComments"><ion-spinner class="center-spinner"></ion-spinner></div>
-    <div padding *ngIf="!isLoadingComments" class="comentarios">
+    <div padding *ngIf="!isLoadingComments && commentBoxes.length > 0" class="comentarios">
       <ion-list>
         <ion-item *ngFor="let comment of commentBoxes; let i = index" text-wrap [ngStyle]="{ 'padding-left': comment.depth*20 + 'px'} ">
           <ion-avatar item-start class="avatar" [ngClass]="{'avatar-author': author ? comment.author_name == author.name : false }">
@@ -99,7 +99,7 @@
 
 <ion-footer *ngIf="this.api.isLogged()">
   <ion-toolbar>
-    <ion-input #commentInput type="text" [(ngModel)]="commentContent" placeholder="Digite aqui seu comentário."></ion-input>
+    <ion-textarea rows="1" #commentInput id="commentInput" (input)="changeInputSize()" required type="text" [(ngModel)]="commentContent" placeholder="Digite aqui seu comentário."></ion-textarea>
     <ion-buttons end>
       <ion-spinner *ngIf="isPostingComment"></ion-spinner>
       <button *ngIf="!isPostingComment" [disabled]="commentContent.length <= 0 " [color]="commentContent.length > 0 ? 'primary' : 'default'" ion-button icon-only (click)="postComment()">

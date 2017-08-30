@@ -46,4 +46,24 @@ export class CommentPage {
     () => this.isPostingResponse = false);
   }
 
+  changeInputSize() {
+    // Get elements
+    let element   = document.getElementById('responseInput');
+    let textarea  = element.getElementsByTagName('textarea')[0];
+
+    // Set default style for textarea
+    textarea.style.minHeight  = '0';
+    textarea.style.height     = '0';
+
+    // Limit size to 96 pixels (6 lines of text)
+    let scroll_height = textarea.scrollHeight;
+    if(scroll_height > 96)
+      scroll_height = 96;
+
+    // Apply new style
+    element.style.height      = scroll_height + "px";
+    textarea.style.minHeight  = scroll_height + "px";
+    textarea.style.height     = scroll_height + "px";
+  }
+
 }

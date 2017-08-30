@@ -107,3 +107,17 @@ ion-menu {
   -webkit-animation-duration: 500ms;
   animation-duration: 500ms;
 }
+
+ion-spinner * {
+  width: 32px !important;
+  height: 32px !important;
+  stroke: color($colors, primary) !important;
+}
+
+.center-spinner {
+  position: absolute;
+  margin-left: -1em;
+  margin-top: -1em;
+  left: 50%;
+  top: 50%;
+}

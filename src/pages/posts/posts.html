@@ -43,7 +43,7 @@
   <div [ngSwitch]="postsView">
     
     <div *ngSwitchCase="'home'">
-      <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
+      <div *ngIf="showSpinner"><ion-spinner class="center-spinner"></ion-spinner></div>
       <post-card [post-data]="post" *ngFor="let post of homePostList" (click)="goToPostPage(post.id)"></post-card>   
       <ion-item-divider *ngIf="noMoreResultsOnHome">
         Não foram encontrados mais resultados.  
@@ -54,7 +54,7 @@
         <information [message]="'Somente para usuários da RHS'" [detail]="'É preciso estar logado para acessar essa sessão.'"></information>
       </div>
       <div *ngIf="isUserLogged">
-        <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
+        <div *ngIf="showSpinner"><ion-spinner class="center-spinner"></ion-spinner></div>
         <post-card [post-data]="post" *ngFor="let post of queuePostList" (click)="goToPostPage(post.id)"></post-card>   
         <ion-item-divider *ngIf="noMoreResultsOnQueue">
           Não foram encontrados mais resultados.  
@@ -69,7 +69,7 @@
         <information [message]="'Somente para usuários da RHS'" [detail]="'É preciso estar logado para acessar essa sessão.'"></information>
       </div>
       <div *ngIf="isUserLogged">
-        <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
+        <div *ngIf="showSpinner"><ion-spinner class="center-spinner"></ion-spinner></div>
         <post-card [post-data]="post" *ngFor="let post of followingPostList" (click)="goToPostPage(post.id)"></post-card>   
         <ion-item-divider *ngIf="noMoreResultsOnFollowing">
           Não foram encontrados mais resultados.  

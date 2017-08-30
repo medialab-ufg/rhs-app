@@ -18,8 +18,6 @@
         <p [innerHtml]="comment.content['rendered']"></p>
       </ion-item>
 
-      <ion-spinner *ngIf="isPostingResponse"></ion-spinner>
-
       <ion-item *ngIf="!isPostingResponse && response !== null">
         <ion-avatar item-start>
           <img src="{{ response.author_avatar_urls[24] }}">

@@ -14,15 +14,6 @@ page-search {
   ion-content{
 
     background: color($colors, ligth-gray) !important;
-    
-    ion-list {
-      ion-spinner {
-        position: absolute;
-        margin-left: -1em;
-        margin-top: -1em;
-        left: 50%;
-        top: 50%;
-      }
-    }
+
   }
 }

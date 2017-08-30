@@ -23,16 +23,17 @@ page-post {
       }
       
       article{
-          padding: 4px 16px;
-          img{
-            width: 100%;
-            height: auto;
-          }
-          iframe {
-            width: 100%;
-            height: auto;
-            min-height: 250px;
-          }
+        padding: 4px 16px;
+        user-select: text !important;
+        img{
+          width: 100%;
+          height: auto;
+        }
+        iframe {
+          width: 100%;
+          height: auto;
+          min-height: 250px;
+        }
       }
 
       div[no-lines]{
@@ -186,6 +187,7 @@ page-post {
                 }
                 p{
                   font-size: 1.3rem;
+                  user-select: text !important;
                 }
               }
               button[icon-only]{

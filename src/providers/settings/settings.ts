@@ -13,9 +13,9 @@ export class SettingsProvider {
   public postContentFontSizeOptions = { 
     'extra-small': '0.8em', 
     'small': '1.0em', 
-    'medium': '1.2em', 
-    'large': '1.4em', 
-    'extra-large': '1.6em' 
+    'medium': '1.12em', 
+    'large': '1.25em', 
+    'extra-large': '1.4em' 
   };
   public currentFontSize = 'medium';
 

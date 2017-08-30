@@ -23,6 +23,7 @@ page-post {
       }
       
       article{
+        color: color($colors, dark);
         padding: 4px 16px;
         user-select: text !important;
         img{

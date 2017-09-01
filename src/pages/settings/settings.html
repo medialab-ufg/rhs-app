@@ -25,18 +25,21 @@
         <ion-option [attr.selected]="articleFontSize == 'extra-large'" value="extra-large">Enorme</ion-option>
       </ion-select>
     </ion-item>
-    <ion-item>Configuração 2</ion-item>
-
+ 
     <ion-list-header>
-      Outro tipo de configuração.
+      Tamanho da fonte nos posts: 
+      <ion-note item-end>
+        {{ articleFontSize }}
+      </ion-note>
     </ion-list-header>
-    <ion-item>Configuração 1</ion-item>
-    <ion-item> 
-      <ion-label>Configuração 2</ion-label>
-      <ion-toggle enabled checked="false"></ion-toggle>
+    <ion-item>
+      <ion-range min="-100" step="10" snaps="true">
+        <ion-label range-left class="small-text">A</ion-label>
+        <ion-label range-right>A</ion-label>
+      </ion-range>
+
     </ion-item>
 
-    <ion-item>Configuração 3</ion-item>
     <ion-list-header>
       Login na RHS
     </ion-list-header>

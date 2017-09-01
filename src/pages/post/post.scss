@@ -26,9 +26,9 @@ page-post {
         color: color($colors, dark);
         
         user-select: text !important;
-        p {
+        
           padding: 4px 16px;
-        }
+        
         img{
           width: 100% !important;
           height: auto !important;
@@ -38,7 +38,7 @@ page-post {
           height: auto;
           min-height: 250px;
         }
-        p img, p iframe {
+        img, iframe {
           margin: -4px -16px;
           display: block;
           width: calc(100% + 32px) !important;

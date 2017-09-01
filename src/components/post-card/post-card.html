@@ -6,11 +6,17 @@
     <ion-avatar item-start>
       <img src="{{ post._embedded['author'][0].avatar_urls[48] }}">
     </ion-avatar>
-    <h2>{{ post._embedded['author'][0].name }}</h2>
-    <p class="data">{{ post.date | date: 'dd/MM/yyyy' }}</p>
-    <div float-right small class="votos_comentarios">
-        <span><strong>x</strong> votos</span>
-        <span><strong>{{ post._embedded['replies'] !== undefined ? post._embedded['replies'][0].length : 0 }}</strong>{{ post._embedded['replies'] !== undefined ? post._embedded['replies'][0].length == 1 ? ' comentário' : ' comentários' : ' comentários' }}</span>
-    </div>
+    <ion-grid>
+      <ion-row align-items-baseline>
+        <ion-col col-8>
+          <h2>{{ post._embedded['author'][0].name }}</h2>
+          <p class="data">{{ post.date | date: 'dd/MM/yyyy' }}</p>
+        </ion-col>
+        <ion-col col-4 class="votos_comentarios">
+          <strong>{{ post['total_votes'] }}</strong> votos<br>
+          <strong>{{ post._embedded['replies'] !== undefined ? post._embedded['replies'][0].length : 0 }}</strong>{{ post._embedded['replies'] !== undefined ? post._embedded['replies'][0].length == 1 ? ' comentário' : ' comentários' : ' comentários' }}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-item>
 </ion-card>

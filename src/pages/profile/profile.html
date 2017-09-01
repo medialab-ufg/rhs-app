@@ -40,7 +40,7 @@
               Comentários 
             </ion-col>
             <ion-col>
-              x 
+              {{ user['total_votes'] }}  
               <br>
               Votos
             </ion-col>
@@ -86,9 +86,22 @@
         </ion-list>
 
         <ion-list *ngSwitchCase="'interests'">
-          <ion-item>
-            {{ user.description }}
-          </ion-item>
+          <ion-list>
+            <ion-list-header>Sobre</ion-list-header>
+            <ion-item>
+              {{ user.description }}
+            </ion-item>
+            
+            <ion-list-header>Interesses</ion-list-header>
+            <ion-item>
+              {{ user['interst'] }}
+            </ion-item>
+
+            <ion-list-header>Formação</ion-list-header>
+            <ion-item>
+              {{ user['formation'] }}
+            </ion-item>
+          </ion-list>
         </ion-list>
 
       </div>

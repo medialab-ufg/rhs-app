@@ -34,7 +34,7 @@ export class LoginPage {
         if (temporaryCredentials.oauthToken !== null && temporaryCredentials.oauthTokenSecret !== null) {
           
           //const browser = this.inAppBrowser.create('http://10.0.1.242/rhs/oauth1/authorize?oauth_token=' + temporaryCredentials.oauthToken + '&oauth_token_secret=' + temporaryCredentials.oauthTokenSecret, '_blank');
-          const browser = this.inAppBrowser.create('http://rhs.dev.medialab.ufg.br/oauth1/authorize?oauth_token=' + temporaryCredentials.oauthToken + '&oauth_token_secret=' + temporaryCredentials.oauthTokenSecret, '_blank');
+          const browser = this.inAppBrowser.create(this.settings.apiURL + '/oauth1/authorize?oauth_token=' + temporaryCredentials.oauthToken + '&oauth_token_secret=' + temporaryCredentials.oauthTokenSecret, '_blank');
           
           browser.on("loadstop").subscribe((event)=>{
               let url = new URL(event.url);

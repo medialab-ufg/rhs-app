@@ -27,22 +27,31 @@ post-card {
 		}
 		ion-item{
 			border-top: 2px solid color($colors, primary) !important;
-			
-			h2{
-				color: color($colors, primary) !important;
-				font-weight: 900 !important;
-				text-transform: capitalize;
+			ion-avatar{
+				margin: 8px 10px 8px 0px !important;
 			}
-			.data{
-				color: color($colors, secondary);
-			}
-			.votos_comentarios{
-				color: color($colors, secondary);
-				margin-top: -38px;
-				display: inline-grid;
-				line-height: 1.5;
-				font-size: 12px;
-				text-align: right;
+			ion-grid {
+				padding: 0px !important;
+				
+				h2{
+					color: color($colors, primary) !important;
+					font-weight: 900 !important;
+					text-transform: capitalize;
+					text-overflow:ellipsis;
+					overflow: hidden;
+				}
+				.data{
+					color: color($colors, secondary);
+				}
+				.votos_comentarios{
+					color: color($colors, secondary);
+					line-height: 1.5;
+					font-size: 12px;
+					text-align: right;
+				}
+				ion-col {
+					padding: 2px !important;
+				}
 			}
 		}
 	}

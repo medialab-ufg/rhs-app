@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, ActionSheetController, AlertController, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, ActionSheetController, AlertController, IonicPage, ToastController } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { SettingsProvider } from './../../providers/settings/settings';
@@ -44,6 +44,7 @@ export class PostPage {
               public actionSheetCtrl: ActionSheetController,
               public api: ApiProvider,
               public alertCtrl: AlertController,
+              public toastCtrl: ToastController,
               public socialSharing: SocialSharing,
               public settings: SettingsProvider) {
 
@@ -165,7 +166,23 @@ export class PostPage {
 
   votePost() {
     if (this.api.isLogged()) {
-      // insert voting logic here.
+      this.api.voteOnPost(this.postId).subscribe(
+        voteResponse => {     
+          let voteToast = this.toastCtrl.create({
+            message: 'Obrigado por votar neste post!',
+            duration: 3000
+          });
+          voteToast.present();
+        }, 
+        err => {
+          let voteAlert = this.alertCtrl.create({
+            title: 'Ops... temos um problema!',
+            subTitle: err,
+            buttons: ['OK']
+          });
+          voteAlert.present();
+            }
+      );
     } else {
 
       let voteAlert = this.alertCtrl.create({

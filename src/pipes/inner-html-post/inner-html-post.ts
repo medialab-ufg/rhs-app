@@ -9,7 +9,7 @@ export class InnerHtmlPostPipe implements PipeTransform {
   constructor(private dom: DomSanitizer) { }
 
   transform(value: string, ...args) {
-    value = value.replace(/(src=")(?!https?:\/\/)\/?([^"]+\.(jpe?g|png|gif|bmp))"/ig, '$1http://rhs.dev.medialab.ufg.br/$2"');
+    value = value.replace(/(src=")(?!https?:\/\/)\/?([^"]+\.(jpe?g|png|gif|bmp))"/ig, '$1http://migracao.redehumanizasus.net/$2"');
     return this.dom.bypassSecurityTrustHtml(value);
   }
 }

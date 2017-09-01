@@ -39,6 +39,15 @@ export class PostPage {
   // String inserted on Comment Input Footer
   commentContent: string = '';
 
+  // Statistics that change dynamically
+  totalVotes: number = 0;
+  totalShares: number = 0
+  commentCount: number = 0;
+
+  // Controlling the post status to update on post list
+  returnFromPostFunction: any
+  postDidUpdated: boolean = false;
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public actionSheetCtrl: ActionSheetController,
@@ -57,7 +66,12 @@ export class PostPage {
   ionViewDidLoad() { }
 
   ionViewWillEnter() {
+    this.returnFromPostFunction = this.navParams.get("returnFromPostFunction")
     this.loadComments();
+  }
+
+  ionViewWillLeave() {
+    this.returnFromPostFunction(this.postDidUpdated ? {id: this.postId, commentCount: this.commentCount, totalVotes: this.totalVotes } : null).then(()=>{});
   }
 
   loadPost() {
@@ -66,6 +80,9 @@ export class PostPage {
     this.api.getPostInfo(this.postId, this.api.isLogged()).subscribe(
       postInfo => {
       this.post = postInfo;
+      this.totalVotes = this.post['total_votes'];
+      this.totalShares = this.post['total_shares'];
+      this.commentCount = this.post['comment_count'];
 
       this.isLoadingAuthor = true;
       this.api.getAuthorInfo(this.post.author, this.api.isLogged()).subscribe(
@@ -147,10 +164,9 @@ export class PostPage {
 
   commentOnComment(commentIndex: any) {
 
-
     if (this.api.isLogged()) {
 
-      this.navCtrl.push('CommentPage', {'comment': this.comments[commentIndex], 'postId': this.postId});
+      this.navCtrl.push('CommentPage', {'comment': this.commentBoxes[commentIndex], 'postId': this.postId, 'returnFromCommentFunction': this.returnFromCommentPage });
 
     } else {
       
@@ -165,9 +181,12 @@ export class PostPage {
   }
 
   votePost() {
-    if (this.api.isLogged()) {
+    if (this.api.isLogged()) {        //this.navCtrl.pop();
       this.api.voteOnPost(this.postId).subscribe(
-        voteResponse => {     
+        voteResponse => {
+          this.totalVotes = Number(this.totalVotes) + 1;
+          this.postDidUpdated = true;
+
           let voteToast = this.toastCtrl.create({
             message: 'Obrigado por votar neste post!',
             duration: 3000
@@ -204,6 +223,10 @@ export class PostPage {
       
         this.comments.unshift(commentResponse);
         this.commentContent = '';
+        this.commentCount = Number(this.commentCount) + 1;
+        
+        this.postDidUpdated = true;
+        this.generateCommentBoxes();
     },
     err => {
       console.log('Error ' + err +  ' - On Comment Data posting.');
@@ -231,11 +254,11 @@ export class PostPage {
 
   // Used for ordering and finding level of comments
   generateCommentBoxes() {
-
+    console.log(this.comments);
     this.commentBoxes = new Array<CommentModel>();
     this.fillCommentBox(0, 0);
     this.isLoadingComments = false;
-
+    console.log(this.commentBoxes);
   }
 
   fillCommentBox(parentId: number, commentDepth: number) {
@@ -281,4 +304,12 @@ export class PostPage {
     textarea.style.height     = scroll_height + "px";
   }
 
+  // Callback function used in comment page to inform if the user did inserted a new comment or not.
+  returnFromCommentPage = (_params) => {
+    return new Promise((resolve, reject) => {
+        if (_params != 0) { this.postDidUpdated = true; }
+        this.commentCount = Number(this.commentCount) + _params;
+        resolve();
+    });
+  }
 }

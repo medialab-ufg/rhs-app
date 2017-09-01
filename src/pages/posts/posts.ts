@@ -75,7 +75,7 @@ export class PostsPage {
   }
 
   goToPostPage(id: number) {
-    this.navCtrl.push('PostPage', {'postId': id});
+    this.navCtrl.push('PostPage', {'postId': id, 'returnFromPostFunction': this.returnFromPostPage });
   }
 
   goToSearchPage() {
@@ -240,5 +240,32 @@ export class PostsPage {
     });
   }
 
+  returnFromPostPage = (_params) => {
+    return new Promise((resolve, reject) => {
+      console.log(_params);
+
+      if (_params !== null) {
+        for(let post of this.homePostList) {
+          if (post.id == _params.id) {
+            post['comment_count'] = _params.commentCount;
+            post['total_votes'] = _params.totalVotes;
+          }
+        }
+        for(let post of this.queuePostList) {
+          if (post.id == _params.id) {
+            post['comment_count'] = _params.commentCount;
+            post['total_votes'] = _params.totalVotes;
+          }
+        }
+        for(let post of this.followingPostList) {
+          if (post.id == _params.id) {
+            post['comment_count'] = _params.commentCount;
+            post['total_votes'] = _params.totalVotes;
+          }
+        }
+      }
+      resolve();
+    });
+  }
 
 }

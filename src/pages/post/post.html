@@ -61,15 +61,15 @@
       <ion-grid>
         <ion-row text-center>
           <ion-col col-4 class="divide">
-            <p>{{ commentBoxes.length }} Comentários</p>
+            <p>{{ commentCount }} Comentários</p>
             <button small ion-button (click)="commentPost()" class="comentar">Comentar</button>
           </ion-col>
           <ion-col col-3>
-            <p>0 Votos</p>
+            <p>{{ totalVotes }} Votos</p>
             <button small  ion-button (click)="votePost()" class="votar">Votar</button>
           </ion-col>
           <ion-col col-5>
-            <p>0 Compartilhamentos</p>
+            <p>{{ totalShares }} Compartilhamentos</p>
             <button small ion-button (click)="openShareActionSheet()" class="compartilhar">Compartilhar</button>
           </ion-col>
         </ion-row>

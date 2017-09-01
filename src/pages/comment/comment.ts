@@ -18,6 +18,9 @@ export class CommentPage {
 
   responseContent: string = '';
   isPostingResponse: boolean = false;
+  didResponded: boolean = false;
+
+  returnFromCommentFunction: any;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -30,6 +33,14 @@ export class CommentPage {
     this.responseInput.setFocus();
   }
 
+  ionViewWillEnter() {
+    this.returnFromCommentFunction = this.navParams.get("returnFromCommentFunction")
+  }
+
+  ionViewWillLeave() {
+    this.returnFromCommentFunction(this.didResponded ? 1 : 0).then(()=>{});
+  }
+
   postResponse() {
     
     this.isPostingResponse = true;
@@ -39,9 +50,11 @@ export class CommentPage {
       
         this.responseContent = '';
         this.response = commentResponse;
+        this.didResponded = true;
     },
     err => {
       console.log('Error ' + err +  ' - On Response Data posting.');
+      this.didResponded = false;
     },
     () => this.isPostingResponse = false);
   }

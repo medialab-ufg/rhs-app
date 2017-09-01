@@ -91,7 +91,7 @@
             </button>
         </ion-item>
       </ion-list>
-      <div text-center *ngIf="false"><button clear round ion-button (click)="commentsOffset = commentsOffset + settings.commentsPerPage; loadComments();">Mais comentários</button></div>
+      <div text-center *ngIf="post['comment_count'] > commentBoxes.length"><button clear round ion-button (click)="commentsOffset = commentsOffset + settings.commentsPerPage; loadComments();">Mais comentários</button></div>
     </div>
   </div>
 

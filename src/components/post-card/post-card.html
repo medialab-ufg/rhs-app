@@ -14,7 +14,7 @@
         </ion-col>
         <ion-col col-4 class="votos_comentarios">
           <strong>{{ post['total_votes'] }}</strong> votos<br>
-          <strong>{{ post._embedded['replies'] !== undefined ? post._embedded['replies'][0].length : 0 }}</strong>{{ post._embedded['replies'] !== undefined ? post._embedded['replies'][0].length == 1 ? ' comentário' : ' comentários' : ' comentários' }}
+          <strong>{{ post['comment_count'] }}</strong>{{ post['comment_count'] == 1 ? ' comentário' : ' comentários' }}
         </ion-col>
       </ion-row>
     </ion-grid>

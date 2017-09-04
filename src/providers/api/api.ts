@@ -15,10 +15,13 @@ export class ApiProvider {
   private tokenKey: string = null;
   private tokenSecret: string = null;
   
-  // Status and info provided by Authentication Service
+  // Status Authentication Service
   private logged: boolean = false;
-  private userId: number = 0;
 
+  // Info provided after login
+  private userId: number = 0;
+  public followingUsers: Array<number> = new Array<number>();
+ 
   JSON: any = JSON;
 
   constructor(public http: Http,

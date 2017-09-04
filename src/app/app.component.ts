@@ -156,6 +156,7 @@ export class MyApp {
       userInfo => {
 
       this.api.setUserId(userInfo.id);
+      this.api.followingUsers = userInfo['follows'];
 
       this.user = userInfo;
       this.showUserInfo = true;

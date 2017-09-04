@@ -87,7 +87,7 @@ export class PostsPage {
   }
 
   loadPosts(postView: string, isLoadingMore: boolean): Promise<any> {
-    
+    console.log("CHEGUEI!");
     this.postsView = postView;
 
     return new Promise((resolve) => {
@@ -200,27 +200,32 @@ export class PostsPage {
                 this.followingPostQueries['page'] = '1';
               }     
             }
+            // Adds array of following posts to query
+            if (this.api.followingUsers.length > 0) {
 
-            // Perform the request to the api service
-            this.api.getPostList(true, this.followingPostQueries).subscribe(
-              postList => {
-              this.followingPostList = this.followingPostList.concat(postList);
-              this.noMoreResultsOnFollowing = false;
-            },
-            err => {
-              if (err === 400) {
-                this.noMoreResultsOnFollowing = true;
-              }
-              console.log('Error ' + err +  ' - On User Data Request.');
-            },
-            () => { this.showSpinner = false; resolve() });
-          } else {
-            this.authentication.userLogged.subscribe(value => {
-              if (value === true) {
-                this.isUserLogged = true;
-                this.loadPosts('queue', isLoadingMore);
-              }
-            });
+              this.followingPostQueries['author'] = String(this.api.followingUsers.join(','));
+
+              // Perform the request to the api service
+              this.api.getPostList(true, this.followingPostQueries).subscribe(
+                postList => {
+                this.followingPostList = this.followingPostList.concat(postList);
+                this.noMoreResultsOnFollowing = false;
+              },
+              err => {
+                if (err === 400) {
+                  this.noMoreResultsOnFollowing = true;
+                }
+                console.log('Error ' + err +  ' - On User Data Request.');
+              },
+              () => { this.showSpinner = false; resolve() });
+            } else {
+              this.authentication.userLogged.subscribe(value => {
+                if (value === true) {
+                  this.isUserLogged = true;
+                  this.loadPosts('queue', isLoadingMore);
+                }
+              });
+            }
           }
         break;
       }

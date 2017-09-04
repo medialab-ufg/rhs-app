@@ -19,7 +19,7 @@ export class PostsPage {
   followingPostList: Array<PostModel> = new Array<PostModel>();
 
   homePostQueries: { [query: string]: String } = {};
-  queuePostQueries: { [query: string]: String } = {};
+  queuePostQueries: { [query: string]: String } = {'status': 'voting-queue'}
   followingPostQueries: { [query: string]: String } = {};
 
   noMoreResultsOnHome: boolean = false;

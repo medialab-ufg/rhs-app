@@ -181,37 +181,29 @@ export class PostPage {
   }
 
   votePost() {
-    if (this.api.isLogged()) {        //this.navCtrl.pop();
-      this.api.voteOnPost(this.postId).subscribe(
-        voteResponse => {
-          this.totalVotes = Number(this.totalVotes) + 1;
-          this.postDidUpdated = true;
+ 
+    this.api.voteOnPost(this.postId).subscribe(
+      voteResponse => {
+        this.totalVotes = Number(this.totalVotes) + 1;
+        this.postDidUpdated = true;
 
-          let voteToast = this.toastCtrl.create({
-            message: 'Obrigado por votar neste post!',
-            duration: 3000
-          });
-          voteToast.present();
-        }, 
-        err => {
-          let voteAlert = this.alertCtrl.create({
-            title: 'Ops... temos um problema!',
-            subTitle: err,
-            buttons: ['OK']
-          });
-          voteAlert.present();
-            }
-      );
-    } else {
-
-      let voteAlert = this.alertCtrl.create({
-        title: 'Ops... você não está logado!',
-        subTitle: 'Entre na RHS para poder votar neste posts.',
-        buttons: ['OK']
-      });
-      voteAlert.present();
-
-    }
+        let voteToast = this.toastCtrl.create({
+          message: 'Obrigado por votar neste post!',
+          duration: 3000
+        });
+        voteToast.present();
+      }, 
+      err => {
+        console.log(err);
+        let voteAlert = this.alertCtrl.create({
+          title: 'Ops...',
+          subTitle: err.message,
+          buttons: ['OK']
+        });
+        voteAlert.present();
+          }
+    );
+   
   }
 
   postComment() {

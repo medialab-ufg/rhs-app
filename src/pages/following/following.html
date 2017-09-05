@@ -7,8 +7,8 @@
     <ion-title>Seguindo</ion-title>
   </ion-navbar>
 
-  <ion-toolbar color="primary">
-    <ion-segment [(ngModel)]="followingView" (ionChange)="onSegmentChanged($event)" color="secondary">
+<!--  <ion-toolbar color="primary">
+    <ion-segment [(ngModel)]="followingView" color="secondary">
       <ion-segment-button value="posts">
         Posts
       </ion-segment-button>
@@ -16,15 +16,22 @@
         Pessoas
       </ion-segment-button>
     </ion-segment>
-  </ion-toolbar>
+  </ion-toolbar>-->
 
 </ion-header>
 
 <ion-content padding>
 
-  <ion-slides #segmentSlider (ionSlideDidChange)="onSlideChanged($event)">
-    
-    <ion-slide >
+    <ion-refresher pullMin="100" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingText="Puxe e solte para atualizar."
+      refreshingText="Carregando dados...">
+    </ion-refresher-content>
+    </ion-refresher>
+
+ <!-- <div [ngSwitch]="followingView">
+   
+    <div *ngSwitchCase="'posts'">
       <information *ngIf="!isUserLogged" [message]="'Você não está logado na RHS'" [detail]="'Use o Menu lateral para entrar na Rede.'"></information>
       <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
       <ion-list *ngIf="isUserLogged && followingView == 'posts'">
@@ -32,18 +39,32 @@
           <information [message]="'Você ainda não está seguindo nenhum post.'"></information>
         </div>
       </ion-list>
-    </ion-slide>
+    </div>
 
-    <ion-slide >
+    <div *ngSwitchCase="'people'">-->
       <information *ngIf="!isUserLogged" [message]="'Você não está logado na RHS'" [detail]="'Use o Menu lateral para entrar na Rede.'"></information>
       <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
       <ion-list *ngIf="isUserLogged && followingView == 'people'">
         <div *ngIf="userList.length == 0 && !showSpinner">
           <information [message]="'Você ainda não está seguindo nenhum usuário.'"></information>
         </div>
+        <div *ngIf="userList.length != 0 && !showSpinner">
+          <ion-item *ngFor="let user of userList">
+            <ion-avatar item-start>
+              <img src="{{ user.avatar_urls[48] }}">
+            </ion-avatar>
+            <h2 color="secondary">{{ user.name }}</h2>
+            <button ion-button item-end color="danger">Parar</button>
+          </ion-item>
+        </div>
       </ion-list>
-    </ion-slide>
 
-  </ion-slides>
+      <ion-infinite-scroll [enabled]="followingView === 'posts' ? !noMoreResultsOnHome : !noMoreResultsOnPeople" (ionInfinite)="$event.waitFor(doInfinite())">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+      
+  <!--  </div>
+
+  </div>-->
 
 </ion-content>

@@ -336,6 +336,42 @@ export class ApiProvider {
     );
   }
 
+  // Obtain list of users
+  getUserList(authenticated: boolean, queries: { [query: string]: String } ):
+    Observable<Array<UserModel>> {
+
+    // This ensures we receive a response without the whole content of the post
+    queries['context'] = 'embed';
+    queries['_embed'] = 'true';
+
+    let headers = new Headers();
+    let search = this.serializeQueries(queries);
+
+    if (authenticated) {
+
+      queries['oauth_consumer_key'] = this.settings.consumerKey;
+      queries['oauth_token'] = this.tokenKey;
+      queries['oauth_signature_method'] = 'HMAC-SHA1';
+      queries['oauth_timestamp'] = new String(new Date().getTime()).substr(0,10);
+      queries['oauth_nonce'] = this.generateNonce();
+      queries['oauth_version'] = '1.0'; 
+
+      let signature = oauthSignature.generate('GET', this.settings.apiURL + 'wp-json/wp/v2/users?' + search.toString(), queries, this.settings.consumerSecret, this.tokenSecret);
+      headers.append('Authorization', 'OAuth oauth_consumer_key="' + this.settings.consumerKey + '",oauth_token="' + this.tokenKey + '",oauth_signature_method="HMAC-SHA1",oauth_timestamp="' + queries['oauth_timestamp'] + '",oauth_nonce="' + queries['oauth_nonce'] + '",oauth_version="1.0",oauth_signature="' + signature + '"');
+    }
+    
+    return this.http.get(this.settings.apiURL + 'wp-json/wp/v2/users?' + search.toString(), {headers: headers})
+      .map((res: Response) => {
+        
+        let userList = JSON.parse(res['_body']);
+ 
+        return userList;
+      })
+      .catch((error: any) => this.handleError(error));
+  }
+
+
+
 
   // ==== UTILITIES  ======================================================================
   // Fowards error status.

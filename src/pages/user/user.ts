@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage, AlertController } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 
 import { ApiProvider } from './../../providers/api/api';
 import { UserModel, PostModel } from './../../providers/models/models';
 
 @IonicPage()
 @Component({
-  selector: 'page-profile',
-  templateUrl: 'profile.html',
+  selector: 'page-user',
+  templateUrl: 'user.html',
 })
-export class ProfilePage {
+export class UserPage {
 
-  isUserLogged: boolean = false; 
-
+  userId: number;
   user: UserModel;
   userPostsList: Array<PostModel> = new Array<PostModel>();
 
@@ -24,14 +23,12 @@ export class ProfilePage {
 
   userInfoView: string = 'posts';
 
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              //public modalCtrl: ModalController,
-              public alertCtrl: AlertController,
               public api: ApiProvider) {
-    this.isUserLogged = this.api.isLogged();
-    
-    if (this.isUserLogged) { this.loadUser() }
+    this.userId = this.navParams.get('userId');
+    this.loadUser();
   }
 
   ionViewDidLoad() {
@@ -40,7 +37,7 @@ export class ProfilePage {
   loadUser() {
     this.isLoadingUser = true;
 
-    this.api.getUserInfo().subscribe(
+    this.api.getAuthorInfo(this.userId, false).subscribe(
       userInfo => {
       this.user = userInfo;
       this.loadUserPosts(false);
@@ -85,34 +82,11 @@ export class ProfilePage {
   goToPostPage(postId: number) {
     this.navCtrl.push('PostPage', {'postId': postId});
   }
-/*
-  openEditProfileModal(){
 
-    if (this.isUserLogged) {
-
-      // Passar um objeto com dados atuais do usuário como segundo parâmetro do modalCtrl.create.
-      let profileModal = this.modalCtrl.create('ProfileEditModal');
-      profileModal.onDidDismiss(data => {
-        // Tratar dados do usuário passados pelo modal.
-      });
-      profileModal.present();
-
-    } else {
-      
-      let commentAlert = this.alertCtrl.create({
-        title: 'Ops... você não está logado!',
-        subTitle: 'Entre na RHS para poder editar seu usuário.',
-        buttons: ['OK']
-      });
-      commentAlert.present();
-
-    }
-  }
-*/
   doInfinite(): Promise<any> {
     return new Promise((resolve) => {
       this.loadUserPosts(true).then(() => resolve());
     });
   }
-  
+
 }

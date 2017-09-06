@@ -30,14 +30,9 @@
         <ion-grid>
           <ion-row nowrap>
             <ion-col>
-              {{ userPostsList.length }} <ion-icon color="primary" name="document"></ion-icon>
+              {{ user['total_posts'] }}  <ion-icon color="primary" name="document"></ion-icon>
               <br>
               Posts
-            </ion-col>
-            <ion-col>
-              x <ion-icon color="primary" name="chatboxes"></ion-icon>
-              <br>
-              Comentários 
             </ion-col>
             <ion-col>
               {{ user['total_votes'] }}  
@@ -63,7 +58,7 @@
       </ion-toolbar>
 
       <div [ngSwitch]="userInfoView">
-
+        
         <ion-list *ngSwitchCase="'posts'">
           <div *ngIf="isLoadingUserPosts"><ion-spinner class="center-spinner"></ion-spinner></div>
           <post-card [post-data]="post" *ngFor="let post of userPostsList" (click)="goToPostPage(post.id)"></post-card>   
@@ -80,26 +75,22 @@
         </ion-infinite-scroll>
 
         <ion-list *ngSwitchCase="'personal'">
-          <ion-item>
-            {{ user.description }}
+          <ion-item [innerHtml]="user.description !== '' ? user.description : 'Nenhuma descrição fornecida.'">
           </ion-item>
         </ion-list>
 
         <ion-list *ngSwitchCase="'interests'">
           <ion-list>
             <ion-list-header>Sobre</ion-list-header>
-            <ion-item>
-              {{ user.description }}
+            <ion-item [innerHtml]="user.description !== '' ? user.description : 'Nenhuma informação encontrada.'">
             </ion-item>
             
             <ion-list-header>Interesses</ion-list-header>
-            <ion-item>
-              {{ user['interst'] }}
+            <ion-item [innerHtml]="user['interst'] !== '' ? user['interst'] : 'Nenhum interesse informado.'">
             </ion-item>
 
             <ion-list-header>Formação</ion-list-header>
-            <ion-item>
-              {{ user['formation'] }}
+            <ion-item [innerHtml]="user['formation'] !== '' ? user['formation'] : 'Nenhuma formação informada.'">
             </ion-item>
           </ion-list>
         </ion-list>

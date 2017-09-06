@@ -39,6 +39,8 @@ export class ApiProvider {
 
   setUserId(userId: number) { this.userId = userId; }
 
+  getUserId() { return this.userId; }
+
   // == API REQUESTS ====================================================================
   // Obtain user info
   getUserInfo():
@@ -132,7 +134,7 @@ export class ApiProvider {
       .catch((error: any) => this.handleError(error));
   }
 
-    // Obtain post info
+  // Obtain post info
   getAuthorInfo(authorId: number, authenticated: boolean ):
     Observable<UserModel> {
 

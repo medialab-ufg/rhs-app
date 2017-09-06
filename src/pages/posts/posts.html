@@ -44,7 +44,7 @@
     
     <div *ngSwitchCase="'home'">
       <div *ngIf="showSpinner"><ion-spinner class="center-spinner"></ion-spinner></div>
-      <post-card [post-data]="post" *ngFor="let post of homePostList" (click)="goToPostPage(post.id)"></post-card>   
+      <post-card ion-stop-event="click" [post-data]="post" *ngFor="let post of homePostList" (click)="goToPostPage(post.id)"></post-card>   
       <ion-item-divider *ngIf="noMoreResultsOnHome">
         Não foram encontrados mais resultados.  
       </ion-item-divider>

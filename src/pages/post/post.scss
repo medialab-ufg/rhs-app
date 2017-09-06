@@ -44,6 +44,10 @@ page-post {
           width: calc(100% + 32px) !important;
           max-width: calc(100% + 32px) !important;
         }
+        blockquote {
+          font-style: italic;
+          color: #555;
+        }
       }
 
       div[no-lines]{

@@ -48,8 +48,8 @@ export class PostPage {
   returnFromPostFunction: any
   postDidUpdated: boolean = false;
 
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams,
+  constructor(public navParams: NavParams,
+              public navCtrl: NavController,
               public actionSheetCtrl: ActionSheetController,
               public api: ApiProvider,
               public alertCtrl: AlertController,
@@ -303,5 +303,13 @@ export class PostPage {
         this.commentCount = Number(this.commentCount) + _params;
         resolve();
     });
+  }
+
+  goToAuthorPage(userId: number) {
+    if (userId == this.api.getUserId()) {
+      this.navCtrl.push('ProfilePage');
+    } else {
+      this.navCtrl.push('UserPage', { 'userId': userId });
+    }
   }
 }

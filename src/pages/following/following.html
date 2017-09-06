@@ -20,7 +20,7 @@
 
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
     <ion-refresher pullMin="100" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
@@ -43,13 +43,13 @@
 
     <div *ngSwitchCase="'people'">-->
       <information *ngIf="!isUserLogged" [message]="'Você não está logado na RHS'" [detail]="'Use o Menu lateral para entrar na Rede.'"></information>
-      <div *ngIf="showSpinner"><ion-spinner></ion-spinner></div>
+      <div *ngIf="showSpinner"><ion-spinner class="center-spinner"></ion-spinner></div>
       <ion-list *ngIf="isUserLogged && followingView == 'people'">
         <div *ngIf="userList.length == 0 && !showSpinner">
           <information [message]="'Você ainda não está seguindo nenhum usuário.'"></information>
         </div>
         <div *ngIf="userList.length != 0 && !showSpinner">
-          <ion-item *ngFor="let user of userList">
+          <ion-item *ngFor="let user of userList" (click)="goToUserPage(user.id)">
             <ion-avatar item-start>
               <img src="{{ user.avatar_urls[48] }}">
             </ion-avatar>

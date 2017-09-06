@@ -121,4 +121,8 @@ export class FollowingPage {
     });
   }
 
+  goToUserPage(userId: number) {
+    this.navCtrl.push('UserPage', { 'userId': userId });
+  }
+
 }

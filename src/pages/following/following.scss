@@ -1,3 +1,10 @@
 page-following {
 
+  h2 {
+    font-weight: bold !important;
+    color: color($colors, secondary);
+    text-transform: capitalize;
+    text-overflow:ellipsis;
+    overflow: hidden;
+  }
 }

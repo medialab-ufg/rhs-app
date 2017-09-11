@@ -6,8 +6,8 @@ export class SettingsProvider {
   // Wordpress settings used by Authentication Service 
   public apiURL: string = 'http://migracao.redehumanizasus.net/';
   public callbackURL: string = 'http://migracao.redehumanizasus.net/api-login-callback';
-  public consumerKey: string = '1cQjqoPKu8nE';
-  public consumerSecret: string = 'hjmxy5utzKot17sSRLGrlZIv9lz91588KD37b51OoR7OWwCR';
+  public consumerKey: string = 'RN5m3gLFoYrs';
+  public consumerSecret: string = 'KP871aQwuMhbSBX4H7WqBGzW9CwwEoFADwTzQt2pfiY4CQG1';
   
   //public apiURL: string = 'http://rhs.dev.medialab.ufg.br/';
   //public callbackURL: string = 'http://rhs.dev.medialab.ufg.br/api-login-callback';

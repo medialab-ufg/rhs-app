@@ -4,7 +4,6 @@ import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { SettingsProvider } from './../settings/settings';
-import { UserModel, PostModel, CommentModel, TagModel, CategoryModel } from './../models/models';
 
 import oauthSignature from 'oauth-signature';
 
@@ -44,7 +43,7 @@ export class ApiProvider {
   // == API REQUESTS ====================================================================
   // Obtain user info
   getUserInfo():
-      Observable<UserModel> {
+      Observable<any> {
 
         let queries = {
           oauth_consumer_key: this.settings.consumerKey,
@@ -70,7 +69,7 @@ export class ApiProvider {
   
   // Obtain list of posts
   getPostList(authenticated: boolean, queries: { [query: string]: String } ):
-    Observable<Array<PostModel>> {
+    Observable<Array<any>> {
 
     // This ensures we receive a response without the whole content of the post
     queries['context'] = 'embed';
@@ -105,7 +104,7 @@ export class ApiProvider {
     
   // Obtain post info
   getPostInfo(postId: number, authenticated: boolean ):
-    Observable<PostModel> {
+    Observable<any> {
 
     let headers = new Headers();
 
@@ -136,7 +135,7 @@ export class ApiProvider {
 
   // Obtain post info
   getAuthorInfo(authorId: number, authenticated: boolean ):
-    Observable<UserModel> {
+    Observable<any> {
 
     let headers = new Headers();
 
@@ -168,7 +167,7 @@ export class ApiProvider {
 
   // Obtain list of comments in post
   getPostComments(postId: number, offset: number, authenticated: boolean ):
-    Observable<[CommentModel]> {
+    Observable<[any]> {
 
     let headers = new Headers();
 
@@ -205,7 +204,7 @@ export class ApiProvider {
 
   // Obtain list of tags in post
   getPostTags(postId: number, authenticated: boolean ):
-    Observable<[TagModel]> {
+    Observable<[any]> {
 
     let headers = new Headers();
 
@@ -238,7 +237,7 @@ export class ApiProvider {
 
     // Obtain list of tags in post
   getPostCategories(postId: number, authenticated: boolean ):
-    Observable<[CategoryModel]> {
+    Observable<[any]> {
 
     let headers = new Headers();
 
@@ -270,7 +269,7 @@ export class ApiProvider {
   }
 
   commentOnPost(postId: number, commentContent: string, parent: number):
-    Observable<CommentModel> {
+    Observable<any> {
     
     let headers = new Headers();
 
@@ -340,7 +339,7 @@ export class ApiProvider {
 
   // Obtain list of users
   getUserList(authenticated: boolean, queries: { [query: string]: String } ):
-    Observable<Array<UserModel>> {
+    Observable<Array<any>> {
 
     // This ensures we receive a response without the whole content of the post
     queries['context'] = 'embed';

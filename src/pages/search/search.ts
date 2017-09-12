@@ -5,7 +5,6 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
 import { ApiProvider } from './../../providers/api/api';
-import { PostModel } from './../../providers/models/models';
 
 @IonicPage()
 @Component({
@@ -15,7 +14,7 @@ import { PostModel } from './../../providers/models/models';
 export class SearchPage {
   @ViewChild('searchBar') searchBar: Searchbar;
 
-  postList: Array<PostModel> = new Array<PostModel>();
+  postList: Array<any> = new Array<any>();
   postQueries: { [query: string]: String } = {};
 
   searchTerm = '';
@@ -73,7 +72,7 @@ export class SearchPage {
 
         // New search begins
         if (isLoadingMore === false) {
-          this.postList = new Array<PostModel>();
+          this.postList = new Array<any>();
           this.postQueries['page'] = '1';
           this.postQueries['search'] = this.searchTerm;
 

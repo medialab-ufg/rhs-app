@@ -49,13 +49,16 @@
           <information [message]="'Você ainda não está seguindo nenhum usuário.'"></information>
         </div>
         <div *ngIf="userList.length != 0 && !showSpinner">
-          <ion-item *ngFor="let user of userList" (click)="goToUserPage(user.id)">
+          <ion-item *ngFor="let user of userList" (click)="goToUserPage(user['id'])">
+            <div *ngIf="user['total_posts'] > 0">
             <ion-avatar item-start>
-              <img src="{{ user.avatar_urls[48] }}">
+              <img src="{{ user['avatar_urls'][48] }}">
             </ion-avatar>
-            <h2 color="secondary">{{ user.name }}</h2>
+            <h2 color="secondary">{{ user['name'] }}</h2>
             <button ion-button item-end color="danger">Parar</button>
+            </div>
           </ion-item>
+          
         </div>
       </ion-list>
 

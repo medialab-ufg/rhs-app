@@ -13,7 +13,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthenticationProvider } from '../providers/authentication/authentication';
 import { ApiProvider } from '../providers/api/api';
 import { SettingsProvider } from '../providers/settings/settings';
-import { UserModel, PostModel, CommentModel, TagModel, CategoryModel } from '../providers/models/models';
 import { UpdateProvider } from '../providers/update/update';
 
 @NgModule({
@@ -41,11 +40,6 @@ import { UpdateProvider } from '../providers/update/update';
     AuthenticationProvider,
     ApiProvider,
     SettingsProvider,
-    UserModel,
-    PostModel,
-    CommentModel,
-    TagModel,
-    CategoryModel,
     UpdateProvider
   ]
 })

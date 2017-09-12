@@ -9,8 +9,6 @@ import { AuthenticationProvider } from './../providers/authentication/authentica
 import { ApiProvider } from './../providers/api/api';
 import { SettingsProvider } from './../providers/settings/settings';
 
-import { UserModel } from './../providers/models/models';
-
 @Component({
   templateUrl: 'app.html'
 })
@@ -24,7 +22,7 @@ export class MyApp {
 
   // Sidemenu User Info 
   showUserInfo = false;
-  user: UserModel;
+  user: any;
 
   constructor(public platform: Platform, 
               public statusBar: StatusBar, 

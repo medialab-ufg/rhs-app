@@ -20,7 +20,7 @@
   <div *ngIf="!isLoadingUser">
     <div class="user-info">
       <img [src]="user['avatar_urls'][96]"> 
-      <h1>{{ user.name }}</h1>
+      <h1>{{ user['name'] }}</h1>
       <ion-grid>
         <ion-row nowrap>
           <ion-col>
@@ -55,7 +55,7 @@
 
       <ion-list *ngSwitchCase="'posts'">
         <div *ngIf="isLoadingUserPosts"><ion-spinner class="center-spinner"></ion-spinner></div>
-        <post-card [post-data]="post" *ngFor="let post of userPostsList" (click)="goToPostPage(post.id)"></post-card>   
+        <post-card [post-data]="post" *ngFor="let post of userPostsList" (click)="goToPostPage(post['id'])"></post-card>   
         <div *ngIf="userPostsList.length == 0 && !isLoadingUserPosts">
           <information [message]="'Não possui nenhuma publicação.'"></information>
         </div>
@@ -69,14 +69,14 @@
       </ion-infinite-scroll>
 
       <ion-list *ngSwitchCase="'personal'">
-        <ion-item [innerHtml]="user.description !== '' ? user.description : 'Nenhuma descrição fornecida.'">
+        <ion-item [innerHtml]="user['description'] !== '' ? user['description'] : 'Nenhuma descrição fornecida.'">
         </ion-item>
       </ion-list>
 
       <ion-list *ngSwitchCase="'interests'">
         <ion-list>
           <ion-list-header>Sobre</ion-list-header>
-          <ion-item [innerHtml]="user.description !== '' ? user.description : 'Nenhuma informação encontrada.'">
+          <ion-item [innerHtml]="user['description'] !== '' ? user['description'] : 'Nenhuma informação encontrada.'">
           </ion-item>
           
           <ion-list-header>Interesses</ion-list-header>

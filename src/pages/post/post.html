@@ -16,17 +16,17 @@
   <div *ngIf="!isLoadingPost">
 
     <!-- POST TITLE -->
-    <h1 padding-horizontal [innerHTML]="post.title['rendered']"></h1>
+    <h1 padding-horizontal [innerHTML]="post['title']['rendered']"></h1>
 
     <!-- POST CONTENT -->
-    <article [ngStyle]="{ 'font-size': settings.postContentFontSizeOptions[settings.currentFontSize] }" [innerHTML]="post.content['rendered'] | innerHtmlPost"></article>
+    <article [ngStyle]="{ 'font-size': settings.postContentFontSizeOptions[settings.currentFontSize] }" [innerHTML]="post['content']['rendered'] | innerHtmlPost"></article>
 
     <!-- POST CATEGORIES -->
     <div *ngIf="isLoadingCategories"><ion-spinner class="center-spinner"></ion-spinner></div>
     <div padding *ngIf="!isLoadingCategories && categories.length > 0" class="category">
       <h4><ion-icon name="pricetags"></ion-icon> Categorias</h4>
       <ion-buttons class="categoria">
-        <button ion-button round small clear *ngFor="let category of categories" (click)="goToSearchWithCategory(category)" id="button">{{ category.name }}</button>
+        <button ion-button round small clear *ngFor="let category of categories" (click)="goToSearchWithCategory(category)" id="button">{{ category['name'] }}</button>
       </ion-buttons>
     </div>
     <!-- POST TAGS -->
@@ -34,7 +34,7 @@
     <div padding *ngIf="!isLoadingTags && tags.length > 0" class="tags">
       <h4><ion-icon name="bookmark"></ion-icon> Tags</h4>
       <ion-buttons>
-        <button ion-button round small outline *ngFor="let tag of tags" (click)="goToSearchWithTag(tag)" id="button">{{ tag.name }}</button>
+        <button ion-button round small outline *ngFor="let tag of tags" (click)="goToSearchWithTag(tag)" id="button">{{ tag['name'] }}</button>
       </ion-buttons>
     </div>
 
@@ -43,13 +43,13 @@
 
     <!-- POST AUTHOR-->
     <div *ngIf="isLoadingAuthor"><ion-spinner class="center-spinner"></ion-spinner></div>
-    <div padding *ngIf="!isLoadingAuthor" class="author" (click)="goToAuthorPage(author.id)">
+    <div padding *ngIf="!isLoadingAuthor" class="author" (click)="goToAuthorPage(author['id'])">
       <ion-item>
         <ion-avatar item-start>
-          <img src="{{ author.avatar_urls[48] }}">
+          <img src="{{ author['avatar_urls'][48] }}">
         </ion-avatar>
-        <h2>{{ author.name }}</h2>
-        <p>Publicado em {{ post.date | date: 'dd/MM/yyyy' }}</p>
+        <h2>{{ author['name'] }}</h2>
+        <p>Publicado em {{ post['date'] | date: 'dd/MM/yyyy' }}</p>
       </ion-item>
     </div>
 
@@ -81,11 +81,11 @@
     <div padding *ngIf="!isLoadingComments && commentBoxes.length > 0" class="comentarios">
       <ion-list>
         <ion-item *ngFor="let comment of commentBoxes; let i = index" text-wrap [ngStyle]="{ 'padding-left': comment.depth*20 + 'px'} ">
-          <ion-avatar item-start class="avatar" [ngClass]="{'avatar-author': author ? comment.author_name == author.name : false }" (click)="goToAuthorPage(comment.author)">
-            <img src="{{ comment.author_avatar_urls[24] }}">
+          <ion-avatar item-start class="avatar" [ngClass]="{'avatar-author': author ? comment['author_name'] == author['name'] : false }" (click)="goToAuthorPage(comment['author'])">
+            <img src="{{ comment['author_avatar_urls'][24] }}">
           </ion-avatar>
-            <h2 (click)="goToAuthorPage(comment.author)">{{ comment.author_name }} <span>{{ comment.date | date: 'dd/MM/yyyy' }}</span></h2>
-            <p [innerHtml]="comment.content['rendered']"></p>
+            <h2 (click)="goToAuthorPage(comment['author'])">{{ comment['author_name'] }} <span>{{ comment['date'] | date: 'dd/MM/yyyy' }}</span></h2>
+            <p [innerHtml]="comment['content']['rendered']"></p>
             <button ion-button clear icon-only item-end (click)="commentOnComment(i)">
               <ion-icon name="redo"></ion-icon>
             </button>

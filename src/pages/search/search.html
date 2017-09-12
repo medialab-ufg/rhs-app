@@ -32,7 +32,7 @@
 
   <ion-list>
     <div *ngIf="showSpinner"><ion-spinner class="center-spinner"></ion-spinner></div>
-    <post-card [post-data]="post" *ngFor="let post of postList" (click)="goToPostPage(post.id)">   
+    <post-card [post-data]="post" *ngFor="let post of postList" (click)="goToPostPage(post['id'])">   
     </post-card>
     <ion-item-divider *ngIf="noMoreResults">
       Não foram encontrados mais resultados.  

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 
 import { ApiProvider } from './../../providers/api/api';
-import { UserModel, PostModel } from './../../providers/models/models';
 
 @IonicPage()
 @Component({
@@ -12,8 +11,8 @@ import { UserModel, PostModel } from './../../providers/models/models';
 export class UserPage {
 
   userId: number;
-  user: UserModel;
-  userPostsList: Array<PostModel> = new Array<PostModel>();
+  user: any;
+  userPostsList: Array<any> = new Array<any>();
 
   postQueries: { [query: string]: String } = {};
 
@@ -52,10 +51,10 @@ export class UserPage {
     
     return new Promise((resolve) => {
 
-      this.postQueries['author'] = String(this.user.id);
+      this.postQueries['author'] = String(this.user['id']);
 
       if (isLoadingMore === false) {
-        this.userPostsList = new Array<PostModel>();
+        this.userPostsList = new Array<any>();
         this.postQueries['page'] = '1';
       } 
       //  Infinite scroll calls

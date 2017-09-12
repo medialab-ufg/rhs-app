@@ -4,7 +4,6 @@ import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { ApiProvider } from './../../providers/api/api';
 import { UpdateProvider } from './../../providers/update/update';
-import { PostModel } from './../../providers/models/models';
 
 @IonicPage()
 @Component({
@@ -14,9 +13,9 @@ import { PostModel } from './../../providers/models/models';
 export class PostsPage {
   postsView: string = 'home';
 
-  homePostList: Array<PostModel> = new Array<PostModel>();
-  queuePostList: Array<PostModel> = new Array<PostModel>();
-  followingPostList: Array<PostModel> = new Array<PostModel>();
+  homePostList: Array<any> = new Array<any>();
+  queuePostList: Array<any> = new Array<any>();
+  followingPostList: Array<any> = new Array<any>();
 
   homePostQueries: { [query: string]: String } = {};
   queuePostQueries: { [query: string]: String } = {'status': 'voting-queue'}
@@ -87,7 +86,7 @@ export class PostsPage {
   }
 
   loadPosts(postView: string, isLoadingMore: boolean): Promise<any> {
-    console.log("CHEGUEI!");
+
     this.postsView = postView;
 
     return new Promise((resolve) => {
@@ -101,7 +100,7 @@ export class PostsPage {
           // Sets page query load more or refresh posts
           //  Pull to refresh or update service calls.
           if (isLoadingMore === false) {
-            this.homePostList = new Array<PostModel>();
+            this.homePostList = new Array<any>();
             this.homePostQueries['page'] = '1';
           } 
           //  Infinite scroll calls
@@ -121,7 +120,7 @@ export class PostsPage {
             postList => {
             this.homePostList = this.homePostList.concat(postList);
             console.log(this.homePostList);
-            console.log(this.homePostList[0]._embedded['author'][0]);
+            console.log(this.homePostList[0]['_embedded']['author'][0]);
             this.noMoreResultsOnHome = false;     
           },
           err => {
@@ -141,7 +140,7 @@ export class PostsPage {
             // Sets page query load more or refresh posts
             //  Pull to refresh or update service calls.
             if (isLoadingMore === false) {
-              this.queuePostList = new Array<PostModel>();
+              this.queuePostList = new Array<any>();
               this.queuePostQueries['page'] = '1';
             } 
             //  Infinite scroll calls
@@ -186,7 +185,7 @@ export class PostsPage {
             // Sets page query load more or refresh posts
             //  Pull to refresh or update service calls.
             if (isLoadingMore === false) {
-              this.followingPostList = new Array<PostModel>();
+              this.followingPostList = new Array<any>();
               this.followingPostQueries['page'] = '1';
             } 
             //  Infinite scroll calls
@@ -251,19 +250,19 @@ export class PostsPage {
 
       if (_params !== null) {
         for(let post of this.homePostList) {
-          if (post.id == _params.id) {
+          if (post['id'] == _params.id) {
             post['comment_count'] = _params.commentCount;
             post['total_votes'] = _params.totalVotes;
           }
         }
         for(let post of this.queuePostList) {
-          if (post.id == _params.id) {
+          if (post['id'] == _params.id) {
             post['comment_count'] = _params.commentCount;
             post['total_votes'] = _params.totalVotes;
           }
         }
         for(let post of this.followingPostList) {
-          if (post.id == _params.id) {
+          if (post['id'] == _params.id) {
             post['comment_count'] = _params.commentCount;
             post['total_votes'] = _params.totalVotes;
           }

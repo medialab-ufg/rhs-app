@@ -4,8 +4,6 @@ import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { ApiProvider } from './../../providers/api/api';
 
-import { PostModel, UserModel } from './../../providers/models/models';
-
 @IonicPage()
 @Component({
   selector: 'page-following',
@@ -15,8 +13,8 @@ export class FollowingPage {
 
   followingView = 'people';
 
-  postList: Array<PostModel> = new Array<PostModel>();
-  userList: Array<UserModel> = new Array<UserModel>();
+  postList: Array<any> = new Array<any>();
+  userList: Array<any> = new Array<any>();
 
   postQueries: { [query: string]: String } = {};
   userQueries: { [query: string]: String } = {};
@@ -66,7 +64,7 @@ export class FollowingPage {
     return new Promise((resolve) => {
       //  Pull to refresh or update service calls.
       if (isLoadingMore === false) {
-        this.userList = new Array<UserModel>();
+        this.userList = new Array<any>();
         this.userQueries['page'] = '1';
       } 
       //  Infinite scroll calls

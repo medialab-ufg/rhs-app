@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 
 import { ApiProvider } from './../../providers/api/api';
-import { CommentModel } from './../../providers/models/models';
 
 @IonicPage()
 @Component({
@@ -13,8 +12,8 @@ export class CommentPage {
   @ViewChild('responseInput') responseInput;
 
   postId: number;
-  comment: CommentModel;
-  response: CommentModel = null;
+  comment: any;
+  response: any = null;
 
   responseContent: string = '';
   isPostingResponse: boolean = false;
@@ -45,7 +44,7 @@ export class CommentPage {
     
     this.isPostingResponse = true;
 
-    this.api.commentOnPost(this.postId, this.responseContent, this.comment.id).subscribe(
+    this.api.commentOnPost(this.postId, this.responseContent, this.comment['id']).subscribe(
       commentResponse => {
       
         this.responseContent = '';
@@ -61,8 +60,8 @@ export class CommentPage {
 
   changeInputSize() {
     // Get elements
-    let element   = document.getElementById('responseInput');
-    let textarea  = element.getElementsByTagName('textarea')[0];
+    let element  = document.getElementById('responseInput');
+    let textarea = element.getElementsByTagName('textarea')[0];
 
     // Set default style for textarea
     textarea.style.minHeight  = '0';

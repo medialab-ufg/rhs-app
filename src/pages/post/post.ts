@@ -4,7 +4,6 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { SettingsProvider } from './../../providers/settings/settings';
 import { ApiProvider } from './../../providers/api/api';
-import { PostModel, CommentModel, TagModel, UserModel, CategoryModel } from './../../providers/models/models';
 
 @IonicPage()
 @Component({
@@ -18,14 +17,14 @@ export class PostPage {
   postId: number;
 
   // To be loaded from API
-  post: PostModel;
-  tags: [TagModel];
-  categories: [CategoryModel];
-  author: UserModel;
-  comments: Array<CommentModel> = new Array<CommentModel>();
+  post: any;
+  tags: [any];
+  categories: [any];
+  author: any;
+  comments: Array<any> = new Array<any>();
 
   // Ordered comments
-  commentBoxes: Array<CommentModel> =  new Array<CommentModel>();
+  commentBoxes: Array<any> =  new Array<any>();
   commentsOffset = 0;
 
   // Loading Spinners controll
@@ -45,7 +44,7 @@ export class PostPage {
   commentCount: number = 0;
 
   // Controlling the post status to update on post list
-  returnFromPostFunction: any
+  returnFromPostFunction: any;
   postDidUpdated: boolean = false;
 
   constructor(public navParams: NavParams,
@@ -85,7 +84,7 @@ export class PostPage {
       this.commentCount = this.post['comment_count'];
 
       this.isLoadingAuthor = true;
-      this.api.getAuthorInfo(this.post.author, this.api.isLogged()).subscribe(
+      this.api.getAuthorInfo(this.post['author'], this.api.isLogged()).subscribe(
         authorInfo => {
         this.author = authorInfo;
         },
@@ -226,20 +225,20 @@ export class PostPage {
     () => this.isPostingComment = false);
   }
 
-  goToSearchWithTag(tag: TagModel) {
-    this.navCtrl.push('SearchPage', {'tagId': tag.id, 'tagName': tag.name});
+  goToSearchWithTag(tag: any) {
+    this.navCtrl.push('SearchPage', {'tagId': tag['id'], 'tagName': tag['name']});
   }
 
-  goToSearchWithCategory(category: CategoryModel) {
-    this.navCtrl.push('SearchPage', {'categoryId': category.id, 'categoryName': category.name, });
+  goToSearchWithCategory(category: any) {
+    this.navCtrl.push('SearchPage', {'categoryId': category['id'], 'categoryName': category['name'], });
   }
 
   openShareActionSheet() {
 
     let sharingOptions = {
-      message: this.strip(this.post.title['rendered']), // not supported on some apps (Facebook, Instagram)
-      subject: 'Publicação da Rede Humaniza SUS: ' + this.post.title['rendered'], // for email
-      url: this.post.link
+      message: this.strip(this.post['title']['rendered']), // not supported on some apps (Facebook, Instagram)
+      subject: 'Publicação da Rede Humaniza SUS: ' + this.post['title']['rendered'], // for email
+      url: this.post['link']
     }
     this.socialSharing.shareWithOptions(sharingOptions);
   }
@@ -247,7 +246,7 @@ export class PostPage {
   // Used for ordering and finding level of comments
   generateCommentBoxes() {
     console.log(this.comments);
-    this.commentBoxes = new Array<CommentModel>();
+    this.commentBoxes = new Array<any>();
     this.fillCommentBox(0, 0);
     this.isLoadingComments = false;
     console.log(this.commentBoxes);
@@ -257,14 +256,14 @@ export class PostPage {
     
     for (let comment of this.comments) {
 
-      if (comment.parent != parentId ) {    
+      if (comment['parent'] != parentId ) {    
         continue;
       } 
       
       comment.depth = commentDepth;
       this.commentBoxes.push(comment);
 
-      this.fillCommentBox(comment.id, commentDepth + 1);
+      this.fillCommentBox(comment['id'], commentDepth + 1);
     }
   }
 
@@ -291,9 +290,9 @@ export class PostPage {
       scroll_height = 96;
 
     // Apply new style
-    element.style.height      = scroll_height + "px";
-    textarea.style.minHeight  = scroll_height + "px";
-    textarea.style.height     = scroll_height + "px";
+    element.style.height     = scroll_height + "px";
+    textarea.style.minHeight = scroll_height + "px";
+    textarea.style.height    = scroll_height + "px";
   }
 
   // Callback function used in comment page to inform if the user did inserted a new comment or not.

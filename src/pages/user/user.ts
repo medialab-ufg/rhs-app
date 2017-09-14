@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, AlertController, ToastController } from 'ionic-angular';
 
 import { ApiProvider } from './../../providers/api/api';
 
@@ -14,6 +14,8 @@ export class UserPage {
   user: any;
   userPostsList: Array<any> = new Array<any>();
 
+  isFollowing: boolean = false;
+
   postQueries: { [query: string]: String } = {};
 
   isLoadingUser: boolean = true;
@@ -25,12 +27,52 @@ export class UserPage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public api: ApiProvider) {
+              public api: ApiProvider,
+              public alertCtrl: AlertController,
+              public toastCtrl: ToastController) {
+
     this.userId = this.navParams.get('userId');
     this.loadUser();
   }
 
   ionViewDidLoad() {
+    for (let followId of this.api.followingUsers) {
+      if (followId == this.userId) {
+        this.isFollowing = true;
+      }
+    }
+  }
+
+  followUser() {
+    this.api.followUser(this.userId).subscribe(
+      response => {
+        console.log(response);
+        if (response.response == 1) {
+          this.isFollowing = true;
+          this.api.followingUsers.push(response.follow_id);
+
+          let followConfirmToast = this.toastCtrl.create({
+            message: 'Agora você está seguindo este usuário :)',
+            duration: 3000
+          });
+          followConfirmToast.present();
+
+        } else {
+          this.isFollowing = false;
+          this.api.followingUsers.unshift(response.follow_id);
+
+          let unFollowConfirmToast = this.toastCtrl.create({
+            message: 'Você deixou de seguir este usuário',
+            duration: 3000
+          });
+          unFollowConfirmToast.present();
+
+        }},
+      err => {
+        console.log('Error ' + err + ' on follow user request.');
+        this.isFollowing = false;
+      }
+    );
   }
 
   loadUser() {

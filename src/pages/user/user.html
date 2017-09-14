@@ -4,10 +4,13 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Participante da RHS</ion-title>
+    <ion-title>Participante</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only>
-        <ion-icon name="logo-rss"></ion-icon>
+      <button *ngIf="!isFollowing" ion-button (click)="followUser()">
+        Seguir
+      </button>
+      <button *ngIf="isFollowing" ion-button (click)="followUser()">
+        Seguindo
       </button>
     </ion-buttons>
   </ion-navbar>

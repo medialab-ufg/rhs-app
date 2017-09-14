@@ -5,6 +5,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Network } from '@ionic-native/network';
+import { Push } from '@ionic-native/push'
 
 import { MyApp } from './app.component';
 
@@ -40,7 +41,8 @@ import { UpdateProvider } from '../providers/update/update';
     AuthenticationProvider,
     ApiProvider,
     SettingsProvider,
-    UpdateProvider
+    UpdateProvider,
+    Push
   ]
 })
 export class AppModule {}

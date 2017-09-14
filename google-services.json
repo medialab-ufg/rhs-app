@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "185540114749",
+    "firebase_url": "https://ionic-push-tests.firebaseio.com",
+    "project_id": "ionic-push-tests",
+    "storage_bucket": "ionic-push-tests.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:185540114749:android:9da6ea05a2ee44f3",
+        "android_client_info": {
+          "package_name": "com.redehumanizasus.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "185540114749-rp7759lfi7c8qsjdfvp7eguk9of5ng0i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOAsfbtmMDqB8lOc9E5XFEEyt_kNCvhE8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

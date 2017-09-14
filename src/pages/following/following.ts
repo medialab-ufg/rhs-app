@@ -32,7 +32,8 @@ export class FollowingPage {
 
       this.isUserLogged = this.api.isLogged();
       this.authentication.userLogged.subscribe(value => {
-      if (value === true) {
+      
+        if (value === true) {
 
         this.isUserLogged = this.api.isLogged();
 
@@ -97,6 +98,7 @@ export class FollowingPage {
         },
         () => { this.showSpinner = false; resolve() });
       } else {
+        this.showSpinner = false;
         this.authentication.userLogged.subscribe(value => {
           if (value === true) {
             this.isUserLogged = true;

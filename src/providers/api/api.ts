@@ -150,11 +150,11 @@ export class ApiProvider {
         oauth_version: '1.0' 
       };
 
-      let signature = oauthSignature.generate('GET', this.settings.apiURL + 'wp-json/wp/v2/users/' + authorId, queries, this.settings.consumerSecret, this.tokenSecret);
+      let signature = oauthSignature.generate('GET', this.settings.apiURL + 'wp-json/rhs/v1/user/' + authorId, queries, this.settings.consumerSecret, this.tokenSecret);
       headers.append('Authorization', 'OAuth oauth_consumer_key="' + this.settings.consumerKey + '",oauth_token="' + this.tokenKey + '",oauth_signature_method="HMAC-SHA1",oauth_timestamp="' + queries['oauth_timestamp'] + '",oauth_nonce="' + queries['oauth_nonce'] + '",oauth_version="1.0",oauth_signature="' + signature + '"');
     }
     
-    return this.http.get(this.settings.apiURL + 'wp-json/wp/v2/users/' + authorId, {headers: headers})
+    return this.http.get(this.settings.apiURL + 'wp-json/rhs/v1/user/' + authorId, {headers: headers})
       .map((res: Response) => {
 
         let authorInfo = JSON.parse(res['_body']);

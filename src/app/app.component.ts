@@ -202,7 +202,10 @@ export class MyApp {
         
         this.pushObject =  this.push.init(this.pushOptions);
 
-        this.pushObject.on('registration').subscribe((registration: any) => console.log('Device registered', registration));
+        this.pushObject.on('registration').subscribe((registration: any) => {
+          console.log('Device registered', registration);
+          this.settings.pushDeviceId = registration.registrationId;
+        });
         this.pushObject.on('notification').subscribe((notification: any) => console.log('Received a notification', notification));
         
         // Devite token obtido: fmZ9vKVyhao:APA91bG1Dxc-t3OIN2DhgDhGC_6Lfp7gvYPtAkHRCwjm_X1VgLnM1gucqbAaDzUAS31RxCTiEdPNrZkE7WSAF5m7gPFZ-lYA7vQbZ1oB1sg6GFx-6i9v6-oGUKIm2vv4VQDHFjAS8gKd

@@ -20,7 +20,7 @@ export class SettingsProvider {
   //public consumerKey: string = 'pFJYeefHiIEa';
   //public consumerSecret: string = 'CR7qi1Nd1RirJAslDzRCV9lmpxM9gxy74NE5heRK1OlkRDhW';
 
-  // Post Page settings:
+  // Post Page settings
   public postContentFontSizeOptions = { 
     'extra-small': '0.8em', 
     'small': '1.0em', 
@@ -29,7 +29,9 @@ export class SettingsProvider {
     'extra-large': '1.4em' 
   };
   public currentFontSize = 'medium';
+  public commentsPerPage = 20; 
 
-  public commentsPerPage = 100; // change later to 20
+  // Push Notification settings
+  public pushDeviceId: number = 0; // to be loaded from registration step during app initialization
 
 }

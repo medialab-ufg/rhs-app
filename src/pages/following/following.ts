@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, AlertController } from 'ionic-angular';
 
 import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { ApiProvider } from './../../providers/api/api';
@@ -28,7 +28,8 @@ export class FollowingPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public api: ApiProvider,
-              public authentication: AuthenticationProvider) {
+              public authentication: AuthenticationProvider,
+              public alertCtrl: AlertController) {
 
       this.isUserLogged = this.api.isLogged();
       this.authentication.userLogged.subscribe(value => {
@@ -123,6 +124,38 @@ export class FollowingPage {
 
   goToUserPage(userId: number) {
     this.navCtrl.push('UserPage', { 'userId': userId });
+  }
+
+  unfollowUser(userId: number) {
+
+    let prompt = this.alertCtrl.create({
+      title: 'Deseja parar de seguir este usuário?',
+      message: "Você deixará de receber notificações quando ele publicar um post novo.",
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: data => {
+            this.api.followUser(userId).subscribe(
+              response => {
+                console.log(response);
+                if (response.response == 2) {
+                  this.api.followingUsers.unshift(response.follow_id);
+                }},
+              err => {
+                console.log('Error ' + err + ' on follow user request.');
+              }
+            );
+          }
+        },
+        {
+          text: 'Parar',
+          handler: data => {
+            console.log('Saved clicked');
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
 
 }

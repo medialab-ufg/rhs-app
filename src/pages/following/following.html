@@ -54,7 +54,7 @@
               <img src="{{ user['avatar_urls'][48] }}">
             </ion-avatar>
             <h2 color="secondary">{{ user['name'] }}</h2>
-            <button ion-button item-end color="danger">Parar</button>
+            <button ion-button item-end color="danger" (click)="unfollowUser(user['id'])">Parar</button>
           </ion-item>
           
         </div>

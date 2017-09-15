@@ -21,7 +21,6 @@ export class AuthenticationProvider {
     Observable<{oauthCallbackConfirmed: string, oauthToken: string, oauthTokenSecret: string}> {
 
       let parameters = {
-        device: 'mobile-app',
         oauth_consumer_key: this.settings.consumerKey,
         oauth_nonce: this.generateNonce(),
         oauth_timestamp: new String(new Date().getTime()).substr(0,10),
@@ -35,7 +34,7 @@ export class AuthenticationProvider {
       let headers = new Headers();
       headers.append('Authorization', 'OAuth oauth_consumer_key="' + this.settings.consumerKey + '",oauth_signature_method="HMAC-SHA1",oauth_timestamp="' + parameters.oauth_timestamp + '",oauth_nonce="' + parameters.oauth_nonce + '",oauth_version="1.0",oauth_signature="' + signature + '",oauth_callback="' + this.settings.callbackURL + '"');
   
-    return this.http.post(this.settings.apiURL + 'oauth1/request?device=' + parameters.device,{}, { headers: headers })
+    return this.http.post(this.settings.apiURL + 'oauth1/request', {}, { headers: headers })
       .map((res: Response) => {
         
         let temporaryCredentials = this.queryToObject(res['_body']);

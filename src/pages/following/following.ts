@@ -110,7 +110,6 @@ export class FollowingPage {
     });
   }
 
-
   doRefresh(refresher) {
     this.showSpinner = false;
     this.loadUsers(false).then(() => refresher.complete());

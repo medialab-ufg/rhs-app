@@ -4,7 +4,6 @@ import { Nav, Platform, LoadingController, ToastController } from 'ionic-angular
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
-import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
 import { AuthenticationProvider } from './../providers/authentication/authentication';
 import { ApiProvider } from './../providers/api/api';
@@ -25,23 +24,6 @@ export class MyApp {
   showUserInfo = false;
   user: any;
 
-  // Push Notifications Options
-  pushOptions: PushOptions = {
-    android: {
-        senderID: '185540114749'
-    },
-    ios: {
-        alert: 'true',
-        badge: true,
-        sound: 'false'
-    },
-    windows: {},
-    browser: {
-        pushServiceURL: 'http://push.api.phonegap.com/v1/push'
-    }
-  };
-  public pushObject: PushObject;
-
   constructor(public platform: Platform, 
               public statusBar: StatusBar, 
               public splashScreen: SplashScreen,
@@ -51,8 +33,7 @@ export class MyApp {
               public loadingCtrl: LoadingController,
               public network: Network,
               public toastCtrl: ToastController,
-              public settings: SettingsProvider,
-              private push: Push) {
+              public settings: SettingsProvider) {
 
     this.initializeApp();
 
@@ -96,6 +77,19 @@ export class MyApp {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
+
+      let funcaoRetorno = (data) => {
+         console.log('Notificações: ' + JSON.stringify(data));
+      };
+
+      window["plugins"].OneSignal.startInit("2ffdc133-6deb-43a1-8179-b8300e0b0f97",
+          "185540114749")
+          .handleNotificationOpened(funcaoRetorno)
+          .endInit();
+      
+      window["plugins"].OneSignal.addSubscriptionObserver(function (state) {
+        console.log("Push Subscription state changed: " + JSON.stringify(state));
+      });
       
       // Decides wheter the Intro page should be shown or not.
       this.storage.get('introShown').then((result) => {
@@ -150,8 +144,6 @@ export class MyApp {
         }
       });
 
-      this.pushNotificationSetup();
-
     });
   }
 
@@ -186,34 +178,5 @@ export class MyApp {
     () => loading.dismiss());
   }
 
-  pushNotificationSetup() {
-    
-    // to check if we have permission to receive Push Notifications
-    this.push.hasPermission().then((res: any) => {
-
-      if (!this.platform.is('cordova')) {
-        console.warn('Push notifications not initialized. Cordova is not available - Run in physical device');
-        return;
-      }
-
-      if (res.isEnabled) {
-        console.log('We have permission to send push notifications');
-        
-        this.pushObject =  this.push.init(this.pushOptions);
-
-        this.pushObject.on('registration').subscribe((registration: any) => {
-          console.log('Device registered', registration);
-          this.settings.pushDeviceId = registration.registrationId;
-        });
-        this.pushObject.on('notification').subscribe((notification: any) => console.log('Received a notification', notification));
-        
-        // Devite token obtido: fmZ9vKVyhao:APA91bG1Dxc-t3OIN2DhgDhGC_6Lfp7gvYPtAkHRCwjm_X1VgLnM1gucqbAaDzUAS31RxCTiEdPNrZkE7WSAF5m7gPFZ-lYA7vQbZ1oB1sg6GFx-6i9v6-oGUKIm2vv4VQDHFjAS8gKd
-        this.pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
-
-      } else {
-        console.log('We do not have permission to send push notifications');
-      }
-
-    });
-  }
+ 
 }

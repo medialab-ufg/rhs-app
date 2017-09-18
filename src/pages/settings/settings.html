@@ -9,14 +9,13 @@
 
 </ion-header>
 
-
-<ion-content padding>
+<ion-content>
   <ion-list>
-    <ion-list-header>
+    <!--<ion-list-header>
       Página de Posts
     </ion-list-header>
     <ion-item>
-      <ion-label>Tamanho da fonte dos posts: </ion-label>  
+      <ion-label>Tamanho da fonte dos posts (funcional): </ion-label>  
       <ion-select #select [(ngModel)]="articleFontSize" (ionChange)="changePostFontSize(select.value)">
         <ion-option [attr.selected]="articleFontSize == 'extra-small'" value="extra-small">Muito pequeno</ion-option>
         <ion-option [attr.selected]="articleFontSize == 'small'" value="small">Pequeno</ion-option>
@@ -24,22 +23,50 @@
         <ion-option [attr.selected]="articleFontSize == 'large'" value="large">Grande</ion-option>
         <ion-option [attr.selected]="articleFontSize == 'extra-large'" value="extra-large">Enorme</ion-option>
       </ion-select>
-    </ion-item>
- 
+    </ion-item>-->
     <ion-list-header>
       Tamanho da fonte nos posts: 
-      <ion-note item-end>
-        {{ articleFontSize }}
+      <ion-note item-end [ngStyle]="{ 'font-size': settings.postContentFontSizeOptions[rangeToFontSize(articleFontSizeRange)] }">
+        {{ rangeToFontSize(articleFontSizeRange) }}
       </ion-note>
     </ion-list-header>
     <ion-item>
-      <ion-range min="-100" step="10" snaps="true">
-        <ion-label range-left class="small-text">A</ion-label>
-        <ion-label range-right>A</ion-label>
+      <ion-range  min="1" max="5" snaps="true" [(ngModel)]="articleFontSizeRange" (ionChange)="changePostFontSize()">
+        <ion-label range-left [ngStyle]="{ 'font-size': settings.postContentFontSizeOptions['extra-small'] }">A</ion-label>
+        <ion-label range-right [ngStyle]="{ 'font-size': settings.postContentFontSizeOptions['extra-large'] }">A</ion-label>
       </ion-range>
-
     </ion-item>
-
+  </ion-list>
+  <ion-list>
+    <ion-list-header>
+      Notificações
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Comentários em posts</ion-label>
+      <ion-toggle [(ngModel)]="settings.desiredNotifications['comments_in_post']"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Novo post em comunidade</ion-label>
+      <ion-toggle [(ngModel)]="settings.desiredNotifications['new_community_post']"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Novo post de usuário seguido</ion-label>
+      <ion-toggle [(ngModel)]="settings.desiredNotifications['new_post_from_user']"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Post seguido</ion-label>
+      <ion-toggle [(ngModel)]="settings.desiredNotifications['post_followed']"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Post promovido</ion-label>
+      <ion-toggle [(ngModel)]="settings.desiredNotifications['post_promoted']"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Usuários que me seguem</ion-label>
+      <ion-toggle [(ngModel)]="settings.desiredNotifications['user_follow_author']"></ion-toggle>
+    </ion-item>
+  </ion-list>
+  <ion-list>
     <ion-list-header>
       Login na RHS
     </ion-list-header>

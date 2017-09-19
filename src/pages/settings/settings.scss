@@ -1,3 +1,13 @@
 page-settings {
 
+  ion-list-header {
+    color: color($colors, primary) !important;
+    font-weight: bold !important;
+
+    ion-note {
+      color: color($colors, secondary) !important;
+      font-weight: normal !important;
+    }
+  }
+
 }

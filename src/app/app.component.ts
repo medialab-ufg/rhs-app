@@ -1,9 +1,9 @@
-import { Network } from '@ionic-native/network';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, LoadingController, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
+import { Network } from '@ionic-native/network';
 
 import { AuthenticationProvider } from './../providers/authentication/authentication';
 import { ApiProvider } from './../providers/api/api';
@@ -77,19 +77,6 @@ export class MyApp {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
-
-      let funcaoRetorno = (data) => {
-         console.log('Notificações: ' + JSON.stringify(data));
-      };
-
-      window["plugins"].OneSignal.startInit("2ffdc133-6deb-43a1-8179-b8300e0b0f97",
-          "185540114749")
-          .handleNotificationOpened(funcaoRetorno)
-          .endInit();
-      
-      window["plugins"].OneSignal.addSubscriptionObserver(function (state) {
-        console.log("Push Subscription state changed: " + JSON.stringify(state));
-      });
       
       // Decides wheter the Intro page should be shown or not.
       this.storage.get('introShown').then((result) => {
@@ -145,6 +132,8 @@ export class MyApp {
       });
 
     });
+
+  this.setPushNotificationService();
   }
 
   openPage(page) {
@@ -178,5 +167,40 @@ export class MyApp {
     () => loading.dismiss());
   }
 
+  setPushNotificationService() {
+     
+      let funcaoRetorno = (data) => {
+         console.log('Notificações: ' + JSON.stringify(data));
+      };
+
+      window["plugins"].OneSignal.startInit("2ffdc133-6deb-43a1-8179-b8300e0b0f97",
+          "185540114749")
+          .handleNotificationOpened(funcaoRetorno)
+          .endInit();
+      
+      window["plugins"].OneSignal.addSubscriptionObserver(function (state) {
+        console.log("Push Subscription state changed: " + JSON.stringify(state));
+        //this.settings.pushDeviceId = state["to"]["userId"];
+      });
+      /*
+      this.oneSignal.startInit(this.settings.oneSignalAppId, this.settings.googleFCMProjectNumber);
+      
+      this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+      
+      this.oneSignal.handleNotificationReceived().subscribe(() => {
+      // do something when notification is received
+      });
+
+      this.oneSignal.handleNotificationOpened().subscribe(() => {
+        // do something when a notification is opened
+      });
+      
+      this.oneSignal.addSubscriptionObserver().subscribe((state) => {
+        console.log("Push Subscription state changed: " + JSON.stringify(state));
+      });
+
+      this.oneSignal.endInit();
+      */
+  }
  
 }

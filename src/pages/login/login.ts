@@ -61,6 +61,19 @@ export class LoginPage {
                       // Informs the subscribed components (as the sidemenu) that use has logged.
                       this.authentication.userLogged.emit(true);
 
+                      // Sends the push notification ID to server
+                      /*
+                      if (this.settings.pushDeviceId !== '') {
+                        this.api.sendPushDeviceID(this.settings.pushDeviceId).subscribe(
+                        response => {
+                          console.log(response);
+                        },
+                        err => {
+                          console.log('Error ' + err + ' - Sending User Device Push ID.');
+                        });
+                      }
+                      */
+
                       // Return user to home page.
                       this.navCtrl.setRoot('PostsPage');
                     }

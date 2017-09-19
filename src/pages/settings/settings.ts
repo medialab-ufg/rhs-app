@@ -83,6 +83,23 @@ export class SettingsPage {
     this.navCtrl.push('LoginPage');
   }
 
+  translateFontSize(fontSize: string) {
+    switch (fontSize) {
+      case 'extra-small': 
+      return 'muito pequeno';
+      case 'small': 
+      return 'pequeno';
+      case 'medium': 
+      return 'médio';
+      case 'large': 
+      return 'grande';
+      case 'extra-large': 
+      return 'muito grande';
+      default:
+      return 'médio';
+    }
+  }
+
   changePostFontSize() {
     this.settings.currentFontSize = this.rangeToFontSize(this.articleFontSizeRange);
     this.storage.set('article_font_size', this.settings.currentFontSize);

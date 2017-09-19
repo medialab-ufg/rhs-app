@@ -27,7 +27,7 @@
     <ion-list-header>
       Tamanho da fonte nos posts: 
       <ion-note item-end [ngStyle]="{ 'font-size': settings.postContentFontSizeOptions[rangeToFontSize(articleFontSizeRange)] }">
-        {{ rangeToFontSize(articleFontSizeRange) }}
+        {{ translateFontSize(rangeToFontSize(articleFontSizeRange)) }}
       </ion-note>
     </ion-list-header>
     <ion-item>
@@ -37,6 +37,7 @@
       </ion-range>
     </ion-item>
   </ion-list>
+  <br>
   <ion-list>
     <ion-list-header>
       Notificações
@@ -66,12 +67,13 @@
       <ion-toggle [(ngModel)]="settings.desiredNotifications['user_follow_author']"></ion-toggle>
     </ion-item>
   </ion-list>
+  <br>
   <ion-list>
     <ion-list-header>
       Login na RHS
     </ion-list-header>
-    <ion-item *ngIf="isUserLogged">Você está conectado à RHS <button clear ion-button item-end color="danger" (click)="alertLogout()">SAIR</button></ion-item>
-    <ion-item *ngIf="!isUserLogged">Você não está conectado à RHS <button clear ion-button item-end color="primary" (click)="goToLoginPage()">ENTRAR</button></ion-item>
+    <ion-item *ngIf="isUserLogged">Você está conectado à RHS <button ion-button item-end color="danger" (click)="alertLogout()">SAIR</button></ion-item>
+    <ion-item *ngIf="!isUserLogged">Você não está conectado à RHS <button ion-button item-end color="primary" (click)="goToLoginPage()">ENTRAR</button></ion-item>
   </ion-list>
   
 </ion-content>

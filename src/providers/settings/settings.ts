@@ -31,8 +31,10 @@ export class SettingsProvider {
   public currentFontSize = 'medium';
   public commentsPerPage = 20; 
 
-  // Push Notification settings
-  public pushDeviceId: number = 0; // to be loaded from registration step during app initialization
+  // OneSignal Push Notification settings
+  public oneSignalAppId: string = '2ffdc133-6deb-43a1-8179-b8300e0b0f97';
+  public googleFCMProjectNumber: string = '185540114749';
+  public pushDeviceId: string = ''; // to be loaded from registration step during app initialization
   public desiredNotifications = { 
     'comments_in_post': true, 
     'new_community_post': false, 

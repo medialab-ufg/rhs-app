@@ -54,7 +54,6 @@ export class AuthenticationProvider {
 
       let parameters = {
         oauth_verifier: oauthVerifier,
-        device_push_id: this.settings.pushDeviceId,
         oauth_consumer_key: this.settings.consumerKey,
         oauth_token: oauthToken,
         oauth_nonce: this.generateNonce(),
@@ -71,7 +70,7 @@ export class AuthenticationProvider {
       '",oauth_nonce="' + parameters.oauth_nonce + '",oauth_version="1.0",oauth_signature="' + signature + 
       '",oauth_token="' + oauthToken + '"');
 console.log(this.settings.pushDeviceId);
-    return this.http.get(this.settings.apiURL + 'oauth1/access?oauth_verifier=' + oauthVerifier + '&device_push_id=' + parameters.device_push_id, {headers: headers})
+    return this.http.get(this.settings.apiURL + 'oauth1/access?oauth_verifier=' + oauthVerifier, {headers: headers})
       .map((res: Response) => {
         
         let finalCredentials = this.queryToObject(res['_body']);

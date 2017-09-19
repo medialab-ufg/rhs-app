@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
 import { Network } from '@ionic-native/network';
+import { OneSignal } from '@ionic-native/onesignal';
 
 import { AuthenticationProvider } from './../providers/authentication/authentication';
 import { ApiProvider } from './../providers/api/api';
@@ -33,7 +34,8 @@ export class MyApp {
               public loadingCtrl: LoadingController,
               public network: Network,
               public toastCtrl: ToastController,
-              public settings: SettingsProvider) {
+              public settings: SettingsProvider,
+              public oneSignal: OneSignal) {
 
     this.initializeApp();
 
@@ -64,7 +66,7 @@ export class MyApp {
       setTimeout(() => {
         if (this.network.type === '2g' || this.network.type === '3g' || this.network.type === 'cellular') {
           let toast = this.toastCtrl.create({
-            message: 'Conexão fraca. Carregamento por demorar...',
+            message: 'Conexão fraca. Carregamento pode demorar...',
             duration: 3000
           });
           toast.present();
@@ -168,7 +170,7 @@ export class MyApp {
   }
 
   setPushNotificationService() {
-     
+     /*
       let funcaoRetorno = (data) => {
          console.log('Notificações: ' + JSON.stringify(data));
       };
@@ -182,7 +184,8 @@ export class MyApp {
         console.log("Push Subscription state changed: " + JSON.stringify(state));
         //this.settings.pushDeviceId = state["to"]["userId"];
       });
-      /*
+      */
+    
       this.oneSignal.startInit(this.settings.oneSignalAppId, this.settings.googleFCMProjectNumber);
       
       this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
@@ -195,12 +198,11 @@ export class MyApp {
         // do something when a notification is opened
       });
       
-      this.oneSignal.addSubscriptionObserver().subscribe((state) => {
-        console.log("Push Subscription state changed: " + JSON.stringify(state));
-      });
+      this.oneSignal.getIds().then( value => this.settings.pushDeviceId = value.userId ).catch( error => console.log(error) );
 
       this.oneSignal.endInit();
-      */
+      
+      this.oneSignal.setSubscription(true);      
   }
  
 }

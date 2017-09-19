@@ -62,7 +62,6 @@ export class LoginPage {
                       this.authentication.userLogged.emit(true);
 
                       // Sends the push notification ID to server
-                      /*
                       if (this.settings.pushDeviceId !== '') {
                         this.api.sendPushDeviceID(this.settings.pushDeviceId).subscribe(
                         response => {
@@ -72,7 +71,6 @@ export class LoginPage {
                           console.log('Error ' + err + ' - Sending User Device Push ID.');
                         });
                       }
-                      */
 
                       // Return user to home page.
                       this.navCtrl.setRoot('PostsPage');

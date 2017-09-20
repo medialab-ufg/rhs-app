@@ -10,17 +10,17 @@
   <div class="comentarios" padding>
     <ion-list>
       
-      <ion-item>
+      <ion-item text-wrap >
         <ion-avatar item-start>
-          <img src="{{ comment['author']['_avatar_urls'][24] }}">
+          <img src="{{ comment['author_avatar_urls'][24] }}">
         </ion-avatar>
         <h2>{{ comment['author_name'] }}</h2>
         <p [innerHtml]="comment['content']['rendered']"></p>
       </ion-item>
 
-      <ion-item *ngIf="!isPostingResponse && response !== null">
+      <ion-item *ngIf="!isPostingResponse && response !== null" text-wrap >
         <ion-avatar item-start>
-          <img src="{{ response['author']['_avatar_urls'][24] }}">
+          <img src="{{ response['author_avatar_urls'][24] }}">
         </ion-avatar>
         <h2>{{ response['author_name'] }}</h2>
         <p [innerHtml]="response['content']['rendered']"></p>

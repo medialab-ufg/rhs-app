@@ -47,27 +47,16 @@ export class UserPage {
     this.api.followUser(this.userId).subscribe(
       response => {
         console.log(response);
-        if (response.response == 1) {
-          this.isFollowing = true;
-          this.api.followingUsers.push(response.follow_id);
+        
+        this.isFollowing = true;
+        this.api.followingUsers.push(response.follow_id);
 
-          let followConfirmToast = this.toastCtrl.create({
-            message: 'Agora você está seguindo este usuário :)',
-            duration: 3000
-          });
-          followConfirmToast.present();
-
-        } else {
-          this.isFollowing = false;
-          this.api.followingUsers.unshift(response.follow_id);
-
-          let unFollowConfirmToast = this.toastCtrl.create({
-            message: 'Você deixou de seguir este usuário',
-            duration: 3000
-          });
-          unFollowConfirmToast.present();
-
-        }},
+        let followConfirmToast = this.toastCtrl.create({
+          message: 'Agora você está seguindo este usuário :)',
+          duration: 3000
+        });
+        followConfirmToast.present();
+      },
       err => {
         console.log('Error ' + err + ' on follow user request.');
         this.isFollowing = false;
@@ -75,6 +64,28 @@ export class UserPage {
     );
   }
 
+  unFollowUser() {
+    this.api.unFollowUser(this.userId).subscribe(
+      response => {
+        console.log(response);
+        
+        this.isFollowing = false;
+        this.api.followingUsers.unshift(response.follow_id);
+
+        let unFollowConfirmToast = this.toastCtrl.create({
+          message: 'Você deixou de seguir este usuário',
+          duration: 3000
+        });
+        unFollowConfirmToast.present();
+      },
+      err => {
+        console.log('Error ' + err + ' on follow user request.');
+        this.isFollowing = false;
+      }
+    );
+
+  }
+            
   loadUser() {
     this.isLoadingUser = true;
 

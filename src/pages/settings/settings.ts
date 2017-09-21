@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, IonicPage } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { OneSignal } from '@ionic-native/onesignal';
 
 import { SettingsProvider } from './../../providers/settings/settings';
 import { AuthenticationProvider } from './../../providers/authentication/authentication';
@@ -23,7 +24,8 @@ export class SettingsPage {
               public storage: Storage,
               public settings: SettingsProvider,
               public authentication: AuthenticationProvider,
-              public api: ApiProvider) {
+              public api: ApiProvider,
+              public oneSignal: OneSignal) {
 
     this.authentication.userLogged.subscribe(value => {
       this.isUserLogged = value;
@@ -33,6 +35,7 @@ export class SettingsPage {
 
   ionViewDidLoad() {
     this.isUserLogged = this.api.isLogged();
+    console.log("DEVICE ID = " +  this.settings.pushDeviceId);
 
     // Loads post font size to settings service.
     this.storage.get('article_font_size').then((result) => {
@@ -64,9 +67,19 @@ export class SettingsPage {
   }
 
   logout() {
+
+    this.api.deletePushDeviceID(this.settings.pushDeviceId).subscribe( 
+      response => {
+      console.log(response);
+    },
+    err => {
+      console.log('Error ' + err + ' - Deleting User Device Push ID.');
+    });
+
     // Saves in local storage, for obtaining on app load.
     this.storage.set('oauth_token', null);
     this.storage.set('is_user_logged', false);
+    this.storage.set('desired_notifications', null);
     
     // Saves in Api Service, for using during requests.
     this.api.setLogged(false);
@@ -83,6 +96,51 @@ export class SettingsPage {
     this.navCtrl.push('LoginPage');
   }
 
+  // Related to Desired Notifications Settings ----------------------------------------
+  toggleDesiredNotification(desiredNotification: string) {
+
+    if (this.settings.desiredNotifications[desiredNotification] === true) {
+      this.applyValueToOneSignalTag(desiredNotification, '1');
+    } else {
+      this.applyValueToOneSignalTag(desiredNotification, '0');
+    }
+
+    this.storage.set('desired_notifications', this.settings.desiredNotifications);
+
+  }
+
+  applyValueToOneSignalTag(tagName: string, tagValue: string) {
+
+    let currentTags: Array<any> = new Array<any>();
+    let changedTags: any;
+
+    // Obtains the current tags associated to the user from OneSignal
+    this.oneSignal.getTags().then((value) => {
+      
+      console.log(value);
+
+      for (var key in value) {
+          if (value.hasOwnProperty(key)) {
+              currentTags.push(key);
+          }
+      };
+      console.log(currentTags);
+
+      for (let tag of currentTags) {
+
+        // Checks if the tag is of the desiredNotification Type to apply new value
+        if (tag.includes(tagName)) {
+          console.log("Tag que será excluida: " + tagName);
+          changedTags[tag] = tagValue;
+        }
+      }
+
+      this.oneSignal.sendTags(changedTags);
+
+    });
+  }
+  
+  // Related to Font Size Settings ----------------------------------------------------
   translateFontSize(fontSize: string) {
     switch (fontSize) {
       case 'extra-small': 

@@ -17,7 +17,7 @@ page-post {
   ion-content{
     &.content{
       h1{
-        font-weight: 100;
+        font-weight: 300;
         color: color($colors, secondary);
         text-transform: capitalize;
       }
@@ -34,6 +34,7 @@ page-post {
           height: auto !important;
         }
         iframe {
+          position: relative !important;
           width: 100%;
           height: auto;
           min-height: 250px;

@@ -41,30 +41,32 @@
   <ion-list>
     <ion-list-header>
       Notificações
+      <ion-note item-end *ngIf="!isUserLogged">Somente para usuários da RHS.</ion-note>
     </ion-list-header>
+   
     <ion-item>
       <ion-label>Comentários em posts</ion-label>
-      <ion-toggle [(ngModel)]="settings.desiredNotifications['comments_in_post']"></ion-toggle>
+      <ion-toggle [disabled]="!isUserLogged" [(ngModel)]="settings.desiredNotifications['comments_in_post']" (ionChange)="toggleDesiredNotification('comments_in_post')"></ion-toggle>
     </ion-item>
     <ion-item>
       <ion-label>Novo post em comunidade</ion-label>
-      <ion-toggle [(ngModel)]="settings.desiredNotifications['new_community_post']"></ion-toggle>
+      <ion-toggle [disabled]="!isUserLogged" [(ngModel)]="settings.desiredNotifications['new_community_post']" (ionChange)="toggleDesiredNotification('new_community_post')"></ion-toggle>
     </ion-item>
     <ion-item>
       <ion-label>Novo post de usuário seguido</ion-label>
-      <ion-toggle [(ngModel)]="settings.desiredNotifications['new_post_from_user']"></ion-toggle>
+      <ion-toggle [disabled]="!isUserLogged" [(ngModel)]="settings.desiredNotifications['new_post_from_user']" (ionChange)="toggleDesiredNotification('new_post_from_user')"></ion-toggle>
     </ion-item>
     <ion-item>
       <ion-label>Post seguido</ion-label>
-      <ion-toggle [(ngModel)]="settings.desiredNotifications['post_followed']"></ion-toggle>
+      <ion-toggle [disabled]="!isUserLogged" [(ngModel)]="settings.desiredNotifications['post_followed']" (ionChange)="toggleDesiredNotification('post_followed')"></ion-toggle>
     </ion-item>
     <ion-item>
       <ion-label>Post promovido</ion-label>
-      <ion-toggle [(ngModel)]="settings.desiredNotifications['post_promoted']"></ion-toggle>
+      <ion-toggle [disabled]="!isUserLogged" [(ngModel)]="settings.desiredNotifications['post_promoted']" (ionChange)="toggleDesiredNotification('post_promoted')"></ion-toggle>
     </ion-item>
     <ion-item>
       <ion-label>Usuários que me seguem</ion-label>
-      <ion-toggle [(ngModel)]="settings.desiredNotifications['user_follow_author']"></ion-toggle>
+      <ion-toggle [disabled]="!isUserLogged" [(ngModel)]="settings.desiredNotifications['user_follow_author']" (ionChange)="toggleDesiredNotification('user_follow_author')"></ion-toggle>
     </ion-item>
   </ion-list>
   <br>

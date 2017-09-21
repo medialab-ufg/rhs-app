@@ -355,10 +355,42 @@ export class ApiProvider {
         oauth_version: '1.0' 
       };
 
-      let signature = oauthSignature.generate('POST', this.settings.apiURL + 'wp-json/rhs/v1/add-user-device/' + pushDeviceId, queries, this.settings.consumerSecret, this.tokenSecret);
+      let signature = oauthSignature.generate('POST', this.settings.apiURL + 'wp-json/rhs/v1/user-device/' + pushDeviceId, queries, this.settings.consumerSecret, this.tokenSecret);
       headers.append('Authorization', 'OAuth oauth_consumer_key="' + this.settings.consumerKey + '",oauth_token="' + this.tokenKey + '",oauth_signature_method="HMAC-SHA1",oauth_timestamp="' + queries.oauth_timestamp + '",oauth_nonce="' + queries.oauth_nonce + '",oauth_version="1.0",oauth_signature="' + signature + '"');
     }
-    return this.http.post(this.settings.apiURL + 'wp-json/rhs/v1/add-user-device/' + pushDeviceId, {}, {headers: headers})
+    return this.http.post(this.settings.apiURL + 'wp-json/rhs/v1/user-device/' + pushDeviceId, {}, {headers: headers})
+    .map((res: Response) => {
+
+      let response = JSON.parse(res['_body']);
+
+      return response;
+    })
+    .catch((error: any) => { 
+      return Observable.throw(JSON.parse(error['_body']));
+    }
+    );
+  }
+
+  deletePushDeviceID(pushDeviceId: string):
+    Observable<any> {
+
+    let headers = new Headers();
+
+    if (this.isLogged()) {   
+
+      let queries = {
+        oauth_consumer_key: this.settings.consumerKey,
+        oauth_token: this.tokenKey,
+        oauth_signature_method: 'HMAC-SHA1',
+        oauth_timestamp: new String(new Date().getTime()).substr(0,10),
+        oauth_nonce: this.generateNonce(),
+        oauth_version: '1.0' 
+      };
+
+      let signature = oauthSignature.generate('DELETE', this.settings.apiURL + 'wp-json/rhs/v1/user-device/' + pushDeviceId, queries, this.settings.consumerSecret, this.tokenSecret);
+      headers.append('Authorization', 'OAuth oauth_consumer_key="' + this.settings.consumerKey + '",oauth_token="' + this.tokenKey + '",oauth_signature_method="HMAC-SHA1",oauth_timestamp="' + queries.oauth_timestamp + '",oauth_nonce="' + queries.oauth_nonce + '",oauth_version="1.0",oauth_signature="' + signature + '"');
+    }
+    return this.http.delete(this.settings.apiURL + 'wp-json/rhs/v1/user-device/' + pushDeviceId, {headers: headers})
     .map((res: Response) => {
 
       let response = JSON.parse(res['_body']);
@@ -425,6 +457,34 @@ export class ApiProvider {
     }
 
     return this.http.post(this.settings.apiURL + 'wp-json/rhs/v1/follow/' + userId, {}, {headers: headers})
+    .map((res: Response) => {
+      this.getUserInfo();
+
+      return JSON.parse(res['_body']);
+    })
+    .catch((error: any) => this.handleError(error));
+  }
+
+  unFollowUser(userId: number): Observable<any> {
+
+    let headers = new Headers();
+
+    if (this.isLogged()) {   
+
+      let queries = {
+        oauth_consumer_key: this.settings.consumerKey,
+        oauth_token: this.tokenKey,
+        oauth_signature_method: 'HMAC-SHA1',
+        oauth_timestamp: new String(new Date().getTime()).substr(0,10),
+        oauth_nonce: this.generateNonce(),
+        oauth_version: '1.0' 
+      };
+
+      let signature = oauthSignature.generate('DELETE', this.settings.apiURL + 'wp-json/rhs/v1/follow/' + userId, queries, this.settings.consumerSecret, this.tokenSecret);
+      headers.append('Authorization', 'OAuth oauth_consumer_key="' + this.settings.consumerKey + '",oauth_token="' + this.tokenKey + '",oauth_signature_method="HMAC-SHA1",oauth_timestamp="' + queries.oauth_timestamp + '",oauth_nonce="' + queries.oauth_nonce + '",oauth_version="1.0",oauth_signature="' + signature + '"');
+    }
+
+    return this.http.delete(this.settings.apiURL + 'wp-json/rhs/v1/follow/' + userId, {headers: headers})
     .map((res: Response) => {
       this.getUserInfo();
 

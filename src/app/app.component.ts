@@ -128,14 +128,31 @@ export class MyApp {
       // Loads post font size to settings service.
       this.storage.get('article_font_size').then((result) => {
         if (this.settings.postContentFontSizeOptions[result]) {
-          console.log("RESULT=" + result);
           this.settings.currentFontSize = result;
+        }
+      });
+
+      // Loads desired notifications status to settings service.
+      this.storage.get('desired_notifications').then((result) => {
+        if (result !== null && result !== undefined) {
+          this.settings.desiredNotifications = result;
+        } else {
+          this.storage.set('desired_notifications', this.settings.desiredNotifications);
         }
       });
 
     });
 
-  this.setPushNotificationService();
+    // Load device push id to settings service.
+    this.storage.get('push_device_id').then((result) => {
+      if (result !== null && result !== undefined) {
+        this.settings.pushDeviceId = result;
+      } else {
+        this.storage.set('push_device_id', this.settings.pushDeviceId);
+      }
+    });
+
+    this.setPushNotificationService();
   }
 
   openPage(page) {
@@ -192,13 +209,22 @@ export class MyApp {
       
       this.oneSignal.handleNotificationReceived().subscribe(() => {
       // do something when notification is received
+      console.log("Notificação Recebida");
       });
 
       this.oneSignal.handleNotificationOpened().subscribe(() => {
         // do something when a notification is opened
+        console.log("Notificação Aberta");
       });
       
-      this.oneSignal.getIds().then( value => this.settings.pushDeviceId = value.userId ).catch( error => console.log(error) );
+      this.oneSignal.getIds().then( value => { 
+
+        if (value.userId !== null && value.userId  !== undefined) {
+          this.settings.pushDeviceId = value.userId;
+          this.storage.set('push_device_id', this.settings.pushDeviceId);
+        }
+
+      }).catch( error => console.log(error) );
 
       this.oneSignal.endInit();
       

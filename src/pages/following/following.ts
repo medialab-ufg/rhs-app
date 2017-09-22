@@ -90,6 +90,7 @@ export class FollowingPage {
         this.api.getUserList(true, usersIds, this.userQueries).subscribe(
           userList => {
           this.userList = this.userList.concat(userList);
+          console.log(this.userList);
           this.noMoreResultsOnPeople = false;
         },
         err => {
@@ -126,7 +127,7 @@ export class FollowingPage {
     this.navCtrl.push('UserPage', { 'userId': userId });
   }
 
-  stopButton(userId: number) {
+  stopButton(index: number) {
 
     let prompt = this.alertCtrl.create({
       title: 'Deseja parar de seguir este usuário?',
@@ -134,14 +135,12 @@ export class FollowingPage {
       buttons: [
         {
           text: 'Cancelar',
-          handler: data => {
-            this.unFollowUser(userId);
-          }
+          handler: data => { }
         },
         {
           text: 'Parar',
           handler: data => {
-            console.log('Saved clicked');
+            this.unFollowUser(index);  
           }
         }
       ]
@@ -149,13 +148,12 @@ export class FollowingPage {
     prompt.present();
   }
 
-  unFollowUser(userId: number) {
-    this.api.unFollowUser(userId).subscribe(
+  unFollowUser(index: number) {
+    this.api.unFollowUser(this.userList[index]['data']['id']).subscribe(
       response => {
-        console.log(response);
-        
-        this.userList.unshift(userId);
-        this.api.followingUsers.unshift(response.follow_id);
+
+        this.userList.splice(index, 1);
+        this.api.followingUsers.splice(index, 1);
 
         let unFollowConfirmToast = this.toastCtrl.create({
           message: 'Você deixou de seguir este usuário',

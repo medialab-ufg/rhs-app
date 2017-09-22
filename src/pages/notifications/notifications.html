@@ -28,7 +28,7 @@
 
     <div *ngIf="showSpinner"><ion-spinner class="center-spinner"></ion-spinner></div>
     <div *ngIf="!showSpinner && notifications.length > 0">
-      <ion-item *ngFor="let notification of notifications" (click)="goToNotificationContent()">
+      <ion-item *ngFor="let notification of notifications; let i = index" (click)="goToNotificationContent(i)">
       <div *ngIf="notification['type'] == 'comments_in_posts' || notification['type'] == 'user_follow_author'">
         <ion-avatar item-start> 
           <img src="{{ notification['image'] }}">

@@ -64,6 +64,7 @@ export class NotificationsPage {
         notificationList => {
             this.notifications = this.notifications.concat(notificationList);
             this.noMoreResults= false;
+            console.log(this.notifications);
           },
           err => {
             if (err === 400) {
@@ -76,7 +77,19 @@ export class NotificationsPage {
     });
   }
 
-  goToNotificationContent(){}
+  goToNotificationContent(index: number){
+    switch (this.notifications[index]['type']) {
+      case 'comments_in_post':
+        this.navCtrl.push('PostPage', {'postId': this.notifications[index]['object_id'] });
+      break;
+      case 'new_community_post' || 'post_followed' || 'post_promoted' || 'replied_ticket':
+        this.navCtrl.push('PostPage', {'postId': this.notifications[index]['object_id'] });
+      break;
+      case 'user_follow_author':
+        this.navCtrl.push('UserPage', { 'userId': this.notifications[index]['user_id'] });
+      break;
+    }
+  }
 
   doRefresh(refresher) {
     this.showSpinner = false;

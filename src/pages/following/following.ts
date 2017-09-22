@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage, AlertController } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, AlertController, ToastController } from 'ionic-angular';
 
 import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { ApiProvider } from './../../providers/api/api';
@@ -29,7 +29,8 @@ export class FollowingPage {
               public navParams: NavParams,
               public api: ApiProvider,
               public authentication: AuthenticationProvider,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              public toastCtrl: ToastController) {
 
       this.isUserLogged = this.api.isLogged();
       this.authentication.userLogged.subscribe(value => {
@@ -83,10 +84,10 @@ export class FollowingPage {
       // Adds array of following posts to query
       if (this.api.followingUsers.length > 0) {
 
-        this.userQueries['include'] = String(this.api.followingUsers.join(','));
+        let usersIds = String(this.api.followingUsers.join(','));
 
         // Perform the request to the api service
-        this.api.getUserList(true, this.userQueries).subscribe(
+        this.api.getUserList(true, usersIds, this.userQueries).subscribe(
           userList => {
           this.userList = this.userList.concat(userList);
           this.noMoreResultsOnPeople = false;
@@ -125,7 +126,7 @@ export class FollowingPage {
     this.navCtrl.push('UserPage', { 'userId': userId });
   }
 
-  unfollowUser(userId: number) {
+  stopButton(userId: number) {
 
     let prompt = this.alertCtrl.create({
       title: 'Deseja parar de seguir este usuário?',
@@ -134,16 +135,7 @@ export class FollowingPage {
         {
           text: 'Cancelar',
           handler: data => {
-            this.api.followUser(userId).subscribe(
-              response => {
-                console.log(response);
-                if (response.response == 2) {
-                  this.api.followingUsers.unshift(response.follow_id);
-                }},
-              err => {
-                console.log('Error ' + err + ' on follow user request.');
-              }
-            );
+            this.unFollowUser(userId);
           }
         },
         {
@@ -155,6 +147,27 @@ export class FollowingPage {
       ]
     });
     prompt.present();
+  }
+
+  unFollowUser(userId: number) {
+    this.api.unFollowUser(userId).subscribe(
+      response => {
+        console.log(response);
+        
+        this.userList.unshift(userId);
+        this.api.followingUsers.unshift(response.follow_id);
+
+        let unFollowConfirmToast = this.toastCtrl.create({
+          message: 'Você deixou de seguir este usuário',
+          duration: 3000
+        });
+        unFollowConfirmToast.present();
+      },
+      err => {
+        console.log('Error ' + err + ' on follow user request.');
+      }
+    );
+
   }
 
 }

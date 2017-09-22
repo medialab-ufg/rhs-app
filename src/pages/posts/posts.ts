@@ -29,6 +29,8 @@ export class PostsPage {
   showSpinner = false;
   isUserLogged: boolean = false;
 
+  unreadNotifications: number;
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public api: ApiProvider,
@@ -71,6 +73,13 @@ export class PostsPage {
       }
     });
 
+  }
+
+  ionViewWillEnter(){
+    this.api.getUnreadNotificationsNumber().subscribe(
+      response => this.unreadNotifications = response,
+      err => console.log('Error ' + err +  ' - On Getting Number of Unread Notifications.')
+    );
   }
 
   goToPostPage(id: number) {

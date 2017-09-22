@@ -7,7 +7,9 @@
     <ion-title><img alt="RHS" height="36" src="./assets/logo-rhs.svg"/></ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="goToNotificationsPage()">
-        <ion-icon name="notifications"></ion-icon>
+        <ion-icon name="notifications">
+          <ion-badge *ngIf="unreadNotifications > 0" item-start>{{ unreadNotifications }}</ion-badge>
+        </ion-icon>
       </button>
       <button ion-button icon-only (click)="goToSearchPage()">
         <ion-icon name="search"></ion-icon>

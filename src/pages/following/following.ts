@@ -127,7 +127,9 @@ export class FollowingPage {
     this.navCtrl.push('UserPage', { 'userId': userId });
   }
 
-  stopButton(index: number) {
+  stopButton(event, index: number) {
+
+    event.stopPropagation();
 
     let prompt = this.alertCtrl.create({
       title: 'Deseja parar de seguir este usuário?',

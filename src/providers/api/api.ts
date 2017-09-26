@@ -492,6 +492,29 @@ export class ApiProvider {
     .catch((error: any) => this.handleError(error));
   }
 
+  // Gets notifications type from server
+    getNotificationTypes(authenticated: boolean):
+    Observable<Array<any>> {
+
+    let headers = new Headers();
+
+    if (authenticated) {
+
+      let queries = this.oauthBasicQueries();
+
+      let signature = oauthSignature.generate('GET', this.settings.apiURL + 'wp-json/rhs/v1/notifications/types', queries, this.settings.consumerSecret, this.tokenSecret);
+      headers.append('Authorization', 'OAuth oauth_consumer_key="' + this.settings.consumerKey + '",oauth_token="' + this.tokenKey + '",oauth_signature_method="HMAC-SHA1",oauth_timestamp="' + queries['oauth_timestamp'] + '",oauth_nonce="' + queries['oauth_nonce'] + '",oauth_version="1.0",oauth_signature="' + signature + '"');
+    }
+    
+    return this.http.get(this.settings.apiURL + 'wp-json/rhs/v1/notifications/types', {headers: headers})
+      .map((res: Response) => {
+        
+        let notificationTypes = JSON.parse(res['_body']);
+ 
+        return notificationTypes;
+      })
+      .catch((error: any) => this.handleError(error));
+  }
 
   // ==== UTILITIES  ======================================================================
   // Fowards error status.

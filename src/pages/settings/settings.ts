@@ -18,6 +18,8 @@ export class SettingsPage {
 
   articleFontSizeRange: number = 3;
 
+  notificationTypes: Array<any> = new Array<any>();
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public alertCtrl: AlertController,
@@ -29,6 +31,7 @@ export class SettingsPage {
 
     this.authentication.userLogged.subscribe(value => {
       this.isUserLogged = value;
+      this.loadDesiredNotificationsList();
     });
 
   }
@@ -44,6 +47,11 @@ export class SettingsPage {
         this.settings.currentFontSize = result;
       }
     });
+
+    // Load desired notifications from server
+    if (this.isUserLogged) {
+      this.loadDesiredNotificationsList();
+    }
   }
 
   alertLogout() {
@@ -97,48 +105,58 @@ export class SettingsPage {
   }
 
   // Related to Desired Notifications Settings ----------------------------------------
-  toggleDesiredNotification(desiredNotification: string) {
+  loadDesiredNotificationsList() {
+    this.api.getNotificationTypes(false).subscribe(response => {
 
-    if (this.settings.desiredNotifications[desiredNotification] === true) {
-      this.applyValueToOneSignalTag(desiredNotification, '1');
+      let types = response['types'];
+      
+      // Passes notification types to the settings notifications type list and updates view array
+      for (var key in types) {
+        if (types.hasOwnProperty(key)) {
+          this.settings.desiredNotifications[key] = types[key];
+          this.notificationTypes.push( { key: key, value: types[key]}  );
+          
+          // If there is not set value to this type (first-run app or new type created) sets it to true
+          if (this.settings.desiredNotifications[key]['valueBool'] == undefined || this.settings.desiredNotifications[key]['valueBool'] == undefined) {
+            this.settings.desiredNotifications[key]['valueBool'] = true;
+            this.notificationTypes[this.notificationTypes.length - 1].value['valueBool'] = true;
+          }
+        }
+      };
+       
+      // Obtains the current OneSignal tags associated to the user from OneSignal
+      this.oneSignal.getTags().then((tags) => {     
+        
+        // Updates the values os desired notifications, based on the obtained tags
+        for (var key in tags) {
+          if (tags.hasOwnProperty(key)) {  
+            for (let notificationType of this.notificationTypes) {    
+              if ('notf_type_' + notificationType.key == key) {
+                this.settings.desiredNotifications[notificationType.key]['valueBool'] = (tags[key] == '1' ? true : false);
+              }
+            }
+          };
+        }
+
+      });
+  
+    },
+    err => {
+      console.log('Error ' + err + ' - Getting notifications type list.');
+    });
+  }
+
+  toggleDesiredNotification(desiredNotification) {
+
+    if (this.settings.desiredNotifications[desiredNotification.key]['valueBool'] === true) {
+      this.oneSignal.sendTag(desiredNotification.value['onesginal_tag'], '1');
     } else {
-      this.applyValueToOneSignalTag(desiredNotification, '0');
+      this.oneSignal.sendTag(desiredNotification.value['onesginal_tag'], '0');
     }
 
     this.storage.set('desired_notifications', this.settings.desiredNotifications);
-
   }
 
-  applyValueToOneSignalTag(tagName: string, tagValue: string) {
-
-    let currentTags: Array<any> = new Array<any>();
-    let changedTags: any;
-
-    // Obtains the current tags associated to the user from OneSignal
-    this.oneSignal.getTags().then((value) => {
-      
-      console.log(value);
-
-      for (var key in value) {
-          if (value.hasOwnProperty(key)) {
-              currentTags.push(key);
-          }
-      };
-      console.log(currentTags);
-
-      for (let tag of currentTags) {
-
-        // Checks if the tag is of the desiredNotification Type to apply new value
-        if (tag.includes(tagName)) {
-          console.log("Tag que será excluida: " + tagName);
-          changedTags[tag] = tagValue;
-        }
-      }
-
-      this.oneSignal.sendTags(changedTags);
-
-    });
-  }
   
   // Related to Font Size Settings ----------------------------------------------------
   translateFontSize(fontSize: string) {

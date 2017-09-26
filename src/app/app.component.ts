@@ -136,8 +136,6 @@ export class MyApp {
       this.storage.get('desired_notifications').then((result) => {
         if (result !== null && result !== undefined) {
           this.settings.desiredNotifications = result;
-        } else {
-          this.storage.set('desired_notifications', this.settings.desiredNotifications);
         }
       });
 

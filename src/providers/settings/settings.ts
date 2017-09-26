@@ -35,13 +35,6 @@ export class SettingsProvider {
   public oneSignalAppId: string = '2ffdc133-6deb-43a1-8179-b8300e0b0f97';
   public googleFCMProjectNumber: string = '185540114749';
   public pushDeviceId: string = ''; // to be loaded from registration step during app initialization
-  public desiredNotifications = { 
-    'comments_in_post': true, 
-    'new_community_post': false, 
-    'new_post_from_user': true, 
-    'post_followed': true, 
-    'post_promoted': true, 
-    'user_follow_author': true
-  };
+  public desiredNotifications = {};
 
 }

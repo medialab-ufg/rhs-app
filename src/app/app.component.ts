@@ -139,18 +139,19 @@ export class MyApp {
         }
       });
 
-    });
+      // Load device push id to settings service.
+      this.storage.get('push_device_id').then((result) => {
+        if (result !== null && result !== undefined) {
+          this.settings.pushDeviceId = result;
+        } else {
+          this.storage.set('push_device_id', this.settings.pushDeviceId);
+        }
+      });
 
-    // Load device push id to settings service.
-    this.storage.get('push_device_id').then((result) => {
-      if (result !== null && result !== undefined) {
-        this.settings.pushDeviceId = result;
-      } else {
-        this.storage.set('push_device_id', this.settings.pushDeviceId);
-      }
-    });
+      this.setPushNotificationService();
 
-    this.setPushNotificationService();
+    });
+  
   }
 
   openPage(page) {

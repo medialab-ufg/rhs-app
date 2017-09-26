@@ -237,11 +237,19 @@ page-post {
       .toolbar-content{
         padding: 0px 6px 6px 6px;
         ion-textarea {
+          font-size: 18px;
+          color: color($colors, dark);
           textarea {
             height: 18px;
             min-height: 18px;
             margin: 8px;
             overflow: scroll !important;
+          }
+          .text-input::-moz-placeholder,
+          .text-input:-ms-input-placeholder,
+          .text-input::-webkit-input-placeholder {
+            padding-top: 7px;
+            line-height: 8px;
           }
         }
       }

@@ -72,7 +72,7 @@
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
       </ion-infinite-scroll>
 
-      <ion-list *ngSwitchCase="'personal'">
+      <ion-list *ngSwitchCase="'personal'" padding>
         <ion-item [innerHtml]="user['description'] !== '' ? user['description'] : 'Nenhuma descrição fornecida.'">
         </ion-item>
       </ion-list>

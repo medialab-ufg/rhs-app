@@ -90,4 +90,5 @@
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="onesignal-cordova-plugin" spec="^2.2.0" />
     <engine name="android" spec="~6.2.3" />
+    <allow-navigation href="http://172.17.0.2:8100" />
 </widget>

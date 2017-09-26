@@ -4,10 +4,10 @@ import { Injectable } from '@angular/core';
 export class SettingsProvider {
 
   // Wordpress settings used by Authentication Service 
-  public apiURL: string = 'http://migracao.redehumanizasus.net/';
-  public callbackURL: string = 'http://migracao.redehumanizasus.net/api-login-callback';
-  public consumerKey: string = 'pF74Dog1YVvF';
-  public consumerSecret: string = 'EG3BBp4pFdfYuZvRx2bq1XGFPM4CxyGzF64sKxwujCMaaZ3s';
+  //public apiURL: string = 'http://migracao.redehumanizasus.net/';
+  //public callbackURL: string = 'http://migracao.redehumanizasus.net/api-login-callback';
+  //public consumerKey: string = 'pF74Dog1YVvF';
+  //public consumerSecret: string = 'EG3BBp4pFdfYuZvRx2bq1XGFPM4CxyGzF64sKxwujCMaaZ3s';
 
   // Wordpress settings used by Authentication Service 
   //public apiURL: string = 'http://redehumanizasus.net/';
@@ -15,10 +15,10 @@ export class SettingsProvider {
   //public consumerKey: string = 'UNzAxTFPs2Z7';
   //public consumerSecret: string = 'CEb2TiTcqE246oWh5qolUbORvjDHiqKEC2CfsHyOrDGtJPsB';
   
-  //public apiURL: string = 'http://10.0.2.15/rhs/';
-  //public callbackURL: string = 'http://10.0.2.15/rhs/api-login-callback';
-  //public consumerKey: string = 'k18tusWAaBeB';
-  //public consumerSecret: string = 'VatrIPO0K1tDNjgeSC0GppzM82M5Ksc0skmg4pu2rI3Nbp5E';
+  public apiURL: string = 'http://10.0.2.15/rhs/';
+  public callbackURL: string = 'http://10.0.2.15/rhs/api-login-callback';
+  public consumerKey: string = 'k18tusWAaBeB';
+  public consumerSecret: string = 'VatrIPO0K1tDNjgeSC0GppzM82M5Ksc0skmg4pu2rI3Nbp5E';
 
   // Post Page settings
   public postContentFontSizeOptions = { 

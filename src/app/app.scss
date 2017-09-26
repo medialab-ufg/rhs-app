@@ -33,8 +33,9 @@ ion-menu {
     }
 
     .active-menu-item {
-      &>.item-inner { border-right: 3px solid color($colors, secondary) !important; }
+      &>.item-inner { border-right: 4px solid color($colors, secondary) !important; }
       color: color($colors, secondary) !important;
+      font-weight: bolder;
     }    
     
     ion-content {
@@ -44,7 +45,7 @@ ion-menu {
       .scroll-content {
         ion-list {
           button { 
-            color: white;
+            color: lighten(color($colors, secondary), 5%);
             background: color($colors, primary);
           }
         }

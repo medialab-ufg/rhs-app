@@ -33,7 +33,6 @@ export class LoginPage {
 
         if (temporaryCredentials.oauthToken !== null && temporaryCredentials.oauthTokenSecret !== null) {
           
-          //const browser = this.inAppBrowser.create('http://10.0.1.242/rhs/oauth1/authorize?oauth_token=' + temporaryCredentials.oauthToken + '&oauth_token_secret=' + temporaryCredentials.oauthTokenSecret, '_blank');
           const browser = this.inAppBrowser.create(this.settings.apiURL + '/oauth1/authorize?oauth_token=' + temporaryCredentials.oauthToken + '&oauth_token_secret=' + temporaryCredentials.oauthTokenSecret + '&device=mobile-app', '_blank');
           
           browser.on("loadstop").subscribe((event)=>{
@@ -94,6 +93,21 @@ export class LoginPage {
         this.api.setLogged(false);
       },
       () => {  });
+  }
+
+  register() {
+
+    const browser = this.inAppBrowser.create(this.settings.apiURL + '/registrar', '_blank');
+    browser.on("loadstop").subscribe((event)=>{
+      let url = new URL(event.url);
+      console.log(event);
+      console.log(url);
+      // If User enters the website, go back to the App.
+      if (url.pathname == '/') {
+        browser.close();
+      }
+    });
+     
   }
 
 }

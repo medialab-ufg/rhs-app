@@ -78,7 +78,8 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
+      this.statusBar.styleLightContent();
+      this.statusBar.backgroundColorByHexString('042830');
       
       // Decides wheter the Intro page should be shown or not.
       this.storage.get('introShown').then((result) => {

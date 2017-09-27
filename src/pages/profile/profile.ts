@@ -33,9 +33,6 @@ export class ProfilePage {
     if (this.isUserLogged) { this.loadUser() }
   }
 
-  ionViewDidLoad() {
-  }
-
   loadUser() {
     this.isLoadingUser = true;
 

@@ -21,6 +21,14 @@ page-posts {
       -webkit-justify-content: center;
       justify-content: center;
     }
+
+    ion-badge {
+      position: absolute;
+      right: 18px !important;
+      top: 10px !important;
+      padding: 3px 5px !important;
+      font-size: 1.05rem !important;
+    }
   }
 
   ion-content{

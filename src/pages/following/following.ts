@@ -49,6 +49,7 @@ export class FollowingPage {
   }
 
   ionViewDidLoad() {
+
     if (this.api.isLogged() === true) { 
      if (this.followingView == 'posts') {
         this.loadPosts(false);

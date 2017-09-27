@@ -3,6 +3,7 @@ import { NavController, NavParams, IonicPage, Searchbar, Platform } from 'ionic-
 import { FormControl } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+import { StatusBar } from '@ionic-native/status-bar';
 
 import { ApiProvider } from './../../providers/api/api';
 
@@ -30,7 +31,8 @@ export class SearchPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public api: ApiProvider,
-              public platform: Platform) {
+              public platform: Platform,
+              public statusBar: StatusBar) {
       
     this.searchControl = new FormControl();
     
@@ -57,8 +59,14 @@ export class SearchPage {
   }
 
   ionViewDidEnter(){
+    this.statusBar.backgroundColorByHexString('008884');
     this.searchBar.setFocus();
   }
+
+  ionViewDidLeave(){
+    this.statusBar.backgroundColorByHexString('042830');
+  }
+
 
   goToPostPage(id: number) {
     this.navCtrl.push('PostPage', {'postId': id});

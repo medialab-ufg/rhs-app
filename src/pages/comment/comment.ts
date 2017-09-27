@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
 
 import { ApiProvider } from './../../providers/api/api';
 
@@ -23,7 +24,8 @@ export class CommentPage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public api: ApiProvider) {
+              public api: ApiProvider,
+              public statusBar: StatusBar) {
     this.postId = this.navParams.get('postId');
     this.comment = this.navParams.get('comment');
   }
@@ -33,7 +35,12 @@ export class CommentPage {
   }
 
   ionViewWillEnter() {
+    this.statusBar.backgroundColorByHexString('008884');
     this.returnFromCommentFunction = this.navParams.get("returnFromCommentFunction")
+  }
+
+  ionViewDidLeave(){
+    this.statusBar.backgroundColorByHexString('042830');
   }
 
   ionViewWillLeave() {

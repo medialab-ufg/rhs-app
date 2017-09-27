@@ -36,6 +36,7 @@ export class UserPage {
   }
 
   ionViewDidLoad() {
+
     for (let followId of this.api.followingUsers) {
       if (followId == this.userId) {
         this.isFollowing = true;

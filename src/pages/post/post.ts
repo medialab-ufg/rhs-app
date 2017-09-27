@@ -62,8 +62,6 @@ export class PostPage {
     this.loadTags();
      }
 
-  ionViewDidLoad() { }
-
   ionViewWillEnter() {
     this.returnFromPostFunction = this.navParams.get("returnFromPostFunction")
     this.loadComments();

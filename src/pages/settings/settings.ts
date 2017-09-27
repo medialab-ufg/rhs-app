@@ -37,6 +37,7 @@ export class SettingsPage {
   }
 
   ionViewDidLoad() {
+
     this.isUserLogged = this.api.isLogged();
     console.log("DEVICE ID = " +  this.settings.pushDeviceId);
 

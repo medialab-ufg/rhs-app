@@ -58,24 +58,31 @@ export class PostsPage {
       if (this.postsView === 'home') {
         this.showSpinner = true;
         this.loadPosts(this.postsView, false);
+        this.getUnreadNotifications();
       }
     });
     this.update.queuePostsOutdated.subscribe(() => {
       if (this.postsView === 'queue') {
         this.showSpinner = true;
         this.loadPosts(this.postsView, false);
+        this.getUnreadNotifications();
       }
     });
     this.update.followingPostsOutdated.subscribe(() => {
       if (this.postsView === 'following') {
         this.showSpinner = true;
         this.loadPosts(this.postsView, false);
+        this.getUnreadNotifications();
       }
     });
 
   }
 
   ionViewWillEnter(){
+    this.getUnreadNotifications();
+  }
+
+  getUnreadNotifications() {
     this.api.getUnreadNotificationsNumber().subscribe(
       response => this.unreadNotifications = response,
       err => console.log('Error ' + err +  ' - On Getting Number of Unread Notifications.')

@@ -85,6 +85,10 @@ export class SettingsPage {
       console.log('Error ' + err + ' - Deleting User Device Push ID.');
     });
 
+    // Clear list of notification settings
+    this.settings.desiredNotifications = {};
+    this.notificationTypes = new Array<any>();
+
     // Saves in local storage, for obtaining on app load.
     this.storage.set('oauth_token', null);
     this.storage.set('is_user_logged', false);

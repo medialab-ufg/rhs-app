@@ -28,26 +28,29 @@
 
     <div *ngIf="showSpinner"><ion-spinner class="center-spinner"></ion-spinner></div>
     <div *ngIf="!showSpinner && notifications.length > 0">
-      <ion-item *ngFor="let notification of notifications; let i = index" (click)="goToNotificationContent(i)">
-      <div *ngIf="notification['type'] == 'comments_in_posts' || notification['type'] == 'user_follow_author'">
-        <ion-avatar item-start> 
-          <img src="{{ notification['image'] }}">
+      <div *ngFor="let notification of notifications; let i = index">
+      <ion-item *ngIf="notification['type'] == 'comments_in_post' || notification['type'] == 'user_follow_author'" (click)="goToNotificationContent(i)">
+        <ion-avatar item-start [innerHtml]="notification['image'] | innerHtmlImage"> 
         </ion-avatar>
-        <h2 color="secondary">{{ notification['text'] }}</h2>
+        <h2 color="secondary" text-wrap [innerHtml]="notification['text'] | innerHtmlNotification"></h2>
         <p>{{ notification['datetime'] | date: 'dd/MM/yyyy' }}</p>
-      </div>
-      <div *ngIf="notification['type'] != 'comments_in_posts' && notification['type'] != 'user_follow_author'">
-        <ion-thumbnail item-start> 
-          <img src="{{ notification['image'] }}">
-        </ion-thumbnail>
-        <h2 color="secondary">{{ notification['text'] }}</h2>
-        <p>{{ notification['datetime'] | date: 'dd/MM/yyyy' }}</p>
-      </div>
       </ion-item>
+      <ion-item *ngIf="notification['type'] != 'comments_in_post' && notification['type'] != 'user_follow_author'" (click)="goToNotificationContent(i)">
+        <ion-thumbnail item-start  [innerHtml]="notification['image'] | innerHtmlImage"> 
+        </ion-thumbnail>
+        <h2 color="secondary"  text-wrap  [innerHtml]="notification['text'] | innerHtmlNotification">></h2>
+        <p>{{ notification['datetime'] | date: 'dd/MM/yyyy' }}</p>
+      </ion-item>
+      </div>
+      <ion-item-divider *ngIf="noMoreResults">
+        Não foram encontradas mais notificações.
+      </ion-item-divider>
     </div>
 
     <ion-infinite-scroll [enabled]="!noMoreResults" (ionInfinite)="$event.waitFor(doInfinite())">
-      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      <ion-infinite-scroll-content
+      loadingText="Buscando mais notificações...">
+    </ion-infinite-scroll-content>
     </ion-infinite-scroll>
 
   </div>

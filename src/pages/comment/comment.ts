@@ -15,10 +15,12 @@ export class CommentPage {
   postId: number;
   comment: any;
   response: any = null;
+  commentId: any = null;
 
   responseContent: string = '';
   isPostingResponse: boolean = false;
   didResponded: boolean = false;
+  isLoadingComment = false;
 
   returnFromCommentFunction: any;
 
@@ -28,6 +30,11 @@ export class CommentPage {
               public statusBar: StatusBar) {
     this.postId = this.navParams.get('postId');
     this.comment = this.navParams.get('comment');
+    this.commentId = this.navParams.get('commentId'); // If null, we came from post page, instead of notification.
+
+    if (this.commentId != null) {
+      this.loadComment();
+    }
   }
 
   ionViewDidLoad() {
@@ -47,11 +54,25 @@ export class CommentPage {
     this.returnFromCommentFunction(this.didResponded ? 1 : 0).then(()=>{});
   }
 
+  loadComment() {
+    this.isLoadingComment = true;
+
+    this.api.getComment(this.commentId).subscribe(
+      comment => {
+        this.comment = comment;
+      },
+      err => {
+        console.log('Error ' + err +  ' - on loading post content.');
+      },
+      () => this.isLoadingComment = false
+    );
+  }
+
   postResponse() {
     
     this.isPostingResponse = true;
 
-    this.api.commentOnPost(this.postId, this.responseContent, this.comment['id']).subscribe(
+    this.api.commentOnPost(this.comment['post'], this.responseContent, this.comment['id']).subscribe(
       commentResponse => {
       
         this.responseContent = '';
@@ -61,6 +82,7 @@ export class CommentPage {
     err => {
       console.log('Error ' + err +  ' - On Response Data posting.');
       this.didResponded = false;
+      this.isPostingResponse = false;
     },
     () => this.isPostingResponse = false);
   }
@@ -83,6 +105,10 @@ export class CommentPage {
     element.style.height      = scroll_height + "px";
     textarea.style.minHeight  = scroll_height + "px";
     textarea.style.height     = scroll_height + "px";
+  }
+
+  goToPostPage() {
+    this.navCtrl.push('PostPage', {'postId': this.comment['post'] });
   }
 
 }

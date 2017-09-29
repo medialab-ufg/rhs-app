@@ -209,14 +209,17 @@ export class MyApp {
       
       this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
       
-      this.oneSignal.handleNotificationReceived().subscribe(() => {
-      // do something when notification is received
-      console.log("Notificação Recebida");
+      this.oneSignal.handleNotificationReceived().subscribe((jsonData) => {
+        // do something when notification is received
+        console.log("Notificação Recebida");
+        console.log(jsonData);
       });
 
-      this.oneSignal.handleNotificationOpened().subscribe(() => {
+      this.oneSignal.handleNotificationOpened().subscribe((jsonData) => {
         // do something when a notification is opened
         console.log("Notificação Aberta");
+        console.log(jsonData);
+        this.nav.push('NotificationsPage');
       });
       
       this.oneSignal.getIds().then( value => { 

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, ActionSheetController, AlertController, IonicPage, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ActionSheetController, AlertController, IonicPage, ToastController, Content } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { SettingsProvider } from './../../providers/settings/settings';
@@ -11,6 +11,7 @@ import { ApiProvider } from './../../providers/api/api';
   templateUrl: 'post.html',
 })
 export class PostPage {
+  @ViewChild(Content) content: Content;
   @ViewChild('commentInput') commentInput;
 
   // Received from Post list
@@ -60,7 +61,8 @@ export class PostPage {
     this.loadPost();
     this.loadCategories();
     this.loadTags();
-     }
+
+  }
 
   ionViewWillEnter() {
     this.returnFromPostFunction = this.navParams.get("returnFromPostFunction")
@@ -77,6 +79,7 @@ export class PostPage {
     this.api.getPostInfo(this.postId, this.api.isLogged()).subscribe(
       postInfo => {
       this.post = postInfo;
+      console.log(this.post);
       this.totalVotes = this.post['total_votes'];
       this.totalShares = this.post['total_shares'];
       this.commentCount = this.post['comment_count'];
@@ -108,6 +111,7 @@ export class PostPage {
         this.comments = this.comments.concat(commentsInfo);
       }
       this.generateCommentBoxes();
+
     },
     err => {
       console.log('Error ' + err +  ' - On Comments Data Request.');

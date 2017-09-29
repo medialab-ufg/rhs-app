@@ -11,7 +11,7 @@ import { UpdateProvider } from './../../providers/update/update';
   templateUrl: 'posts.html',
 })
 export class PostsPage {
-  postsView: string = 'home';
+  postsView = 'home';
 
   homePostList: Array<any> = new Array<any>();
   queuePostList: Array<any> = new Array<any>();

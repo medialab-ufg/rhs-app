@@ -286,6 +286,26 @@ export class ApiProvider {
     );
   }
 
+  // Get a single comment
+  getComment(commentId: number):
+    Observable<any> {
+    
+    let headers = new Headers();
+
+    return this.http.get(this.settings.apiURL + 'wp-json/wp/v2/comments/' + commentId, {headers: headers})
+    .map((res: Response) => {
+
+      let commentResponse = JSON.parse(res['_body']);
+
+      return commentResponse;
+    })
+    .catch((error: any) => { 
+      console.log(error);
+      return this.handleError(error);
+    }
+    );
+  }
+
   // Perform vote on Post
   voteOnPost(postId: number):
     Observable<any> {
@@ -493,7 +513,7 @@ export class ApiProvider {
   }
 
   // Gets notifications type from server
-    getNotificationTypes(authenticated: boolean):
+  getNotificationTypes(authenticated: boolean):
     Observable<Array<any>> {
 
     let headers = new Headers();

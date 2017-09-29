@@ -19,13 +19,13 @@
 
   <ion-toolbar class="toolbar-rhs" color="primary">
     <ion-segment [(ngModel)]="postsView" color="secondary">
-      <ion-segment-button value="home" (ionSelect)="loadPosts('home', null)">
+      <ion-segment-button value="home" (ionSelect)="loadPosts('home', false)">
         Principal
       </ion-segment-button>
-      <ion-segment-button value="queue" (ionSelect)="loadPosts('queue', null)">
+      <ion-segment-button value="queue" (ionSelect)="loadPosts('queue', false)">
         Fila de Votação
       </ion-segment-button>
-      <ion-segment-button value="following" (ionSelect)="loadPosts('following', null)">
+      <ion-segment-button value="following" (ionSelect)="loadPosts('following', false)">
         Seguindo
       </ion-segment-button>
     </ion-segment>

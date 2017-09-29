@@ -8,7 +8,6 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { InnerHtmlPostPipe } from '../../pipes/inner-html-post/inner-html-post';
 
-
 @NgModule({
   declarations: [
     PostPage, 

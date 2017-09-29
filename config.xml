@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.redehumanizasus.app" version="0.9.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>RHS</name>
+<widget id="com.redehumanizasus.app" version="0.9.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Rede Humaniza SUS</name>
     <description>O aplicativo mobile da Rede Humaniza SUS</description>
     <author email="msalesoliveira@gmail.com" href="http://redehumanizasus.net/">RHS Dev Team</author>
     <content src="index.html" />
@@ -79,6 +79,8 @@
         <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
     </platform>
+    <allow-navigation href="http://172.17.0.2:8100" />
+    <engine name="android" spec="^6.2.3" />
     <plugin name="cordova-plugin-console" spec="^1.0.7" />
     <plugin name="cordova-plugin-device" spec="^1.1.6" />
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.1" />
@@ -89,6 +91,4 @@
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.1.8" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="onesignal-cordova-plugin" spec="^2.2.0" />
-    <engine name="android" spec="~6.2.3" />
-    <allow-navigation href="http://172.17.0.2:8100" />
 </widget>

@@ -26,6 +26,7 @@ export class NotificationsPage {
               public authentication: AuthenticationProvider) {
 
     this.isUserLogged = this.api.isLogged();
+    this.notifications = new Array<any>();
     this.authentication.userLogged.subscribe(value => {
       if (value === true) {
         this.isUserLogged = this.api.isLogged();
@@ -57,14 +58,18 @@ export class NotificationsPage {
       } 
       // Infinite scroll calls
       else if (isLoadingMore === true) {
+        this.showSpinner = false;
         this.queries['page'] = Number(this.queries['page']) + 1 + '';
       } 
 
       this.api.getNotificationList(true, this.queries['page']).subscribe(
         notificationList => {
             this.notifications = this.notifications.concat(notificationList);
-            this.noMoreResults= false;
+            this.noMoreResults = false;
             console.log(this.notifications);
+            if (notificationList.length == 0) {
+              this.noMoreResults= true;
+            }
           },
           err => {
             if (err === 400) {
@@ -80,7 +85,7 @@ export class NotificationsPage {
   goToNotificationContent(index: number){
     switch (this.notifications[index]['type']) {
       case 'comments_in_post':
-        this.navCtrl.push('PostPage', {'postId': this.notifications[index]['object_id'] });
+        this.navCtrl.push('CommentPage', {'commentId': this.notifications[index]['object_id'] });
       break;
       case 'new_community_post' || 'post_followed' || 'post_promoted' || 'replied_ticket':
         this.navCtrl.push('PostPage', {'postId': this.notifications[index]['object_id'] });
@@ -101,4 +106,5 @@ export class NotificationsPage {
       this.loadNotifications(true).then(() => resolve());
     });
   }
+
 }

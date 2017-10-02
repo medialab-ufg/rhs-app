@@ -11,22 +11,30 @@ import { UpdateProvider } from './../../providers/update/update';
   templateUrl: 'posts.html',
 })
 export class PostsPage {
+  
   postsView = 'home';
 
+  // Results from API calls
   homePostList: Array<any> = new Array<any>();
   queuePostList: Array<any> = new Array<any>();
   followingPostList: Array<any> = new Array<any>();
 
+  // Queris to be passed to API calls
   homePostQueries: { [query: string]: String } = {};
   queuePostQueries: { [query: string]: String } = {'status': 'voting-queue'}
   followingPostQueries: { [query: string]: String } = {};
 
+  // Flags to controll infinite scroll calls
   noMoreResultsOnHome: boolean = false;
   noMoreResultsOnQueue: boolean = false;
   noMoreResultsOnFollowing: boolean = false;
-  noMoreResults: boolean = false;
 
-  showSpinner = false;
+  // Flag to controll loading spinner
+  showSpinnerOnHome = false;
+  showSpinnerOnQueue = false;
+  showSpinnerOnFollowing = false;
+  loadingFromRefresher = false;
+
   isUserLogged: boolean = false;
 
   unreadNotifications: number;
@@ -50,27 +58,23 @@ export class PostsPage {
 
   ionViewDidLoad() {
     
-    this.showSpinner = true;
     this.loadPosts(this.postsView, false);
 
     // Uses update service to re-load after a time period without loading.
     this.update.homePostsOutdated.subscribe(() => {
       if (this.postsView === 'home') {
-        this.showSpinner = true;
         this.loadPosts(this.postsView, false);
         this.getUnreadNotifications();
       }
     });
     this.update.queuePostsOutdated.subscribe(() => {
       if (this.postsView === 'queue') {
-        this.showSpinner = true;
         this.loadPosts(this.postsView, false);
         this.getUnreadNotifications();
       }
     });
     this.update.followingPostsOutdated.subscribe(() => {
       if (this.postsView === 'following') {
-        this.showSpinner = true;
         this.loadPosts(this.postsView, false);
         this.getUnreadNotifications();
       }
@@ -101,6 +105,11 @@ export class PostsPage {
     this.navCtrl.push('NotificationsPage');
   }
 
+  changeSegment(postView: string) {
+    this.postsView = postView;
+    this.loadPosts(postView, null);
+  }
+
   loadPosts(postView: string, isLoadingMore: boolean): Promise<any> {
 
     this.postsView = postView;
@@ -110,33 +119,38 @@ export class PostsPage {
       switch (this.postsView) {
 
         case 'home':
+          this.showSpinnerOnHome = true;
+
           // Informs the update service that this has been checked
           this.update.checkedHomePosts(Date.now());
 
           // Sets page query load more or refresh posts
           //  Pull to refresh or update service calls.
           if (isLoadingMore === false) {
-            this.homePostList = new Array<any>();
             this.homePostQueries['page'] = '1';
           } 
           //  Infinite scroll calls
           else if (isLoadingMore === true) {
+            this.showSpinnerOnHome = false;
             this.homePostQueries['page'] = Number(this.homePostQueries['page']) + 1 + '';
           } 
           //  Switching segment controller calls
           else {
             if (this.homePostList.length === 0) {
-              this.showSpinner = true;
               this.homePostQueries['page'] = '1';
-            }     
+            } else {
+              this.showSpinnerOnHome = false;
+              break;
+            }
           }
           
           // Perform the request to the api service
           this.api.getPostList(this.api.isLogged(), this.homePostQueries).subscribe(
             postList => {
+            if (isLoadingMore === false) {
+              this.homePostList = new Array<any>();
+            }
             this.homePostList = this.homePostList.concat(postList);
-            console.log(this.homePostList);
-            console.log(this.homePostList[0]['_embedded']['author'][0]);
             this.noMoreResultsOnHome = false;     
           },
           err => {
@@ -145,18 +159,19 @@ export class PostsPage {
             }
             console.log('Error ' + err +  ' - On User Data Request.');
           },
-          () => { this.showSpinner = false; resolve() });
+          () => { this.showSpinnerOnHome = false; this.loadingFromRefresher = false; resolve() });
         break;
 
         case 'queue':
           if (this.api.isLogged()){
+            this.showSpinnerOnQueue = true;
+
             // Informs the update service that this has been checked
             this.update.checkedHomePosts(Date.now());
 
             // Sets page query load more or refresh posts
             //  Pull to refresh or update service calls.
             if (isLoadingMore === false) {
-              this.queuePostList = new Array<any>();
               this.queuePostQueries['page'] = '1';
             } 
             //  Infinite scroll calls
@@ -166,13 +181,18 @@ export class PostsPage {
             //  Switching segment controller calls
             else {
               if (this.queuePostList.length === 0) {
-                this.showSpinner = true;
                 this.queuePostQueries['page'] = '1';
-              }     
+              } else {
+                this.showSpinnerOnQueue = false;
+                break;
+              }
             }
             // Perform the request to the api service
             this.api.getPostList(true, this.queuePostQueries).subscribe(
               postList => {
+              if (isLoadingMore === false) {
+                this.queuePostList = new Array<any>();
+              }
               this.queuePostList = this.queuePostList.concat(postList);
               this.noMoreResultsOnQueue = false;
             },
@@ -182,7 +202,7 @@ export class PostsPage {
               }
               console.log('Error ' + err +  ' - On User Data Request.');
             },
-            () => { this.showSpinner = false; resolve() });
+            () => { this.showSpinnerOnQueue = false; this.loadingFromRefresher = false; resolve() });
           } else {
             this.authentication.userLogged.subscribe(value => {
               if (value === true) {
@@ -195,13 +215,14 @@ export class PostsPage {
         
         case 'following':
           if (this.api.isLogged()){
+            this.showSpinnerOnFollowing = true;
+
             // Informs the update service that this has been checked
             this.update.checkedFollowingPosts(Date.now());
-
+            
             // Sets page query load more or refresh posts
             //  Pull to refresh or update service calls.
             if (isLoadingMore === false) {
-              this.followingPostList = new Array<any>();
               this.followingPostQueries['page'] = '1';
             } 
             //  Infinite scroll calls
@@ -211,18 +232,23 @@ export class PostsPage {
             //  Switching segment controller calls
             else {
               if (this.followingPostList.length === 0) {
-                this.showSpinner = true;
                 this.followingPostQueries['page'] = '1';
-              }     
+              } else {
+                this.showSpinnerOnFollowing = false;
+                break;
+              }
             }
             // Adds array of following posts to query
             if (this.api.followingUsers.length > 0) {
-
+              
               this.followingPostQueries['author'] = String(this.api.followingUsers.join(','));
 
               // Perform the request to the api service
               this.api.getPostList(true, this.followingPostQueries).subscribe(
                 postList => {
+                if (isLoadingMore === false) {
+                  this.followingPostList = new Array<any>();
+                }
                 this.followingPostList = this.followingPostList.concat(postList);
                 this.noMoreResultsOnFollowing = false;
               },
@@ -232,15 +258,15 @@ export class PostsPage {
                 }
                 console.log('Error ' + err +  ' - On User Data Request.');
               },
-              () => { this.showSpinner = false; resolve() });
-            } else {
-              this.authentication.userLogged.subscribe(value => {
-                if (value === true) {
-                  this.isUserLogged = true;
-                  this.loadPosts('queue', isLoadingMore);
-                }
-              });
-            }
+              () => { this.showSpinnerOnFollowing = false; this.loadingFromRefresher = false; resolve() });
+            } 
+          } else {
+            this.authentication.userLogged.subscribe(value => {
+              if (value === true) {
+                this.isUserLogged = true;
+                this.loadPosts('queue', isLoadingMore);
+              }
+            });
           }
         break;
       }
@@ -250,7 +276,7 @@ export class PostsPage {
   }
 
   doRefresh(refresher) {
-    this.showSpinner = false;
+    this.loadingFromRefresher = true;
     this.loadPosts(this.postsView, false).then(() => refresher.complete());
   }
 

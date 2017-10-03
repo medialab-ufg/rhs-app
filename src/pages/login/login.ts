@@ -33,7 +33,7 @@ export class LoginPage {
 
         if (temporaryCredentials.oauthToken !== null && temporaryCredentials.oauthTokenSecret !== null) {
           
-          const browser = this.inAppBrowser.create(this.settings.apiURL + '/oauth1/authorize?oauth_token=' + temporaryCredentials.oauthToken + '&oauth_token_secret=' + temporaryCredentials.oauthTokenSecret + '&device=mobile-app', '_blank');
+          const browser = this.inAppBrowser.create(this.settings.apiURL + '/oauth1/authorize?oauth_token=' + temporaryCredentials.oauthToken + '&oauth_token_secret=' + temporaryCredentials.oauthTokenSecret + '&device=mobile-app', '_blank', { zoom: 'no', location: 'no', toolbarposition: 'top' });
           
           browser.on("loadstop").subscribe((event)=>{
               let url = new URL(event.url);
@@ -97,7 +97,7 @@ export class LoginPage {
 
   register() {
 
-    const browser = this.inAppBrowser.create(this.settings.apiURL + '/registrar', '_blank');
+    const browser = this.inAppBrowser.create(this.settings.apiURL + '/registrar', '_blank', { zoom: 'no', location: 'no', toolbarposition: 'top' });
     browser.on("loadstop").subscribe((event)=>{
       let url = new URL(event.url);
       console.log(event);

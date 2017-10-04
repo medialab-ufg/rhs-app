@@ -397,9 +397,11 @@ export class ApiProvider {
     return this.http.get(this.settings.apiURL + 'wp-json/rhs/v1/user/include=' + usersIds + '&' + search.toString(), {headers: headers})
       .map((res: Response) => {
         
-        let userList = JSON.parse(res['_body']);
- 
-        return userList;
+        let userListObj = JSON.parse(res['_body']);
+        let userListArr = Object.keys(userListObj).map(function(key) {
+          return userListObj[key];
+        });
+        return userListArr;
       })
       .catch((error: any) => this.handleError(error));
   }

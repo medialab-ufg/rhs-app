@@ -210,16 +210,78 @@ export class MyApp {
       this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
       
       this.oneSignal.handleNotificationReceived().subscribe((jsonData) => {
-        // do something when notification is received
+        // Do something when notification is received
         console.log("Notificação Recebida");
         console.log(jsonData);
       });
 
       this.oneSignal.handleNotificationOpened().subscribe((jsonData) => {
-        // do something when a notification is opened
+        // Do something when a notification is opened
         console.log("Notificação Aberta");
         console.log(jsonData);
-        this.nav.push('NotificationsPage');
+
+        // If user clicked a button inside the notification
+        if (jsonData.action.type > 0) {
+          switch (jsonData.action.actionID) {
+            
+            // Comentário feito em post
+            case 'open_comments_in_post':
+              this.nav.push('CommentPage', { 'commentId': jsonData.notification.payload.additionalData['object_id'] });
+            break;
+            
+            // Usuário que fez o comentário no post
+            case 'open_user_comments_in_post': 
+              if (jsonData.notification.payload.additionalData['user_id'] == this.api.getUserId()) {
+                this.nav.push('ProfilePage');
+              } else {
+                this.nav.push('UserPage', { 'userId': jsonData.notification.payload.additionalData['user_id'] });
+              }
+            break;
+            
+            // Novo post de um usuário seguido
+            case 'open_new_post_from_user':
+              this.nav.push('PostPage', { 'postId': jsonData.notification.payload.additionalData['object_id'] });
+            break;
+            
+            // Novo post de um usuário seguido
+            case 'open_post_new_post_from_user':
+              this.nav.push('PostPage', { 'postId': jsonData.notification.payload.additionalData['object_id'] });
+            break;  
+
+            // Usuário que publicou novo post
+            case 'open_user_new_post_from_user':
+              this.nav.push('UserPage', { 'userId': jsonData.notification.payload.additionalData['user_id'] });
+            break;
+
+            // Novo ação em post sendo seguido
+            case 'open_post_followed':
+              this.nav.push('PostPage', { 'postId': jsonData.notification.payload.additionalData['object_id'] });
+            break;
+
+            // Novo post do usuário foi seguido
+            case 'open_user_post_followed':
+              this.nav.push('UserPage', { 'userId': jsonData.notification.payload.additionalData['user_id'] });
+            break;
+
+            // Novo contato respondido
+            case 'open_replied_ticket':
+            break;
+
+            // Novo usuário seguindo
+            case 'open_user_follow_author':
+              this.nav.push('UserPage', { 'userId': jsonData.notification.payload.additionalData['user_id'] });
+            break;
+
+            // Novo post promovido
+            case 'open_post_promoted':
+              this.nav.push('PostPage', { 'postId': jsonData.notification.payload.additionalData['object_id'] });
+            break;
+          }
+        // If user clicked the notification itself.
+        } else {
+          this.nav.push('NotificationsPage');
+        }
+  
       });
       
       this.oneSignal.getIds().then( value => { 

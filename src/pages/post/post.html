@@ -22,7 +22,7 @@
     <article [ngStyle]="{ 'font-size': settings.postContentFontSizeOptions[settings.currentFontSize] }" [innerHTML]="post['content']['rendered'] | innerHtmlPost"></article>
 
     <!-- POST CATEGORIES -->
-    <div *ngIf="isLoadingCategories"><ion-spinner class="center-spinner"></ion-spinner></div>
+    <div *ngIf="isLoadingCategories"><ion-spinner class="center-spinner-relative"></ion-spinner></div>
     <div padding *ngIf="!isLoadingCategories && categories.length > 0" class="category">
       <h4><ion-icon name="pricetags"></ion-icon> Categorias</h4>
       <ion-buttons class="categoria">
@@ -30,7 +30,7 @@
       </ion-buttons>
     </div>
     <!-- POST TAGS -->
-    <div *ngIf="isLoadingTags"><ion-spinner class="center-spinner"></ion-spinner></div>
+    <div *ngIf="isLoadingTags"><ion-spinner class="center-spinner-relative"></ion-spinner></div>
     <div padding *ngIf="!isLoadingTags && tags.length > 0" class="tags">
       <h4><ion-icon name="bookmark"></ion-icon> Tags</h4>
       <ion-buttons>
@@ -42,7 +42,7 @@
     <div no-lines class="top-border"></div>
 
     <!-- POST AUTHOR-->
-    <div *ngIf="isLoadingAuthor"><ion-spinner class="center-spinner"></ion-spinner></div>
+    <div *ngIf="isLoadingAuthor"><ion-spinner class="center-spinner-relative"></ion-spinner></div>
     <div padding *ngIf="!isLoadingAuthor" class="author" (click)="goToAuthorPage(author['id'])">
       <ion-item>
         <ion-avatar item-start>
@@ -77,7 +77,7 @@
     </ion-buttons>
 
     <!-- POST COMMENTS -->
-    <div *ngIf="isLoadingComments"><ion-spinner class="center-spinner"></ion-spinner></div>
+    <div *ngIf="isLoadingComments"><ion-spinner class="center-spinner-relative"></ion-spinner></div>
     <div padding *ngIf="!isLoadingComments && commentBoxes.length > 0" class="comentarios">
       <ion-list>
         <ion-item *ngFor="let comment of commentBoxes; let i = index" text-wrap [ngStyle]="{ 'padding-left': comment.depth*20 + 'px'} ">

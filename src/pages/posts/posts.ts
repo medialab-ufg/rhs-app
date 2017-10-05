@@ -152,6 +152,7 @@ export class PostsPage {
             }
             this.homePostList = this.homePostList.concat(postList);
             this.noMoreResultsOnHome = false;     
+            console.log(this.homePostList);
           },
           err => {
             if (err === 400) {

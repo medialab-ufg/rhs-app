@@ -1,5 +1,5 @@
 <ion-card>   
-  <img  *ngIf="post['_embedded']['wp:featuredmedia'] !== undefined" src="{{ post['_embedded']['wp:featuredmedia'][0]['source_url'] }}">
+  <img  *ngIf="this.post['_embedded']['wp:featuredmedia'] !== undefined" [src]="this.post['_embedded']['wp:featuredmedia'][0]['source_url']">
   <ion-card-header text-wrap [innerHtml]="post['title']['rendered']"></ion-card-header>
   <ion-card-content *ngIf="post['excerpt']['rendered'] != '' && post['excerpt']['rendered'] != null" [innerHtml]="post['excerpt']['rendered']"></ion-card-content>
   <ion-item color="light">

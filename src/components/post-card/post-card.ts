@@ -7,11 +7,12 @@ import { ApiProvider } from './../../providers/api/api';
   selector: 'post-card',
   templateUrl: 'post-card.html'
 })
-export class PostCardComponent {
+export class PostCardComponent{
 
   @Input('post-data') post: any;
 
-  constructor(public api: ApiProvider, public navCtrl: NavController ) {}
+  constructor(public api: ApiProvider, public navCtrl: NavController ) {
+  }
 
   goToAuthorPage(event, userId: number) {
     event.stopPropagation(); // Avoids the click event to propagate to the card, and then go to post page.

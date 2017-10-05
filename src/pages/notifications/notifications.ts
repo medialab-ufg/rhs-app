@@ -18,14 +18,13 @@ export class NotificationsPage {
 
   noMoreResults: boolean = false;
   isLoadingMore: boolean = false;
-  showSpinner: boolean = true;
+  showSpinner: boolean = false;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public api: ApiProvider,
               public authentication: AuthenticationProvider) {
 
-    this.isUserLogged = this.api.isLogged();
     this.notifications = new Array<any>();
     this.authentication.userLogged.subscribe(value => {
       if (value === true) {
@@ -36,8 +35,11 @@ export class NotificationsPage {
   }
 
   ionViewDidLoad() {
-    if (this.api.isLogged() === true) { 
-      this.loadNotifications(false)
+
+    this.isUserLogged = this.api.isLogged();
+
+    if (this.isUserLogged === true) { 
+      this.loadNotifications(false);
     }
 
     this.api.markNotificationsAsRead().subscribe(

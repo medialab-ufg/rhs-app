@@ -52,6 +52,7 @@ export class ProfilePage {
     return new Promise((resolve) => {
 
       this.postQueries['author'] = String(this.user['id']);
+      this.postQueries['status'] = 'publish,voting-queue';
 
       if (isLoadingMore === false) {
         this.userPostsList = new Array<any>();

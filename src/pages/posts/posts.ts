@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, IonicPage, Content } from 'ionic-angular';
 
 import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { ApiProvider } from './../../providers/api/api';
@@ -11,6 +11,8 @@ import { UpdateProvider } from './../../providers/update/update';
   templateUrl: 'posts.html',
 })
 export class PostsPage {
+
+  @ViewChild(Content) list: Content;
   
   postsView = 'home';
 
@@ -107,6 +109,7 @@ export class PostsPage {
 
   changeSegment(postView: string) {
     this.postsView = postView;
+    this.list.scrollToTop();
     this.loadPosts(postView, null);
   }
 

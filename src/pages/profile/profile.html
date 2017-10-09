@@ -61,7 +61,7 @@
       <div [ngSwitch]="userInfoView">
         
         <ion-list *ngSwitchCase="'posts'">
-          <div *ngIf="isLoadingUserPosts"><ion-spinner class="center-spinner"></ion-spinner></div>
+          <div *ngIf="isLoadingUserPosts"><ion-spinner class="center-spinner-relative"></ion-spinner></div>
           <post-card [post-data]="post" *ngFor="let post of userPostsList" (click)="goToPostPage(post['id'])"></post-card>   
           <div *ngIf="userPostsList.length == 0 && !isLoadingUserPosts">
             <information [message]="'Não possui nenhuma publicação.'"></information>

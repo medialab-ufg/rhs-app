@@ -106,6 +106,9 @@ export class UserPage {
     return new Promise((resolve) => {
 
       this.postQueries['author'] = String(this.user['id']);
+      if (this.api.isLogged()) {
+        this.postQueries['status'] = 'publish,voting-queue';
+      }
 
       if (isLoadingMore === false) {
         this.userPostsList = new Array<any>();

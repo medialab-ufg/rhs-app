@@ -22,13 +22,17 @@ page-post {
         text-transform: capitalize;
       }
       
-      article{
-        color: color($colors, dark);
-        
+      article{     
+        color: color($colors, dark) !important;
+        line-height: 1.5em !important;
         user-select: text !important;
-        
-          padding: 4px 16px;
-        
+        padding: 1px 16px;
+
+        p, div {
+          color: color($colors, dark) !important;
+          line-height: 1.5em !important;
+          user-select: text !important;
+        }
         img{
           width: 100% !important;
           height: auto !important;

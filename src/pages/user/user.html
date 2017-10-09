@@ -56,17 +56,21 @@
     </ion-toolbar>
 
     <div [ngSwitch]="userInfoView">
-
-      <ion-list *ngSwitchCase="'posts'">
-        <div *ngIf="isLoadingUserPosts"><ion-spinner class="center-spinner"></ion-spinner></div>
-        <post-card [post-data]="post" *ngFor="let post of userPostsList" (click)="goToPostPage(post['id'])"></post-card>   
-        <div *ngIf="userPostsList.length == 0 && !isLoadingUserPosts">
-          <information [message]="'Não possui nenhuma publicação.'"></information>
-        </div>
-        <ion-item-divider *ngIf="noMoreResults">
-          Não foram encontrados mais resultados.  
-        </ion-item-divider>
-      </ion-list>
+      
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col col-md-6 push-md-3 col-sm-8 push-sm-2 col-12 *ngSwitchCase="'posts'">
+            <div *ngIf="isLoadingUserPosts"><ion-spinner class="center-spinner-relative"></ion-spinner></div>
+            <post-card [post-data]="post" *ngFor="let post of userPostsList" (click)="goToPostPage(post['id'])"></post-card>   
+            <div *ngIf="userPostsList.length == 0 && !isLoadingUserPosts">
+              <information [message]="'Não possui nenhuma publicação.'"></information>
+            </div>
+            <ion-item-divider *ngIf="noMoreResults">
+              Não foram encontrados mais resultados.  
+            </ion-item-divider>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
       <ion-infinite-scroll [enabled]="userInfoView == 'posts' && !noMoreResults" (ionInfinite)="$event.waitFor(doInfinite())">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>

@@ -97,7 +97,7 @@ export class LoginPage {
 
   register() {
 
-    const browser = this.inAppBrowser.create(this.settings.apiURL + '/registrar', '_blank', { zoom: 'no', location: 'no', toolbarposition: 'top' });
+    const browser = this.inAppBrowser.create(this.settings.apiURL + '/registrar?device=mobile-app', '_blank', { zoom: 'no', location: 'no', toolbarposition: 'top' });
     browser.on("loadstop").subscribe((event)=>{
       let url = new URL(event.url);
       console.log(event);

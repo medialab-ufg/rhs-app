@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, ActionSheetController, AlertController, IonicPage, ToastController, Content } from 'ionic-angular';
+import { NavController, NavParams, ActionSheetController, AlertController, IonicPage, ToastController } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { SettingsProvider } from './../../providers/settings/settings';
@@ -11,7 +11,6 @@ import { ApiProvider } from './../../providers/api/api';
   templateUrl: 'post.html',
 })
 export class PostPage {
-  @ViewChild(Content) content: Content;
   @ViewChild('commentInput') commentInput;
 
   // Received from Post list

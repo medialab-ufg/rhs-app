@@ -15,10 +15,10 @@ export class SettingsProvider {
   public consumerKey: string = 'UNzAxTFPs2Z7';
   public consumerSecret: string = 'CEb2TiTcqE246oWh5qolUbORvjDHiqKEC2CfsHyOrDGtJPsB';
   
-  //public apiURL: string = 'http://10.0.2.15/rhs/';
-  //public callbackURL: string = 'http://10.0.2.15/rhs/api-login-callback';
-  //public consumerKey: string = 'k18tusWAaBeB';
-  //public consumerSecret: string = 'VatrIPO0K1tDNjgeSC0GppzM82M5Ksc0skmg4pu2rI3Nbp5E';
+  // public apiURL: string = 'http://10.0.2.15/rhs/';
+  // public callbackURL: string = 'http://10.0.2.15/rhs/api-login-callback';
+  // public consumerKey: string = 'k18tusWAaBeB';
+  // public consumerSecret: string = 'VatrIPO0K1tDNjgeSC0GppzM82M5Ksc0skmg4pu2rI3Nbp5E';
 
   // Post Page settings
   public postContentFontSizeOptions = { 

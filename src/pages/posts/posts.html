@@ -42,52 +42,58 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <div [ngSwitch]="postsView">
+  <ion-grid no-padding [ngSwitch]="postsView">
     
-    <div *ngSwitchCase="'home'">
-      <div *ngIf="showSpinnerOnHome && !loadingFromRefresher && !noMoreResultsOnHome"><ion-spinner class="center-spinner"></ion-spinner></div>
-      <post-card ion-stop-event="click" [post-data]="post" *ngFor="let post of homePostList" (click)="goToPostPage(post['id'])"></post-card>   
-      <ion-item-divider *ngIf="noMoreResultsOnHome && !loadingFromRefresher">
-        Não foram encontrados mais resultados.  
-      </ion-item-divider>
-    </div>
-    <div *ngSwitchCase="'queue'">
-      <div *ngIf="!isUserLogged">
-        <information [message]="'Somente para usuários da RHS'" [detail]="'É preciso estar logado para acessar essa sessão.'"></information>
-      </div>
-      <div *ngIf="isUserLogged">
-        <div *ngIf="showSpinnerOnQueue && !loadingFromRefresher && !noMoreResultsOnQueue"><ion-spinner class="center-spinner"></ion-spinner></div>
-        <post-card [post-data]="post" *ngFor="let post of queuePostList" (click)="goToPostPage(post['id'])"></post-card>   
-        <ion-item-divider *ngIf="noMoreResultsOnQueue && !loadingFromRefresher">
+    <ion-row #list *ngSwitchCase="'home'">
+      <ion-col col-md-6 push-md-3 col-sm-8 push-sm-2 col-12>
+        <div *ngIf="showSpinnerOnHome && !loadingFromRefresher && !noMoreResultsOnHome"><ion-spinner class="center-spinner"></ion-spinner></div>     
+        <post-card ion-stop-event="click" [post-data]="post" *ngFor="let post of homePostList" (click)="goToPostPage(post['id'])"></post-card>           
+        <ion-item-divider *ngIf="noMoreResultsOnHome && !loadingFromRefresher">
           Não foram encontrados mais resultados.  
         </ion-item-divider>
-        <div *ngIf="queuePostList.length == 0 && !showSpinnerOnQueue">
-          <information [message]="'Ainda não encontramos nenhum post na fila de votação.'"></information>
+      </ion-col>
+    </ion-row>
+    <ion-row #list *ngSwitchCase="'queue'">
+      <ion-col col-md-6 push-md-3 col-sm-8 push-sm-2 col-12>
+        <div *ngIf="!isUserLogged">
+          <information [message]="'Somente para usuários da RHS'" [detail]="'É preciso estar logado para acessar essa sessão.'"></information>
         </div>
-      </div>
-    </div>
-    <div *ngSwitchCase="'following'">
-      <div *ngIf="!isUserLogged">
-        <information [message]="'Somente para usuários da RHS'" [detail]="'É preciso estar logado para acessar essa sessão.'"></information>
-      </div>
-      <div *ngIf="isUserLogged">
-        <div *ngIf="showSpinnerOnFollowing && !loadingFromRefresher && !noMoreResultsOnFollowing"><ion-spinner class="center-spinner"></ion-spinner></div>
-        <post-card [post-data]="post" *ngFor="let post of followingPostList" (click)="goToPostPage(post['id'])"></post-card>   
-        <ion-item-divider *ngIf="noMoreResultsOnFollowing && !loadingFromRefresher">
-          Não foram encontrados mais resultados.  
-        </ion-item-divider>
-        <div *ngIf="followingPostList.length == 0 && !showSpinnerOnFollowing">
-          <information [message]="'Ainda encontramos não há nenhum post sendo seguido.'"></information>
+        <div *ngIf="isUserLogged">
+          <div *ngIf="showSpinnerOnQueue && !loadingFromRefresher && !noMoreResultsOnQueue"><ion-spinner class="center-spinner"></ion-spinner></div>
+            <post-card [post-data]="post" *ngFor="let post of queuePostList" (click)="goToPostPage(post['id'])"></post-card>   
+            <ion-item-divider *ngIf="noMoreResultsOnQueue && !loadingFromRefresher">
+              Não foram encontrados mais resultados.  
+            </ion-item-divider>
+            <div *ngIf="queuePostList.length == 0 && !showSpinnerOnQueue">
+              <information [message]="'Ainda não encontramos nenhum post na fila de votação.'"></information>
+            </div>
+          </div>
+      </ion-col>
+    </ion-row>
+    <ion-row #list *ngSwitchCase="'following'">
+      <ion-col col-md-6 push-md-3 col-sm-8 push-sm-2 col-12>
+        <div *ngIf="!isUserLogged">
+          <information [message]="'Somente para usuários da RHS'" [detail]="'É preciso estar logado para acessar essa sessão.'"></information>
+        </div> 
+        <div *ngIf="isUserLogged">
+          <div *ngIf="showSpinnerOnFollowing && !loadingFromRefresher && !noMoreResultsOnFollowing"><ion-spinner class="center-spinner"></ion-spinner></div>
+          <post-card [post-data]="post" *ngFor="let post of followingPostList" (click)="goToPostPage(post['id'])"></post-card>   
+          <ion-item-divider *ngIf="noMoreResultsOnFollowing && !loadingFromRefresher">
+            Não foram encontrados mais resultados.  
+          </ion-item-divider>
+          <div *ngIf="followingPostList.length == 0 && !showSpinnerOnFollowing">
+            <information [message]="'Ainda encontramos não há nenhum post sendo seguido.'"></information>
+          </div>
         </div>
-      </div>
-    </div>
+      </ion-col>
+    </ion-row>
 
     <ion-infinite-scroll [enabled]="postsView === 'home' ? !noMoreResultsOnHome : postsView === 'queue' ? !noMoreResultsOnQueue : !noMoreResultsOnFollowing" (ionInfinite)="$event.waitFor(doInfinite())">
       <ion-infinite-scroll-content
         loadingText="Buscando mais posts...">
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
-  </div>
-
+    
+  </ion-grid>
 
 </ion-content>

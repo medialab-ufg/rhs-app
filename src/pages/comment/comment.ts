@@ -37,8 +37,10 @@ export class CommentPage {
     }
   }
 
-  ionViewDidLoad() {
-    this.responseInput.setFocus();
+  ionViewDidEnter() {
+    setTimeout(() => {
+      this.responseInput.setFocus();
+    }, 150);
   }
 
   ionViewWillEnter() {

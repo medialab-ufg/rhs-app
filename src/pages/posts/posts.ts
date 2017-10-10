@@ -198,6 +198,7 @@ export class PostsPage {
                 this.queuePostList = new Array<any>();
               }
               this.queuePostList = this.queuePostList.concat(postList);
+              console.log(this.queuePostList);
               this.noMoreResultsOnQueue = false;
             },
             err => {

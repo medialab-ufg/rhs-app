@@ -60,7 +60,7 @@
         </div>
         <div *ngIf="isUserLogged">
           <div *ngIf="showSpinnerOnQueue && !loadingFromRefresher && !noMoreResultsOnQueue"><ion-spinner class="center-spinner"></ion-spinner></div>
-            <post-card [post-data]="post" *ngFor="let post of queuePostList" (click)="goToPostPage(post['id'])"></post-card>   
+            <post-card ion-stop-event="click" [post-data]="post" *ngFor="let post of queuePostList" (click)="goToPostPage(post['id'])"></post-card>   
             <ion-item-divider *ngIf="noMoreResultsOnQueue && !loadingFromRefresher">
               Não foram encontrados mais resultados.  
             </ion-item-divider>
@@ -77,7 +77,7 @@
         </div> 
         <div *ngIf="isUserLogged">
           <div *ngIf="showSpinnerOnFollowing && !loadingFromRefresher && !noMoreResultsOnFollowing"><ion-spinner class="center-spinner"></ion-spinner></div>
-          <post-card [post-data]="post" *ngFor="let post of followingPostList" (click)="goToPostPage(post['id'])"></post-card>   
+          <post-card ion-stop-event="click" [post-data]="post" *ngFor="let post of followingPostList" (click)="goToPostPage(post['id'])"></post-card>   
           <ion-item-divider *ngIf="noMoreResultsOnFollowing && !loadingFromRefresher">
             Não foram encontrados mais resultados.  
           </ion-item-divider>

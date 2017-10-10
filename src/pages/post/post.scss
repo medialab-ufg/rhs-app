@@ -16,6 +16,15 @@ page-post {
 
   ion-content{
     &.content{
+
+      // Adds a margin when screen is to large or landscape mode.
+      @media (min-width: 576px) {
+        h1, article {
+          margin-left: 20%;
+          margin-right: 20%;
+        }
+      }
+
       h1{
         font-weight: 300;
         color: color($colors, secondary);
@@ -53,6 +62,18 @@ page-post {
         blockquote {
           font-style: italic;
           color: #555;
+        }
+        table {
+          width: 100% !important;
+          overflow-x: scroll;
+          display: inline-block;
+
+          tbody { 
+            display: inline-block;
+            min-width: max-content; 
+            border: 2px solid color($colors, primary);
+            border-radius: 2px 
+          }
         }
       }
 

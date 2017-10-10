@@ -150,7 +150,7 @@ export class MyApp {
       });
 
       if (this.platform.is('cordova') || this.platform.is('ios') || this.platform.is('tablet') || this.platform.is('phablet') || this.platform.is('ipad')  || this.platform.is('iphone') || this.platform.is('android')) {
-        this.setPushNotificationService();
+        //this.setPushNotificationService();
       }
 
     });

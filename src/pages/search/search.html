@@ -30,20 +30,24 @@
 
 <ion-content [ngClass]="(tagFiltering || categoryFiltering) ? 'has-subheader' : ''">
 
-  <ion-list>
-    <div *ngIf="showSpinner"><ion-spinner class="center-spinner"></ion-spinner></div>
-    <post-card [post-data]="post" *ngFor="let post of postList" (click)="goToPostPage(post['id'])">   
-    </post-card>
-    <ion-item-divider *ngIf="noMoreResults">
-      Não foram encontrados mais resultados.  
-    </ion-item-divider>
-    <div *ngIf="postList.length == 0 && !showSpinner && searchTerm && searchTerm.trim()">
-      <information [message]="'Nenhum post encontrado.'" [detail]="'Verifique se digitou corretamente o termo de busca, ou tente ser menos específico.'"></information>
-    </div>
-    <div *ngIf="postList.length == 0 && !showSpinner && !searchTerm && !searchTerm.trim()">
-      <information [message]="'Busque por posts na RHS.'"></information>
-    </div>
-  </ion-list>
+  <ion-grid no-padding>
+  <ion-row>
+    <ion-col col-md-6 push-md-3 col-sm-8 push-sm-2 col-12>
+      <div *ngIf="showSpinner"><ion-spinner class="center-spinner"></ion-spinner></div>
+      <post-card [post-data]="post" *ngFor="let post of postList" (click)="goToPostPage(post['id'])">   
+      </post-card>
+      <ion-item-divider *ngIf="noMoreResults">
+        Não foram encontrados mais resultados.  
+      </ion-item-divider>
+      <div *ngIf="postList.length == 0 && !showSpinner && searchTerm && searchTerm.trim()">
+        <information [message]="'Nenhum post encontrado.'" [detail]="'Verifique se digitou corretamente o termo de busca, ou tente ser menos específico.'"></information>
+      </div>
+      <div *ngIf="postList.length == 0 && !showSpinner && !searchTerm && !searchTerm.trim()">
+        <information [message]="'Busque por posts na RHS.'"></information>
+      </div>
+    </ion-col>
+  </ion-row>
+  </ion-grid>
 
   <ion-infinite-scroll [enabled]="!noMoreResults" (ionInfinite)="$event.waitFor(doInfinite())">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>

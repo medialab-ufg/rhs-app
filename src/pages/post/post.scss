@@ -20,8 +20,8 @@ page-post {
       // Adds a margin when screen is to large or landscape mode.
       @media (min-width: 576px) {
         h1, article {
-          margin-left: 20%;
-          margin-right: 20%;
+          margin-left: 22%;
+          margin-right: 22%;
         }
       }
 
@@ -33,7 +33,7 @@ page-post {
       
       article{     
         color: color($colors, dark) !important;
-        line-height: 1.55em !important;
+        line-height: 1.5em !important;
         user-select: text !important;
         padding: 1px 16px;
 
@@ -58,6 +58,7 @@ page-post {
           display: block;
           width: calc(100% + 32px) !important;
           max-width: calc(100% + 32px) !important;
+
         }
         blockquote {
           font-style: italic;
@@ -153,25 +154,20 @@ page-post {
         }
 
         ion-grid{
+          padding: 0px !important;
           .row{
             flex-wrap: nowrap;
           }
           .divider{
             content: '';
             width: 0;
-            height: 70%;
+            height: 80%;
             position: absolute;
             border: 1px solid rgba(12, 60, 70, 0.21);
-            top: 15px;
-            left: 1.0px;
+            top: 8px;
+            left: -3px;
           }
           ion-col{
-            button{
-              padding: 0 5px;
-              &.button-ios{
-                padding: 0 10px;
-              }
-            }
             p{
               color: color($colors, secondary);
               font-size: 13px;
@@ -186,7 +182,7 @@ page-post {
               border: none !important;
             }
             &[col-5]::before{
-              left: 0;
+              left: 4px;
             }
           }
         }
@@ -210,12 +206,12 @@ page-post {
             }
             .item-inner{
               background: white;
-              border: 1px solid darken(color($colors, ligth-gray), 18%) !important;
+              border: 1px solid darken(color($colors, ligth-gray), 13%) !important;
               border-radius: 2px;
               padding: 0 10px;
               ion-label{
                 h2{
-                  font-size: 1.3rem;
+                  font-size: 1.32rem;
                   font-weight: bold;
                   line-height: 1.5em;
                   color: color($colors, primary);
@@ -225,11 +221,11 @@ page-post {
                     font-size: 10px;
                     top: 1px;
                     position: absolute;
-                    right: 5px;
+                    right: 7px;
                   }
                 }
                 p{
-                  font-size: 1.3rem;
+                  font-size: 1.32rem;
                   user-select: text !important;
                 }
               }

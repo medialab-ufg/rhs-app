@@ -17,12 +17,12 @@ page-comment {
         }
         .item-inner{
           background: white;
-          border: 1px solid darken(color($colors, ligth-gray), 18%) !important;
+          border: 1px solid darken(color($colors, ligth-gray), 13%) !important;
           border-radius: 2px;
           padding: 0 10px;
           ion-label{
             h2{
-              font-size: 1.3rem;
+              font-size: 1.45rem;
               font-weight: bold;
               line-height: 1.5em;
               color: color($colors, primary);
@@ -36,7 +36,8 @@ page-comment {
               }
             }
             p{
-              font-size: 1.3rem;
+              font-size: 1.45rem;
+              line-height: 1.4em;
             }
           }
           button[icon-only]{

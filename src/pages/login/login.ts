@@ -36,9 +36,16 @@ export class LoginPage {
           const browser = this.inAppBrowser.create(this.settings.apiURL + '/oauth1/authorize?oauth_token=' + temporaryCredentials.oauthToken + '&oauth_token_secret=' + temporaryCredentials.oauthTokenSecret + '&device=mobile-app', '_blank', { zoom: 'no', location: 'no', toolbarposition: 'top' });
           
           browser.on("loadstop").subscribe((event)=>{
-              let url = new URL(event.url);
-              let oauth_verifier = url.searchParams.get('oauth_verifier');
-              let oauth_token = url.searchParams.get('oauth_token'); 
+              
+              // The 3 lines above only work for Android 4.4.4 above
+              //let url = new URL(event.url);
+              //let oauth_verifier = url.searchParams.get('oauth_verifier');
+              //let oauth_token = url.searchParams.get('oauth_token'); 
+
+              // So we use a custom function
+              let url = event.url;
+              let oauth_verifier = this.getParameterByName('oauth_verifier', url);
+              let oauth_token = this.getParameterByName('oauth_token', url);
 
               if (oauth_verifier !== null && oauth_verifier !== undefined) {
 
@@ -108,6 +115,21 @@ export class LoginPage {
       }
     });
      
+  }
+
+  getParameterByName(name, url) {
+
+    url = decodeURIComponent(url);
+    name = name.replace(/[\[\]]/g, "\\$&");
+
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+
+    if (!results) return null;
+
+    if (!results[2]) return '';
+
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
   }
 
 }

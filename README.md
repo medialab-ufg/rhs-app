@@ -4,6 +4,14 @@ Aplicativo Android e iOS para a *Rede Humaniza SUS* (RHS).
 Está sendo desenvolvido em Ionic e integra dados através da WP-API do Wordpress.
 
 ---------------------------------------
+## Configurações via docker:
+A configuração do ambiente em sua máquina pode ser trabalhosa. Caso deseje utilizar o docker, temos esta uma imagem preparada com um script para ajustes de permissões de usuário:
+
+[https://github.com/mateuswetah/docker-ionic](https://github.com/mateuswetah/docker-ionic)
+
+_Obs.: A imagem funciona apenas para Android._
+
+---------------------------------------
 ## Configurações do ambiente para o projeto:
 
 **É preciso ter *node*, *npm*, *ionic* e *cordova* instalados para a execução do projeto.**
@@ -30,7 +38,7 @@ $ sudo npm install -g ionic cordova
 
 Dependendo das configurações npm do seu sistema (em geral Mac e Linux) será necessário o *sudo* para o npm ter as permissões de instalação.
 
-Mais informações sobre a instalação podem ser obtidas na [página da Ionic](https://ionicframework.com/docs/intro/installation/). A versão utilizada neste projeto é a **3.8.1**. Para verificar a versão atual, basta rodar:
+Mais informações sobre a instalação podem ser obtidas na [página da Ionic](https://ionicframework.com/docs/intro/installation/). A versão utilizada neste projeto é a **3.13.0**. Para verificar a versão atual, basta rodar:
 
 ```
 $ ionic --version

@@ -181,6 +181,7 @@ export class PostsPage {
             } 
             //  Infinite scroll calls
             else if (isLoadingMore === true) {
+              this.showSpinnerOnQueue = false;
               this.queuePostQueries['page'] = Number(this.queuePostQueries['page']) + 1 + '';
             } 
             //  Switching segment controller calls
@@ -233,6 +234,7 @@ export class PostsPage {
             } 
             //  Infinite scroll calls
             else if (isLoadingMore === true) {
+              this.showSpinnerOnFollowing = false;
               this.followingPostQueries['page'] = Number(this.followingPostQueries['page']) + 1 + '';
             } 
             //  Switching segment controller calls

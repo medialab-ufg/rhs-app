@@ -13,9 +13,10 @@ post-card {
 		}
 		ion-card-header{
 				color: color($colors, secondary) !important;
-				font-weight: 500;
+				font-weight: bold;
 				font-size: 1.8rem;
 				white-space: normal;
+				padding: 12px 16px 8px 16px !important;
 		}	
 		ion-card-content {
   		p {
@@ -26,7 +27,10 @@ post-card {
 			}
 		}
 		ion-item{
-			border-top: 2px solid color($colors, primary) !important;
+			
+			border-bottom: 2px solid color($colors, primary) !important;
+			background-color: #fafafa !important;
+
 			ion-avatar{
 				margin: 8px 10px 8px 0px !important;
 			}

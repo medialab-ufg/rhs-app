@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, IonicPage, Content } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, Content, Platform } from 'ionic-angular';
 
 import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { ApiProvider } from './../../providers/api/api';
@@ -45,7 +45,8 @@ export class PostsPage {
               public navParams: NavParams,
               public api: ApiProvider,
               public authentication: AuthenticationProvider,
-              public update: UpdateProvider) {
+              public update: UpdateProvider,
+              public platform: Platform) {
 
     this.isUserLogged = this.api.isLogged();
     this.authentication.userLogged.subscribe(value => {

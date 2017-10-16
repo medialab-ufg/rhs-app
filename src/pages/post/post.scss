@@ -18,17 +18,37 @@ page-post {
     &.content{
 
       // Adds a margin when screen is to large or landscape mode.
-      @media (min-width: 576px) {
-        h1, article {
+      @media (min-width: 576px) and (orientation: landscape) {
+        h1, article, .author-above-title {
+          margin-left: 12%;
+          margin-right: 12%;
+        }
+      }
+      @media (min-width: 576px) and (orientation: portrait) {
+        h1, article, .author-above-title {
+          margin-left: 6%;
+          margin-right: 6%;
+        }
+      }
+      @media (min-width: 768px) {
+        h1, article, .author-above-title {
           margin-left: 22%;
           margin-right: 22%;
         }
       }
 
       h1{
-        font-weight: 300;
+        font-weight: bold;
         color: color($colors, secondary);
         text-transform: capitalize;
+      }
+      .author-above-title {
+        padding: 0px 16px;
+        color: gray;
+        span { 
+          font-weight: bold; 
+          color: color($colors, primary);
+        }
       }
       
       article{     
@@ -227,6 +247,10 @@ page-post {
                 p{
                   font-size: 1.32rem;
                   user-select: text !important;
+                }
+                @media (min-width: 576px) {
+                  h2{ font-size: 1.4rem; span { font-size: 12px; } }
+                  p { font-size: 1.4rem }
                 }
               }
               button[icon-only]{

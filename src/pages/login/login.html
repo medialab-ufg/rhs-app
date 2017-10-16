@@ -7,10 +7,12 @@
 <ion-content fullscreen padding>
   <img alt="RHS"  src="./assets/logo-rhs.svg"/>
   <h3 text-center>Para entrar no app, você será redirecionado para sua página de Login na RHS.</h3>
-  <h5 text-center>Caso ainda não seja um usuário da RHS, é preciso fazer seu cadastro externamente, para depois logar no app.</h5>
+  <h5 *ngIf="!isRegistered" text-center>Caso ainda não seja um usuário da RHS, é preciso fazer seu cadastro externamente, para depois logar no app.</h5>
+  <h5 *ngIf="isRegistered" text-center>Você fez seu registro, agora já pode entrar na rede.</h5>
+
   <ion-buttons position>
     <!--<a ion-button clear color="primary" href="{{ settings.apiURL + 'registrar' }}">Me cadastrar</a>--> 
-    <button ion-button clear color="primary" (click)="register()">Me cadastrar</button>  
+    <button *ngIf="!isRegistered" ion-button clear color="primary" (click)="register()">Me cadastrar</button>  
     <button ion-button round color="primary" (click)="login()">Fazer Login</button>  
   </ion-buttons> 
 </ion-content>

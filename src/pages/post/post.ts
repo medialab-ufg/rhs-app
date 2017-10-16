@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, ActionSheetController, AlertController, IonicPage, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ActionSheetController, AlertController, IonicPage, ToastController, Platform } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { SettingsProvider } from './../../providers/settings/settings';
@@ -54,7 +54,8 @@ export class PostPage {
               public alertCtrl: AlertController,
               public toastCtrl: ToastController,
               public socialSharing: SocialSharing,
-              public settings: SettingsProvider) {
+              public settings: SettingsProvider,
+              public platform: Platform) {
 
     this.postId = this.navParams.get('postId');
     this.loadPost();

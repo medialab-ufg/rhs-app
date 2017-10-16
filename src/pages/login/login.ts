@@ -14,6 +14,8 @@ import { ApiProvider } from './../../providers/api/api';
 })
 export class LoginPage {
 
+  isRegistered: boolean = false;
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public authentication: AuthenticationProvider,
@@ -37,7 +39,7 @@ export class LoginPage {
           
           browser.on("loadstop").subscribe((event)=>{
               
-              // The 3 lines above only work for Android 4.4.4 above
+              // The 3 lines above only work for Android 4.4.4 above...
               //let url = new URL(event.url);
               //let oauth_verifier = url.searchParams.get('oauth_verifier');
               //let oauth_token = url.searchParams.get('oauth_token'); 
@@ -106,12 +108,12 @@ export class LoginPage {
 
     const browser = this.inAppBrowser.create(this.settings.apiURL + '/registrar?device=mobile-app', '_blank', { zoom: 'no', location: 'no', toolbarposition: 'top' });
     browser.on("loadstop").subscribe((event)=>{
-      let url = new URL(event.url);
-      console.log(event);
-      console.log(url);
+      let url = event.url;
+
       // If User enters the website, go back to the App.
-      if (url.pathname == '/') {
+      if (url == this.settings.apiURL || url == this.settings.apiURL.slice(0,-1)) {
         browser.close();
+        this.isRegistered = true;
       }
     });
      

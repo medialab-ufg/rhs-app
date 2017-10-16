@@ -1,7 +1,10 @@
 <ion-header id="shrinkHeader">
 
   <ion-navbar color="secondary">
-    <ion-title><img alt="RHS" height="36" src="./assets/logo-rhs.svg"/></ion-title>
+    <ion-title>
+      <img *ngIf="platform.is('tablet') || platform.is('ipad')" alt="RHS" height="36" src="./assets/logo-rhs-full.svg"/>
+      <img *ngIf="!platform.is('tablet') && !platform.is('ipad')" alt="RHS" height="36" src="./assets/logo-rhs.svg"/>      
+    </ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="openShareActionSheet()">
         <ion-icon name="share"></ion-icon>
@@ -17,6 +20,12 @@
 
     <!-- POST TITLE -->
     <h1 padding-horizontal [innerHTML]="post['title']['rendered']"></h1>
+
+    <!-- POST AUTHOR NAME -->
+    <div *ngIf="isLoadingAuthor"><ion-spinner class="center-spinner-relative"></ion-spinner></div>
+    <div class="author-above-title" text-right *ngIf="!isLoadingAuthor" (click)="goToAuthorPage(author['id'])">
+        por <span >{{ author['name'] }}</span>
+    </div>
 
     <!-- POST CONTENT -->
     <article [ngStyle]="{ 'font-size': settings.postContentFontSizeOptions[settings.currentFontSize] }" [innerHTML]="post['content']['rendered'] | innerHtmlPost"></article>

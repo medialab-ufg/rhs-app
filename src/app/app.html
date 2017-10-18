@@ -2,13 +2,13 @@
 
   <ion-header class="user-info">
     <ion-toolbar *ngIf="!showUserInfo" color="secondary">
-      <h3>Você não está logado</h3>
+      <h4>Você não está logado</h4>
       <button menuClose ion-button color="primary" (click)="goToLoginPage()">ENTRAR NA RHS</button>
     </ion-toolbar>
     <ion-toolbar *ngIf="showUserInfo" color="secondary">
       <div class="user-info">
         <img [src]="user['avatar_urls'][96]"> 
-        <h2>{{ user['name'] }}</h2>
+        <h3>{{ user['name'] }}</h3>
         <ion-grid>
           <ion-row nowrap>
             <ion-col>

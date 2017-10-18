@@ -42,7 +42,7 @@
     <ion-list-header>
       Notificações
       <ion-note item-end *ngIf="!isUserLogged">somente para usuários da RHS.</ion-note>
-      <ion-note item-end *ngIf="isUserLogged">receber para os seguintes casos.</ion-note>
+      <ion-note item-end *ngIf="isUserLogged">receber para os seguintes casos:</ion-note>
     </ion-list-header>
     <div *ngIf="isUserLogged">
       <ion-item *ngFor="let notificationType of notificationTypes">

@@ -38,7 +38,7 @@ $ sudo npm install -g ionic cordova
 
 Dependendo das configurações npm do seu sistema (em geral Mac e Linux) será necessário o *sudo* para o npm ter as permissões de instalação.
 
-Mais informações sobre a instalação podem ser obtidas na [página da Ionic](https://ionicframework.com/docs/intro/installation/). A versão utilizada neste projeto é a **3.13.0**. Para verificar a versão atual, basta rodar:
+Mais informações sobre a instalação podem ser obtidas na [página da Ionic](https://ionicframework.com/docs/intro/installation/). A versão utilizada neste projeto é a **3.13.1**. Para verificar a versão atual, basta rodar:
 
 ```
 $ ionic --version

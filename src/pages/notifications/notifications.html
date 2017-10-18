@@ -15,18 +15,19 @@
 
   <div *ngIf="isUserLogged">
 
-    <ion-refresher pullMin="100" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content
-      pullingText="Puxe e solte para atualizar."
-      refreshingText="Carregando dados...">
-    </ion-refresher-content>
+    <ion-refresher pullMin="100" 
+                    (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content
+        pullingText="Puxe e solte para atualizar."
+        refreshingText="Carregando dados...">
+      </ion-refresher-content>
     </ion-refresher>
 
     <div *ngIf="!showSpinner && notifications.length == 0">
       <information [message]="'Nenhuma notificação.'"></information>
     </div>
 
-    <div *ngIf="showSpinner"><ion-spinner class="center-spinner"></ion-spinner></div>
+    <div *ngIf="showSpinner && !isLoadingMore && !loadingFromRefresher"><ion-spinner class="center-spinner"></ion-spinner></div>
     <div *ngIf="!showSpinner && notifications.length > 0">
       <div *ngFor="let notification of notifications; let i = index">
       <ion-item *ngIf="notification['type'] == 'comments_in_post' || notification['type'] == 'user_follow_author'" (click)="goToNotificationContent(i)">

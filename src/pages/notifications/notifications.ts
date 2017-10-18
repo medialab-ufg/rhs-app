@@ -19,6 +19,7 @@ export class NotificationsPage {
   noMoreResults: boolean = false;
   isLoadingMore: boolean = false;
   showSpinner: boolean = false;
+  loadingFromRefresher: boolean = false;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -79,7 +80,7 @@ export class NotificationsPage {
             }
             console.log('Error ' + err +  ' - On Notifications Data Request.');
           },
-          () => { this.showSpinner = false; resolve() });
+          () => { this.showSpinner = false; this.loadingFromRefresher = false; resolve() });
         
     });
   }
@@ -99,7 +100,7 @@ export class NotificationsPage {
   }
 
   doRefresh(refresher) {
-    this.showSpinner = false;
+    this.loadingFromRefresher = true;
     this.loadNotifications(false).then(() => refresher.complete());
   }
 

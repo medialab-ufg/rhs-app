@@ -43,7 +43,7 @@
 
     <div *ngSwitchCase="'people'">-->
       <information *ngIf="!isUserLogged" [message]="'Você não está logado na RHS'" [detail]="'Use o Menu lateral para entrar na Rede.'"></information>
-      <div *ngIf="showSpinner"><ion-spinner class="center-spinner"></ion-spinner></div>
+      <div *ngIf="showSpinner && !loadingFromRefresher"><ion-spinner class="center-spinner"></ion-spinner></div>
       <ion-list *ngIf="isUserLogged && followingView == 'people'">
         <div *ngIf="userList.length == 0 && !showSpinner">
           <information [message]="'Você ainda não está seguindo nenhum usuário.'"></information>

@@ -21,6 +21,7 @@ export class FollowingPage {
 
   showSpinner = false;
   isUserLogged: boolean = false;
+  loadingFromRefresher: boolean = false;
 
   noMoreResultsOnPosts: boolean = false;
   noMoreResultsOnPeople: boolean = false;
@@ -100,7 +101,7 @@ export class FollowingPage {
           }
           console.log('Error ' + err +  ' - On User Data Request.');
         },
-        () => { this.showSpinner = false; resolve() });
+        () => { this.showSpinner = false; this.loadingFromRefresher = false; resolve() });
       } else {
         this.showSpinner = false;
         this.authentication.userLogged.subscribe(value => {
@@ -114,7 +115,7 @@ export class FollowingPage {
   }
 
   doRefresh(refresher) {
-    this.showSpinner = false;
+    this.loadingFromRefresher = true;
     this.loadUsers(false).then(() => refresher.complete());
   }
 

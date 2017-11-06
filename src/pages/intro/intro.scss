@@ -6,4 +6,76 @@ page-intro {
     right: 0px;
     margin: 10px;
   }
+
+  ion-slides {
+    background: radial-gradient(white, #d0f3f6);
+
+    #last-slide {
+      padding: 70px 20px 30px 20px !important;
+      h1 { 
+        margin-bottom: 25px !important;
+      }
+      @media screen and (orientation:landscape) {
+        padding: 20px !important;
+        h1 { 
+          margin-bottom: 0px !important;
+        }
+        .image-section {
+          padding: 5px;
+        }
+      } 
+    }
+
+    ion-slide {
+      padding: 30px 20px 70px 20px;
+      background: transparent !important;
+      color: color($colors, secondary);
+
+      @media screen and (orientation:landscape) {
+        padding: 10px 30px;
+      }       
+
+      h1 { 
+        font-size: 1.85em;
+        font-weight: bold;  
+        padding-bottom: 0px !important; 
+        margin-bottom: 0px !important;
+      }
+      p{
+        margin-top: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+      .image-section {
+        padding: 30px 25px;
+        
+        img { width: 100% }
+
+        @media screen and (orientation:landscape) {
+          img { width: 30% }
+        } 
+      }
+
+      ion-buttons {
+
+        padding-top: 20px;
+        padding-bottom: 50px;
+
+        @media screen and (orientation:landscape) {
+          padding-top: inherit;
+        } 
+      }
+      
+    }
+    .swiper-pagination-bullet
+    {
+      background-color: color($colors, primary) !important;
+      opacity: 0.3 !important;
+    }
+    .swiper-pagination-bullet-active 
+    {
+      opacity: 1.0 !important;
+    }
+  }
+
 }

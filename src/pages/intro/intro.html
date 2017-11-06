@@ -9,20 +9,25 @@
   <ion-slides pager>
 
     <ion-slide>   
-      <button id="skip-button" ion-button clear (click)="goToLastSlide()">Pular</button>
-      <h2>Seja bem vindo ao App da Rede Humaniza SUS!</h2>
+      <button id="skip-button" ion-button clear (click)="goToLastSlide()">Pular</button>   
+      <div class="image-section"><img alt="Slide 2" src="./assets/images/slide1.png"/></div>
+      <h1>Seja bem vindo</h1> 
+      <p>ao App da Rede Humaniza SUS.</p>
     </ion-slide>
 
     <ion-slide>
-      <h2>Aqui você pode ler, comentar, compartilhar e votar nos posts da Rede.</h2>
+      <div class="image-section"><img alt="Slide 2" src="./assets/images/slide2.png"/></div>   
+      <p>Aqui você pode ler, comentar, compartilhar e votar nos posts da Rede.</p>
     </ion-slide>
 
     <ion-slide>
-      <h2>Não perca nenhuma novidade com autores de posts que você segue!</h2>
+      <div class="image-section"><img alt="Slide 3" src="./assets/images/slide3.png"/></div>
+      <p>Receba notificações de novidades de usuários e posts que você acompanha.</p>
     </ion-slide>
 
-    <ion-slide>
-      <h2>Vamos começar?</h2>
+    <ion-slide id="last-slide">
+      <div class="image-section"><img alt="Slide 4" src="./assets/images/slide4.png"/></div>
+      <h1>Vamos começar?</h1>
       <ion-buttons position>
         <button ion-button clear color="primary" (click)="goToPostsPage()">Entrar sem login</button>  
         <button ion-button round color="primary" (click)="goToLoginPage()">Fazer Login</button>  

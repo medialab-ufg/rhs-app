@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
 import { Network } from '@ionic-native/network';
 import { OneSignal } from '@ionic-native/onesignal';
+//import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 import { AuthenticationProvider } from './../providers/authentication/authentication';
 import { ApiProvider } from './../providers/api/api';
@@ -150,7 +151,10 @@ export class MyApp {
       });
 
       if (this.platform.is('cordova') || this.platform.is('ios') || this.platform.is('tablet') || this.platform.is('phablet') || this.platform.is('ipad')  || this.platform.is('iphone') || this.platform.is('android')) {
+        
+        // Register notification service
         this.setPushNotificationService();
+
       }
 
     });

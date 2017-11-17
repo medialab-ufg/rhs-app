@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, IonicPage } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { OneSignal } from '@ionic-native/onesignal';
+//import { GoogleAnalytics } from '@ionic-native/google-analytics';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 import { SettingsProvider } from './../../providers/settings/settings';
 import { AuthenticationProvider } from './../../providers/authentication/authentication';
@@ -27,13 +29,51 @@ export class SettingsPage {
               public settings: SettingsProvider,
               public authentication: AuthenticationProvider,
               public api: ApiProvider,
-              public oneSignal: OneSignal) {
+              public oneSignal: OneSignal,
+              public analytics: FirebaseAnalytics) {
 
     this.authentication.userLogged.subscribe(value => {
       this.isUserLogged = value;
       this.loadDesiredNotificationsList();
     });
 
+  }
+  ionViewDidEnter(){/*
+           //Register analytics service
+           this.analytics.startTrackerWithId(this.settings.googleAnalyticsTrackerId)
+           .then((_result) => {
+             console.log('Google analytics is ready now: ' + _result);
+
+            this.analytics.enableUncaughtExceptionReporting(true)
+            .then((_success) => {
+              console.log("GoogleAnalytics success: " + _success);
+
+              this.analytics.setAppVersion('v1.0.1').then(() => {
+                console.log('App version set with success.');
+              })
+              .catch(e => console.log('Error setting app version.', e));
+ 
+             // Informs analytics that user is here
+             this.analytics.trackView('Settings Page from GA').then(() => {
+               console.log('Settings page accesed and tracked.');
+             })
+             .catch(e => console.log('Error tracking settings page', e));
+ 
+
+            }).catch((_error) => {
+              console.log("GoogleAnalytics error: " + _error);
+            });
+
+            this.analytics.debugMode();
+
+           })
+           .catch(e => console.log('Error starting GoogleAnalytics', e));
+           */
+          this.analytics.setEnabled(true);
+
+          this.analytics.setCurrentScreen("Settings from setCurrentScreen")
+          .then((res: any) => console.log(res))
+          .catch((error: any) => console.error(error));
   }
 
   ionViewDidLoad() {

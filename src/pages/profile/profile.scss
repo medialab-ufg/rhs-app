@@ -10,6 +10,10 @@ page-profile {
       border-radius: 50%;
       border: 0.2px solid color($colors, primary);
       box-shadow: 0px 1px 12px -1px #1f1f1f;
+      width: 98px;
+      height: 98px;
+      object-fit: cover;
+      object-position: top;
     }
 
   }

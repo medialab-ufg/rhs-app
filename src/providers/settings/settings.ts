@@ -37,4 +37,7 @@ export class SettingsProvider {
   public pushDeviceId: string = ''; // to be loaded from registration step during app initialization
   public desiredNotifications = {};
 
+  //Google Analytics settings
+  public googleAnalyticsTrackerId: string = 'UA-4336151-2';
+
 }

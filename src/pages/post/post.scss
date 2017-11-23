@@ -64,12 +64,10 @@ page-post {
           user-select: text !important;
         }
         img{
-          width: 100% !important;
           height: auto !important;
         }
         iframe {
           position: relative !important;
-          width: 100%;
           height: auto;
           min-height: 250px;
         }
@@ -81,9 +79,13 @@ page-post {
           max-width: calc(100% + 32px) !important;
 
         }
-        blockquote {
+        div {
+          width: inherit !important;
+          display: inherit !important;
+        }
+        blockquote, .wp-caption-text {
           font-style: italic;
-          color: #555;
+          color: #555 !important;
         }
         table {
           width: 100% !important;
@@ -220,7 +222,11 @@ page-post {
             align-items: normal;
             ion-avatar{
               margin: 12px 12px 0px 0px;
-              img { border: 2px solid color($colors, primary) }
+              img { 
+                border: 2px solid color($colors, primary); 
+                object-fit: cover;
+                object-position: top; 
+              }
             }
             ion-avatar.avatar-author{
               img { border: 2px solid color($colors, secondary) }

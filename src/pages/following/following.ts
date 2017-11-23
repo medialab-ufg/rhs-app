@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage, AlertController, ToastController } from 'ionic-angular';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { ApiProvider } from './../../providers/api/api';
@@ -31,7 +32,8 @@ export class FollowingPage {
               public api: ApiProvider,
               public authentication: AuthenticationProvider,
               public alertCtrl: AlertController,
-              public toastCtrl: ToastController) {
+              public toastCtrl: ToastController,
+              public analytics: FirebaseAnalytics) {
 
       this.isUserLogged = this.api.isLogged();
       this.authentication.userLogged.subscribe(value => {
@@ -58,6 +60,13 @@ export class FollowingPage {
         this.loadUsers(false);
       }
     }
+  }
+
+  ionViewDidEnter() {
+    // Tells analytics that user accessed this screen.
+    this.analytics.setCurrentScreen("Following")
+    .then((res: any) => console.log(res))
+    .catch((error: any) => console.error(error));
   }
 
   loadPosts(isLoadingMore: boolean) {}

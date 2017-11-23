@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { StatusBar } from '@ionic-native/status-bar';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 import { ApiProvider } from './../../providers/api/api';
 
@@ -32,7 +33,8 @@ export class SearchPage {
               public navParams: NavParams,
               public api: ApiProvider,
               public platform: Platform,
-              public statusBar: StatusBar) {
+              public statusBar: StatusBar,
+              public analytics: FirebaseAnalytics) {
       
     this.searchControl = new FormControl();
     
@@ -61,6 +63,11 @@ export class SearchPage {
   ionViewDidEnter(){
     this.statusBar.backgroundColorByHexString('008884');
     this.searchBar.setFocus();
+
+    // Tells analytics that user accessed this screen.
+    this.analytics.setCurrentScreen("Posts ")
+    .then((res: any) => console.log(res))
+    .catch((error: any) => console.error(error));
   }
 
   ionViewDidLeave(){

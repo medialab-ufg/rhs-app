@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, IonicPage } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { OneSignal } from '@ionic-native/onesignal';
-//import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 import { SettingsProvider } from './../../providers/settings/settings';
@@ -38,42 +37,12 @@ export class SettingsPage {
     });
 
   }
-  ionViewDidEnter(){/*
-           //Register analytics service
-           this.analytics.startTrackerWithId(this.settings.googleAnalyticsTrackerId)
-           .then((_result) => {
-             console.log('Google analytics is ready now: ' + _result);
-
-            this.analytics.enableUncaughtExceptionReporting(true)
-            .then((_success) => {
-              console.log("GoogleAnalytics success: " + _success);
-
-              this.analytics.setAppVersion('v1.0.1').then(() => {
-                console.log('App version set with success.');
-              })
-              .catch(e => console.log('Error setting app version.', e));
- 
-             // Informs analytics that user is here
-             this.analytics.trackView('Settings Page from GA').then(() => {
-               console.log('Settings page accesed and tracked.');
-             })
-             .catch(e => console.log('Error tracking settings page', e));
- 
-
-            }).catch((_error) => {
-              console.log("GoogleAnalytics error: " + _error);
-            });
-
-            this.analytics.debugMode();
-
-           })
-           .catch(e => console.log('Error starting GoogleAnalytics', e));
-           */
-          this.analytics.setEnabled(true);
-
-          this.analytics.setCurrentScreen("Settings from setCurrentScreen")
-          .then((res: any) => console.log(res))
-          .catch((error: any) => console.error(error));
+  
+  ionViewDidEnter(){
+    // Tells analytics that user accessed this screen.
+    this.analytics.setCurrentScreen("Settings")
+    .then((res: any) => console.log(res))
+    .catch((error: any) => console.error(error));
   }
 
   ionViewDidLoad() {
@@ -194,9 +163,21 @@ export class SettingsPage {
   toggleDesiredNotification(desiredNotification) {
 
     if (this.settings.desiredNotifications[desiredNotification.key]['valueBool'] === true) {
+
       this.oneSignal.sendTag(desiredNotification.value['onesginal_tag'], '1');
+      
+      this.analytics.logEvent('notification_enabled', {notification_type: this.settings.desiredNotifications[desiredNotification.key]['onesginal_tag']})
+      .then((res: any) => console.log(res))
+      .catch((error: any) => console.error(error));
+
     } else {
+
       this.oneSignal.sendTag(desiredNotification.value['onesginal_tag'], '0');
+
+      this.analytics.logEvent('notification_disabled', {notification_type: this.settings.desiredNotifications[desiredNotification.key]['onesginal_tag']})
+      .then((res: any) => console.log(res))
+      .catch((error: any) => console.error(error));
+
     }
 
     this.storage.set('desired_notifications', this.settings.desiredNotifications);
@@ -224,6 +205,11 @@ export class SettingsPage {
   changePostFontSize() {
     this.settings.currentFontSize = this.rangeToFontSize(this.articleFontSizeRange);
     this.storage.set('article_font_size', this.settings.currentFontSize);
+
+    this.analytics.logEvent('font_size_change', {new_font_size: this.settings.currentFontSize})
+    .then((res: any) => console.log(res))
+    .catch((error: any) => console.error(error));
+  
   }
 
   rangeToFontSize(range: number) {

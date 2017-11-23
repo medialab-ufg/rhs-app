@@ -1,8 +1,10 @@
 import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 import { ApiProvider } from './../../providers/api/api';
+
 
 @IonicPage()
 @Component({
@@ -24,7 +26,8 @@ export class NotificationsPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public api: ApiProvider,
-              public authentication: AuthenticationProvider) {
+              public authentication: AuthenticationProvider,
+              public analytics: FirebaseAnalytics) {
 
     this.notifications = new Array<any>();
     this.authentication.userLogged.subscribe(value => {
@@ -47,6 +50,13 @@ export class NotificationsPage {
       response => console.log('Notifications marked as read for user ' + response),
       err => console.log('Error ' + err +  ' - On Notifications Data Request.')
     );
+  }
+
+  ionViewDidEnter() {
+    // Tells analytics that user accessed this screen.
+    this.analytics.setCurrentScreen("Notifications")
+    .then((res: any) => console.log(res))
+    .catch((error: any) => console.error(error));
   }
 
   loadNotifications(isLoadingMore: boolean): Promise<any> {

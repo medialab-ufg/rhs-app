@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, IonicPage, Content, Platform } from 'ionic-angular';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { ApiProvider } from './../../providers/api/api';
@@ -46,7 +47,8 @@ export class PostsPage {
               public api: ApiProvider,
               public authentication: AuthenticationProvider,
               public update: UpdateProvider,
-              public platform: Platform) {
+              public platform: Platform,
+              public analytics: FirebaseAnalytics) {
 
     this.isUserLogged = this.api.isLogged();
     this.authentication.userLogged.subscribe(value => {
@@ -87,6 +89,11 @@ export class PostsPage {
 
   ionViewWillEnter(){
     this.getUnreadNotifications();
+
+    // Tells analytics that user accessed this screen.
+    this.analytics.setCurrentScreen("Posts ")
+    .then((res: any) => console.log(res))
+    .catch((error: any) => console.error(error));
   }
 
   getUnreadNotifications() {

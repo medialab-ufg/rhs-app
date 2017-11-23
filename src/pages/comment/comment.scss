@@ -10,7 +10,11 @@ page-comment {
         align-items: normal;
         ion-avatar{
           margin: 12px 12px 0px 0px;
-          img { border: 2px solid color($colors, primary) }
+          img { 
+            border: 2px solid color($colors, primary);
+            object-fit: cover;
+            object-position: top; 
+          }
         }
         ion-avatar.avatar-author{
           img { border: 2px solid color($colors, secondary) }

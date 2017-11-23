@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Storage } from '@ionic/storage';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { SettingsProvider } from './../../providers/settings/settings';
@@ -22,10 +23,15 @@ export class LoginPage {
               public storage: Storage,
               public inAppBrowser: InAppBrowser,
               public settings: SettingsProvider,
-              public api: ApiProvider) {
+              public api: ApiProvider,
+              public analytics: FirebaseAnalytics) {
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
+    // Tells analytics that user accessed this screen.
+    this.analytics.setCurrentScreen("Login")
+    .then((res: any) => console.log(res))
+    .catch((error: any) => console.error(error));
   }
 
   login() {
@@ -68,7 +74,7 @@ export class LoginPage {
 
                       // Informs the subscribed components (as the sidemenu) that use has logged.
                       this.authentication.userLogged.emit(true);
-                      console.log("DEVICE ID = " + this.settings.pushDeviceId);
+                      
                       // Sends the push notification ID to server
                       if (this.settings.pushDeviceId !== '') {
                         this.api.sendPushDeviceID(this.settings.pushDeviceId).subscribe(

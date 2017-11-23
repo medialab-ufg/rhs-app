@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, ActionSheetController, AlertController, IonicPage, ToastController, Platform } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 import { SettingsProvider } from './../../providers/settings/settings';
 import { ApiProvider } from './../../providers/api/api';
@@ -55,7 +56,8 @@ export class PostPage {
               public toastCtrl: ToastController,
               public socialSharing: SocialSharing,
               public settings: SettingsProvider,
-              public platform: Platform) {
+              public platform: Platform,
+              public analytics: FirebaseAnalytics) {
 
     this.postId = this.navParams.get('postId');
     this.loadPost();
@@ -71,6 +73,13 @@ export class PostPage {
 
   ionViewWillLeave() {
     this.returnFromPostFunction(this.postDidUpdated ? {id: this.postId, commentCount: this.commentCount, totalVotes: this.totalVotes } : null).then(()=>{});
+  }
+
+  ionViewDidEnter() {
+    // Tells analytics that user accessed this screen.
+    this.analytics.setCurrentScreen("Post: " + this.postId)
+    .then((res: any) => console.log(res))
+    .catch((error: any) => console.error(error));
   }
 
   loadPost() {

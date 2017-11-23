@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 import { ApiProvider } from './../../providers/api/api';
 
@@ -27,7 +28,8 @@ export class CommentPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public api: ApiProvider,
-              public statusBar: StatusBar) {
+              public statusBar: StatusBar,
+              public analytics: FirebaseAnalytics) {
     this.postId = this.navParams.get('postId');
     this.comment = this.navParams.get('comment');
     this.commentId = this.navParams.get('commentId'); // If null, we came from post page, instead of notification.
@@ -41,6 +43,11 @@ export class CommentPage {
     setTimeout(() => {
       this.responseInput.setFocus();
     }, 150);
+
+    // Tells analytics that user accessed this screen.
+    this.analytics.setCurrentScreen("Comments")
+    .then((res: any) => console.log(res))
+    .catch((error: any) => console.error(error));
   }
 
   ionViewWillEnter() {

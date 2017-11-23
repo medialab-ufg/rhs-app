@@ -6,7 +6,6 @@ import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Network } from '@ionic-native/network';
-//import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 import { MyApp } from './app.component';

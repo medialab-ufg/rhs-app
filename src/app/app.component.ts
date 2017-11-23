@@ -5,11 +5,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
 import { Network } from '@ionic-native/network';
 import { OneSignal } from '@ionic-native/onesignal';
-//import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 import { AuthenticationProvider } from './../providers/authentication/authentication';
 import { ApiProvider } from './../providers/api/api';
 import { SettingsProvider } from './../providers/settings/settings';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 @Component({
   templateUrl: 'app.html'
@@ -36,7 +36,8 @@ export class MyApp {
               public network: Network,
               public toastCtrl: ToastController,
               public settings: SettingsProvider,
-              public oneSignal: OneSignal) {
+              public oneSignal: OneSignal, 
+              public analytics: FirebaseAnalytics) {
 
     this.initializeApp();
 
@@ -152,9 +153,9 @@ export class MyApp {
 
       if (this.platform.is('cordova') || this.platform.is('ios') || this.platform.is('tablet') || this.platform.is('phablet') || this.platform.is('ipad')  || this.platform.is('iphone') || this.platform.is('android')) {
         
-        // Register notification service
+        // Register notification and analytics service
         this.setPushNotificationService();
-
+        this.analytics.setEnabled(true);
       }
 
     });
@@ -184,7 +185,10 @@ export class MyApp {
 
       this.user = userInfo;
       this.showUserInfo = true;
-      console.log(this.user);
+      
+      // Sets user id on Firebase Analytics using the device ID
+
+      this.analytics.setUserProperty('username', this.user['name']);
     },
     err => {
       console.log('Error ' + err +  ' - On User Data Request.');
@@ -193,21 +197,6 @@ export class MyApp {
   }
 
   setPushNotificationService() {
-     /*
-      let funcaoRetorno = (data) => {
-         console.log('Notificações: ' + JSON.stringify(data));
-      };
-
-      window["plugins"].OneSignal.startInit("2ffdc133-6deb-43a1-8179-b8300e0b0f97",
-          "185540114749")
-          .handleNotificationOpened(funcaoRetorno)
-          .endInit();
-      
-      window["plugins"].OneSignal.addSubscriptionObserver(function (state) {
-        console.log("Push Subscription state changed: " + JSON.stringify(state));
-        //this.settings.pushDeviceId = state["to"]["userId"];
-      });
-      */
     
       this.oneSignal.startInit(this.settings.oneSignalAppId, this.settings.googleFCMProjectNumber);
       
@@ -293,6 +282,9 @@ export class MyApp {
         if (value.userId !== null && value.userId  !== undefined) {
           this.settings.pushDeviceId = value.userId;
           this.storage.set('push_device_id', this.settings.pushDeviceId);
+          
+          // Sets user id on Firebase Analytics using the device ID
+          this.analytics.setUserId(this.settings.pushDeviceId);
         }
 
       }).catch( error => console.log(error) );

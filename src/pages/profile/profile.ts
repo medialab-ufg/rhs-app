@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage, AlertController } from 'ionic-angular';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 import { ApiProvider } from './../../providers/api/api';
 
@@ -27,10 +28,19 @@ export class ProfilePage {
               public navParams: NavParams,
               //public modalCtrl: ModalController,
               public alertCtrl: AlertController,
-              public api: ApiProvider) {
+              public api: ApiProvider,
+              public analytics: FirebaseAnalytics) {
     this.isUserLogged = this.api.isLogged();
     
     if (this.isUserLogged) { this.loadUser() }
+  }
+
+
+  ionViewWillEnter(){
+    // Tells analytics that user accessed this screen.
+    this.analytics.setCurrentScreen("Posts ")
+    .then((res: any) => console.log(res))
+    .catch((error: any) => console.error(error));
   }
 
   loadUser() {

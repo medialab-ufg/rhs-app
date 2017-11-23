@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage, AlertController, ToastController } from 'ionic-angular';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 import { ApiProvider } from './../../providers/api/api';
 
@@ -29,7 +30,8 @@ export class UserPage {
               public navParams: NavParams,
               public api: ApiProvider,
               public alertCtrl: AlertController,
-              public toastCtrl: ToastController) {
+              public toastCtrl: ToastController,
+              public analytics: FirebaseAnalytics) {
 
     this.userId = this.navParams.get('userId');
     this.loadUser();
@@ -42,6 +44,13 @@ export class UserPage {
         this.isFollowing = true;
       }
     }
+  }
+
+  ionViewDidEnter(){
+    // Tells analytics that user accessed this screen.
+    this.analytics.setCurrentScreen("User:" + this.userId)
+    .then((res: any) => console.log(res))
+    .catch((error: any) => console.error(error));
   }
 
   followUser() {

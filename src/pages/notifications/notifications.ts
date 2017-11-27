@@ -96,16 +96,17 @@ export class NotificationsPage {
   }
 
   goToNotificationContent(index: number){
-    switch (this.notifications[index]['type']) {
-      case 'comments_in_post':
-        this.navCtrl.push('CommentPage', {'commentId': this.notifications[index]['object_id'] });
-      break;
-      case 'new_community_post' || 'post_followed' || 'post_promoted' || 'replied_ticket':
-        this.navCtrl.push('PostPage', {'postId': this.notifications[index]['object_id'] });
-      break;
-      case 'user_follow_author':
+
+    if (this.notifications[index]['type'] == 'comments_in_post') {
+        this.navCtrl.push('CommentPage', { 'commentId': this.notifications[index]['object_id'] });
+    } else if (this.notifications[index]['type'] == 'new_community_post' || 
+               this.notifications[index]['type'] == 'post_followed' || 
+               this.notifications[index]['type'] == 'post_promoted' || 
+               this.notifications[index]['type'] == 'replied_ticket' || 
+               this.notifications[index]['type'] == 'new_post_from_user') {
+        this.navCtrl.push('PostPage', { 'postId': this.notifications[index]['object_id'] });
+    } else if(this.notifications[index]['type'] == 'user_follow_author') {
         this.navCtrl.push('UserPage', { 'userId': this.notifications[index]['user_id'] });
-      break;
     }
   }
 

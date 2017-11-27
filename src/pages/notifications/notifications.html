@@ -30,13 +30,13 @@
     <div *ngIf="showSpinner && !isLoadingMore && !loadingFromRefresher"><ion-spinner class="center-spinner"></ion-spinner></div>
     <div *ngIf="!showSpinner && notifications.length > 0">
       <div *ngFor="let notification of notifications; let i = index">
-      <ion-item *ngIf="notification['type'] == 'comments_in_post' || notification['type'] == 'user_follow_author'" (click)="goToNotificationContent(i)">
+      <ion-item *ngIf="notification['type'] == 'new_post_from_user' || notification['type'] == 'comments_in_post' || notification['type'] == 'user_follow_author'" (click)="goToNotificationContent(i)">
         <ion-avatar item-start [innerHtml]="notification['image']"> 
         </ion-avatar>
         <h2 color="secondary" text-wrap [innerHtml]="notification['text'] | innerHtmlNotification"></h2>
         <p>{{ notification['datetime'] | date: 'dd/MM/yyyy' }}</p>
       </ion-item>
-      <ion-item *ngIf="notification['type'] != 'comments_in_post' && notification['type'] != 'user_follow_author'" (click)="goToNotificationContent(i)">
+      <ion-item *ngIf="notification['type'] != 'comments_in_post' && notification['type'] != 'user_follow_author' && notification['type'] != 'new_post_from_user'" (click)="goToNotificationContent(i)">
         <ion-thumbnail item-start  [innerHtml]="notification['image']"> 
         </ion-thumbnail>
         <h2 color="secondary"  text-wrap  [innerHtml]="notification['text'] | innerHtmlNotification">></h2>

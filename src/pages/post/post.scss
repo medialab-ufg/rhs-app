@@ -306,6 +306,9 @@ page-post {
         }
       }
     }
+    .platform-mobile textarea.text-input {
+      resize: vertical;
+    }
   }
 
 }

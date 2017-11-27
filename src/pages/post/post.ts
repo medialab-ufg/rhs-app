@@ -13,7 +13,6 @@ import { ApiProvider } from './../../providers/api/api';
 })
 export class PostPage {
   @ViewChild('commentInput') commentInput;
-
   // Received from Post list
   postId: number;
 
@@ -229,6 +228,10 @@ export class PostPage {
         
         this.postDidUpdated = true;
         this.generateCommentBoxes();
+
+        this.analytics.logEvent('new_comment', {post_id: this.postId, user_id: this.api.getUserId()})
+        .then((res: any) => console.log(res))
+        .catch((error: any) => console.error(error));
     },
     err => {
       console.log('Error ' + err +  ' - On Comment Data posting.');

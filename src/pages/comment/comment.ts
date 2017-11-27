@@ -87,6 +87,10 @@ export class CommentPage {
         this.responseContent = '';
         this.response = commentResponse;
         this.didResponded = true;
+
+        this.analytics.logEvent('new_comment', {post_id: this.postId, user_id: this.api.getUserId()})
+        .then((res: any) => console.log(res))
+        .catch((error: any) => console.error(error));
     },
     err => {
       console.log('Error ' + err +  ' - On Response Data posting.');

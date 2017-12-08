@@ -1,6 +1,6 @@
 # App da Rede Humaniza SUS
 
-![Logo da RHS](https://raw.githubusercontent.com/medialab-ufg/rhs-app/master/src/assets/logo-rhs.svg?sanitize=true)
+  ![Logo da RHS](https://raw.githubusercontent.com/medialab-ufg/rhs-app/master/src/assets/logo-rhs.svg?sanitize=true)
 
 Aplicativo Android e iOS para a [Rede Humaniza SUS](http://redehumanizasus.net/) (RHS).
 Desenvolvido em Ionic, integra dados através da WP-API do Wordpress.
@@ -18,7 +18,7 @@ Desenvolvido em Ionic, integra dados através da WP-API do Wordpress.
     3. [Rodando o projeto em Android](https://github.com/medialab-ufg/rhs-app#rodando-o-aplicativo-no-android)
     4. [Deploy para a PlayStore](https://github.com/medialab-ufg/rhs-app#deploy-para-a-play-store)
     5. [Depurando remotamente no Android](https://github.com/medialab-ufg/rhs-app#depurando-remotamente-no-android)
-6. [iOS iPhone](https://github.com/medialab-ufg/rhs-app#ios-iphone)
+6. [iOS (iPhone)](https://github.com/medialab-ufg/rhs-app#ios-iphone)
     1. [Instalar xCode e Cocoapods](https://github.com/medialab-ufg/rhs-app#instalar-xcode-e-cocoapods)
     2. [Compilando o projeto para iOS](https://github.com/medialab-ufg/rhs-app#compilando-o-projeto-para-ios)
     3. [Rodando o projeto para iOS](https://github.com/medialab-ufg/rhs-app#rodando-o-aplicativo-no-ios)
@@ -149,7 +149,7 @@ $ /PATH_TO_ANDROID_SDK_/sdk/build-tools/VERSION/jarsigner -verbose -sigalg SHA1w
 ```
 Aqui será pedida a senha da assinatura da Play Store. Por fim, para otimizar o apk, utilizamos o zipalign:
 ```
-$ $ zipalign -v 4 android-release-unsigned.apk rhs-app.apk
+$ zipalign -v 4 android-release-unsigned.apk rhs-app.apk
 ```
 O comando `zipalign` vai estar na pasta _build-tools_, dentro de onde está instalado sua SDK do Android. Concluído, ele terá gerado o arquivo rhs-app.apk, que deve ser submetido na [Google Play Console](https://play.google.com/apps/publish/?hl=pt-BR&account=8887034465822485556#ManageReleasesPlace:p=com.redehumanizasus.app).
 
@@ -238,3 +238,57 @@ adb devices
 ```
 
 Isto re-iniciará o server do _adb_ e deve listar os dispositivos android plugados. Na primeira vez que executado, você deve fornecer autorização para o computador depurar através de um diálogo de confirmação que surgirá no celular. 
+
+-----------------------------------
+## Estrutura de Pastas
+
+Uma visão geral com comentários da estrutura do app é dada a seguir (algumas pastas e arquivos foram desconsideradas por terem pouco relevância):
+```
+resources/              ---> Ícones e Splash Icons, gerados pelo ionic cordova resources.
+www/                    ---> Para onde o build gerado para o web server é realizado. Não se trabalha nesta pasta.
+src/                    ---> Pasta de trabalho.
+  |app/                 ----> Componente pai do app.
+    |app.html           -----> Aqui está a estrutura do Menu Lateral e a raiz da navegação.
+    |app.module.ts      -----> Imports de módulos necessários globalmente, incluindo os plugins do cordova.
+    |app.component.ts   -----> Trata de todas as operações de inicialização, como gerar e registrar IDs, login, localstorage... 
+    |app.scss           -----> Estética do menu lateral, animações de página e alguns spinners.
+    |main.ts            -----> Entry point. Não se trabalha neste arquivo.
+  |assets/              ----> Arquivos de imagem a serem referenciados pelo app.
+  |components/          ----> Componentes reaproveitados em mais de uma página.
+    |information/       -----> Usado para gerar informações do tipo "Você não tem acesso à essa página", com a logo da RHS acima.
+    |post-card/         -----> O Card de Posts.
+  |directives/          ----> Diretivas que mudam o comportamento de componentes.
+    |shrink-header/     -----> Utilizado na página de Post para esconder o cabeçalho de acordo com o scroll.
+  |pages/               ----> Onde estão todas as páginas do aplicativo
+    |comment/           -----> Página de resposta à um Comentário.
+    |following/         -----> Página que lista Usuários que estão sendo seguidos (acessível via menu lateral).
+    |intro/             -----> Slide de Introdução do app, com as imagens criadas pela equipe de Design.
+    |login/             -----> Página com os botões de logar e registrar.
+    |notifications/     -----> Página que lista as notificações do Usuário.
+    |post/              -----> Página de um Post. Segue a descrição genérica dos componentes de uma página.
+      |post.html        ------> Arquivo onde fica a estrutura da página.
+      |post.module.ts   ------> Arquivo onde são carregados os módulos necessários e exportado o componente (lazy loading).
+      |post.scss        ------> Arquivo onde pode ser alterada a estética da página.
+      |post.ts          ------> Arquivo onde está a lógica de funcionamento do componente.
+    |posts/             -----> Página Inicial, onde estão listados os posts.
+    |profile/           -----> Página do Usuário Logado, acessível via menu lateral.
+    |search/            -----> Página de Busca.
+    |settings/          -----> Página de Configurações, acessível via menu lateral.
+    |user/              -----> Página de usuários que não sejam o atual.
+  |pipes/               ----> Filtros aplicados sob a renderização do html recebido da API.
+    |inner-html-image/  -----> Trata dos casos em que a imagem de usuário vem com a tag img ao invés de somente o src.
+    |inner-html-post/   -----> Trata de sanitizar o conteúdo do post e de ajustar imagens que estejam com caminho relativo dentro do post.
+    |inner-html-notification/> Trata de remover links do conteúdo recebido das notificações.
+  |providers/           ----> Serviços acessados por diversas páginas do App.
+    |api/               -----> Onde são feitas todas as requisições de conteúdo à API do Wordpress.
+    |authentication/    -----> Onde são feitas as operações relacionadas a autenticação Auth0.
+    |settings/          -----> Onde estão as informações de configurações do App, incluindo IDs, Tokens, URLs da API, preferêcias...
+    |update/            -----> Onde é gerenciado o reload automático de posts após 5 minutos sem atividade na página de Posts.
+  |theme/               ----> Onde estão (e onde podem ser sobrescritas) variáveis globais do CSS.
+  |index.html           ----> Referência de arquivo raiz que será copiado para a www no build. Não se trabalha aqui.
+config.xml              ---> Configurações do Cordova para exibir o app em uma webview. metadados com App, como a versão e o nome.
+package.json            ---> Configurações de dependências e build do App. Plugins adicionados são listados aqui.
+```
+
+
+

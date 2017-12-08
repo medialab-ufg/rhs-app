@@ -3,16 +3,38 @@
 Aplicativo Android e iOS para a [Rede Humaniza SUS](http://redehumanizasus.net/) (RHS).
 Desenvolvido em Ionic, integra dados através da WP-API do Wordpress.
 
+![Logo da RHS](https://raw.githubusercontent.com/medialab-ufg/rhs-app/master/src/assets/logo-rhs-full.svg?sanitize=true)
+
+-----------------------------------
+
+## Como contribuir com este App:
+
+1. [Configurações via Docker](https://github.com/medialab-ufg/rhs-app#configura%C3%A7%C3%B5es-via-docker)
+2. [Configurações em máquina local](https://github.com/medialab-ufg/rhs-app#configura%C3%A7%C3%B5es-do-ambiente-para-o-projeto)
+3. [Instalação](https://github.com/medialab-ufg/rhs-app#instala%C3%A7%C3%A3o)
+4. [Local Sever](https://github.com/medialab-ufg/rhs-app#executando-em-local-server)
+5. [Android](https://github.com/medialab-ufg/rhs-app#android)
+..* [Instalar Java JDK, Android Studio e dependências](https://github.com/medialab-ufg/rhs-app#instalar-java-jdk-android-studio-para-utilizar-a-android-sdk-e-depend%C3%AAncias)
+..* [Compilando o projeto para Android](https://github.com/medialab-ufg/rhs-app#compilando-o-projeto-para-android)
+..* [Rodando o projeto em Android](https://github.com/medialab-ufg/rhs-app#rodando-o-aplicativo-no-android)
+..* [Deploy para a PlayStore](https://github.com/medialab-ufg/rhs-app#deploy-para-a-playstore)
+..* [Depurando remotamente no Android](https://github.com/medialab-ufg/rhs-app#depurando-remotamente-no-android)
+6. iOS [iPhone](https://github.com/medialab-ufg/rhs-app#build-em-ios)
+..* [Instalar xCode e Cocoapods](https://github.com/medialab-ufg/rhs-app#instalar-xcode-e-cocoapods)
+..* [Compilando o projeto para iOS](https://github.com/medialab-ufg/rhs-app#compilando-o-projeto-para-ios)
+..* [Rodando o projeto para iOS](https://github.com/medialab-ufg/rhs-app#rodando-o-aplicativo-no-ios)
+7. [Possíveis problemas encontrados](https://github.com/medialab-ufg/rhs-app#poss%C3%ADveis-problemas-encontrados)
+
 ---------------------------------------
 ## Configurações via docker:
-A configuração do ambiente em sua máquina pode ser trabalhosa. Caso deseje utilizar o docker, temos uma imagem preparada com um script para ajustes de permissões de usuário:
+A configuração do ambiente em sua máquina local pode ser trabalhosa. Caso deseje utilizar o docker, temos uma imagem preparada com um script para ajustes de permissões de usuário:
 
 [https://github.com/mateuswetah/docker-ionic](https://github.com/mateuswetah/docker-ionic)
 
 _Obs.: A imagem funciona apenas para Android._
 
 ---------------------------------------
-## Configurações do ambiente para o projeto:
+## Configurações em máquina local:
 
 **É preciso ter *node*, *npm*, *ionic* e *cordova* instalados para a execução do projeto.**
 
@@ -57,7 +79,7 @@ $ ionic serve
 Navegue para [http://localhost:8100/](http://localhost:8100/) ou ainda, [http://localhost:8100/ionic-lab](http://localhost:8100/ionic-lab). O App vai automaticamente se atualizar após qualquer mudança feita nos arquivos fonte.
 
 -----------------------------------------------------
-## Build em Android
+## Android
 
 ### Instalar Java JDK, Android Studio (para utilizar a Android SDK) e dependências: 
  - **Java JDK**: baixando pelo [Site oficial](http://www.oracle.com/technetwork/java/javase/downloads/index-jsp), ou para Ubuntu: 
@@ -108,11 +130,40 @@ Os últimos dois comandos adicionam os arquivos de build do android ao seu proje
 $ ionic cordova run android
 ```
 
-O build acontecerá novamente, mas desta vez o .apk gerado será transferido e instalado no seu aparelho.
+O build acontecerá novamente, mas desta vez o android_debug.apk gerado será transferido e instalado no seu aparelho.
+
+### Deploy para a Play Store
+
+Para realizar uma atualização do App na Play Store, lembre-se de atualizar o valor da versão do App no arquivo _config.xml_:
+```
+<widget id="com.redehumanizasus.app" version="1.0.X" ...
+```
+
+Então compile e execute a versão de produção:
+```
+$ ionic cordova run android --release --prod --aot
+```
+
+Certifique-se de que tudo ocorreu sem erros no console, e que foi gerado o arquivo _/platforms/android/build/outputs/apk/android-release-unsigned.apk_. Copie o arquivo para a raiz do projeto, substituindo a versão atual. Certifique-se de que o apk está na mesma pasta que o arquivo _my-release-key.keystore_. Hora de assinar o app:
+```
+$ /PATH_TO_ANDROID_SDK_/sdk/build-tools/VERSION/jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore android-release-unsigned.apk alias_name
+```
+Aqui será pedida a senha da assinatura da Play Store. Por fim, para otimizar o apk, utilizamos o zipalign:
+```
+$ $ zipalign -v 4 android-release-unsigned.apk rhs-app.apk
+```
+O comando `zipalign` vai estar na pasta _build-tools_, dentro de onde está instalado sua SDK do Android. Concluído, ele terá gerado o arquivo rhs-app.apk, que deve ser submetido na [Google Play Console](https://play.google.com/apps/publish/?hl=pt-BR&account=8887034465822485556#ManageReleasesPlace:p=com.redehumanizasus.app).
+
+-------
+
+### Depurando remotamente no Android
+
+Um guia completo sobre como usar o Google Chrome para inspecionar elementos e acompanhar logs no console do app rodando no Android pode ser encontrado [aqui](https://developers.google.com/web/tools/chrome-devtools/remote-debugging/?hl=pt-br).
+
 
 ---------------------------------------------------
 
-## Build em iOS
+## iOS (iPhone)
 
 ### Instalar xCode e Cocoapods:
 
@@ -141,12 +192,6 @@ Os últimos dois comandos adicionam os arquivos de build do ios ao seu projeto e
 Após a etapa de build, um arquivo *.xcworkspace* será gerado em seu projeto, dentro da pasta `/platforms/ios/`. Abra este projeto com o Xcode. Pode ser necessário que você configure o 'team' associado ao projeto na aba General -> Signing -> Team, com seus dados de desenvolvedor.
 
 Tendo o projeto selecionado, aperte o botão de rodar para executar o simulador iOS.
-
--------
-
-### Depurando remotamente no Android
-
-Um guia completo sobre como usar o Google Chrome para inspecionar elementos e acompanhar logs no console do app rodando no Android pode ser encontrado [aqui](https://developers.google.com/web/tools/chrome-devtools/remote-debugging/?hl=pt-br).
 
 
 -------

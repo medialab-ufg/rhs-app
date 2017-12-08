@@ -3,6 +3,8 @@
   ![Logo da RHS](https://raw.githubusercontent.com/medialab-ufg/rhs-app/master/src/assets/logo-rhs.svg?sanitize=true)
 
 Aplicativo Android e iOS para a [Rede Humaniza SUS](http://redehumanizasus.net/) (RHS).
+Versão Android: [https://play.google.com/store/apps/details?id=com.redehumanizasus.app](https://play.google.com/store/apps/details?id=com.redehumanizasus.app).
+Versão iOS:_(em desenvolvimento)_.
 Desenvolvido em Ionic, integra dados através da WP-API do Wordpress.
 
 -----------------------------------
@@ -251,7 +253,7 @@ src/                    ---> Pasta de trabalho.
   |app/                 ----> Componente pai do app.
     |app.html           -----> Aqui está a estrutura do Menu Lateral e a raiz da navegação.
     |app.module.ts      -----> Imports de módulos necessários globalmente, incluindo os plugins do cordova.
-    |app.component.ts   -----> Trata de todas as operações de inicialização, como gerar e registrar IDs, login, localstorage, ações para push notifications, endereço do Analytics... 
+    |app.component.ts   -----> Trata de todas as operações de inicialização, como gerar e registrar IDs, checar usuário, localstorage, ações para push notifications, endereço do Analytics... 
     |app.scss           -----> Estética do menu lateral, animações de página e alguns spinners.
     |main.ts            -----> Entry point. Não se trabalha neste arquivo.
   |assets/              ----> Arquivos de imagem a serem referenciados pelo app.

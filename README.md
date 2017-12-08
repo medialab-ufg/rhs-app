@@ -1,11 +1,7 @@
 # App da Rede Humaniza SUS
 
-![Rede Humaniza SUS](https://github.com/medialab-ufg/rhs-app/blob/master/www/assets/images/slide1.png){:width="120px"}
-
 Aplicativo Android e iOS para a [Rede Humaniza SUS](http://redehumanizasus.net/) (RHS).
 Desenvolvido em Ionic, integra dados através da WP-API do Wordpress.
-
-[![PlayStore](https://raw.githubusercontent.com/steverichey/google-play-badge-svg/master/img/pt-br_get.svg?sanitize=true){:width="250px"}](https://play.google.com/store/apps/details?id=com.redehumanizasus.app)
 
 ---------------------------------------
 ## Configurações via docker:

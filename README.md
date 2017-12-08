@@ -23,6 +23,7 @@ Desenvolvido em Ionic, integra dados através da WP-API do Wordpress.
     2. [Compilando o projeto para iOS](https://github.com/medialab-ufg/rhs-app#compilando-o-projeto-para-ios)
     3. [Rodando o projeto para iOS](https://github.com/medialab-ufg/rhs-app#rodando-o-aplicativo-no-ios)
 7. [Possíveis problemas encontrados](https://github.com/medialab-ufg/rhs-app#poss%C3%ADveis-problemas-encontrados)
+8. [Estrutura das Pastas](https://github.com/medialab-ufg/rhs-app#estrutura-de-pastas)
 
 ---------------------------------------
 ## Configurações via docker:
@@ -256,7 +257,7 @@ src/                    ---> Pasta de trabalho.
   |assets/              ----> Arquivos de imagem a serem referenciados pelo app.
   |components/          ----> Componentes reaproveitados em mais de uma página.
     |information/       -----> Usado para gerar informações do tipo "Você não tem acesso à essa página", com a logo da RHS acima.
-    |post-card/         -----> O Card de Posts.
+    |post-card/         -----> O Card de Post.
   |directives/          ----> Diretivas que mudam o comportamento de componentes.
     |shrink-header/     -----> Utilizado na página de Post para esconder o cabeçalho de acordo com o scroll.
   |pages/               ----> Onde estão todas as páginas do aplicativo

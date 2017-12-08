@@ -1,28 +1,26 @@
 # App da Rede Humaniza SUS
 
+![Logo da RHS](https://raw.githubusercontent.com/medialab-ufg/rhs-app/master/src/assets/logo-rhs.svg?sanitize=true)
 Aplicativo Android e iOS para a [Rede Humaniza SUS](http://redehumanizasus.net/) (RHS).
 Desenvolvido em Ionic, integra dados através da WP-API do Wordpress.
 
-![Logo da RHS](https://raw.githubusercontent.com/medialab-ufg/rhs-app/master/src/assets/logo-rhs-full.svg?sanitize=true)
-
 -----------------------------------
-
 ## Como contribuir com este App:
 
 1. [Configurações via Docker](https://github.com/medialab-ufg/rhs-app#configura%C3%A7%C3%B5es-via-docker)
-2. [Configurações em máquina local](https://github.com/medialab-ufg/rhs-app#configura%C3%A7%C3%B5es-do-ambiente-para-o-projeto)
+2. [Configurações em máquina local](https://github.com/medialab-ufg/rhs-app#configura%C3%A7%C3%B5es-em-m%C3%A1quina-local)
 3. [Instalação](https://github.com/medialab-ufg/rhs-app#instala%C3%A7%C3%A3o)
 4. [Local Sever](https://github.com/medialab-ufg/rhs-app#executando-em-local-server)
 5. [Android](https://github.com/medialab-ufg/rhs-app#android)
-..* [Instalar Java JDK, Android Studio e dependências](https://github.com/medialab-ufg/rhs-app#instalar-java-jdk-android-studio-para-utilizar-a-android-sdk-e-depend%C3%AAncias)
-..* [Compilando o projeto para Android](https://github.com/medialab-ufg/rhs-app#compilando-o-projeto-para-android)
-..* [Rodando o projeto em Android](https://github.com/medialab-ufg/rhs-app#rodando-o-aplicativo-no-android)
-..* [Deploy para a PlayStore](https://github.com/medialab-ufg/rhs-app#deploy-para-a-playstore)
-..* [Depurando remotamente no Android](https://github.com/medialab-ufg/rhs-app#depurando-remotamente-no-android)
-6. iOS [iPhone](https://github.com/medialab-ufg/rhs-app#build-em-ios)
-..* [Instalar xCode e Cocoapods](https://github.com/medialab-ufg/rhs-app#instalar-xcode-e-cocoapods)
-..* [Compilando o projeto para iOS](https://github.com/medialab-ufg/rhs-app#compilando-o-projeto-para-ios)
-..* [Rodando o projeto para iOS](https://github.com/medialab-ufg/rhs-app#rodando-o-aplicativo-no-ios)
+  1. [Instalar Java JDK, Android Studio e dependências](https://github.com/medialab-ufg/rhs-app#instalar-java-jdk-android-studio-para-utilizar-a-android-sdk-e-depend%C3%AAncias)
+  2. [Compilando o projeto para Android](https://github.com/medialab-ufg/rhs-app#compilando-o-projeto-para-android)
+  3. [Rodando o projeto em Android](https://github.com/medialab-ufg/rhs-app#rodando-o-aplicativo-no-android)
+  4. [Deploy para a PlayStore](https://github.com/medialab-ufg/rhs-app#deploy-para-a-play-store)
+  5. [Depurando remotamente no Android](https://github.com/medialab-ufg/rhs-app#depurando-remotamente-no-android)
+6. [iOS iPhone](https://github.com/medialab-ufg/rhs-app#ios-iphone)
+  1. [Instalar xCode e Cocoapods](https://github.com/medialab-ufg/rhs-app#instalar-xcode-e-cocoapods)
+  2. [Compilando o projeto para iOS](https://github.com/medialab-ufg/rhs-app#compilando-o-projeto-para-ios)
+  3. [Rodando o projeto para iOS](https://github.com/medialab-ufg/rhs-app#rodando-o-aplicativo-no-ios)
 7. [Possíveis problemas encontrados](https://github.com/medialab-ufg/rhs-app#poss%C3%ADveis-problemas-encontrados)
 
 ---------------------------------------

@@ -243,15 +243,15 @@ Isto re-iniciará o server do _adb_ e deve listar os dispositivos android plugad
 -----------------------------------
 ## Estrutura de Pastas
 
-Uma visão geral com comentários da estrutura do app é dada a seguir (algumas pastas e arquivos foram desconsideradas por terem pouco relevância):
+Uma visão geral com comentários da estrutura do app é dada a seguir (algumas pastas e arquivos foram desconsideradas por terem pouca relevância):
 ```
-resources/              ---> Ícones e Splash Icons, gerados pelo ionic cordova resources.
+resources/              ---> Ícones e Tela de Splash, gerados pelo ionic cordova resources.
 www/                    ---> Para onde o build gerado para o web server é realizado. Não se trabalha nesta pasta.
 src/                    ---> Pasta de trabalho.
   |app/                 ----> Componente pai do app.
     |app.html           -----> Aqui está a estrutura do Menu Lateral e a raiz da navegação.
     |app.module.ts      -----> Imports de módulos necessários globalmente, incluindo os plugins do cordova.
-    |app.component.ts   -----> Trata de todas as operações de inicialização, como gerar e registrar IDs, login, localstorage... 
+    |app.component.ts   -----> Trata de todas as operações de inicialização, como gerar e registrar IDs, login, localstorage, ações para push notifications, endereço do Analytics... 
     |app.scss           -----> Estética do menu lateral, animações de página e alguns spinners.
     |main.ts            -----> Entry point. Não se trabalha neste arquivo.
   |assets/              ----> Arquivos de imagem a serem referenciados pelo app.
@@ -261,11 +261,11 @@ src/                    ---> Pasta de trabalho.
   |directives/          ----> Diretivas que mudam o comportamento de componentes.
     |shrink-header/     -----> Utilizado na página de Post para esconder o cabeçalho de acordo com o scroll.
   |pages/               ----> Onde estão todas as páginas do aplicativo
-    |comment/           -----> Página de resposta à um Comentário.
+    |comment/           -----> Página de resposta a um Comentário.
     |following/         -----> Página que lista Usuários que estão sendo seguidos (acessível via menu lateral).
     |intro/             -----> Slide de Introdução do app, com as imagens criadas pela equipe de Design.
-    |login/             -----> Página com os botões de logar e registrar.
-    |notifications/     -----> Página que lista as notificações do Usuário.
+    |login/             -----> Página com os botões de logar e registrar. Aqui é feita a rotina de login. 
+    |notifications/     -----> Página que lista as notificações do Usuário. 
     |post/              -----> Página de um Post. Segue a descrição genérica dos componentes de uma página.
       |post.html        ------> Arquivo onde fica a estrutura da página.
       |post.module.ts   ------> Arquivo onde são carregados os módulos necessários e exportado o componente (lazy loading).
@@ -273,9 +273,9 @@ src/                    ---> Pasta de trabalho.
       |post.ts          ------> Arquivo onde está a lógica de funcionamento do componente.
     |posts/             -----> Página Inicial, onde estão listados os posts.
     |profile/           -----> Página do Usuário Logado, acessível via menu lateral.
-    |search/            -----> Página de Busca.
-    |settings/          -----> Página de Configurações, acessível via menu lateral.
-    |user/              -----> Página de usuários que não sejam o atual.
+    |search/            -----> Página de Busca. Pode ser acessada também pelas tags e categorias em posts.
+    |settings/          -----> Página de Configurações, acessível via menu lateral. Aqui é feita a rotina de logout.
+    |user/              -----> Página de outros Usuários que não sejam o atual.
   |pipes/               ----> Filtros aplicados sob a renderização do html recebido da API.
     |inner-html-image/  -----> Trata dos casos em que a imagem de usuário vem com a tag img ao invés de somente o src.
     |inner-html-post/   -----> Trata de sanitizar o conteúdo do post e de ajustar imagens que estejam com caminho relativo dentro do post.
@@ -287,7 +287,7 @@ src/                    ---> Pasta de trabalho.
     |update/            -----> Onde é gerenciado o reload automático de posts após 5 minutos sem atividade na página de Posts.
   |theme/               ----> Onde estão (e onde podem ser sobrescritas) variáveis globais do CSS.
   |index.html           ----> Referência de arquivo raiz que será copiado para a www no build. Não se trabalha aqui.
-config.xml              ---> Configurações do Cordova para exibir o app em uma webview. metadados com App, como a versão e o nome.
+config.xml              ---> Configurações do Cordova para exibir o app em uma webview. Metadados como a versão e o nome do App.
 package.json            ---> Configurações de dependências e build do App. Plugins adicionados são listados aqui.
 ```
 

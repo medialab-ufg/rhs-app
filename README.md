@@ -5,7 +5,7 @@ Está sendo desenvolvido em Ionic e integra dados através da WP-API do Wordpres
 
 ---------------------------------------
 ## Configurações via docker:
-A configuração do ambiente em sua máquina pode ser trabalhosa. Caso deseje utilizar o docker, temos esta uma imagem preparada com um script para ajustes de permissões de usuário:
+A configuração do ambiente em sua máquina pode ser trabalhosa. Caso deseje utilizar o docker, temos uma imagem preparada com um script para ajustes de permissões de usuário:
 
 [https://github.com/mateuswetah/docker-ionic](https://github.com/mateuswetah/docker-ionic)
 
@@ -86,6 +86,12 @@ Navegue para [http://localhost:8100/](http://localhost:8100/) ou ainda, [http://
   - Android x.x.x (API XX);  
   Onde x.x.x corresponde a versão do Android para o qual você for fazer deploy. A Ionic oferece suporte somente para versões superioes à 4.1.
 
+- **Gradle e ADB** via repositório padrão do Ubuntu:
+
+```
+$ sudo apt-get install gradle adb
+```
+
 ### Compilando o projeto para Android:
 
 É necessário ter o plugin cordova para a CLI do Ionic, caso ainda não tenha sido instalado:
@@ -96,7 +102,7 @@ $ ionic cordova platform add android
 $ ionic cordova build android
 ```
 
-Os últimos dois comandos adicionam os arquivos de build do android ao seu projeto e compilam o mesmo.
+Os últimos dois comandos adicionam os arquivos de build do android ao seu projeto e compilam o mesmo. Essa etapa costuma gerar alguns erros, veja abaixo [algumas dicas](https://github.com/medialab-ufg/rhs-app#poss%C3%ADveis-problemas-encontrados).
 
 ### Rodando o aplicativo no Android:
 
@@ -107,8 +113,6 @@ $ ionic cordova run android
 ```
 
 O build acontecerá novamente, mas desta vez o .apk gerado será transferido e instalado no seu aparelho.
-
-Uma lista de possíveis problemas e soluções decorrentes dessa etapa <del>estão na lista de Possíveis Problemas</del>(criar lista).
 
 ---------------------------------------------------
 
@@ -152,7 +156,27 @@ Um guia completo sobre como usar o Google Chrome para inspecionar elementos e ac
 -------
 ## Possíveis Problemas encontrados:
 
-- *$ ANDROID_HOME not found*: Caso, ao tentar executar o build, a CLI informe que não consegue encontrar sua instalação Android, configure o path manualmente através dos seguintes comandos:
+- *Dependências incompatíveis do plugin do Google Service*: Ao executar `build` pela primeira vez com o projeto vindo do git, é bem provável que seja retornado o seguinte erro:
+
+```
+A problem occurred evaluating root project 'android'.
+> Failed to apply plugin [class 'com.google.gms.googleservices.GoogleServicesPlugin']
+   > For input string: "+"
+```
+
+A solução está em editar o arquivo _/platforms/android/project.properties_, e substituir:
+
+```
+cordova.system.library.3=com.google.android.gms:play-services-analytics:+
+```
+por:
+```
+cordova.system.library.3=com.google.android.gms:play-services-analytics:11.0.+
+```
+
+Este erro acontece com mais de um plugin do cordova ou phonegap relacionado aos serviços do Google e foi discutido extensamente [aqui](https://github.com/phonegap/phonegap-plugin-push/issues/1718#issuecomment-339965121) e em outras issues. Como a pasta _/platforms_ só é gerada após o build e está fora desse git (não deve ser enviado mesmo para o repositório, pois faz parte do build), esta mudança precisa ser feita manualmente. Infelizmente esse valor é gerado ao se inserir o plugin e quem o determina é o criador do mesmo. Não há um consenso entre diferentes desenvolvedores de plugins de qual versão manter, por isso precisamos adotar um padrão para o projeto. 
+
+- *$ ANDROID_HOME not found*: Caso, ao tentar executar o `build`, a CLI informe que não consegue encontrar sua instalação Android, configure o path manualmente através dos seguintes comandos:
 
 ```
 $ export ANDROID_HOME="/<path_to_android>/Android/Sdk"
@@ -165,3 +189,12 @@ Substituindo <path_to_android> pelas caminho da sua instalação. Uma maneira de
 ```
 $ whereis android
 ```
+
+- *Emulador AVD não encontrado*: Se, ao tentar executar `run` retornar uma mensagem de erro relacionada ao "Emulador Android AVD não encontrado", sendo que sua intenção era executar no celular, isso significa que o não foi possível comunicar com o seu Android via USB. Para esses casos, execute:
+
+```
+adb kill-server
+adb devices
+```
+
+Isto re-iniciará o server do _adb_ e deve listar os dispositivos android plugados. Na primeira vez que executado, você deve fornecer autorização para o computador depurar através de um diálogo de confirmação que surgirá no celular. 

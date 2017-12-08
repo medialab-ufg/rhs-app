@@ -1,7 +1,14 @@
-# rsh-app
+# App da Rede Humaniza SUS
+[![GPL v3.0](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/medialab-ufg/rhs-app/blob/master/LICENSE)
+[![npm](https://img.shields.io/npm/v/npm.svg)]()
 
-Aplicativo Android e iOS para a *Rede Humaniza SUS* (RHS).
-Está sendo desenvolvido em Ionic e integra dados através da WP-API do Wordpress.
+
+![Rede Humaniza SUS](https://github.com/medialab-ufg/rhs-app/blob/master/www/assets/images/slide1.png)
+
+Aplicativo Android e iOS para a [Rede Humaniza SUS](http://redehumanizasus.net/) (RHS).
+Desenvolvido em Ionic, integra dados através da WP-API do Wordpress.
+
+[![PlayStore](https://raw.githubusercontent.com/steverichey/google-play-badge-svg/master/img/pt-br_get.svg?sanitize=true)](https://play.google.com/store/apps/details?id=com.redehumanizasus.app)
 
 ---------------------------------------
 ## Configurações via docker:
@@ -38,11 +45,7 @@ $ sudo npm install -g ionic cordova
 
 Dependendo das configurações npm do seu sistema (em geral Mac e Linux) será necessário o *sudo* para o npm ter as permissões de instalação.
 
-Mais informações sobre a instalação podem ser obtidas na [página da Ionic](https://ionicframework.com/docs/intro/installation/). A versão utilizada neste projeto é a **3.13.1**. Para verificar a versão atual, basta rodar:
-
-```
-$ ionic --version
-```
+Mais informações sobre a instalação podem ser obtidas na [página da Ionic](https://ionicframework.com/docs/intro/installation/). 
 
 ## Instalação
 Para que o npm possa baixar os módulos extras necessários para o projeto, navegue para a pasta do projeto e execute a instalação (note a ausência de *sudo*, desta vez, já que a instalação é referente ao projeto local e não ao sistema):

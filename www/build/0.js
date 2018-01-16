@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 621:
+/***/ 625:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,10 +8,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NotificationsPageModule", function() { return NotificationsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__notifications__ = __webpack_require__(637);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_inner_html_notification_inner_html_notification__ = __webpack_require__(638);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pipes_inner_html_image_inner_html_image__ = __webpack_require__(639);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_information_information_module__ = __webpack_require__(628);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__notifications__ = __webpack_require__(641);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_inner_html_notification_inner_html_notification__ = __webpack_require__(642);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pipes_inner_html_image_inner_html_image__ = __webpack_require__(643);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_information_information_module__ = __webpack_require__(632);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -40,14 +40,14 @@ NotificationsPageModule = __decorate([
 
 /***/ }),
 
-/***/ 628:
+/***/ 632:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InformationComponentModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__information__ = __webpack_require__(629);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__information__ = __webpack_require__(633);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -74,7 +74,7 @@ InformationComponentModule = __decorate([
 
 /***/ }),
 
-/***/ 629:
+/***/ 633:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -105,7 +105,7 @@ __decorate([
 ], InformationComponent.prototype, "detail", void 0);
 InformationComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'information',template:/*ion-inline-start:"/home/orpheus/Documents/MediaLab/RHS/rhs-app/src/components/information/information.html"*/'<div text-center class="slide-in-animate">\n  <img src="./assets/logo-rhs.svg">\n  <h2>{{ message }}</h2>\n  <h5>{{ detail }}</h5>\n</div>\n'/*ion-inline-end:"/home/orpheus/Documents/MediaLab/RHS/rhs-app/src/components/information/information.html"*/
+        selector: 'information',template:/*ion-inline-start:"/home/orpheus/rhs-app/src/components/information/information.html"*/'<div text-center class="slide-in-animate">\n  <img src="./assets/logo-rhs.svg">\n  <h2>{{ message }}</h2>\n  <h5>{{ detail }}</h5>\n</div>\n'/*ion-inline-end:"/home/orpheus/rhs-app/src/components/information/information.html"*/
     }),
     __metadata("design:paramtypes", [])
 ], InformationComponent);
@@ -114,7 +114,7 @@ InformationComponent = __decorate([
 
 /***/ }),
 
-/***/ 637:
+/***/ 641:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -231,7 +231,7 @@ var NotificationsPage = (function () {
 NotificationsPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
-        selector: 'page-notifications',template:/*ion-inline-start:"/home/orpheus/Documents/MediaLab/RHS/rhs-app/src/pages/notifications/notifications.html"*/'<ion-header>\n\n  <ion-navbar color="secondary">\n    <ion-title>Notificações</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n  <div *ngIf="!isUserLogged">\n    <information [message]="\'Somente para usuários da RHS\'" [detail]="\'É preciso estar logado para acessar essa sessão.\'"></information>\n  </div>\n\n  <div *ngIf="isUserLogged">\n\n    <ion-refresher pullMin="100" \n                    (ionRefresh)="doRefresh($event)">\n      <ion-refresher-content\n        pullingText="Puxe e solte para atualizar."\n        refreshingText="Carregando dados...">\n      </ion-refresher-content>\n    </ion-refresher>\n\n    <div *ngIf="!showSpinner && notifications.length == 0">\n      <information [message]="\'Nenhuma notificação.\'"></information>\n    </div>\n\n    <div *ngIf="showSpinner && !isLoadingMore && !loadingFromRefresher"><ion-spinner class="center-spinner"></ion-spinner></div>\n    <div *ngIf="!showSpinner && notifications.length > 0">\n      <div *ngFor="let notification of notifications; let i = index">\n      <ion-item *ngIf="notification[\'type\'] == \'new_post_from_user\' || notification[\'type\'] == \'comments_in_post\' || notification[\'type\'] == \'user_follow_author\'" (click)="goToNotificationContent(i)">\n        <ion-avatar item-start [innerHtml]="notification[\'image\']"> \n        </ion-avatar>\n        <h2 color="secondary" text-wrap [innerHtml]="notification[\'text\'] | innerHtmlNotification"></h2>\n        <p>{{ notification[\'datetime\'] | date: \'dd/MM/yyyy\' }}</p>\n      </ion-item>\n      <ion-item *ngIf="notification[\'type\'] != \'comments_in_post\' && notification[\'type\'] != \'user_follow_author\' && notification[\'type\'] != \'new_post_from_user\'" (click)="goToNotificationContent(i)">\n        <ion-thumbnail item-start  [innerHtml]="notification[\'image\']"> \n        </ion-thumbnail>\n        <h2 color="secondary"  text-wrap  [innerHtml]="notification[\'text\'] | innerHtmlNotification">></h2>\n        <p>{{ notification[\'datetime\'] | date: \'dd/MM/yyyy\' }}</p>\n      </ion-item>\n      </div>\n      <ion-item-divider *ngIf="noMoreResults">\n        Não foram encontradas mais notificações.\n      </ion-item-divider>\n    </div>\n\n    <ion-infinite-scroll [enabled]="!noMoreResults" (ionInfinite)="$event.waitFor(doInfinite())">\n      <ion-infinite-scroll-content\n      loadingText="Buscando mais notificações...">\n    </ion-infinite-scroll-content>\n    </ion-infinite-scroll>\n\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"/home/orpheus/Documents/MediaLab/RHS/rhs-app/src/pages/notifications/notifications.html"*/,
+        selector: 'page-notifications',template:/*ion-inline-start:"/home/orpheus/rhs-app/src/pages/notifications/notifications.html"*/'<ion-header>\n\n  <ion-navbar color="secondary">\n    <ion-title>Notificações</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n  <div *ngIf="!isUserLogged">\n    <information [message]="\'Somente para usuários da RHS\'" [detail]="\'É preciso estar logado para acessar essa sessão.\'"></information>\n  </div>\n\n  <div *ngIf="isUserLogged">\n\n    <ion-refresher pullMin="100" \n                    (ionRefresh)="doRefresh($event)">\n      <ion-refresher-content\n        pullingText="Puxe e solte para atualizar."\n        refreshingText="Carregando dados...">\n      </ion-refresher-content>\n    </ion-refresher>\n\n    <div *ngIf="!showSpinner && notifications.length == 0">\n      <information [message]="\'Nenhuma notificação.\'"></information>\n    </div>\n\n    <div *ngIf="showSpinner && !isLoadingMore && !loadingFromRefresher"><ion-spinner class="center-spinner"></ion-spinner></div>\n    <div *ngIf="!showSpinner && notifications.length > 0">\n      <div *ngFor="let notification of notifications; let i = index">\n      <ion-item *ngIf="notification[\'type\'] == \'new_post_from_user\' || notification[\'type\'] == \'comments_in_post\' || notification[\'type\'] == \'user_follow_author\'" (click)="goToNotificationContent(i)">\n        <ion-avatar item-start [innerHtml]="notification[\'image\']"> \n        </ion-avatar>\n        <h2 color="secondary" text-wrap [innerHtml]="notification[\'text\'] | innerHtmlNotification"></h2>\n        <p>{{ notification[\'datetime\'] | date: \'dd/MM/yyyy\' }}</p>\n      </ion-item>\n      <ion-item *ngIf="notification[\'type\'] != \'comments_in_post\' && notification[\'type\'] != \'user_follow_author\' && notification[\'type\'] != \'new_post_from_user\'" (click)="goToNotificationContent(i)">\n        <ion-thumbnail item-start  [innerHtml]="notification[\'image\']"> \n        </ion-thumbnail>\n        <h2 color="secondary"  text-wrap  [innerHtml]="notification[\'text\'] | innerHtmlNotification">></h2>\n        <p>{{ notification[\'datetime\'] | date: \'dd/MM/yyyy\' }}</p>\n      </ion-item>\n      </div>\n      <ion-item-divider *ngIf="noMoreResults">\n        Não foram encontradas mais notificações.\n      </ion-item-divider>\n    </div>\n\n    <ion-infinite-scroll [enabled]="!noMoreResults" (ionInfinite)="$event.waitFor(doInfinite())">\n      <ion-infinite-scroll-content\n      loadingText="Buscando mais notificações...">\n    </ion-infinite-scroll-content>\n    </ion-infinite-scroll>\n\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"/home/orpheus/rhs-app/src/pages/notifications/notifications.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavParams */],
@@ -244,7 +244,7 @@ NotificationsPage = __decorate([
 
 /***/ }),
 
-/***/ 638:
+/***/ 642:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -300,7 +300,7 @@ InnerHtmlNotificationPipe = __decorate([
 
 /***/ }),
 
-/***/ 639:
+/***/ 643:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

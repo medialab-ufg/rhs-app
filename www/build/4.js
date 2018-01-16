@@ -1,6 +1,6 @@
 webpackJsonp([4],{
 
-/***/ 623:
+/***/ 627:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,9 +8,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PostsPageModule", function() { return PostsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__posts__ = __webpack_require__(643);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_information_information_module__ = __webpack_require__(628);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_post_card_post_card_module__ = __webpack_require__(630);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__posts__ = __webpack_require__(647);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_information_information_module__ = __webpack_require__(632);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_post_card_post_card_module__ = __webpack_require__(634);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,14 +38,14 @@ PostsPageModule = __decorate([
 
 /***/ }),
 
-/***/ 628:
+/***/ 632:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InformationComponentModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__information__ = __webpack_require__(629);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__information__ = __webpack_require__(633);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -72,7 +72,7 @@ InformationComponentModule = __decorate([
 
 /***/ }),
 
-/***/ 629:
+/***/ 633:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -103,7 +103,7 @@ __decorate([
 ], InformationComponent.prototype, "detail", void 0);
 InformationComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'information',template:/*ion-inline-start:"/home/orpheus/Documents/MediaLab/RHS/rhs-app/src/components/information/information.html"*/'<div text-center class="slide-in-animate">\n  <img src="./assets/logo-rhs.svg">\n  <h2>{{ message }}</h2>\n  <h5>{{ detail }}</h5>\n</div>\n'/*ion-inline-end:"/home/orpheus/Documents/MediaLab/RHS/rhs-app/src/components/information/information.html"*/
+        selector: 'information',template:/*ion-inline-start:"/home/orpheus/rhs-app/src/components/information/information.html"*/'<div text-center class="slide-in-animate">\n  <img src="./assets/logo-rhs.svg">\n  <h2>{{ message }}</h2>\n  <h5>{{ detail }}</h5>\n</div>\n'/*ion-inline-end:"/home/orpheus/rhs-app/src/components/information/information.html"*/
     }),
     __metadata("design:paramtypes", [])
 ], InformationComponent);
@@ -112,14 +112,14 @@ InformationComponent = __decorate([
 
 /***/ }),
 
-/***/ 630:
+/***/ 634:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PostsCardComponentModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_post_card_post_card__ = __webpack_require__(631);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_post_card_post_card__ = __webpack_require__(635);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -146,7 +146,7 @@ PostsCardComponentModule = __decorate([
 
 /***/ }),
 
-/***/ 631:
+/***/ 635:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -188,7 +188,7 @@ __decorate([
 ], PostCardComponent.prototype, "post", void 0);
 PostCardComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
-        selector: 'post-card',template:/*ion-inline-start:"/home/orpheus/Documents/MediaLab/RHS/rhs-app/src/components/post-card/post-card.html"*/'<ion-card>   \n  <img  *ngIf="this.post[\'_embedded\'][\'wp:featuredmedia\'] !== undefined" [src]="this.post[\'_embedded\'][\'wp:featuredmedia\'][0][\'source_url\']">\n  <ion-card-header text-wrap [innerHtml]="post[\'title\'][\'rendered\']"></ion-card-header>\n  <ion-card-content *ngIf="post[\'excerpt\'][\'rendered\'] != \'\' && post[\'excerpt\'][\'rendered\'] != null" [innerHtml]="post[\'excerpt\'][\'rendered\']"></ion-card-content>\n  <ion-item color="light">\n    <ion-avatar item-start (click)="goToAuthorPage($event, post[\'_embedded\'][\'author\'][0][\'id\'])">\n      <img src="{{ post[\'_embedded\'][\'author\'][0][\'avatar_urls\'][48] }}">\n    </ion-avatar>\n    <ion-grid>\n      <ion-row align-items-baseline>\n        <ion-col col-8>\n          <h2 (click)="goToAuthorPage($event, post[\'_embedded\'][\'author\'][0][\'id\'])">{{ post[\'_embedded\'][\'author\'][0][\'name\'] }}</h2>\n          <p class="data">{{ post[\'date\'] | date: \'dd/MM/yyyy\' }}</p>\n        </ion-col>\n        <ion-col col-4 class="votos_comentarios">\n          <strong>{{ post[\'total_votes\'] }}</strong> votos<br>\n          <strong>{{ post[\'comment_count\'] }}</strong>{{ post[\'comment_count\'] == 1 ? \' comentário\' : \' comentários\' }}\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-item>\n</ion-card>\n'/*ion-inline-end:"/home/orpheus/Documents/MediaLab/RHS/rhs-app/src/components/post-card/post-card.html"*/
+        selector: 'post-card',template:/*ion-inline-start:"/home/orpheus/rhs-app/src/components/post-card/post-card.html"*/'<ion-card>   \n  <img  *ngIf="this.post[\'_embedded\'][\'wp:featuredmedia\'] !== undefined" [src]="this.post[\'_embedded\'][\'wp:featuredmedia\'][0][\'source_url\']">\n  <ion-card-header text-wrap [innerHtml]="post[\'title\'][\'rendered\']"></ion-card-header>\n  <ion-card-content *ngIf="post[\'excerpt\'][\'rendered\'] != \'\' && post[\'excerpt\'][\'rendered\'] != null" [innerHtml]="post[\'excerpt\'][\'rendered\']"></ion-card-content>\n  <ion-item color="light">\n    <ion-avatar item-start (click)="goToAuthorPage($event, post[\'_embedded\'][\'author\'][0][\'id\'])">\n      <img src="{{ post[\'_embedded\'][\'author\'][0][\'avatar_urls\'][48] }}">\n    </ion-avatar>\n    <ion-grid>\n      <ion-row align-items-baseline>\n        <ion-col col-8>\n          <h2 (click)="goToAuthorPage($event, post[\'_embedded\'][\'author\'][0][\'id\'])">{{ post[\'_embedded\'][\'author\'][0][\'name\'] }}</h2>\n          <p class="data">{{ post[\'date\'] | date: \'dd/MM/yyyy\' }}</p>\n        </ion-col>\n        <ion-col col-4 class="votos_comentarios">\n          <strong>{{ post[\'total_votes\'] }}</strong> votos<br>\n          <strong>{{ post[\'comment_count\'] }}</strong>{{ post[\'comment_count\'] == 1 ? \' comentário\' : \' comentários\' }}\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-item>\n</ion-card>\n'/*ion-inline-end:"/home/orpheus/rhs-app/src/components/post-card/post-card.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["k" /* NavController */]])
 ], PostCardComponent);
@@ -197,7 +197,7 @@ PostCardComponent = __decorate([
 
 /***/ }),
 
-/***/ 643:
+/***/ 647:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -500,7 +500,7 @@ __decorate([
 PostsPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-posts',template:/*ion-inline-start:"/home/orpheus/Documents/MediaLab/RHS/rhs-app/src/pages/posts/posts.html"*/'<ion-header>\n  \n  <ion-navbar align-title="center" color="secondary">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>\n      <img *ngIf="platform.is(\'tablet\') || platform.is(\'ipad\')" alt="RHS" height="36" src="./assets/logo-rhs-full.svg"/>\n      <img *ngIf="!platform.is(\'tablet\') && !platform.is(\'ipad\')" alt="RHS" height="36" src="./assets/logo-rhs.svg"/>      \n    </ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="goToNotificationsPage()">\n        <ion-icon name="notifications">\n          <ion-badge *ngIf="unreadNotifications > 0" item-start>{{ unreadNotifications }}</ion-badge>\n        </ion-icon>\n      </button>\n      <button ion-button icon-only (click)="goToSearchPage()">\n        <ion-icon name="search"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n  <ion-toolbar class="toolbar-rhs" color="primary">\n    <ion-segment [(ngModel)]="postsView" color="secondary">\n      <ion-segment-button value="home" (ionSelect)="changeSegment(\'home\')">\n        Principal\n      </ion-segment-button>\n      <ion-segment-button value="queue" (ionSelect)="changeSegment(\'queue\')">\n        Fila de Votação\n      </ion-segment-button>\n      <ion-segment-button value="following" (ionSelect)="changeSegment(\'following\')">\n        Seguindo\n      </ion-segment-button>\n    </ion-segment>\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-refresher pullMin="100" \n                (ionRefresh)="doRefresh($event)"\n                [enabled]="postsView === \'home\' ? true : postsView === \'queue\' ? isUserLogged : isUserLogged">\n    <ion-refresher-content\n      pullingText="Puxe e solte para atualizar."\n      refreshingText="Buscando novos posts...">\n    </ion-refresher-content>\n  </ion-refresher>\n\n  <ion-grid no-padding [ngSwitch]="postsView">\n    \n    <ion-row #list *ngSwitchCase="\'home\'">\n      <ion-col col-md-6 push-md-3 col-sm-8 push-sm-2 col-12>\n        <div *ngIf="showSpinnerOnHome && !loadingFromRefresher && !noMoreResultsOnHome"><ion-spinner class="center-spinner"></ion-spinner></div>     \n        <post-card ion-stop-event="click" [post-data]="post" *ngFor="let post of homePostList" (click)="goToPostPage(post[\'id\'])"></post-card>           \n        <ion-item-divider *ngIf="noMoreResultsOnHome && !loadingFromRefresher">\n          Não foram encontrados mais resultados.  \n        </ion-item-divider>\n      </ion-col>\n    </ion-row>\n    <ion-row #list *ngSwitchCase="\'queue\'">\n      <ion-col col-md-6 push-md-3 col-sm-8 push-sm-2 col-12>\n        <div *ngIf="!isUserLogged">\n          <information [message]="\'Somente para usuários da RHS\'" [detail]="\'É preciso estar logado para acessar essa sessão.\'"></information>\n        </div>\n        <div *ngIf="isUserLogged">\n          <div *ngIf="showSpinnerOnQueue && !loadingFromRefresher && !noMoreResultsOnQueue"><ion-spinner class="center-spinner"></ion-spinner></div>\n            <post-card ion-stop-event="click" [post-data]="post" *ngFor="let post of queuePostList" (click)="goToPostPage(post[\'id\'])"></post-card>   \n            <ion-item-divider *ngIf="noMoreResultsOnQueue && !loadingFromRefresher">\n              Não foram encontrados mais resultados.  \n            </ion-item-divider>\n            <div *ngIf="queuePostList.length == 0 && !showSpinnerOnQueue">\n              <information [message]="\'Ainda não encontramos nenhum post na fila de votação.\'"></information>\n            </div>\n          </div>\n      </ion-col>\n    </ion-row>\n    <ion-row #list *ngSwitchCase="\'following\'">\n      <ion-col col-md-6 push-md-3 col-sm-8 push-sm-2 col-12>\n        <div *ngIf="!isUserLogged">\n          <information [message]="\'Somente para usuários da RHS\'" [detail]="\'É preciso estar logado para acessar essa sessão.\'"></information>\n        </div> \n        <div *ngIf="isUserLogged">\n          <div *ngIf="showSpinnerOnFollowing && !loadingFromRefresher && !noMoreResultsOnFollowing"><ion-spinner class="center-spinner"></ion-spinner></div>\n          <post-card ion-stop-event="click" [post-data]="post" *ngFor="let post of followingPostList" (click)="goToPostPage(post[\'id\'])"></post-card>   \n          <ion-item-divider *ngIf="noMoreResultsOnFollowing && !loadingFromRefresher">\n            Não foram encontrados mais resultados.  \n          </ion-item-divider>\n          <div *ngIf="followingPostList.length == 0 && !showSpinnerOnFollowing">\n            <information [message]="\'Ainda encontramos não há nenhum post sendo seguido.\'"></information>\n          </div>\n        </div>\n      </ion-col>\n    </ion-row>\n\n    <ion-infinite-scroll \n        [enabled]="postsView === \'home\' ? !noMoreResultsOnHome : postsView === \'queue\' ? isUserLogged && !noMoreResultsOnQueue : isUserLogged && !noMoreResultsOnFollowing" \n        (ionInfinite)="$event.waitFor(doInfinite())">\n      <ion-infinite-scroll-content\n        loadingText="Buscando mais posts...">\n      </ion-infinite-scroll-content>\n    </ion-infinite-scroll>\n    \n  </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"/home/orpheus/Documents/MediaLab/RHS/rhs-app/src/pages/posts/posts.html"*/,
+        selector: 'page-posts',template:/*ion-inline-start:"/home/orpheus/rhs-app/src/pages/posts/posts.html"*/'<ion-header>\n  \n  <ion-navbar align-title="center" color="secondary">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>\n      <img *ngIf="platform.is(\'tablet\') || platform.is(\'ipad\')" alt="RHS" height="36" src="./assets/logo-rhs-full.svg"/>\n      <img *ngIf="!platform.is(\'tablet\') && !platform.is(\'ipad\')" alt="RHS" height="36" src="./assets/logo-rhs.svg"/>      \n    </ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="goToNotificationsPage()">\n        <ion-icon name="notifications">\n          <ion-badge *ngIf="unreadNotifications > 0" item-start>{{ unreadNotifications }}</ion-badge>\n        </ion-icon>\n      </button>\n      <button ion-button icon-only (click)="goToSearchPage()">\n        <ion-icon name="search"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n  <ion-toolbar class="toolbar-rhs" color="primary">\n    <ion-segment [(ngModel)]="postsView" color="secondary">\n      <ion-segment-button value="home" (ionSelect)="changeSegment(\'home\')">\n        Principal\n      </ion-segment-button>\n      <ion-segment-button value="queue" (ionSelect)="changeSegment(\'queue\')">\n        Fila de Votação\n      </ion-segment-button>\n      <ion-segment-button value="following" (ionSelect)="changeSegment(\'following\')">\n        Seguindo\n      </ion-segment-button>\n    </ion-segment>\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-refresher pullMin="100" \n                (ionRefresh)="doRefresh($event)"\n                [enabled]="postsView === \'home\' ? true : postsView === \'queue\' ? isUserLogged : isUserLogged">\n    <ion-refresher-content\n      pullingText="Puxe e solte para atualizar."\n      refreshingText="Buscando novos posts...">\n    </ion-refresher-content>\n  </ion-refresher>\n\n  <ion-grid no-padding [ngSwitch]="postsView">\n    \n    <ion-row #list *ngSwitchCase="\'home\'">\n      <ion-col col-md-6 push-md-3 col-sm-8 push-sm-2 col-12>\n        <div *ngIf="showSpinnerOnHome && !loadingFromRefresher && !noMoreResultsOnHome"><ion-spinner class="center-spinner"></ion-spinner></div>     \n        <post-card ion-stop-event="click" [post-data]="post" *ngFor="let post of homePostList" (click)="goToPostPage(post[\'id\'])"></post-card>           \n        <ion-item-divider *ngIf="noMoreResultsOnHome && !loadingFromRefresher">\n          Não foram encontrados mais resultados.  \n        </ion-item-divider>\n      </ion-col>\n    </ion-row>\n    <ion-row #list *ngSwitchCase="\'queue\'">\n      <ion-col col-md-6 push-md-3 col-sm-8 push-sm-2 col-12>\n        <div *ngIf="!isUserLogged">\n          <information [message]="\'Somente para usuários da RHS\'" [detail]="\'É preciso estar logado para acessar essa sessão.\'"></information>\n        </div>\n        <div *ngIf="isUserLogged">\n          <div *ngIf="showSpinnerOnQueue && !loadingFromRefresher && !noMoreResultsOnQueue"><ion-spinner class="center-spinner"></ion-spinner></div>\n            <post-card ion-stop-event="click" [post-data]="post" *ngFor="let post of queuePostList" (click)="goToPostPage(post[\'id\'])"></post-card>   \n            <ion-item-divider *ngIf="noMoreResultsOnQueue && !loadingFromRefresher">\n              Não foram encontrados mais resultados.  \n            </ion-item-divider>\n            <div *ngIf="queuePostList.length == 0 && !showSpinnerOnQueue">\n              <information [message]="\'Ainda não encontramos nenhum post na fila de votação.\'"></information>\n            </div>\n          </div>\n      </ion-col>\n    </ion-row>\n    <ion-row #list *ngSwitchCase="\'following\'">\n      <ion-col col-md-6 push-md-3 col-sm-8 push-sm-2 col-12>\n        <div *ngIf="!isUserLogged">\n          <information [message]="\'Somente para usuários da RHS\'" [detail]="\'É preciso estar logado para acessar essa sessão.\'"></information>\n        </div> \n        <div *ngIf="isUserLogged">\n          <div *ngIf="showSpinnerOnFollowing && !loadingFromRefresher && !noMoreResultsOnFollowing"><ion-spinner class="center-spinner"></ion-spinner></div>\n          <post-card ion-stop-event="click" [post-data]="post" *ngFor="let post of followingPostList" (click)="goToPostPage(post[\'id\'])"></post-card>   \n          <ion-item-divider *ngIf="noMoreResultsOnFollowing && !loadingFromRefresher">\n            Não foram encontrados mais resultados.  \n          </ion-item-divider>\n          <div *ngIf="followingPostList.length == 0 && !showSpinnerOnFollowing">\n            <information [message]="\'Ainda encontramos não há nenhum post sendo seguido.\'"></information>\n          </div>\n        </div>\n      </ion-col>\n    </ion-row>\n\n    <ion-infinite-scroll \n        [enabled]="postsView === \'home\' ? !noMoreResultsOnHome : postsView === \'queue\' ? isUserLogged && !noMoreResultsOnQueue : isUserLogged && !noMoreResultsOnFollowing" \n        (ionInfinite)="$event.waitFor(doInfinite())">\n      <ion-infinite-scroll-content\n        loadingText="Buscando mais posts...">\n      </ion-infinite-scroll-content>\n    </ion-infinite-scroll>\n    \n  </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"/home/orpheus/rhs-app/src/pages/posts/posts.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],

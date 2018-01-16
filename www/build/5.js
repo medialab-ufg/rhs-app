@@ -1,6 +1,6 @@
 webpackJsonp([5],{
 
-/***/ 622:
+/***/ 626:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,10 +8,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PostPageModule", function() { return PostPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__post__ = __webpack_require__(640);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_shrink_header_shrink_header__ = __webpack_require__(641);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_social_sharing__ = __webpack_require__(632);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pipes_inner_html_post_inner_html_post__ = __webpack_require__(642);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__post__ = __webpack_require__(644);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_shrink_header_shrink_header__ = __webpack_require__(645);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_social_sharing__ = __webpack_require__(636);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pipes_inner_html_post_inner_html_post__ = __webpack_require__(646);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -47,7 +47,7 @@ PostPageModule = __decorate([
 
 /***/ }),
 
-/***/ 632:
+/***/ 636:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -373,16 +373,16 @@ SocialSharing = __decorate([
 
 /***/ }),
 
-/***/ 640:
+/***/ 644:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PostPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_social_sharing__ = __webpack_require__(632);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_social_sharing__ = __webpack_require__(636);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_firebase_analytics__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_settings_settings__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_settings_settings__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_api_api__ = __webpack_require__(140);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -646,7 +646,7 @@ __decorate([
 PostPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-post',template:/*ion-inline-start:"/home/orpheus/Documents/MediaLab/RHS/rhs-app/src/pages/post/post.html"*/'<ion-header id="shrinkHeader">\n\n  <ion-navbar color="secondary">\n    <ion-title>\n      <img *ngIf="platform.is(\'tablet\') || platform.is(\'ipad\')" alt="RHS" height="36" src="./assets/logo-rhs-full.svg"/>\n      <img *ngIf="!platform.is(\'tablet\') && !platform.is(\'ipad\')" alt="RHS" height="36" src="./assets/logo-rhs.svg"/>      \n    </ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="openShareActionSheet()">\n        <ion-icon name="share"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content fullscreen shrink-header="12px" class="content has-header">\n\n  <div *ngIf="isLoadingPost"><ion-spinner class="center-spinner"></ion-spinner></div>\n  <div *ngIf="!isLoadingPost">\n\n    <!-- POST TITLE -->\n    <h1 padding-horizontal [innerHTML]="post[\'title\'][\'rendered\']"></h1>\n\n    <!-- POST AUTHOR NAME -->\n    <div *ngIf="isLoadingAuthor"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div class="author-above-title" text-right *ngIf="!isLoadingAuthor" (click)="goToAuthorPage(author[\'id\'])">\n        por <span >{{ author[\'name\'] }}</span>\n    </div>\n\n    <!-- POST CONTENT -->\n    <article [ngStyle]="{ \'font-size\': settings.postContentFontSizeOptions[settings.currentFontSize] }" [innerHTML]="post[\'content\'][\'rendered\'] | innerHtmlPost"></article>\n\n    <!-- POST CATEGORIES -->\n    <div *ngIf="isLoadingCategories"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingCategories && categories.length > 0" class="category">\n      <h4><ion-icon name="pricetags"></ion-icon> Categorias</h4>\n      <ion-buttons class="categoria">\n        <button ion-button round small clear *ngFor="let category of categories" (click)="goToSearchWithCategory(category)" id="button">{{ category[\'name\'] }}</button>\n      </ion-buttons>\n    </div>\n    <!-- POST TAGS -->\n    <div *ngIf="isLoadingTags"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingTags && tags.length > 0" class="tags">\n      <h4><ion-icon name="bookmark"></ion-icon> Tags</h4>\n      <ion-buttons>\n        <button ion-button round small outline *ngFor="let tag of tags" (click)="goToSearchWithTag(tag)" id="button">{{ tag[\'name\'] }}</button>\n      </ion-buttons>\n    </div>\n\n    <!--DIVISOR-->\n    <div no-lines class="top-border"></div>\n\n    <!-- POST AUTHOR-->\n    <div *ngIf="isLoadingAuthor"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingAuthor" class="author" (click)="goToAuthorPage(author[\'id\'])">\n      <ion-item>\n        <ion-avatar item-start>\n          <img src="{{ author[\'avatar_urls\'][48] }}">\n        </ion-avatar>\n        <h2>{{ author[\'name\'] }}</h2>\n        <p>Publicado em {{ post[\'date\'] | date: \'dd/MM/yyyy\' }}</p>\n      </ion-item>\n    </div>\n\n    <!--DIVISOR-->\n    <div no-lines class="top-border"></div>\n\n    <!-- POST ACTION BUTTONS-->\n    <ion-buttons class="action_buttons">\n      <ion-grid>\n        <ion-row text-center>\n          <ion-col col-4 class="divide">\n            <p>{{ commentCount }} Comentários</p>\n            <button small ion-button (click)="commentPost()" class="comentar">Comentar</button>\n          </ion-col>\n          <ion-col col-3>\n            <p>{{ totalVotes }} Votos</p>\n            <button small  ion-button (click)="votePost()" class="votar">Votar</button>\n          </ion-col>\n          <ion-col col-5>\n            <p>{{ totalShares }} Compartilhamentos</p>\n            <button small ion-button (click)="openShareActionSheet()" class="compartilhar">Compartilhar</button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </ion-buttons>\n\n    <!-- POST COMMENTS -->\n    <div *ngIf="isLoadingComments"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingComments && commentBoxes.length > 0" class="comentarios">\n      <ion-list>\n        <ion-item *ngFor="let comment of commentBoxes; let i = index" text-wrap [ngStyle]="{ \'padding-left\': comment.depth*20 + \'px\'} ">\n          <ion-avatar item-start class="avatar" [ngClass]="{\'avatar-author\': author ? comment[\'author_name\'] == author[\'name\'] : false }" (click)="goToAuthorPage(comment[\'author\'])">\n            <img src="{{ comment[\'author_avatar_urls\'][24] }}">\n          </ion-avatar>\n            <h2 (click)="goToAuthorPage(comment[\'author\'])">{{ comment[\'author_name\'] }} <span>{{ comment[\'date\'] | date: \'dd/MM/yyyy\' }}</span></h2>\n            <p [innerHtml]="comment[\'content\'][\'rendered\']"></p>\n            <button ion-button clear icon-only item-end (click)="commentOnComment(i)">\n              <ion-icon name="redo"></ion-icon>\n            </button>\n        </ion-item>\n      </ion-list>\n      <div text-center *ngIf="post[\'comment_count\'] > commentBoxes.length"><button clear round ion-button (click)="commentsOffset = commentsOffset + settings.commentsPerPage; loadComments();">Mais comentários</button></div>\n    </div>\n  </div>\n\n</ion-content>\n\n<ion-footer *ngIf="this.api.isLogged()">\n  <ion-toolbar>\n    <ion-textarea rows="1" #commentInput id="commentInput" (input)="changeInputSize()" required type="text" [(ngModel)]="commentContent" placeholder="Digite aqui seu comentário."></ion-textarea>\n    <ion-buttons end>\n      <ion-spinner *ngIf="isPostingComment"></ion-spinner>\n      <button *ngIf="!isPostingComment" [disabled]="commentContent.length <= 0 " [color]="commentContent.length > 0 ? \'primary\' : \'default\'" ion-button icon-only (click)="postComment()">\n        <ion-icon name="send"></ion-icon>\n      </button>\n    </ion-buttons> \n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"/home/orpheus/Documents/MediaLab/RHS/rhs-app/src/pages/post/post.html"*/,
+        selector: 'page-post',template:/*ion-inline-start:"/home/orpheus/rhs-app/src/pages/post/post.html"*/'<ion-header id="shrinkHeader">\n\n  <ion-navbar color="secondary">\n    <ion-title>\n      <img *ngIf="platform.is(\'tablet\') || platform.is(\'ipad\')" alt="RHS" height="36" src="./assets/logo-rhs-full.svg"/>\n      <img *ngIf="!platform.is(\'tablet\') && !platform.is(\'ipad\')" alt="RHS" height="36" src="./assets/logo-rhs.svg"/>      \n    </ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="openShareActionSheet()">\n        <ion-icon name="share"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content fullscreen shrink-header="12px" class="content has-header">\n\n  <div *ngIf="isLoadingPost"><ion-spinner class="center-spinner"></ion-spinner></div>\n  <div *ngIf="!isLoadingPost">\n\n    <!-- POST TITLE -->\n    <h1 padding-horizontal [innerHTML]="post[\'title\'][\'rendered\']"></h1>\n\n    <!-- POST AUTHOR NAME -->\n    <div *ngIf="isLoadingAuthor"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div class="author-above-title" text-right *ngIf="!isLoadingAuthor" (click)="goToAuthorPage(author[\'id\'])">\n        por <span >{{ author[\'name\'] }}</span>\n    </div>\n\n    <!-- POST CONTENT -->\n    <article [ngStyle]="{ \'font-size\': settings.postContentFontSizeOptions[settings.currentFontSize] }" [innerHTML]="post[\'content\'][\'rendered\'] | innerHtmlPost"></article>\n\n    <!-- POST CATEGORIES -->\n    <div *ngIf="isLoadingCategories"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingCategories && categories.length > 0" class="category">\n      <h4><ion-icon name="pricetags"></ion-icon> Categorias</h4>\n      <ion-buttons class="categoria">\n        <button ion-button round small clear *ngFor="let category of categories" (click)="goToSearchWithCategory(category)" id="button">{{ category[\'name\'] }}</button>\n      </ion-buttons>\n    </div>\n    <!-- POST TAGS -->\n    <div *ngIf="isLoadingTags"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingTags && tags.length > 0" class="tags">\n      <h4><ion-icon name="bookmark"></ion-icon> Tags</h4>\n      <ion-buttons>\n        <button ion-button round small outline *ngFor="let tag of tags" (click)="goToSearchWithTag(tag)" id="button">{{ tag[\'name\'] }}</button>\n      </ion-buttons>\n    </div>\n\n    <!--DIVISOR-->\n    <div no-lines class="top-border"></div>\n\n    <!-- POST AUTHOR-->\n    <div *ngIf="isLoadingAuthor"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingAuthor" class="author" (click)="goToAuthorPage(author[\'id\'])">\n      <ion-item>\n        <ion-avatar item-start>\n          <img src="{{ author[\'avatar_urls\'][48] }}">\n        </ion-avatar>\n        <h2>{{ author[\'name\'] }}</h2>\n        <p>Publicado em {{ post[\'date\'] | date: \'dd/MM/yyyy\' }}</p>\n      </ion-item>\n    </div>\n\n    <!--DIVISOR-->\n    <div no-lines class="top-border"></div>\n\n    <!-- POST ACTION BUTTONS-->\n    <ion-buttons class="action_buttons">\n      <ion-grid>\n        <ion-row text-center>\n          <ion-col col-4 class="divide">\n            <p>{{ commentCount }} Comentários</p>\n            <button small ion-button (click)="commentPost()" class="comentar">Comentar</button>\n          </ion-col>\n          <ion-col col-3>\n            <p>{{ totalVotes }} Votos</p>\n            <button small  ion-button (click)="votePost()" class="votar">Votar</button>\n          </ion-col>\n          <ion-col col-5>\n            <p>{{ totalShares }} Compartilhamentos</p>\n            <button small ion-button (click)="openShareActionSheet()" class="compartilhar">Compartilhar</button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </ion-buttons>\n\n    <!-- POST COMMENTS -->\n    <div *ngIf="isLoadingComments"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingComments && commentBoxes.length > 0" class="comentarios">\n      <ion-list>\n        <ion-item *ngFor="let comment of commentBoxes; let i = index" text-wrap [ngStyle]="{ \'padding-left\': comment.depth*20 + \'px\'} ">\n          <ion-avatar item-start class="avatar" [ngClass]="{\'avatar-author\': author ? comment[\'author_name\'] == author[\'name\'] : false }" (click)="goToAuthorPage(comment[\'author\'])">\n            <img src="{{ comment[\'author_avatar_urls\'][24] }}">\n          </ion-avatar>\n            <h2 (click)="goToAuthorPage(comment[\'author\'])">{{ comment[\'author_name\'] }} <span>{{ comment[\'date\'] | date: \'dd/MM/yyyy\' }}</span></h2>\n            <p [innerHtml]="comment[\'content\'][\'rendered\']"></p>\n            <button ion-button clear icon-only item-end (click)="commentOnComment(i)">\n              <ion-icon name="redo"></ion-icon>\n            </button>\n        </ion-item>\n      </ion-list>\n      <div text-center *ngIf="post[\'comment_count\'] > commentBoxes.length"><button clear round ion-button (click)="commentsOffset = commentsOffset + settings.commentsPerPage; loadComments();">Mais comentários</button></div>\n    </div>\n  </div>\n\n</ion-content>\n\n<ion-footer *ngIf="this.api.isLogged()">\n  <ion-toolbar>\n    <ion-textarea rows="1" #commentInput id="commentInput" (input)="changeInputSize()" required type="text" [(ngModel)]="commentContent" placeholder="Digite aqui seu comentário."></ion-textarea>\n    <ion-buttons end>\n      <ion-spinner *ngIf="isPostingComment"></ion-spinner>\n      <button *ngIf="!isPostingComment" [disabled]="commentContent.length <= 0 " [color]="commentContent.length > 0 ? \'primary\' : \'default\'" ion-button icon-only (click)="postComment()">\n        <ion-icon name="send"></ion-icon>\n      </button>\n    </ion-buttons> \n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"/home/orpheus/rhs-app/src/pages/post/post.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
@@ -664,7 +664,7 @@ PostPage = __decorate([
 
 /***/ }),
 
-/***/ 641:
+/***/ 645:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -726,12 +726,12 @@ ShrinkHeader = __decorate([
 
 /***/ }),
 
-/***/ 642:
+/***/ 646:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InnerHtmlPostPipe; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_settings_settings__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_settings_settings__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(39);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {

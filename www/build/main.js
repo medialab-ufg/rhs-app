@@ -11,7 +11,7 @@ webpackJsonp([11],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__settings_settings__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__settings_settings__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_oauth_signature__ = __webpack_require__(227);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_oauth_signature___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_oauth_signature__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -466,7 +466,7 @@ ApiProvider = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__settings_settings__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__settings_settings__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_oauth_signature__ = __webpack_require__(227);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_oauth_signature___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_oauth_signature__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -595,47 +595,47 @@ webpackEmptyAsyncContext.id = 156;
 
 var map = {
 	"../pages/comment/comment.module": [
-		617,
+		621,
 		10
 	],
 	"../pages/following/following.module": [
-		618,
+		622,
 		6
 	],
 	"../pages/intro/intro.module": [
-		619,
+		623,
 		9
 	],
 	"../pages/login/login.module": [
-		620,
+		624,
 		8
 	],
 	"../pages/notifications/notifications.module": [
-		621,
+		625,
 		0
 	],
 	"../pages/post/post.module": [
-		622,
+		626,
 		5
 	],
 	"../pages/posts/posts.module": [
-		623,
+		627,
 		4
 	],
 	"../pages/profile/profile.module": [
-		624,
+		628,
 		3
 	],
 	"../pages/search/search.module": [
-		625,
+		629,
 		2
 	],
 	"../pages/settings/settings.module": [
-		626,
+		630,
 		7
 	],
 	"../pages/user/user.module": [
-		627,
+		631,
 		1
 	]
 };
@@ -722,15 +722,28 @@ UpdateProvider = __decorate([
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(277);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_intl__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_intl___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_intl__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_intl_locale_data_jsonp_en__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_intl_locale_data_jsonp_en___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_intl_locale_data_jsonp_en__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_module__ = __webpack_require__(285);
 
 
-Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
+
+
+Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_3__app_module__["a" /* AppModule */]);
 //# sourceMappingURL=main.js.map
 
 /***/ }),
 
-/***/ 281:
+/***/ 283:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 285:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -744,12 +757,12 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__ = __webpack_require__(274);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_network__ = __webpack_require__(270);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_firebase_analytics__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__(616);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__(620);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_status_bar__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_splash_screen__ = __webpack_require__(271);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers_authentication_authentication__ = __webpack_require__(142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_api_api__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_settings_settings__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_settings_settings__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__providers_update_update__ = __webpack_require__(275);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -829,7 +842,7 @@ AppModule = __decorate([
 
 /***/ }),
 
-/***/ 59:
+/***/ 60:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -886,7 +899,7 @@ SettingsProvider = __decorate([
 
 /***/ }),
 
-/***/ 616:
+/***/ 620:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -900,7 +913,7 @@ SettingsProvider = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_onesignal__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_authentication_authentication__ = __webpack_require__(142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_api_api__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_settings_settings__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_settings_settings__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_firebase_analytics__ = __webpack_require__(141);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1154,7 +1167,7 @@ __decorate([
     __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */])
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"/home/orpheus/Documents/MediaLab/RHS/rhs-app/src/app/app.html"*/'<ion-menu [content]="content">\n\n  <ion-header class="user-info">\n    <ion-toolbar *ngIf="!showUserInfo" color="secondary">\n      <h4>Você não está logado</h4>\n      <button menuClose ion-button color="primary" (click)="goToLoginPage()">ENTRAR NA RHS</button>\n    </ion-toolbar>\n    <ion-toolbar *ngIf="showUserInfo" color="secondary">\n      <div class="user-info">\n        <img [src]="user[\'avatar_urls\'][96]"> \n        <h3>{{ user[\'name\'] }}</h3>\n        <ion-grid>\n          <ion-row nowrap>\n            <ion-col>\n              {{ user[\'total_posts\'] }}  \n              <!--<ion-icon color="primary" name="document"></ion-icon>-->\n              <br>\n              Posts\n            </ion-col>\n            <ion-col>\n              {{ user[\'total_votes\'] }} \n              <br>\n              Votos\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </div>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content class="menuToggle">\n    <ion-list>\n      <button menuClose ion-item [ngClass]="{\'active-menu-item\': p == activePage}" *ngFor="let p of pages" (click)="openPage(p)">\n        <ion-icon name="{{ p.icon }}"></ion-icon>\n        {{p.title}}\n      </button>\n    </ion-list>\n    <div class="rhs-watermark"><img alt="RHS-watermark" height="36" src="./assets/images/logo-rhs-watermark.png"/></div>\n  </ion-content>\n\n</ion-menu>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="true"></ion-nav>'/*ion-inline-end:"/home/orpheus/Documents/MediaLab/RHS/rhs-app/src/app/app.html"*/
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"/home/orpheus/rhs-app/src/app/app.html"*/'<ion-menu [content]="content">\n\n  <ion-header class="user-info">\n    <ion-toolbar *ngIf="!showUserInfo" color="secondary">\n      <h4>Você não está logado</h4>\n      <button menuClose ion-button color="primary" (click)="goToLoginPage()">ENTRAR NA RHS</button>\n    </ion-toolbar>\n    <ion-toolbar *ngIf="showUserInfo" color="secondary">\n      <div class="user-info">\n        <img [src]="user[\'avatar_urls\'][96]"> \n        <h3>{{ user[\'name\'] }}</h3>\n        <ion-grid>\n          <ion-row nowrap>\n            <ion-col>\n              {{ user[\'total_posts\'] }}  \n              <!--<ion-icon color="primary" name="document"></ion-icon>-->\n              <br>\n              Posts\n            </ion-col>\n            <ion-col>\n              {{ user[\'total_votes\'] }} \n              <br>\n              Votos\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </div>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content class="menuToggle">\n    <ion-list>\n      <button menuClose ion-item [ngClass]="{\'active-menu-item\': p == activePage}" *ngFor="let p of pages" (click)="openPage(p)">\n        <ion-icon name="{{ p.icon }}"></ion-icon>\n        {{p.title}}\n      </button>\n    </ion-list>\n    <div class="rhs-watermark"><img alt="RHS-watermark" height="36" src="./assets/images/logo-rhs-watermark.png"/></div>\n  </ion-content>\n\n</ion-menu>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="true"></ion-nav>'/*ion-inline-end:"/home/orpheus/rhs-app/src/app/app.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */],
         __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],

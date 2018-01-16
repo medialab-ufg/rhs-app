@@ -1,6 +1,6 @@
 webpackJsonp([8],{
 
-/***/ 620:
+/***/ 624:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageModule", function() { return LoginPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(636);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(640);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -34,7 +34,7 @@ LoginPageModule = __decorate([
 
 /***/ }),
 
-/***/ 636:
+/***/ 640:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -45,7 +45,7 @@ LoginPageModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(144);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_firebase_analytics__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_authentication_authentication__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_settings_settings__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_settings_settings__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_api_api__ = __webpack_require__(140);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -164,7 +164,7 @@ var LoginPage = (function () {
 LoginPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-login',template:/*ion-inline-start:"/home/orpheus/Documents/MediaLab/RHS/rhs-app/src/pages/login/login.html"*/'<ion-header no-border>\n  <ion-navbar color="secondary">\n    <ion-title></ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content fullscreen padding>\n  <img alt="RHS"  src="./assets/logo-rhs.svg"/>\n  <h3 text-center>Para entrar no app, você será redirecionado para sua página de Login na RHS.</h3>\n  <h5 *ngIf="!isRegistered" text-center>Caso ainda não seja um usuário da RHS, é preciso fazer seu cadastro externamente, para depois logar no app.</h5>\n  <h5 *ngIf="isRegistered" text-center>Você fez seu registro, agora já pode entrar na rede.</h5>\n\n  <ion-buttons position>\n    <!--<a ion-button clear color="primary" href="{{ settings.apiURL + \'registrar\' }}">Me cadastrar</a>--> \n    <button *ngIf="!isRegistered" ion-button clear color="primary" (click)="register()">Me cadastrar</button>  \n    <button ion-button round color="primary" (click)="login()">Fazer Login</button>  \n  </ion-buttons> \n</ion-content>\n'/*ion-inline-end:"/home/orpheus/Documents/MediaLab/RHS/rhs-app/src/pages/login/login.html"*/,
+        selector: 'page-login',template:/*ion-inline-start:"/home/orpheus/rhs-app/src/pages/login/login.html"*/'<ion-header no-border>\n  <ion-navbar color="secondary">\n    <ion-title></ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content fullscreen padding>\n  <img alt="RHS"  src="./assets/logo-rhs.svg"/>\n  <h3 text-center>Para entrar no app, você será redirecionado para sua página de Login na RHS.</h3>\n  <h5 *ngIf="!isRegistered" text-center>Caso ainda não seja um usuário da RHS, é preciso fazer seu cadastro externamente, para depois logar no app.</h5>\n  <h5 *ngIf="isRegistered" text-center>Você fez seu registro, agora já pode entrar na rede.</h5>\n\n  <ion-buttons position>\n    <!--<a ion-button clear color="primary" href="{{ settings.apiURL + \'registrar\' }}">Me cadastrar</a>--> \n    <button *ngIf="!isRegistered" ion-button clear color="primary" (click)="register()">Me cadastrar</button>  \n    <button ion-button round color="primary" (click)="login()">Fazer Login</button>  \n  </ion-buttons> \n</ion-content>\n'/*ion-inline-end:"/home/orpheus/rhs-app/src/pages/login/login.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],

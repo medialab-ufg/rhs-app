@@ -1,6 +1,6 @@
 webpackJsonp([10],{
 
-/***/ 617:
+/***/ 621:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CommentPageModule", function() { return CommentPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__comment__ = __webpack_require__(633);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__comment__ = __webpack_require__(637);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -34,7 +34,7 @@ CommentPageModule = __decorate([
 
 /***/ }),
 
-/***/ 633:
+/***/ 637:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -151,7 +151,7 @@ __decorate([
 CommentPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-comment',template:/*ion-inline-start:"/home/orpheus/Documents/MediaLab/RHS/rhs-app/src/pages/comment/comment.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title>Resposta ao comentário</ion-title>\n    <ion-buttons end *ngIf="this.commentId !== null && this.commentId !== undefined">\n      <button ion-button clear (click)="goToPostPage()">\n        Ver Post\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content class="comentarios" padding>\n  <ion-list>\n    \n    <ion-item text-wrap *ngIf="!isLoadingComment">\n      <ion-avatar item-start>\n        <img src="{{ comment[\'author_avatar_urls\'][24] }}">\n      </ion-avatar>\n      <h2>{{ comment[\'author_name\'] }}</h2>\n      <p [innerHtml]="comment[\'content\'][\'rendered\']"></p>\n    </ion-item>\n\n    <ion-item *ngIf="!isPostingResponse && response !== null" text-wrap >\n      <ion-avatar item-start>\n        <img src="{{ response[\'author_avatar_urls\'][24] }}">\n      </ion-avatar>\n      <h2>{{ response[\'author_name\'] }}</h2>\n      <p [innerHtml]="response[\'content\'][\'rendered\']"></p>\n    </ion-item>\n\n  </ion-list>\n  \n</ion-content>\n\n<ion-footer>\n  <ion-toolbar>\n    <ion-textarea rows="1" id="responseInput" (input)="changeInputSize()" #responseInput type="text" [(ngModel)]="responseContent" placeholder="Digite aqui seu comentário."></ion-textarea>\n    <ion-buttons end>\n      <ion-spinner *ngIf="isPostingResponse"></ion-spinner>\n      <button *ngIf="!isPostingResponse" [color]="responseContent.length > 0 ? \'primary\' : \'default\'" ion-button icon-only (click)="postResponse()">\n        <ion-icon name="send"></ion-icon>\n      </button>\n    </ion-buttons> \n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"/home/orpheus/Documents/MediaLab/RHS/rhs-app/src/pages/comment/comment.html"*/,
+        selector: 'page-comment',template:/*ion-inline-start:"/home/orpheus/rhs-app/src/pages/comment/comment.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title>Resposta ao comentário</ion-title>\n    <ion-buttons end *ngIf="this.commentId !== null && this.commentId !== undefined">\n      <button ion-button clear (click)="goToPostPage()">\n        Ver Post\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content class="comentarios" padding>\n  <ion-list>\n    \n    <ion-item text-wrap *ngIf="!isLoadingComment">\n      <ion-avatar item-start>\n        <img src="{{ comment[\'author_avatar_urls\'][24] }}">\n      </ion-avatar>\n      <h2>{{ comment[\'author_name\'] }}</h2>\n      <p [innerHtml]="comment[\'content\'][\'rendered\']"></p>\n    </ion-item>\n\n    <ion-item *ngIf="!isPostingResponse && response !== null" text-wrap >\n      <ion-avatar item-start>\n        <img src="{{ response[\'author_avatar_urls\'][24] }}">\n      </ion-avatar>\n      <h2>{{ response[\'author_name\'] }}</h2>\n      <p [innerHtml]="response[\'content\'][\'rendered\']"></p>\n    </ion-item>\n\n  </ion-list>\n  \n</ion-content>\n\n<ion-footer>\n  <ion-toolbar>\n    <ion-textarea rows="1" id="responseInput" (input)="changeInputSize()" #responseInput type="text" [(ngModel)]="responseContent" placeholder="Digite aqui seu comentário."></ion-textarea>\n    <ion-buttons end>\n      <ion-spinner *ngIf="isPostingResponse"></ion-spinner>\n      <button *ngIf="!isPostingResponse" [color]="responseContent.length > 0 ? \'primary\' : \'default\'" ion-button icon-only (click)="postResponse()">\n        <ion-icon name="send"></ion-icon>\n      </button>\n    </ion-buttons> \n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"/home/orpheus/rhs-app/src/pages/comment/comment.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],

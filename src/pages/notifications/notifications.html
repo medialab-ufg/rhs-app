@@ -34,13 +34,13 @@
         <ion-avatar item-start [innerHtml]="notification['image']"> 
         </ion-avatar>
         <h2 color="secondary" text-wrap [innerHtml]="notification['text'] | innerHtmlNotification"></h2>
-        <p>{{ notification['datetime'] | date: 'dd/MM/yyyy' }}</p>
+        <p>{{ notification['datetime'].split(" ")[0] | date: 'dd/MM/yyyy' }}</p>
       </ion-item>
       <ion-item *ngIf="notification['type'] != 'comments_in_post' && notification['type'] != 'user_follow_author' && notification['type'] != 'new_post_from_user'" (click)="goToNotificationContent(i)">
         <ion-thumbnail item-start  [innerHtml]="notification['image']"> 
         </ion-thumbnail>
         <h2 color="secondary"  text-wrap  [innerHtml]="notification['text'] | innerHtmlNotification">></h2>
-        <p>{{ notification['datetime'] | date: 'dd/MM/yyyy' }}</p>
+        <p>{{ notification['datetime'].split(" ")[0] | date: 'dd/MM/yyyy' }}</p>
       </ion-item>
       </div>
       <ion-item-divider *ngIf="noMoreResults">

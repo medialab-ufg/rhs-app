@@ -4,10 +4,10 @@ import { Injectable } from '@angular/core';
 export class SettingsProvider {
 
   // Wordpress settings used by Authentication Service 
-  // public apiURL: string = 'http://migracao.redehumanizasus.net/';
-  // public callbackURL: string = 'http://migracao.redehumanizasus.net/api-login-callback';
-  // public consumerKey: string = 'pF74Dog1YVvF';
-  // public consumerSecret: string = 'EG3BBp4pFdfYuZvRx2bq1XGFPM4CxyGzF64sKxwujCMaaZ3s';
+  //  public apiURL: string = 'http://migracao.redehumanizasus.net/';
+  //  public callbackURL: string = 'http://migracao.redehumanizasus.net/api-login-callback';
+  //  public consumerKey: string = 'pF74Dog1YVvF';
+  //  public consumerSecret: string = 'EG3BBp4pFdfYuZvRx2bq1XGFPM4CxyGzF64sKxwujCMaaZ3s';
 
   // Wordpress settings used by Authentication Service 
   public apiURL: string = 'http://redehumanizasus.net/';

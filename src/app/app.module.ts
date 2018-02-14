@@ -25,7 +25,8 @@ import { UpdateProvider } from '../providers/update/update';
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp,{
-      pageTransition: 'ios-transition'
+      pageTransition: 'ios-transition',
+      backButtonText: 'Voltar'
     }),
     IonicStorageModule.forRoot()
   ],

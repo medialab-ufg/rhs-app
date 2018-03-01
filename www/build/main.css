@@ -34636,6 +34636,10 @@ page-post ion-footer .platform-mobile textarea.text-input {
   resize: vertical;
 }
 
+page-post .button-loader * {
+  stroke: white !important;
+}
+
 page-posts .toolbar-rhs {
   padding: 0;
   min-height: 50px !important;

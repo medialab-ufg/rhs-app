@@ -16,6 +16,7 @@ export class UserPage {
   userPostsList: Array<any> = new Array<any>();
 
   isFollowing: boolean = false;
+  isProcessingFollow: boolean = false;
 
   postQueries: { [query: string]: String } = {};
 
@@ -54,6 +55,8 @@ export class UserPage {
   }
 
   followUser() {
+    this.isProcessingFollow = true;
+
     this.api.followUser(this.userId).subscribe(
       response => {
         console.log(response);
@@ -66,15 +69,19 @@ export class UserPage {
           duration: 3000
         });
         followConfirmToast.present();
+        this.isProcessingFollow = false;
       },
       err => {
         console.log('Error ' + err + ' on follow user request.');
         this.isFollowing = false;
+        this.isProcessingFollow = false;
       }
     );
   }
 
   unFollowUser() {
+    this.isProcessingFollow = true;
+
     this.api.unFollowUser(this.userId).subscribe(
       response => {
         console.log(response);
@@ -87,10 +94,12 @@ export class UserPage {
           duration: 3000
         });
         unFollowConfirmToast.present();
+        this.isProcessingFollow = false;
       },
       err => {
         console.log('Error ' + err + ' on follow user request.');
         this.isFollowing = false;
+        this.isProcessingFollow = false;
       }
     );
 

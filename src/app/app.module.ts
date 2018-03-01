@@ -5,6 +5,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { Keyboard } from '@ionic-native/keyboard';
 import { Network } from '@ionic-native/network';
 import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
@@ -26,7 +27,11 @@ import { UpdateProvider } from '../providers/update/update';
     HttpModule,
     IonicModule.forRoot(MyApp,{
       pageTransition: 'ios-transition',
-      backButtonText: 'Voltar'
+      platforms: {
+        ios: {
+          backButtonText: 'Voltar'
+        }
+      }
     }),
     IonicStorageModule.forRoot()
   ],
@@ -44,6 +49,7 @@ import { UpdateProvider } from '../providers/update/update';
     ApiProvider,
     SettingsProvider,
     UpdateProvider,
+    Keyboard,
     OneSignal,
     FirebaseAnalytics
   ]

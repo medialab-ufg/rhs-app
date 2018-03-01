@@ -6,10 +6,10 @@
     </button>
     <ion-title>Participante</ion-title>
     <ion-buttons end>
-      <button *ngIf="!isFollowing" ion-button (click)="followUser()">
+      <button *ngIf="!isFollowing" [disabled]="isProcessingFollow" ion-button (click)="followUser()">
         Seguir
       </button>
-      <button *ngIf="isFollowing" ion-button (click)="unFollowUser()">
+      <button *ngIf="isFollowing" [disabled]="isProcessingFollow" ion-button (click)="unFollowUser()">
         Seguindo
       </button>
     </ion-buttons>

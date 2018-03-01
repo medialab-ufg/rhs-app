@@ -75,7 +75,7 @@
           </ion-col>
           <ion-col col-3>
             <p>{{ totalVotes }} Votos</p>
-            <button small  ion-button (click)="votePost()" class="votar">Votar</button>
+            <button small ion-button (click)="votePost()" class="votar" [disabled]="hasVoted"><ion-spinner name="ios-small" class="button-loader" *ngIf="isVoting"></ion-spinner>{{ isVoting ? '' : 'Votar' }}</button>
           </ion-col>
           <ion-col col-5>
             <p>{{ totalShares }} Compartilhamentos</p>

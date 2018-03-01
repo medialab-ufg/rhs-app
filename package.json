@@ -23,6 +23,7 @@
     "@ionic-native/core": "^4.3.2",
     "@ionic-native/firebase-analytics": "^4.4.2",
     "@ionic-native/in-app-browser": "^4.1.0",
+    "@ionic-native/keyboard": "^4.5.3",
     "@ionic-native/network": "^4.1.0",
     "@ionic-native/onesignal": "^4.2.1",
     "@ionic-native/push": "^4.2.1",
@@ -55,7 +56,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "2.0.2",
-    "ionic": "3.19.0",
+    "ionic": "3.19.1",
     "typescript": "2.3.4"
   },
   "description": "An Ionic project",

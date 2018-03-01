@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 631:
+/***/ 632:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,9 +8,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfilePageModule", function() { return ProfilePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user__ = __webpack_require__(651);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_information_information_module__ = __webpack_require__(632);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_post_card_post_card_module__ = __webpack_require__(634);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user__ = __webpack_require__(652);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_information_information_module__ = __webpack_require__(633);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_post_card_post_card_module__ = __webpack_require__(635);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,14 +38,14 @@ ProfilePageModule = __decorate([
 
 /***/ }),
 
-/***/ 632:
+/***/ 633:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InformationComponentModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__information__ = __webpack_require__(633);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__information__ = __webpack_require__(634);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -72,7 +72,7 @@ InformationComponentModule = __decorate([
 
 /***/ }),
 
-/***/ 633:
+/***/ 634:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -112,14 +112,14 @@ InformationComponent = __decorate([
 
 /***/ }),
 
-/***/ 634:
+/***/ 635:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PostsCardComponentModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_post_card_post_card__ = __webpack_require__(635);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_post_card_post_card__ = __webpack_require__(636);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -146,7 +146,7 @@ PostsCardComponentModule = __decorate([
 
 /***/ }),
 
-/***/ 635:
+/***/ 636:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -197,7 +197,7 @@ PostCardComponent = __decorate([
 
 /***/ }),
 
-/***/ 651:
+/***/ 652:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -229,6 +229,7 @@ var UserPage = (function () {
         this.analytics = analytics;
         this.userPostsList = new Array();
         this.isFollowing = false;
+        this.isProcessingFollow = false;
         this.postQueries = {};
         this.isLoadingUser = true;
         this.isLoadingUserPosts = true;
@@ -253,6 +254,7 @@ var UserPage = (function () {
     };
     UserPage.prototype.followUser = function () {
         var _this = this;
+        this.isProcessingFollow = true;
         this.api.followUser(this.userId).subscribe(function (response) {
             console.log(response);
             _this.isFollowing = true;
@@ -262,13 +264,16 @@ var UserPage = (function () {
                 duration: 3000
             });
             followConfirmToast.present();
+            _this.isProcessingFollow = false;
         }, function (err) {
             console.log('Error ' + err + ' on follow user request.');
             _this.isFollowing = false;
+            _this.isProcessingFollow = false;
         });
     };
     UserPage.prototype.unFollowUser = function () {
         var _this = this;
+        this.isProcessingFollow = true;
         this.api.unFollowUser(this.userId).subscribe(function (response) {
             console.log(response);
             _this.isFollowing = false;
@@ -278,9 +283,11 @@ var UserPage = (function () {
                 duration: 3000
             });
             unFollowConfirmToast.present();
+            _this.isProcessingFollow = false;
         }, function (err) {
             console.log('Error ' + err + ' on follow user request.');
             _this.isFollowing = false;
+            _this.isProcessingFollow = false;
         });
     };
     UserPage.prototype.loadUser = function () {
@@ -332,7 +339,7 @@ var UserPage = (function () {
 UserPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-user',template:/*ion-inline-start:"/home/orpheus/rhs-app/src/pages/user/user.html"*/'<ion-header no-border>\n\n  <ion-navbar color="secondary">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Participante</ion-title>\n    <ion-buttons end>\n      <button *ngIf="!isFollowing" ion-button (click)="followUser()">\n        Seguir\n      </button>\n      <button *ngIf="isFollowing" ion-button (click)="unFollowUser()">\n        Seguindo\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n  <div *ngIf="isLoadingUser"><ion-spinner class="center-spinner"></ion-spinner></div>\n  \n  <div *ngIf="!isLoadingUser">\n    <div class="user-info">\n      <img [src]="user[\'avatar_urls\'][96]"> \n      <h2>{{ user[\'name\'] }}</h2>\n      <ion-grid>\n        <ion-row nowrap>\n          <ion-col>\n            {{ user[\'total_posts\'] }}  \n            <!--<ion-icon color="primary" name="document"></ion-icon>-->\n            <br>\n            Posts\n          </ion-col>\n          <ion-col>\n            {{ user[\'total_votes\'] }}  \n            <br>\n            Votos\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </div>\n\n    <ion-toolbar class="toolbar-rhs" color="primary">\n      <ion-segment [(ngModel)]="userInfoView" color="secondary">\n        <ion-segment-button value="posts">\n          Publicações\n        </ion-segment-button>\n        <ion-segment-button value="personal">\n          Pessoal\n        </ion-segment-button>\n        <ion-segment-button value="interests">\n          Interesses\n        </ion-segment-button>\n      </ion-segment>\n    </ion-toolbar>\n\n    <div [ngSwitch]="userInfoView">\n      \n      <ion-grid no-padding>\n        <ion-row>\n          <ion-col col-md-6 push-md-3 col-sm-8 push-sm-2 col-12 *ngSwitchCase="\'posts\'">\n            <div *ngIf="isLoadingUserPosts"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n            <post-card [post-data]="post" *ngFor="let post of userPostsList" (click)="goToPostPage(post[\'id\'])"></post-card>   \n            <div *ngIf="userPostsList.length == 0 && !isLoadingUserPosts">\n              <information [message]="\'Não possui nenhuma publicação.\'"></information>\n            </div>\n            <ion-item-divider *ngIf="noMoreResults">\n              Não foram encontrados mais resultados.  \n            </ion-item-divider>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <ion-infinite-scroll [enabled]="userInfoView == \'posts\' && !noMoreResults" (ionInfinite)="$event.waitFor(doInfinite())">\n        <ion-infinite-scroll-content></ion-infinite-scroll-content>\n      </ion-infinite-scroll>\n\n      <ion-list *ngSwitchCase="\'personal\'" padding>\n        <ion-item [innerHtml]="user[\'description\'] !== \'\' ? user[\'description\'] : \'Nenhuma descrição fornecida.\'">\n        </ion-item>\n      </ion-list>\n\n      <ion-list *ngSwitchCase="\'interests\'">\n        <ion-list>\n          <ion-list-header>Sobre</ion-list-header>\n          <ion-item [innerHtml]="user[\'description\'] !== \'\' ? user[\'description\'] : \'Nenhuma informação encontrada.\'">\n          </ion-item>\n          \n          <ion-list-header>Interesses</ion-list-header>\n          <ion-item [innerHtml]="user[\'interest\'] !== \'\' ? user[\'interest\'] : \'Nenhum interesse informado.\'">\n          </ion-item>\n\n          <ion-list-header>Formação</ion-list-header>\n          <ion-item [innerHtml]="user[\'formation\'] !== \'\' ? user[\'formation\'] : \'Nenhuma formação informada.\'">\n          </ion-item>\n        </ion-list>\n      </ion-list>\n\n    </div>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/home/orpheus/rhs-app/src/pages/user/user.html"*/,
+        selector: 'page-user',template:/*ion-inline-start:"/home/orpheus/rhs-app/src/pages/user/user.html"*/'<ion-header no-border>\n\n  <ion-navbar color="secondary">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Participante</ion-title>\n    <ion-buttons end>\n      <button *ngIf="!isFollowing" [disabled]="isProcessingFollow" ion-button (click)="followUser()">\n        Seguir\n      </button>\n      <button *ngIf="isFollowing" [disabled]="isProcessingFollow" ion-button (click)="unFollowUser()">\n        Seguindo\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n  <div *ngIf="isLoadingUser"><ion-spinner class="center-spinner"></ion-spinner></div>\n  \n  <div *ngIf="!isLoadingUser">\n    <div class="user-info">\n      <img [src]="user[\'avatar_urls\'][96]"> \n      <h2>{{ user[\'name\'] }}</h2>\n      <ion-grid>\n        <ion-row nowrap>\n          <ion-col>\n            {{ user[\'total_posts\'] }}  \n            <!--<ion-icon color="primary" name="document"></ion-icon>-->\n            <br>\n            Posts\n          </ion-col>\n          <ion-col>\n            {{ user[\'total_votes\'] }}  \n            <br>\n            Votos\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </div>\n\n    <ion-toolbar class="toolbar-rhs" color="primary">\n      <ion-segment [(ngModel)]="userInfoView" color="secondary">\n        <ion-segment-button value="posts">\n          Publicações\n        </ion-segment-button>\n        <ion-segment-button value="personal">\n          Pessoal\n        </ion-segment-button>\n        <ion-segment-button value="interests">\n          Interesses\n        </ion-segment-button>\n      </ion-segment>\n    </ion-toolbar>\n\n    <div [ngSwitch]="userInfoView">\n      \n      <ion-grid no-padding>\n        <ion-row>\n          <ion-col col-md-6 push-md-3 col-sm-8 push-sm-2 col-12 *ngSwitchCase="\'posts\'">\n            <div *ngIf="isLoadingUserPosts"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n            <post-card [post-data]="post" *ngFor="let post of userPostsList" (click)="goToPostPage(post[\'id\'])"></post-card>   \n            <div *ngIf="userPostsList.length == 0 && !isLoadingUserPosts">\n              <information [message]="\'Não possui nenhuma publicação.\'"></information>\n            </div>\n            <ion-item-divider *ngIf="noMoreResults">\n              Não foram encontrados mais resultados.  \n            </ion-item-divider>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <ion-infinite-scroll [enabled]="userInfoView == \'posts\' && !noMoreResults" (ionInfinite)="$event.waitFor(doInfinite())">\n        <ion-infinite-scroll-content></ion-infinite-scroll-content>\n      </ion-infinite-scroll>\n\n      <ion-list *ngSwitchCase="\'personal\'" padding>\n        <ion-item [innerHtml]="user[\'description\'] !== \'\' ? user[\'description\'] : \'Nenhuma descrição fornecida.\'">\n        </ion-item>\n      </ion-list>\n\n      <ion-list *ngSwitchCase="\'interests\'">\n        <ion-list>\n          <ion-list-header>Sobre</ion-list-header>\n          <ion-item [innerHtml]="user[\'description\'] !== \'\' ? user[\'description\'] : \'Nenhuma informação encontrada.\'">\n          </ion-item>\n          \n          <ion-list-header>Interesses</ion-list-header>\n          <ion-item [innerHtml]="user[\'interest\'] !== \'\' ? user[\'interest\'] : \'Nenhum interesse informado.\'">\n          </ion-item>\n\n          <ion-list-header>Formação</ion-list-header>\n          <ion-item [innerHtml]="user[\'formation\'] !== \'\' ? user[\'formation\'] : \'Nenhuma formação informada.\'">\n          </ion-item>\n        </ion-list>\n      </ion-list>\n\n    </div>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/home/orpheus/rhs-app/src/pages/user/user.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],

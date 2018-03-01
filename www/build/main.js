@@ -595,47 +595,47 @@ webpackEmptyAsyncContext.id = 156;
 
 var map = {
 	"../pages/comment/comment.module": [
-		621,
+		622,
 		10
 	],
 	"../pages/following/following.module": [
-		622,
+		623,
 		6
 	],
 	"../pages/intro/intro.module": [
-		623,
+		624,
 		9
 	],
 	"../pages/login/login.module": [
-		624,
+		625,
 		8
 	],
 	"../pages/notifications/notifications.module": [
-		625,
+		626,
 		0
 	],
 	"../pages/post/post.module": [
-		626,
+		627,
 		5
 	],
 	"../pages/posts/posts.module": [
-		627,
+		628,
 		4
 	],
 	"../pages/profile/profile.module": [
-		628,
+		629,
 		3
 	],
 	"../pages/search/search.module": [
-		629,
+		630,
 		2
 	],
 	"../pages/settings/settings.module": [
-		630,
+		631,
 		7
 	],
 	"../pages/user/user.module": [
-		631,
+		632,
 		1
 	]
 };
@@ -716,17 +716,17 @@ UpdateProvider = __decorate([
 
 /***/ }),
 
-/***/ 276:
+/***/ 277:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(277);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_intl__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_intl__ = __webpack_require__(282);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_intl___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_intl__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_intl_locale_data_jsonp_en__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_intl_locale_data_jsonp_en__ = __webpack_require__(285);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_intl_locale_data_jsonp_en___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_intl_locale_data_jsonp_en__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_module__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_module__ = __webpack_require__(286);
 
 
 
@@ -736,14 +736,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 283:
+/***/ 284:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 285:
+/***/ 286:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -755,21 +755,23 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(144);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__ = __webpack_require__(274);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_network__ = __webpack_require__(270);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_firebase_analytics__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__(620);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_status_bar__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_splash_screen__ = __webpack_require__(271);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers_authentication_authentication__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_api_api__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_settings_settings__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__providers_update_update__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_keyboard__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_network__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_firebase_analytics__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__app_component__ = __webpack_require__(621);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_status_bar__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_splash_screen__ = __webpack_require__(271);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_authentication_authentication__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_api_api__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__providers_settings_settings__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__providers_update_update__ = __webpack_require__(275);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -794,13 +796,18 @@ var AppModule = (function () {
 AppModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* MyApp */]
+            __WEBPACK_IMPORTED_MODULE_10__app_component__["a" /* MyApp */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_5__angular_http__["c" /* HttpModule */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["f" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* MyApp */], {
-                pageTransition: 'ios-transition'
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["f" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_10__app_component__["a" /* MyApp */], {
+                pageTransition: 'ios-transition',
+                platforms: {
+                    ios: {
+                        backButtonText: 'Voltar'
+                    }
+                }
             }, {
                 links: [
                     { loadChildren: '../pages/comment/comment.module#CommentPageModule', name: 'CommentPage', segment: 'comment', priority: 'low', defaultHistory: [] },
@@ -820,20 +827,21 @@ AppModule = __decorate([
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* IonicApp */]],
         entryComponents: [
-            __WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* MyApp */]
+            __WEBPACK_IMPORTED_MODULE_10__app_component__["a" /* MyApp */]
         ],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_10__ionic_native_status_bar__["a" /* StatusBar */],
-            __WEBPACK_IMPORTED_MODULE_11__ionic_native_splash_screen__["a" /* SplashScreen */],
+            __WEBPACK_IMPORTED_MODULE_11__ionic_native_status_bar__["a" /* StatusBar */],
+            __WEBPACK_IMPORTED_MODULE_12__ionic_native_splash_screen__["a" /* SplashScreen */],
             __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__["a" /* InAppBrowser */],
-            __WEBPACK_IMPORTED_MODULE_7__ionic_native_network__["a" /* Network */],
+            __WEBPACK_IMPORTED_MODULE_8__ionic_native_network__["a" /* Network */],
             { provide: __WEBPACK_IMPORTED_MODULE_2__angular_core__["v" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["e" /* IonicErrorHandler */] },
-            __WEBPACK_IMPORTED_MODULE_12__providers_authentication_authentication__["a" /* AuthenticationProvider */],
-            __WEBPACK_IMPORTED_MODULE_13__providers_api_api__["a" /* ApiProvider */],
-            __WEBPACK_IMPORTED_MODULE_14__providers_settings_settings__["a" /* SettingsProvider */],
-            __WEBPACK_IMPORTED_MODULE_15__providers_update_update__["a" /* UpdateProvider */],
+            __WEBPACK_IMPORTED_MODULE_13__providers_authentication_authentication__["a" /* AuthenticationProvider */],
+            __WEBPACK_IMPORTED_MODULE_14__providers_api_api__["a" /* ApiProvider */],
+            __WEBPACK_IMPORTED_MODULE_15__providers_settings_settings__["a" /* SettingsProvider */],
+            __WEBPACK_IMPORTED_MODULE_16__providers_update_update__["a" /* UpdateProvider */],
+            __WEBPACK_IMPORTED_MODULE_7__ionic_native_keyboard__["a" /* Keyboard */],
             __WEBPACK_IMPORTED_MODULE_0__ionic_native_onesignal__["a" /* OneSignal */],
-            __WEBPACK_IMPORTED_MODULE_8__ionic_native_firebase_analytics__["a" /* FirebaseAnalytics */]
+            __WEBPACK_IMPORTED_MODULE_9__ionic_native_firebase_analytics__["a" /* FirebaseAnalytics */]
         ]
     })
 ], AppModule);
@@ -899,7 +907,7 @@ SettingsProvider = __decorate([
 
 /***/ }),
 
-/***/ 620:
+/***/ 621:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1187,5 +1195,5 @@ MyApp = __decorate([
 
 /***/ })
 
-},[276]);
+},[277]);
 //# sourceMappingURL=main.js.map

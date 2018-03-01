@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 625:
+/***/ 626:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,10 +8,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NotificationsPageModule", function() { return NotificationsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__notifications__ = __webpack_require__(641);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_inner_html_notification_inner_html_notification__ = __webpack_require__(642);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pipes_inner_html_image_inner_html_image__ = __webpack_require__(643);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_information_information_module__ = __webpack_require__(632);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__notifications__ = __webpack_require__(642);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_inner_html_notification_inner_html_notification__ = __webpack_require__(643);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pipes_inner_html_image_inner_html_image__ = __webpack_require__(644);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_information_information_module__ = __webpack_require__(633);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -40,14 +40,14 @@ NotificationsPageModule = __decorate([
 
 /***/ }),
 
-/***/ 632:
+/***/ 633:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InformationComponentModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__information__ = __webpack_require__(633);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__information__ = __webpack_require__(634);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -74,7 +74,7 @@ InformationComponentModule = __decorate([
 
 /***/ }),
 
-/***/ 633:
+/***/ 634:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -114,7 +114,7 @@ InformationComponent = __decorate([
 
 /***/ }),
 
-/***/ 641:
+/***/ 642:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -244,7 +244,7 @@ NotificationsPage = __decorate([
 
 /***/ }),
 
-/***/ 642:
+/***/ 643:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -300,7 +300,7 @@ InnerHtmlNotificationPipe = __decorate([
 
 /***/ }),
 
-/***/ 643:
+/***/ 644:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

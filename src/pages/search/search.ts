@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, IonicPage, Searchbar, Platform } from 'ionic-angular';
+import { Content, NavController, NavParams, IonicPage, Searchbar, Platform } from 'ionic-angular';
+import { Keyboard } from '@ionic-native/keyboard';
 import { FormControl } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -15,6 +16,7 @@ import { ApiProvider } from './../../providers/api/api';
 })
 export class SearchPage {
   @ViewChild('searchBar') searchBar: Searchbar;
+  @ViewChild(Content) content:Content;
 
   postList: Array<any> = new Array<any>();
   postQueries: { [query: string]: String } = {};
@@ -34,7 +36,8 @@ export class SearchPage {
               public api: ApiProvider,
               public platform: Platform,
               public statusBar: StatusBar,
-              public analytics: FirebaseAnalytics) {
+              public analytics: FirebaseAnalytics,
+              public keyboard: Keyboard) {
       
     this.searchControl = new FormControl();
     
@@ -51,6 +54,13 @@ export class SearchPage {
       this.categoryFiltering = true;
       this.searchPosts(false);
     }
+
+  }
+
+  ngAfterViewInit() {
+    this.content.ionScroll.subscribe((event)=>{
+      this.keyboard.close();
+    });
   }
 
   ionViewDidLoad() {
@@ -62,6 +72,8 @@ export class SearchPage {
 
   ionViewDidEnter(){
     this.statusBar.backgroundColorByHexString('008884');
+    this.searchBar.setFocus();
+    this.keyboard.show();
     this.searchBar.setFocus();
 
     // Tells analytics that user accessed this screen.

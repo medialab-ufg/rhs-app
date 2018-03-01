@@ -1,6 +1,6 @@
 webpackJsonp([2],{
 
-/***/ 629:
+/***/ 630:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,9 +8,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SearchPageModule", function() { return SearchPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_post_card_post_card_module__ = __webpack_require__(634);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_information_information_module__ = __webpack_require__(632);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__search__ = __webpack_require__(649);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_post_card_post_card_module__ = __webpack_require__(635);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_information_information_module__ = __webpack_require__(633);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__search__ = __webpack_require__(650);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,14 +38,14 @@ SearchPageModule = __decorate([
 
 /***/ }),
 
-/***/ 632:
+/***/ 633:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InformationComponentModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__information__ = __webpack_require__(633);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__information__ = __webpack_require__(634);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -72,7 +72,7 @@ InformationComponentModule = __decorate([
 
 /***/ }),
 
-/***/ 633:
+/***/ 634:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -112,14 +112,14 @@ InformationComponent = __decorate([
 
 /***/ }),
 
-/***/ 634:
+/***/ 635:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PostsCardComponentModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_post_card_post_card__ = __webpack_require__(635);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_post_card_post_card__ = __webpack_require__(636);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -146,7 +146,7 @@ PostsCardComponentModule = __decorate([
 
 /***/ }),
 
-/***/ 635:
+/***/ 636:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -197,21 +197,22 @@ PostCardComponent = __decorate([
 
 /***/ }),
 
-/***/ 649:
+/***/ 650:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_debounceTime__ = __webpack_require__(272);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_debounceTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_debounceTime__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_distinctUntilChanged__ = __webpack_require__(273);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_distinctUntilChanged___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_distinctUntilChanged__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_firebase_analytics__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_api_api__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_keyboard__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_debounceTime__ = __webpack_require__(272);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_debounceTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_debounceTime__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_distinctUntilChanged__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_distinctUntilChanged___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_distinctUntilChanged__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_firebase_analytics__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_api_api__ = __webpack_require__(140);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -229,14 +230,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var SearchPage = (function () {
-    function SearchPage(navCtrl, navParams, api, platform, statusBar, analytics) {
+    function SearchPage(navCtrl, navParams, api, platform, statusBar, analytics, keyboard) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.api = api;
         this.platform = platform;
         this.statusBar = statusBar;
         this.analytics = analytics;
+        this.keyboard = keyboard;
         this.postList = new Array();
         this.postQueries = {};
         this.searchTerm = '';
@@ -245,7 +248,7 @@ var SearchPage = (function () {
         this.categoryFiltering = false;
         this.tagFiltering = false;
         this.filterName = '';
-        this.searchControl = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */]();
+        this.searchControl = new __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormControl */]();
         if (this.navParams.get('tagId')) {
             this.postQueries['tags'] = this.navParams.get('tagId');
             this.filterName = this.navParams.get('tagName');
@@ -259,6 +262,12 @@ var SearchPage = (function () {
             this.searchPosts(false);
         }
     }
+    SearchPage.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        this.content.ionScroll.subscribe(function (event) {
+            _this.keyboard.close();
+        });
+    };
     SearchPage.prototype.ionViewDidLoad = function () {
         var _this = this;
         this.searchControl.valueChanges
@@ -268,6 +277,8 @@ var SearchPage = (function () {
     };
     SearchPage.prototype.ionViewDidEnter = function () {
         this.statusBar.backgroundColorByHexString('008884');
+        this.searchBar.setFocus();
+        this.keyboard.show();
         this.searchBar.setFocus();
         // Tells analytics that user accessed this screen.
         this.analytics.setCurrentScreen("Posts ")
@@ -334,17 +345,22 @@ __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])('searchBar'),
     __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Searchbar */])
 ], SearchPage.prototype, "searchBar", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */]),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */])
+], SearchPage.prototype, "content", void 0);
 SearchPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-search',template:/*ion-inline-start:"/home/orpheus/rhs-app/src/pages/search/search.html"*/'<ion-header>\n\n  <ion-toolbar color="primary">\n    <ion-buttons left>\n      <button padding-left *ngIf="!platform.is(\'ios\')" (click)="onCancel()" icon-only clear ion-button large>\n        <ion-icon name="arrow-back"></ion-icon>\n      </button>\n      <button *ngIf="platform.is(\'ios\')" (click)="onCancel()" ion-button icon-left clear>\n        <ion-icon name="arrow-back"></ion-icon>\n        Voltar\n      </button>\n    </ion-buttons>\n    <ion-searchbar color="primary" #searchBar\n                   animated="true"\n                   showClearButton="true"\n                   placeholder="Pesquisar posts na RHS"\n                   autocomplete="on"\n                   [(ngModel)]="searchTerm" \n                   [formControl]="searchControl"></ion-searchbar>\n  </ion-toolbar>\n  <ion-toolbar padding-left padding-right color="tertiary" *ngIf="tagFiltering || categoryFiltering">\n    Filtrando por:  <ion-chip #filterChip color="primary">  \n                      <ion-label color="white">{{ filterName }}</ion-label>\n                      <button ion-button clear color="secondary" (click)="deleteFilter(filterChip)">\n                          <ion-icon name="close-circle"></ion-icon>\n                      </button>\n                    </ion-chip>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [ngClass]="(tagFiltering || categoryFiltering) ? \'has-subheader\' : \'\'">\n\n  <ion-grid no-padding>\n  <ion-row>\n    <ion-col col-md-6 push-md-3 col-sm-8 push-sm-2 col-12>\n      <div *ngIf="showSpinner"><ion-spinner class="center-spinner"></ion-spinner></div>\n      <post-card [post-data]="post" *ngFor="let post of postList" (click)="goToPostPage(post[\'id\'])">   \n      </post-card>\n      <ion-item-divider *ngIf="noMoreResults">\n        Não foram encontrados mais resultados.  \n      </ion-item-divider>\n      <div *ngIf="postList.length == 0 && !showSpinner && searchTerm && searchTerm.trim()">\n        <information [message]="\'Nenhum post encontrado.\'" [detail]="\'Verifique se digitou corretamente o termo de busca, ou tente ser menos específico.\'"></information>\n      </div>\n      <div *ngIf="postList.length == 0 && !showSpinner && !searchTerm && !searchTerm.trim()">\n        <information [message]="\'Busque por posts na RHS.\'"></information>\n      </div>\n    </ion-col>\n  </ion-row>\n  </ion-grid>\n\n  <ion-infinite-scroll [enabled]="!noMoreResults" (ionInfinite)="$event.waitFor(doInfinite())">\n    <ion-infinite-scroll-content></ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n\n</ion-content>\n'/*ion-inline-end:"/home/orpheus/rhs-app/src/pages/search/search.html"*/,
+        selector: 'page-search',template:/*ion-inline-start:"/home/orpheus/rhs-app/src/pages/search/search.html"*/'<ion-header>\n\n  <ion-toolbar color="primary">\n    <ion-buttons left>\n      <button padding-left *ngIf="!platform.is(\'ios\')" (click)="onCancel()" icon-only clear ion-button large>\n        <ion-icon name="arrow-back"></ion-icon>\n      </button>\n      <button *ngIf="platform.is(\'ios\')" (click)="onCancel()" ion-button icon-left clear>\n        <ion-icon name="arrow-back"></ion-icon>\n        Voltar\n      </button>\n    </ion-buttons>\n    <ion-searchbar color="primary" #searchBar\n                   animated="true"\n                   showClearButton="true"\n                   placeholder="Pesquisar posts na RHS"\n                   autocomplete="on"\n                   [(ngModel)]="searchTerm" \n                   [formControl]="searchControl"></ion-searchbar>\n  </ion-toolbar>\n  <ion-toolbar padding-left padding-right color="tertiary" *ngIf="tagFiltering || categoryFiltering">\n    Filtrando por:  <ion-chip #filterChip color="primary">  \n                      <ion-label color="white">{{ filterName }}</ion-label>\n                      <button ion-button clear color="secondary" (click)="deleteFilter(filterChip)">\n                          <ion-icon name="close-circle"></ion-icon>\n                      </button>\n                    </ion-chip>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [ngClass]="(tagFiltering || categoryFiltering) ? \'has-subheader\' : \'\'" (click)="{}">\n  \n  <ion-grid no-padding>\n  <ion-row>\n    <ion-col col-md-6 push-md-3 col-sm-8 push-sm-2 col-12>\n      <div *ngIf="showSpinner"><ion-spinner class="center-spinner"></ion-spinner></div>\n      <post-card [post-data]="post" *ngFor="let post of postList" (click)="goToPostPage(post[\'id\'])">   \n      </post-card>\n      <ion-item-divider *ngIf="noMoreResults">\n        Não foram encontrados mais resultados.  \n      </ion-item-divider>\n      <div *ngIf="postList.length == 0 && !showSpinner && searchTerm && searchTerm.trim()">\n        <information [message]="\'Nenhum post encontrado.\'" [detail]="\'Verifique se digitou corretamente o termo de busca, ou tente ser menos específico.\'"></information>\n      </div>\n      <div *ngIf="postList.length == 0 && !showSpinner && !searchTerm && !searchTerm.trim()">\n        <information [message]="\'Busque por posts na RHS.\'"></information>\n      </div>\n    </ion-col>\n  </ion-row>\n  </ion-grid>\n\n  <ion-infinite-scroll [enabled]="!noMoreResults" (ionInfinite)="$event.waitFor(doInfinite())">\n    <ion-infinite-scroll-content></ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n\n</ion-content>\n'/*ion-inline-end:"/home/orpheus/rhs-app/src/pages/search/search.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_7__providers_api_api__["a" /* ApiProvider */],
+        __WEBPACK_IMPORTED_MODULE_8__providers_api_api__["a" /* ApiProvider */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */],
-        __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__["a" /* StatusBar */],
-        __WEBPACK_IMPORTED_MODULE_6__ionic_native_firebase_analytics__["a" /* FirebaseAnalytics */]])
+        __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__["a" /* StatusBar */],
+        __WEBPACK_IMPORTED_MODULE_7__ionic_native_firebase_analytics__["a" /* FirebaseAnalytics */],
+        __WEBPACK_IMPORTED_MODULE_2__ionic_native_keyboard__["a" /* Keyboard */]])
 ], SearchPage);
 
 //# sourceMappingURL=search.js.map

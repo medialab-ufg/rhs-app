@@ -47,6 +47,10 @@ export class PostPage {
   returnFromPostFunction: any;
   postDidUpdated: boolean = false;
 
+  // Controlling voting
+  hasVoted = false;
+  isVoting = false;
+
   constructor(public navParams: NavParams,
               public navCtrl: NavController,
               public actionSheetCtrl: ActionSheetController,
@@ -190,6 +194,8 @@ export class PostPage {
   }
 
   votePost() {
+
+    this.isVoting = true;
  
     this.api.voteOnPost(this.postId).subscribe(
       voteResponse => {
@@ -201,9 +207,14 @@ export class PostPage {
           duration: 3000
         });
         voteToast.present();
+
+        this.isVoting = false;
+        this.hasVoted = true;
       }, 
       err => {
         console.log(err);
+        this.hasVoted = true;
+        this.isVoting = false;
         let voteAlert = this.alertCtrl.create({
           title: 'Ops...',
           subTitle: err.message,

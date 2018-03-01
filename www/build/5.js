@@ -472,6 +472,7 @@ var PostPage = (function () {
             _this.totalVotes = _this.post['total_votes'];
             _this.totalShares = _this.post['total_shares'];
             _this.commentCount = _this.post['comment_count'];
+            _this.hasVoted = _this.post['user_has_voted'];
             _this.isLoadingAuthor = true;
             _this.api.getAuthorInfo(_this.post['author'], _this.api.isLogged()).subscribe(function (authorInfo) {
                 _this.author = authorInfo;
@@ -559,7 +560,6 @@ var PostPage = (function () {
             _this.hasVoted = true;
         }, function (err) {
             console.log(err);
-            _this.hasVoted = true;
             _this.isVoting = false;
             var voteAlert = _this.alertCtrl.create({
                 title: 'Ops...',
@@ -579,6 +579,7 @@ var PostPage = (function () {
                     _this.comments[index] = commentResponse;
                 }
                 _this.commentContent = '';
+                _this.reduceInputSize();
                 _this.postDidUpdated = true;
                 _this.generateCommentBoxes();
                 _this.analytics.logEvent('comment_edited', { post_id: _this.postId, user_id: _this.api.getUserId() })
@@ -596,6 +597,7 @@ var PostPage = (function () {
             this.api.commentOnPost(this.postId, this.commentContent, 0).subscribe(function (commentResponse) {
                 _this.comments.unshift(commentResponse);
                 _this.commentContent = '';
+                _this.reduceInputSize();
                 _this.commentCount = Number(_this.commentCount) + 1;
                 _this.postDidUpdated = true;
                 _this.generateCommentBoxes();
@@ -608,9 +610,9 @@ var PostPage = (function () {
         }
     };
     PostPage.prototype.editComment = function (commentIndex) {
-        //this.commentInput.value = String(this.commentBoxes[commentIndex]['content']['rendered']).replace(/<[^>]+>/gm, '');
-        this.commentContent = String(this.commentBoxes[commentIndex]['content']['rendered']).replace(/<[^>]+>/gm, '');
+        this.commentInput.value = String(this.commentBoxes[commentIndex]['content']['rendered']).replace(/<[^>]+>/gm, '');
         this.changeInputSize();
+        this.commentInput.setFocus();
         this.editedCommentId = this.commentBoxes[commentIndex]['id'];
         this.isEditingComment = true;
     };
@@ -659,8 +661,8 @@ var PostPage = (function () {
         var element = document.getElementById('commentInput');
         var textarea = element.getElementsByTagName('textarea')[0];
         // Set default style for textarea
-        textarea.style.minHeight = '0';
-        textarea.style.height = '0';
+        textarea.style.minHeight = '18px';
+        textarea.style.height = 'auto';
         // Limit size to 96 pixels (6 lines of text)
         var scroll_height = textarea.scrollHeight;
         if (scroll_height > 96)
@@ -669,6 +671,15 @@ var PostPage = (function () {
         element.style.height = scroll_height + "px";
         textarea.style.minHeight = scroll_height + "px";
         textarea.style.height = scroll_height + "px";
+    };
+    PostPage.prototype.reduceInputSize = function () {
+        // Get elements
+        var element = document.getElementById('commentInput');
+        var textarea = element.getElementsByTagName('textarea')[0];
+        // Set default style for textarea
+        element.style.height = "18px";
+        textarea.style.minHeight = '18px';
+        textarea.style.height = 'auto';
     };
     PostPage.prototype.goToAuthorPage = function (userId) {
         if (userId == this.api.getUserId()) {

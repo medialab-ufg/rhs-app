@@ -22,6 +22,14 @@ page-posts {
       justify-content: center;
     }
 
+    .notification-button {
+      margin-right: 10px;
+      margin-left: -10px;
+    }
+    .search-button {
+      margin-right: 10px;
+    }
+
     ion-badge {
       position: absolute;
       right: 18px !important;

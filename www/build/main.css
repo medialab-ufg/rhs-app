@@ -34302,7 +34302,7 @@ page-post ion-header .toolbar-title {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  -webkit-justify-content: center;
+  -webkit-justify-content: centehiddenr;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
@@ -34623,11 +34623,10 @@ page-post ion-footer ion-toolbar .toolbar-content {
 page-post ion-footer ion-toolbar .toolbar-content ion-textarea {
   font-size: 18px;
   color: #333333;
-  height: auto;
 }
 
 page-post ion-footer ion-toolbar .toolbar-content ion-textarea textarea {
-  height: auto;
+  height: 18px;
   min-height: 18px;
   margin: 8px;
   overflow: scroll !important;
@@ -34675,6 +34674,15 @@ page-posts ion-header .toolbar-title {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+}
+
+page-posts ion-header .notification-button {
+  margin-right: 10px;
+  margin-left: -10px;
+}
+
+page-posts ion-header .search-button {
+  margin-right: 10px;
 }
 
 page-posts ion-header ion-badge {

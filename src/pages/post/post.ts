@@ -97,6 +97,7 @@ export class PostPage {
       this.totalVotes = this.post['total_votes'];
       this.totalShares = this.post['total_shares'];
       this.commentCount = this.post['comment_count'];
+      this.hasVoted = this.post['user_has_voted'];
 
       this.isLoadingAuthor = true;
       this.api.getAuthorInfo(this.post['author'], this.api.isLogged()).subscribe(
@@ -217,7 +218,6 @@ export class PostPage {
       }, 
       err => {
         console.log(err);
-        this.hasVoted = true;
         this.isVoting = false;
         let voteAlert = this.alertCtrl.create({
           title: 'Ops...',
@@ -243,7 +243,7 @@ export class PostPage {
               this.comments[index] = commentResponse;
           }
           this.commentContent = '';
-          
+          this.reduceInputSize();
           this.postDidUpdated = true;
           this.generateCommentBoxes();
 
@@ -266,6 +266,7 @@ export class PostPage {
         
           this.comments.unshift(commentResponse);
           this.commentContent = '';
+          this.reduceInputSize();
           this.commentCount = Number(this.commentCount) + 1;
           
           this.postDidUpdated = true;
@@ -283,9 +284,9 @@ export class PostPage {
   }
 
   editComment(commentIndex: any) {  
-    //this.commentInput.value = String(this.commentBoxes[commentIndex]['content']['rendered']).replace(/<[^>]+>/gm, '');
-    this.commentContent = String(this.commentBoxes[commentIndex]['content']['rendered']).replace(/<[^>]+>/gm, '');
+    this.commentInput.value = String(this.commentBoxes[commentIndex]['content']['rendered']).replace(/<[^>]+>/gm, '');
     this.changeInputSize();
+    this.commentInput.setFocus();
     this.editedCommentId = this.commentBoxes[commentIndex]['id'];
     this.isEditingComment = true;
   }
@@ -344,10 +345,10 @@ export class PostPage {
     // Get elements
     let element   = document.getElementById('commentInput');
     let textarea  = element.getElementsByTagName('textarea')[0];
-
+    
     // Set default style for textarea
-    textarea.style.minHeight  = '0';
-    textarea.style.height     = '0';
+    textarea.style.minHeight  = '18px';
+    textarea.style.height     = 'auto';
 
     // Limit size to 96 pixels (6 lines of text)
     let scroll_height = textarea.scrollHeight;
@@ -358,6 +359,17 @@ export class PostPage {
     element.style.height     = scroll_height + "px";
     textarea.style.minHeight = scroll_height + "px";
     textarea.style.height    = scroll_height + "px";
+  }
+
+  reduceInputSize() {
+    // Get elements
+    let element   = document.getElementById('commentInput');
+    let textarea  = element.getElementsByTagName('textarea')[0];
+    
+    // Set default style for textarea
+    element.style.height     = "18px";
+    textarea.style.minHeight  = '18px';
+    textarea.style.height     = 'auto';
   }
 
   // Callback function used in comment page to inform if the user did inserted a new comment or not.

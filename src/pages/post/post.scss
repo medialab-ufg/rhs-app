@@ -9,7 +9,7 @@ page-post {
       flex-direction: row;
       -webkit-align-items: center;
       align-items: center;
-      -webkit-justify-content: center;
+      -webkit-justify-content: centehiddenr;
       justify-content: center;
     }
   }
@@ -297,9 +297,8 @@ page-post {
         ion-textarea {
           font-size: 18px;
           color: color($colors, dark);
-          height: auto;
           textarea {
-            height: auto;
+            height: 18px;
             min-height: 18px;
             margin: 8px;
             overflow: scroll !important;

@@ -34656,6 +34656,13 @@ page-posts .toolbar-rhs .segment-md {
   margin-bottom: -7px !important;
 }
 
+page-posts .toolbar-ios .segment-button {
+  max-width: 30%;
+  height: 3rem;
+  font-size: 1.4rem;
+  line-height: 2.7rem;
+}
+
 page-posts ion-header .toolbar-title {
   display: -webkit-flex;
   display: -webkit-box;

@@ -9,6 +9,13 @@ page-posts {
     }
   }
 
+  .toolbar-ios .segment-button {
+    max-width: 30%;
+    height: 3rem;
+    font-size: 1.4rem;
+    line-height: 2.7rem;
+  }
+
   ion-header {
     // Centraliza o ion-title, mesmo no Android
     .toolbar-title {

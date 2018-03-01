@@ -34597,6 +34597,13 @@ page-post ion-content.content .comentarios ion-list ion-item .item-inner button[
   right: 5px;
 }
 
+page-post ion-content.content .comentarios ion-list ion-item .item-inner .edit-button {
+  bottom: 0;
+  margin: 0;
+  position: absolute;
+  right: 35px;
+}
+
 page-post ion-content.content .comentarios ion-list.list-ios .item-ios:first-child {
   border: none;
 }
@@ -34616,10 +34623,11 @@ page-post ion-footer ion-toolbar .toolbar-content {
 page-post ion-footer ion-toolbar .toolbar-content ion-textarea {
   font-size: 18px;
   color: #333333;
+  height: auto;
 }
 
 page-post ion-footer ion-toolbar .toolbar-content ion-textarea textarea {
-  height: 18px;
+  height: auto;
   min-height: 18px;
   margin: 8px;
   overflow: scroll !important;

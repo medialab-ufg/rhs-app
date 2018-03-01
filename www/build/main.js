@@ -229,6 +229,33 @@ var ApiProvider = (function () {
             return _this.handleError(error);
         });
     };
+    // Edit comment on post
+    ApiProvider.prototype.editCommentOnPost = function (postId, commentContent, commentId) {
+        var _this = this;
+        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]();
+        var queries = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* URLSearchParams */]();
+        queries['post'] = postId;
+        queries['author'] = this.userId;
+        queries['content'] = commentContent;
+        var search = this.serializeQueries(queries);
+        queries['oauth_consumer_key'] = this.settings.consumerKey;
+        queries['oauth_token'] = this.tokenKey;
+        queries['oauth_signature_method'] = 'HMAC-SHA1';
+        queries['oauth_timestamp'] = new String(new Date().getTime()).substr(0, 10);
+        queries['oauth_nonce'] = this.generateNonce();
+        queries['oauth_version'] = '1.0';
+        var signature = __WEBPACK_IMPORTED_MODULE_5_oauth_signature___default.a.generate('PUT', this.settings.apiURL + 'wp-json/wp/v2/comments/' + commentId + '?' + search.toString(), queries, this.settings.consumerSecret, this.tokenSecret);
+        headers.append('Authorization', 'OAuth oauth_consumer_key="' + this.settings.consumerKey + '",oauth_token="' + this.tokenKey + '",oauth_signature_method="HMAC-SHA1",oauth_timestamp="' + queries['oauth_timestamp'] + '",oauth_nonce="' + queries['oauth_nonce'] + '",oauth_version="1.0",oauth_signature="' + signature + '"');
+        return this.http.put(this.settings.apiURL + 'wp-json/wp/v2/comments/' + commentId + '?' + search.toString(), {}, { headers: headers })
+            .map(function (res) {
+            var commentResponse = JSON.parse(res['_body']);
+            return commentResponse;
+        })
+            .catch(function (error) {
+            console.log(error);
+            return _this.handleError(error);
+        });
+    };
     // Get a single comment
     ApiProvider.prototype.getComment = function (commentId) {
         var _this = this;
@@ -866,15 +893,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var SettingsProvider = (function () {
     function SettingsProvider() {
         // Wordpress settings used by Authentication Service 
-        //  public apiURL: string = 'http://migracao.redehumanizasus.net/';
-        //  public callbackURL: string = 'http://migracao.redehumanizasus.net/api-login-callback';
-        //  public consumerKey: string = 'pF74Dog1YVvF';
-        //  public consumerSecret: string = 'EG3BBp4pFdfYuZvRx2bq1XGFPM4CxyGzF64sKxwujCMaaZ3s';
+        this.apiURL = 'http://migracao.redehumanizasus.net/';
+        this.callbackURL = 'http://migracao.redehumanizasus.net/api-login-callback';
+        this.consumerKey = 'pF74Dog1YVvF';
+        this.consumerSecret = 'EG3BBp4pFdfYuZvRx2bq1XGFPM4CxyGzF64sKxwujCMaaZ3s';
         // Wordpress settings used by Authentication Service 
-        this.apiURL = 'http://redehumanizasus.net/';
-        this.callbackURL = 'http://redehumanizasus.net/api-login-callback';
-        this.consumerKey = 'UNzAxTFPs2Z7';
-        this.consumerSecret = 'CEb2TiTcqE246oWh5qolUbORvjDHiqKEC2CfsHyOrDGtJPsB';
+        //public apiURL: string = 'http://redehumanizasus.net/';
+        //public callbackURL: string = 'http://redehumanizasus.net/api-login-callback';
+        //public consumerKey: string = 'UNzAxTFPs2Z7';
+        //public consumerSecret: string = 'CEb2TiTcqE246oWh5qolUbORvjDHiqKEC2CfsHyOrDGtJPsB';
         // public apiURL: string = 'http://10.0.2.15/rhs/';
         // public callbackURL: string = 'http://10.0.2.15/rhs/api-login-callback';
         // public consumerKey: string = 'k18tusWAaBeB';

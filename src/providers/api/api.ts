@@ -286,6 +286,43 @@ export class ApiProvider {
     );
   }
 
+  // Edit comment on post
+  editCommentOnPost(postId: number, commentContent: string, commentId: number):
+    Observable<any> {
+    
+    let headers = new Headers();
+
+    let queries = new URLSearchParams();
+    queries['post'] = postId;
+    queries['author'] = this.userId;
+    queries['content'] = commentContent;
+
+    let search = this.serializeQueries(queries);
+    queries['oauth_consumer_key'] = this.settings.consumerKey;
+    queries['oauth_token'] = this.tokenKey;
+    queries['oauth_signature_method'] = 'HMAC-SHA1';
+    queries['oauth_timestamp'] = new String(new Date().getTime()).substr(0,10);
+    queries['oauth_nonce'] = this.generateNonce();
+    queries['oauth_version'] = '1.0'; 
+
+    let signature = oauthSignature.generate('PUT', this.settings.apiURL + 'wp-json/wp/v2/comments/' + commentId +'?' + search.toString(), queries, this.settings.consumerSecret, this.tokenSecret);
+    headers.append('Authorization', 'OAuth oauth_consumer_key="' + this.settings.consumerKey + '",oauth_token="' + this.tokenKey + '",oauth_signature_method="HMAC-SHA1",oauth_timestamp="' + queries['oauth_timestamp'] + '",oauth_nonce="' + queries['oauth_nonce'] + '",oauth_version="1.0",oauth_signature="' + signature + '"');
+  
+    return this.http.put(this.settings.apiURL + 'wp-json/wp/v2/comments/' + commentId +'?' + search.toString(), {}, {headers: headers})
+    .map((res: Response) => {
+
+      let commentResponse = JSON.parse(res['_body']);
+
+      return commentResponse;
+    })
+    .catch((error: any) => { 
+      console.log(error);
+      return this.handleError(error);
+    }
+    );
+  }
+
+
   // Get a single comment
   getComment(commentId: number):
     Observable<any> {

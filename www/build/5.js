@@ -425,6 +425,8 @@ var PostPage = (function () {
         this.isPostingComment = false;
         // String inserted on Comment Input Footer
         this.commentContent = '';
+        this.isEditingComment = false;
+        this.editedCommentId = 0;
         // Statistics that change dynamically
         this.totalVotes = 0;
         this.totalShares = 0;
@@ -466,7 +468,7 @@ var PostPage = (function () {
         this.isLoadingPost = true;
         this.api.getPostInfo(this.postId, this.api.isLogged()).subscribe(function (postInfo) {
             _this.post = postInfo;
-            console.log(_this.post);
+            //console.log(this.post);
             _this.totalVotes = _this.post['total_votes'];
             _this.totalShares = _this.post['total_shares'];
             _this.commentCount = _this.post['comment_count'];
@@ -486,6 +488,8 @@ var PostPage = (function () {
         this.api.getPostComments(this.postId, this.commentsOffset, this.api.isLogged()).subscribe(function (commentsInfo) {
             if (_this.commentsOffset <= 0) {
                 _this.comments = commentsInfo;
+                console.log(_this.comments);
+                console.log(_this.api.getUserId());
             }
             else {
                 _this.comments = _this.comments.concat(commentsInfo);
@@ -568,18 +572,47 @@ var PostPage = (function () {
     PostPage.prototype.postComment = function () {
         var _this = this;
         this.isPostingComment = true;
-        this.api.commentOnPost(this.postId, this.commentContent, 0).subscribe(function (commentResponse) {
-            _this.comments.unshift(commentResponse);
-            _this.commentContent = '';
-            _this.commentCount = Number(_this.commentCount) + 1;
-            _this.postDidUpdated = true;
-            _this.generateCommentBoxes();
-            _this.analytics.logEvent('new_comment', { post_id: _this.postId, user_id: _this.api.getUserId() })
-                .then(function (res) { return console.log(res); })
-                .catch(function (error) { return console.error(error); });
-        }, function (err) {
-            console.log('Error ' + err + ' - On Comment Data posting.');
-        }, function () { return _this.isPostingComment = false; });
+        if (this.isEditingComment) {
+            this.api.editCommentOnPost(this.postId, this.commentContent, this.editedCommentId).subscribe(function (commentResponse) {
+                var index = _this.comments.findIndex(function (editedComment) { return editedComment.id === commentResponse.id; });
+                if (index >= 0) {
+                    _this.comments[index] = commentResponse;
+                }
+                _this.commentContent = '';
+                _this.postDidUpdated = true;
+                _this.generateCommentBoxes();
+                _this.analytics.logEvent('comment_edited', { post_id: _this.postId, user_id: _this.api.getUserId() })
+                    .then(function (res) { return console.log(res); })
+                    .catch(function (error) { return console.error(error); });
+            }, function (err) {
+                console.log('Error ' + err + ' - On Comment Editing.');
+            }, function () {
+                _this.isPostingComment = false;
+                _this.isEditingComment = false;
+                _this.editedCommentId = 0;
+            });
+        }
+        else {
+            this.api.commentOnPost(this.postId, this.commentContent, 0).subscribe(function (commentResponse) {
+                _this.comments.unshift(commentResponse);
+                _this.commentContent = '';
+                _this.commentCount = Number(_this.commentCount) + 1;
+                _this.postDidUpdated = true;
+                _this.generateCommentBoxes();
+                _this.analytics.logEvent('new_comment', { post_id: _this.postId, user_id: _this.api.getUserId() })
+                    .then(function (res) { return console.log(res); })
+                    .catch(function (error) { return console.error(error); });
+            }, function (err) {
+                console.log('Error ' + err + ' - On Comment Data posting.');
+            }, function () { return _this.isPostingComment = false; });
+        }
+    };
+    PostPage.prototype.editComment = function (commentIndex) {
+        //this.commentInput.value = String(this.commentBoxes[commentIndex]['content']['rendered']).replace(/<[^>]+>/gm, '');
+        this.commentContent = String(this.commentBoxes[commentIndex]['content']['rendered']).replace(/<[^>]+>/gm, '');
+        this.changeInputSize();
+        this.editedCommentId = this.commentBoxes[commentIndex]['id'];
+        this.isEditingComment = true;
     };
     PostPage.prototype.goToSearchWithTag = function (tag) {
         this.navCtrl.push('SearchPage', { 'tagId': tag['id'], 'tagName': tag['name'] });
@@ -597,11 +630,11 @@ var PostPage = (function () {
     };
     // Used for ordering and finding level of comments
     PostPage.prototype.generateCommentBoxes = function () {
-        console.log(this.comments);
+        //console.log(this.comments);
         this.commentBoxes = new Array();
         this.fillCommentBox(0, 0);
         this.isLoadingComments = false;
-        console.log(this.commentBoxes);
+        //console.log(this.commentBoxes);
     };
     PostPage.prototype.fillCommentBox = function (parentId, commentDepth) {
         for (var _i = 0, _a = this.comments; _i < _a.length; _i++) {
@@ -654,7 +687,7 @@ __decorate([
 PostPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-post',template:/*ion-inline-start:"/home/orpheus/rhs-app/src/pages/post/post.html"*/'<ion-header id="shrinkHeader">\n\n  <ion-navbar color="secondary">\n    <ion-title>\n      <img *ngIf="platform.is(\'tablet\') || platform.is(\'ipad\')" alt="RHS" height="36" src="./assets/logo-rhs-full.svg"/>\n      <img *ngIf="!platform.is(\'tablet\') && !platform.is(\'ipad\')" alt="RHS" height="36" src="./assets/logo-rhs.svg"/>      \n    </ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="openShareActionSheet()">\n        <ion-icon name="share"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content fullscreen shrink-header="12px" class="content has-header">\n\n  <div *ngIf="isLoadingPost"><ion-spinner class="center-spinner"></ion-spinner></div>\n  <div *ngIf="!isLoadingPost">\n\n    <!-- POST TITLE -->\n    <h1 padding-horizontal [innerHTML]="post[\'title\'][\'rendered\']"></h1>\n\n    <!-- POST AUTHOR NAME -->\n    <div *ngIf="isLoadingAuthor"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div class="author-above-title" text-right *ngIf="!isLoadingAuthor" (click)="goToAuthorPage(author[\'id\'])">\n        por <span >{{ author[\'name\'] }}</span>\n    </div>\n\n    <!-- POST CONTENT -->\n    <article [ngStyle]="{ \'font-size\': settings.postContentFontSizeOptions[settings.currentFontSize] }" [innerHTML]="post[\'content\'][\'rendered\'] | innerHtmlPost"></article>\n\n    <!-- POST CATEGORIES -->\n    <div *ngIf="isLoadingCategories"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingCategories && categories.length > 0" class="category">\n      <h4><ion-icon name="pricetags"></ion-icon> Categorias</h4>\n      <ion-buttons class="categoria">\n        <button ion-button round small clear *ngFor="let category of categories" (click)="goToSearchWithCategory(category)" id="button">{{ category[\'name\'] }}</button>\n      </ion-buttons>\n    </div>\n    <!-- POST TAGS -->\n    <div *ngIf="isLoadingTags"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingTags && tags.length > 0" class="tags">\n      <h4><ion-icon name="bookmark"></ion-icon> Tags</h4>\n      <ion-buttons>\n        <button ion-button round small outline *ngFor="let tag of tags" (click)="goToSearchWithTag(tag)" id="button">{{ tag[\'name\'] }}</button>\n      </ion-buttons>\n    </div>\n\n    <!--DIVISOR-->\n    <div no-lines class="top-border"></div>\n\n    <!-- POST AUTHOR-->\n    <div *ngIf="isLoadingAuthor"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingAuthor" class="author" (click)="goToAuthorPage(author[\'id\'])">\n      <ion-item>\n        <ion-avatar item-start>\n          <img src="{{ author[\'avatar_urls\'][48] }}">\n        </ion-avatar>\n        <h2>{{ author[\'name\'] }}</h2>\n        <p>Publicado em {{ post[\'date\'] | date: \'dd/MM/yyyy\' }}</p>\n      </ion-item>\n    </div>\n\n    <!--DIVISOR-->\n    <div no-lines class="top-border"></div>\n\n    <!-- POST ACTION BUTTONS-->\n    <ion-buttons class="action_buttons">\n      <ion-grid>\n        <ion-row text-center>\n          <ion-col col-4 class="divide">\n            <p>{{ commentCount }} Comentários</p>\n            <button small ion-button (click)="commentPost()" class="comentar">Comentar</button>\n          </ion-col>\n          <ion-col col-3>\n            <p>{{ totalVotes }} Votos</p>\n            <button small ion-button (click)="votePost()" class="votar" [disabled]="hasVoted"><ion-spinner name="ios-small" class="button-loader" *ngIf="isVoting"></ion-spinner>{{ isVoting ? \'\' : \'Votar\' }}</button>\n          </ion-col>\n          <ion-col col-5>\n            <p>{{ totalShares }} Compartilhamentos</p>\n            <button small ion-button (click)="openShareActionSheet()" class="compartilhar">Compartilhar</button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </ion-buttons>\n\n    <!-- POST COMMENTS -->\n    <div *ngIf="isLoadingComments"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingComments && commentBoxes.length > 0" class="comentarios">\n      <ion-list>\n        <ion-item *ngFor="let comment of commentBoxes; let i = index" text-wrap [ngStyle]="{ \'padding-left\': comment.depth*20 + \'px\'} ">\n          <ion-avatar item-start class="avatar" [ngClass]="{\'avatar-author\': author ? comment[\'author_name\'] == author[\'name\'] : false }" (click)="goToAuthorPage(comment[\'author\'])">\n            <img src="{{ comment[\'author_avatar_urls\'][24] }}">\n          </ion-avatar>\n            <h2 (click)="goToAuthorPage(comment[\'author\'])">{{ comment[\'author_name\'] }} <span>{{ comment[\'date\'] | date: \'dd/MM/yyyy\' }}</span></h2>\n            <p [innerHtml]="comment[\'content\'][\'rendered\']"></p>\n            <button ion-button clear icon-only item-end (click)="commentOnComment(i)">\n              <ion-icon name="redo"></ion-icon>\n            </button>\n        </ion-item>\n      </ion-list>\n      <div text-center *ngIf="post[\'comment_count\'] > commentBoxes.length"><button clear round ion-button (click)="commentsOffset = commentsOffset + settings.commentsPerPage; loadComments();">Mais comentários</button></div>\n    </div>\n  </div>\n\n</ion-content>\n\n<ion-footer *ngIf="this.api.isLogged()">\n  <ion-toolbar>\n    <ion-textarea rows="1" #commentInput id="commentInput" (input)="changeInputSize()" required type="text" [(ngModel)]="commentContent" placeholder="Digite aqui seu comentário."></ion-textarea>\n    <ion-buttons end>\n      <ion-spinner *ngIf="isPostingComment"></ion-spinner>\n      <button *ngIf="!isPostingComment" [disabled]="commentContent.length <= 0 " [color]="commentContent.length > 0 ? \'primary\' : \'default\'" ion-button icon-only (click)="postComment()">\n        <ion-icon name="send"></ion-icon>\n      </button>\n    </ion-buttons> \n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"/home/orpheus/rhs-app/src/pages/post/post.html"*/,
+        selector: 'page-post',template:/*ion-inline-start:"/home/orpheus/rhs-app/src/pages/post/post.html"*/'<ion-header id="shrinkHeader">\n\n  <ion-navbar color="secondary">\n    <ion-title>\n      <img *ngIf="platform.is(\'tablet\') || platform.is(\'ipad\')" alt="RHS" height="36" src="./assets/logo-rhs-full.svg"/>\n      <img *ngIf="!platform.is(\'tablet\') && !platform.is(\'ipad\')" alt="RHS" height="36" src="./assets/logo-rhs.svg"/>      \n    </ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="openShareActionSheet()">\n        <ion-icon name="share"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content fullscreen shrink-header="12px" class="content has-header">\n\n  <div *ngIf="isLoadingPost"><ion-spinner class="center-spinner"></ion-spinner></div>\n  <div *ngIf="!isLoadingPost">\n\n    <!-- POST TITLE -->\n    <h1 padding-horizontal [innerHTML]="post[\'title\'][\'rendered\']"></h1>\n\n    <!-- POST AUTHOR NAME -->\n    <div *ngIf="isLoadingAuthor"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div class="author-above-title" text-right *ngIf="!isLoadingAuthor" (click)="goToAuthorPage(author[\'id\'])">\n        por <span >{{ author[\'name\'] }}</span>\n    </div>\n\n    <!-- POST CONTENT -->\n    <article [ngStyle]="{ \'font-size\': settings.postContentFontSizeOptions[settings.currentFontSize] }" [innerHTML]="post[\'content\'][\'rendered\'] | innerHtmlPost"></article>\n\n    <!-- POST CATEGORIES -->\n    <div *ngIf="isLoadingCategories"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingCategories && categories.length > 0" class="category">\n      <h4><ion-icon name="pricetags"></ion-icon> Categorias</h4>\n      <ion-buttons class="categoria">\n        <button ion-button round small clear *ngFor="let category of categories" (click)="goToSearchWithCategory(category)" id="button">{{ category[\'name\'] }}</button>\n      </ion-buttons>\n    </div>\n    <!-- POST TAGS -->\n    <div *ngIf="isLoadingTags"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingTags && tags.length > 0" class="tags">\n      <h4><ion-icon name="bookmark"></ion-icon> Tags</h4>\n      <ion-buttons>\n        <button ion-button round small outline *ngFor="let tag of tags" (click)="goToSearchWithTag(tag)" id="button">{{ tag[\'name\'] }}</button>\n      </ion-buttons>\n    </div>\n\n    <!--DIVISOR-->\n    <div no-lines class="top-border"></div>\n\n    <!-- POST AUTHOR-->\n    <div *ngIf="isLoadingAuthor"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingAuthor" class="author" (click)="goToAuthorPage(author[\'id\'])">\n      <ion-item>\n        <ion-avatar item-start>\n          <img src="{{ author[\'avatar_urls\'][48] }}">\n        </ion-avatar>\n        <h2>{{ author[\'name\'] }}</h2>\n        <p>Publicado em {{ post[\'date\'] | date: \'dd/MM/yyyy\' }}</p>\n      </ion-item>\n    </div>\n\n    <!--DIVISOR-->\n    <div no-lines class="top-border"></div>\n\n    <!-- POST ACTION BUTTONS-->\n    <ion-buttons class="action_buttons">\n      <ion-grid>\n        <ion-row text-center>\n          <ion-col col-4 class="divide">\n            <p>{{ commentCount }} Comentários</p>\n            <button small ion-button (click)="commentPost()" class="comentar">Comentar</button>\n          </ion-col>\n          <ion-col col-3>\n            <p>{{ totalVotes }} Votos</p>\n            <button small ion-button (click)="votePost()" class="votar" [disabled]="hasVoted"><ion-spinner name="ios-small" class="button-loader" *ngIf="isVoting"></ion-spinner>{{ isVoting ? \'\' : \'Votar\' }}</button>\n          </ion-col>\n          <ion-col col-5>\n            <p>{{ totalShares }} Compartilhamentos</p>\n            <button small ion-button (click)="openShareActionSheet()" class="compartilhar">Compartilhar</button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </ion-buttons>\n\n    <!-- POST COMMENTS -->\n    <div *ngIf="isLoadingComments"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingComments && commentBoxes.length > 0" class="comentarios">\n      <ion-list>\n        <ion-item *ngFor="let comment of commentBoxes; let i = index" text-wrap [ngStyle]="{ \'padding-left\': comment.depth*20 + \'px\'} ">\n          <ion-avatar item-start class="avatar" [ngClass]="{\'avatar-author\': author ? comment[\'author_name\'] == author[\'name\'] : false }" (click)="goToAuthorPage(comment[\'author\'])">\n            <img src="{{ comment[\'author_avatar_urls\'][24] }}">\n          </ion-avatar>\n            <h2 (click)="goToAuthorPage(comment[\'author\'])">{{ comment[\'author_name\'] }} <span>{{ comment[\'date\'] | date: \'dd/MM/yyyy\' }}</span></h2>\n            <p [innerHtml]="comment[\'content\'][\'rendered\']"></p>\n            <button *ngIf="comment[\'author\'] == api.getUserId()" class="edit-button" ion-button clear (click)="editComment(i)">\n              Editar \n            </button>\n            <button ion-button clear icon-only item-end (click)="commentOnComment(i)">\n              <ion-icon name="redo"></ion-icon>\n            </button>\n        </ion-item>\n      </ion-list>\n      <div text-center *ngIf="post[\'comment_count\'] > commentBoxes.length"><button clear round ion-button (click)="commentsOffset = commentsOffset + settings.commentsPerPage; loadComments();">Mais comentários</button></div>\n    </div>\n  </div>\n\n</ion-content>\n\n<ion-footer *ngIf="this.api.isLogged()">\n  <ion-toolbar>\n    <ion-textarea rows="1" #commentInput id="commentInput" (input)="changeInputSize()" required type="text" [(ngModel)]="commentContent" placeholder="Digite aqui seu comentário."></ion-textarea>\n    <ion-buttons end>\n      <ion-spinner *ngIf="isPostingComment"></ion-spinner>\n      <button *ngIf="!isPostingComment" [disabled]="commentContent.length <= 0 " [color]="commentContent.length > 0 ? \'primary\' : \'default\'" ion-button icon-only (click)="postComment()">\n        <ion-icon name="send"></ion-icon>\n      </button>\n    </ion-buttons> \n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"/home/orpheus/rhs-app/src/pages/post/post.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],

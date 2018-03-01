@@ -37,6 +37,8 @@ export class PostPage {
 
   // String inserted on Comment Input Footer
   commentContent: string = '';
+  isEditingComment: boolean = false;
+  editedCommentId: number = 0;
 
   // Statistics that change dynamically
   totalVotes: number = 0;
@@ -91,7 +93,7 @@ export class PostPage {
     this.api.getPostInfo(this.postId, this.api.isLogged()).subscribe(
       postInfo => {
       this.post = postInfo;
-      console.log(this.post);
+      //console.log(this.post);
       this.totalVotes = this.post['total_votes'];
       this.totalShares = this.post['total_shares'];
       this.commentCount = this.post['comment_count'];
@@ -119,6 +121,8 @@ export class PostPage {
       commentsInfo => {
       if (this.commentsOffset <= 0) {
         this.comments = commentsInfo;
+        console.log(this.comments);
+        console.log(this.api.getUserId());
       } else {
         this.comments = this.comments.concat(commentsInfo);
       }
@@ -226,28 +230,64 @@ export class PostPage {
    
   }
 
-  postComment() {
-    
+  postComment() {  
     this.isPostingComment = true;
 
-    this.api.commentOnPost(this.postId, this.commentContent, 0).subscribe(
-      commentResponse => {
-      
-        this.comments.unshift(commentResponse);
-        this.commentContent = '';
-        this.commentCount = Number(this.commentCount) + 1;
-        
-        this.postDidUpdated = true;
-        this.generateCommentBoxes();
+    if (this.isEditingComment) {
 
-        this.analytics.logEvent('new_comment', {post_id: this.postId, user_id: this.api.getUserId()})
-        .then((res: any) => console.log(res))
-        .catch((error: any) => console.error(error));
-    },
-    err => {
-      console.log('Error ' + err +  ' - On Comment Data posting.');
-    },
-    () => this.isPostingComment = false);
+      this.api.editCommentOnPost(this.postId, this.commentContent, this.editedCommentId).subscribe(
+        commentResponse => {
+        
+          let index = this.comments.findIndex(editedComment => editedComment.id === commentResponse.id);
+          if (index >= 0) {
+              this.comments[index] = commentResponse;
+          }
+          this.commentContent = '';
+          
+          this.postDidUpdated = true;
+          this.generateCommentBoxes();
+
+          this.analytics.logEvent('comment_edited', {post_id: this.postId, user_id: this.api.getUserId()})
+          .then((res: any) => console.log(res))
+          .catch((error: any) => console.error(error));
+      },
+      err => {
+        console.log('Error ' + err +  ' - On Comment Editing.');
+      },
+      () => {
+        this.isPostingComment = false;
+        this.isEditingComment = false;
+        this.editedCommentId = 0;
+      });
+
+    } else {  
+      this.api.commentOnPost(this.postId, this.commentContent, 0).subscribe(
+        commentResponse => {
+        
+          this.comments.unshift(commentResponse);
+          this.commentContent = '';
+          this.commentCount = Number(this.commentCount) + 1;
+          
+          this.postDidUpdated = true;
+          this.generateCommentBoxes();
+
+          this.analytics.logEvent('new_comment', {post_id: this.postId, user_id: this.api.getUserId()})
+          .then((res: any) => console.log(res))
+          .catch((error: any) => console.error(error));
+      },
+      err => {
+        console.log('Error ' + err +  ' - On Comment Data posting.');
+      },
+      () => this.isPostingComment = false);
+    }
+  }
+
+  editComment(commentIndex: any) {  
+    //this.commentInput.value = String(this.commentBoxes[commentIndex]['content']['rendered']).replace(/<[^>]+>/gm, '');
+    this.commentContent = String(this.commentBoxes[commentIndex]['content']['rendered']).replace(/<[^>]+>/gm, '');
+    this.changeInputSize();
+    this.editedCommentId = this.commentBoxes[commentIndex]['id'];
+    this.isEditingComment = true;
   }
 
   goToSearchWithTag(tag: any) {
@@ -270,11 +310,11 @@ export class PostPage {
 
   // Used for ordering and finding level of comments
   generateCommentBoxes() {
-    console.log(this.comments);
+    //console.log(this.comments);
     this.commentBoxes = new Array<any>();
     this.fillCommentBox(0, 0);
     this.isLoadingComments = false;
-    console.log(this.commentBoxes);
+    //console.log(this.commentBoxes);
   }
 
   fillCommentBox(parentId: number, commentDepth: number) {

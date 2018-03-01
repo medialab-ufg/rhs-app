@@ -266,6 +266,12 @@ page-post {
                 position: absolute;
                 right: 5px;
               }
+              .edit-button{
+                bottom: 0;
+                margin: 0;
+                position: absolute;
+                right: 35px;
+              }
             }
           }
           &.list-ios{
@@ -291,8 +297,9 @@ page-post {
         ion-textarea {
           font-size: 18px;
           color: color($colors, dark);
+          height: auto;
           textarea {
-            height: 18px;
+            height: auto;
             min-height: 18px;
             margin: 8px;
             overflow: scroll !important;

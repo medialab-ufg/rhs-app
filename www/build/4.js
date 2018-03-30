@@ -1,1 +1,519 @@
-webpackJsonp([4],{543:function(n,l,u){"use strict";function t(n){return h._28(0,[(n()(),h._5(0,null,null,4,"div",[],null,null,null,null,null)),(n()(),h._26(null,["\n    "])),(n()(),h._5(0,null,null,1,"information",[],null,null,null,m.b,m.a)),h._4(49152,null,0,b.a,[],{message:[0,"message"],detail:[1,"detail"]},null),(n()(),h._26(null,["\n  "]))],function(n,l){n(l,3,0,"Somente para usuários da RHS","É preciso estar logado para acessar essa sessão.")},null)}function i(n){return h._28(0,[(n()(),h._5(0,null,null,4,"div",[],null,null,null,null,null)),(n()(),h._26(null,["\n      "])),(n()(),h._5(0,null,null,1,"information",[],null,null,null,m.b,m.a)),h._4(49152,null,0,b.a,[],{message:[0,"message"]},null),(n()(),h._26(null,["\n    "]))],function(n,l){n(l,3,0,"Nenhuma notificação.")},null)}function e(n){return h._28(0,[(n()(),h._5(0,null,null,2,"div",[],null,null,null,null,null)),(n()(),h._5(0,null,null,1,"ion-spinner",[["class","center-spinner"]],[[2,"spinner-paused",null]],null,null,k.b,k.a)),h._4(114688,null,0,v.a,[y.a,h.k,h.F],null,null)],function(n,l){n(l,2,0)},function(n,l){n(l,1,0,h._18(l,2)._paused)})}function o(n){return h._28(0,[(n()(),h._5(0,null,null,17,"ion-item",[["class","item item-block"]],null,[[null,"click"]],function(n,l,u){var t=!0;return"click"===l&&(t=!1!==n.component.goToNotificationContent(n.parent.context.index)&&t),t},M.b,M.a)),h._4(1097728,null,3,x.a,[I.a,y.a,h.k,h.F,[2,w.a]],null,null),h._24(335544320,1,{contentLabel:0}),h._24(603979776,2,{_buttons:1}),h._24(603979776,3,{_icons:1}),h._4(16384,null,0,F.a,[],null,null),(n()(),h._26(2,["\n        "])),(n()(),h._5(0,null,0,2,"ion-avatar",[["item-start",""]],[[8,"innerHTML",1]],null,null,null,null)),h._4(16384,null,0,P.a,[],null,null),(n()(),h._26(null,[" \n        "])),(n()(),h._26(2,["\n        "])),(n()(),h._5(0,null,2,1,"h2",[["color","secondary"],["text-wrap",""]],[[8,"innerHTML",1]],null,null,null,null)),h._22(1),(n()(),h._26(2,["\n        "])),(n()(),h._5(0,null,2,2,"p",[],null,null,null,null,null)),(n()(),h._26(null,["",""])),h._22(2),(n()(),h._26(2,["\n      "]))],null,function(n,l){n(l,7,0,l.parent.context.$implicit.image),n(l,11,0,h._27(l,11,0,n(l,12,0,h._18(l.parent.parent.parent.parent,0),l.parent.context.$implicit.text))),n(l,15,0,h._27(l,15,0,n(l,16,0,h._18(l.parent.parent.parent.parent,1),l.parent.context.$implicit.datetime.split(" ")[0],"dd/MM/yyyy")))})}function a(n){return h._28(0,[(n()(),h._5(0,null,null,18,"ion-item",[["class","item item-block"]],null,[[null,"click"]],function(n,l,u){var t=!0;return"click"===l&&(t=!1!==n.component.goToNotificationContent(n.parent.context.index)&&t),t},M.b,M.a)),h._4(1097728,null,3,x.a,[I.a,y.a,h.k,h.F,[2,w.a]],null,null),h._24(335544320,4,{contentLabel:0}),h._24(603979776,5,{_buttons:1}),h._24(603979776,6,{_icons:1}),h._4(16384,null,0,F.a,[],null,null),(n()(),h._26(2,["\n        "])),(n()(),h._5(0,null,0,2,"ion-thumbnail",[["item-start",""]],[[8,"innerHTML",1]],null,null,null,null)),h._4(16384,null,0,T.a,[],null,null),(n()(),h._26(null,[" \n        "])),(n()(),h._26(2,["\n        "])),(n()(),h._5(0,null,2,2,"h2",[["color","secondary"],["text-wrap",""]],[[8,"innerHTML",1]],null,null,null,null)),h._22(1),(n()(),h._26(null,[">"])),(n()(),h._26(2,["\n        "])),(n()(),h._5(0,null,2,2,"p",[],null,null,null,null,null)),(n()(),h._26(null,["",""])),h._22(2),(n()(),h._26(2,["\n      "]))],null,function(n,l){n(l,7,0,l.parent.context.$implicit.image),n(l,11,0,h._27(l,11,0,n(l,12,0,h._18(l.parent.parent.parent.parent,0),l.parent.context.$implicit.text))),n(l,16,0,h._27(l,16,0,n(l,17,0,h._18(l.parent.parent.parent.parent,1),l.parent.context.$implicit.datetime.split(" ")[0],"dd/MM/yyyy")))})}function r(n){return h._28(0,[(n()(),h._5(0,null,null,7,"div",[],null,null,null,null,null)),(n()(),h._26(null,["\n      "])),(n()(),h._1(16777216,null,null,1,null,o)),h._4(16384,null,0,L.i,[h.P,h.M],{ngIf:[0,"ngIf"]},null),(n()(),h._26(null,["\n      "])),(n()(),h._1(16777216,null,null,1,null,a)),h._4(16384,null,0,L.i,[h.P,h.M],{ngIf:[0,"ngIf"]},null),(n()(),h._26(null,["\n      "]))],function(n,l){n(l,3,0,"new_post_from_user"==l.context.$implicit.type||"comments_in_post"==l.context.$implicit.type||"user_follow_author"==l.context.$implicit.type),n(l,6,0,"comments_in_post"!=l.context.$implicit.type&&"user_follow_author"!=l.context.$implicit.type&&"new_post_from_user"!=l.context.$implicit.type)},null)}function s(n){return h._28(0,[(n()(),h._5(0,null,null,6,"ion-item-divider",[["class","item item-divider"]],null,null,null,M.b,M.a)),h._4(1097728,null,3,x.a,[I.a,y.a,h.k,h.F,[2,w.a]],null,null),h._24(335544320,7,{contentLabel:0}),h._24(603979776,8,{_buttons:1}),h._24(603979776,9,{_icons:1}),h._4(16384,null,0,N.a,[y.a,h.k,h.F],null,null),(n()(),h._26(2,["\n        Não foram encontradas mais notificações.\n      "]))],null,null)}function _(n){return h._28(0,[(n()(),h._5(0,null,null,7,"div",[],null,null,null,null,null)),(n()(),h._26(null,["\n      "])),(n()(),h._1(16777216,null,null,1,null,r)),h._4(802816,null,0,L.h,[h.P,h.M,h.s],{ngForOf:[0,"ngForOf"]},null),(n()(),h._26(null,["\n      "])),(n()(),h._1(16777216,null,null,1,null,s)),h._4(16384,null,0,L.i,[h.P,h.M],{ngIf:[0,"ngIf"]},null),(n()(),h._26(null,["\n    "]))],function(n,l){var u=l.component;n(l,3,0,u.notifications),n(l,6,0,u.noMoreResults)},null)}function c(n){return h._28(0,[(n()(),h._5(0,null,null,26,"div",[],null,null,null,null,null)),(n()(),h._26(null,["\n\n    "])),(n()(),h._5(0,null,null,6,"ion-refresher",[["pullMin","100"]],[[2,"refresher-active",null],[4,"top",null]],[[null,"ionRefresh"]],function(n,l,u){var t=!0;return"ionRefresh"===l&&(t=!1!==n.component.doRefresh(u)&&t),t},null,null)),h._4(212992,null,0,C.a,[R.a,S.a,h.z,O.l],{pullMin:[0,"pullMin"]},{ionRefresh:"ionRefresh"}),(n()(),h._26(null,["\n      "])),(n()(),h._5(0,null,null,2,"ion-refresher-content",[["pullingText","Puxe e solte para atualizar."],["refreshingText","Carregando dados..."]],[[1,"state",0]],null,null,B.b,B.a)),h._4(114688,null,0,$.a,[C.a,y.a],{pullingText:[0,"pullingText"],refreshingText:[1,"refreshingText"]},null),(n()(),h._26(null,["\n      "])),(n()(),h._26(null,["\n    "])),(n()(),h._26(null,["\n\n    "])),(n()(),h._1(16777216,null,null,1,null,i)),h._4(16384,null,0,L.i,[h.P,h.M],{ngIf:[0,"ngIf"]},null),(n()(),h._26(null,["\n\n    "])),(n()(),h._1(16777216,null,null,1,null,e)),h._4(16384,null,0,L.i,[h.P,h.M],{ngIf:[0,"ngIf"]},null),(n()(),h._26(null,["\n    "])),(n()(),h._1(16777216,null,null,1,null,_)),h._4(16384,null,0,L.i,[h.P,h.M],{ngIf:[0,"ngIf"]},null),(n()(),h._26(null,["\n\n    "])),(n()(),h._5(0,null,null,6,"ion-infinite-scroll",[],null,[[null,"ionInfinite"]],function(n,l,u){var t=!0;return"ionInfinite"===l&&(t=!1!==u.waitFor(n.component.doInfinite())&&t),t},null,null)),h._4(1196032,null,0,z.a,[S.a,h.z,h.k,j.a],{enabled:[0,"enabled"]},{ionInfinite:"ionInfinite"}),(n()(),h._26(null,["\n      "])),(n()(),h._5(0,null,null,2,"ion-infinite-scroll-content",[["loadingText","Buscando mais notificações..."]],[[1,"state",0]],null,null,A.b,A.a)),h._4(114688,null,0,H.a,[z.a,y.a],{loadingText:[0,"loadingText"]},null),(n()(),h._26(null,["\n    "])),(n()(),h._26(null,["\n    "])),(n()(),h._26(null,["\n\n  "]))],function(n,l){var u=l.component;n(l,3,0,"100");n(l,6,0,"Puxe e solte para atualizar.","Carregando dados..."),n(l,11,0,!u.showSpinner&&0==u.notifications.length),n(l,14,0,u.showSpinner&&!u.isLoadingMore&&!u.loadingFromRefresher),n(l,17,0,!u.showSpinner&&u.notifications.length>0),n(l,20,0,!u.noMoreResults);n(l,23,0,"Buscando mais notificações...")},function(n,l){n(l,2,0,"inactive"!==h._18(l,3).state,h._18(l,3)._top),n(l,5,0,h._18(l,6).r.state),n(l,22,0,h._18(l,23).inf.state)})}function f(n){return h._28(0,[h._20(0,d,[D.c]),h._20(0,L.c,[h.u]),(n()(),h._5(0,null,null,10,"ion-header",[],null,null,null,null,null)),h._4(16384,null,0,q.a,[y.a,h.k,h.F,[2,E.a]],null,null),(n()(),h._26(null,["\n\n  "])),(n()(),h._5(0,null,null,6,"ion-navbar",[["class","toolbar"],["color","secondary"]],[[8,"hidden",0],[2,"statusbar-padding",null]],null,null,U.b,U.a)),h._4(49152,null,0,K.a,[V.a,[2,E.a],[2,Y.a],y.a,h.k,h.F],{color:[0,"color"]},null),(n()(),h._26(3,["\n    "])),(n()(),h._5(0,null,3,2,"ion-title",[],null,null,null,Z.b,Z.a)),h._4(49152,null,0,J.a,[y.a,h.k,h.F,[2,G.a],[2,K.a]],null,null),(n()(),h._26(0,["Notificações"])),(n()(),h._26(3,["\n  "])),(n()(),h._26(null,["\n\n"])),(n()(),h._26(null,["\n\n\n"])),(n()(),h._5(0,null,null,8,"ion-content",[],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,Q.b,Q.a)),h._4(4374528,null,0,S.a,[y.a,R.a,j.a,h.k,h.F,V.a,W.a,h.z,[2,E.a],[2,Y.a]],null,null),(n()(),h._26(1,["\n\n  "])),(n()(),h._1(16777216,null,1,1,null,t)),h._4(16384,null,0,L.i,[h.P,h.M],{ngIf:[0,"ngIf"]},null),(n()(),h._26(1,["\n\n  "])),(n()(),h._1(16777216,null,1,1,null,c)),h._4(16384,null,0,L.i,[h.P,h.M],{ngIf:[0,"ngIf"]},null),(n()(),h._26(1,["\n\n"])),(n()(),h._26(null,["\n"]))],function(n,l){var u=l.component;n(l,6,0,"secondary"),n(l,18,0,!u.isUserLogged),n(l,21,0,u.isUserLogged)},function(n,l){n(l,5,0,h._18(l,6)._hidden,h._18(l,6)._sbPadding),n(l,14,0,h._18(l,15).statusbarPadding,h._18(l,15)._hasRefresher)})}Object.defineProperty(l,"__esModule",{value:!0});u(70),u(1),u(134),u(68),u(66);var p=function(){function n(n,l,u,t,i){var e=this;this.navCtrl=n,this.navParams=l,this.api=u,this.authentication=t,this.analytics=i,this.notifications=new Array,this.queries={},this.isUserLogged=!1,this.noMoreResults=!1,this.isLoadingMore=!1,this.showSpinner=!1,this.loadingFromRefresher=!1,this.notifications=new Array,this.authentication.userLogged.subscribe(function(n){!0===n&&(e.isUserLogged=e.api.isLogged(),e.loadNotifications(!1))})}return n.prototype.ionViewDidLoad=function(){this.isUserLogged=this.api.isLogged(),!0===this.isUserLogged&&this.loadNotifications(!1),this.api.markNotificationsAsRead().subscribe(function(n){return console.log("Notifications marked as read for user "+n)},function(n){return console.log("Error "+n+" - On Notifications Data Request.")})},n.prototype.ionViewDidEnter=function(){this.analytics.setCurrentScreen("Notifications").then(function(n){return console.log(n)}).catch(function(n){return console.error(n)})},n.prototype.loadNotifications=function(n){var l=this;return new Promise(function(u){l.showSpinner=!0,!1===n?(l.notifications=new Array,l.queries.page="1"):!0===n&&(l.showSpinner=!1,l.queries.page=Number(l.queries.page)+1+""),l.api.getNotificationList(!0,l.queries.page).subscribe(function(n){l.notifications=l.notifications.concat(n),l.noMoreResults=!1,console.log(l.notifications),0==n.length&&(l.noMoreResults=!0)},function(n){400===n&&(l.noMoreResults=!0),console.log("Error "+n+" - On Notifications Data Request.")},function(){l.showSpinner=!1,l.loadingFromRefresher=!1,u()})})},n.prototype.goToNotificationContent=function(n){"comments_in_post"==this.notifications[n].type?this.navCtrl.push("CommentPage",{commentId:this.notifications[n].object_id}):"new_community_post"==this.notifications[n].type||"post_followed"==this.notifications[n].type||"post_promoted"==this.notifications[n].type||"replied_ticket"==this.notifications[n].type||"new_post_from_user"==this.notifications[n].type?this.navCtrl.push("PostPage",{postId:this.notifications[n].object_id}):"user_follow_author"==this.notifications[n].type&&this.navCtrl.push("UserPage",{userId:this.notifications[n].user_id})},n.prototype.doRefresh=function(n){this.loadingFromRefresher=!0,this.loadNotifications(!1).then(function(){return n.complete()})},n.prototype.doInfinite=function(){var n=this;return new Promise(function(l){n.loadNotifications(!0).then(function(){return l()})})},n}(),d=(u(1),u(35),function(){function n(n){this.dom=n}return n.prototype.transform=function(n){for(var l=[],u=1;u<arguments.length;u++)l[u-1]=arguments[u];return this.dom.bypassSecurityTrustHtml(n)},n}()),g=(u(1),u(35),u(1),u(134),u(553),function(){return function(){}}()),h=u(1),m=u(555),b=u(550),k=u(223),v=u(69),y=u(2),M=u(224),x=u(38),I=u(27),w=u(57),F=u(102),P=u(140),T=u(162),L=u(22),N=u(142),C=u(108),R=u(8),S=u(28),O=u(11),B=u(559),$=u(141),z=u(101),j=u(13),A=u(556),H=u(136),D=u(35),q=u(103),E=u(9),U=u(551),K=u(56),V=u(12),Y=u(32),Z=u(552),J=u(135),G=u(47),Q=u(230),W=u(34),X=u(23),nn=u(66),ln=u(70),un=u(68),tn=h._3({encapsulation:2,styles:[],data:{}}),en=h._2("page-notifications",p,function(n){return h._28(0,[(n()(),h._5(0,null,null,1,"page-notifications",[],null,null,null,f,tn)),h._4(49152,null,0,p,[Y.a,X.a,nn.a,ln.a,un.a],null,null)],null,null)},{},{},[]);u.d(l,"NotificationsPageModuleNgFactory",function(){return bn});var on=u(1),an=u(22),rn=u(33),sn=u(137),_n=u(553),cn=u(225),fn=u(226),pn=u(227),dn=u(228),gn=u(229),hn=u(138),mn=this&&this.__extends||function(){var n=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(n,l){n.__proto__=l}||function(n,l){for(var u in l)l.hasOwnProperty(u)&&(n[u]=l[u])};return function(l,u){function t(){this.constructor=l}n(l,u),l.prototype=null===u?Object.create(u):(t.prototype=u.prototype,new t)}}(),bn=new on.w(function(n){function l(l){return n.call(this,l,[cn.a,fn.a,pn.a,dn.a,gn.a,en],[])||this}return mn(l,n),Object.defineProperty(l.prototype,"_NgLocalization_8",{get:function(){return null==this.__NgLocalization_8&&(this.__NgLocalization_8=new an.j(this.parent.get(on.u))),this.__NgLocalization_8},enumerable:!0,configurable:!0}),Object.defineProperty(l.prototype,"_ɵi_9",{get:function(){return null==this.__ɵi_9&&(this.__ɵi_9=new rn.o),this.__ɵi_9},enumerable:!0,configurable:!0}),Object.defineProperty(l.prototype,"_FormBuilder_10",{get:function(){return null==this.__FormBuilder_10&&(this.__FormBuilder_10=new rn.c),this.__FormBuilder_10},enumerable:!0,configurable:!0}),l.prototype.createInternal=function(){return this._CommonModule_0=new an.b,this._ɵba_1=new rn.n,this._FormsModule_2=new rn.f,this._ReactiveFormsModule_3=new rn.l,this._IonicModule_4=new sn.a,this._IonicPageModule_5=new sn.b,this._InformationComponentModule_6=new _n.a,this._NotificationsPageModule_7=new g,this._LAZY_LOADED_TOKEN_11=p,this._NotificationsPageModule_7},l.prototype.getInternal=function(n,l){return n===an.b?this._CommonModule_0:n===rn.n?this._ɵba_1:n===rn.f?this._FormsModule_2:n===rn.l?this._ReactiveFormsModule_3:n===sn.a?this._IonicModule_4:n===sn.b?this._IonicPageModule_5:n===_n.a?this._InformationComponentModule_6:n===g?this._NotificationsPageModule_7:n===an.k?this._NgLocalization_8:n===rn.o?this._ɵi_9:n===rn.c?this._FormBuilder_10:n===hn.a?this._LAZY_LOADED_TOKEN_11:l},l.prototype.destroyInternal=function(){},l}(on._0),g)},550:function(n,l,u){"use strict";u.d(l,"a",function(){return t});u(1);var t=function(){return function(){}}()},551:function(n,l,u){"use strict";function t(n){return i._28(0,[(n()(),i._5(0,null,null,1,"div",[["class","toolbar-background"]],null,null,null,null,null)),i._4(278528,null,0,e.g,[i.s,i.t,i.k,i.F],{klass:[0,"klass"],ngClass:[1,"ngClass"]},null),(n()(),i._5(0,null,null,8,"button",[["class","back-button"],["ion-button","bar-button"]],[[8,"hidden",0]],[[null,"click"]],function(n,l,u){var t=!0;return"click"===l&&(t=!1!==n.component.backButtonClick(u)&&t),t},a.b,a.a)),i._4(278528,null,0,e.g,[i.s,i.t,i.k,i.F],{klass:[0,"klass"],ngClass:[1,"ngClass"]},null),i._4(1097728,null,0,r.a,[[8,"bar-button"],s.a,i.k,i.F],null,null),(n()(),i._5(0,null,0,2,"ion-icon",[["class","back-button-icon"],["role","img"]],[[2,"hide",null]],null,null,null,null)),i._4(278528,null,0,e.g,[i.s,i.t,i.k,i.F],{klass:[0,"klass"],ngClass:[1,"ngClass"]},null),i._4(147456,null,0,_.a,[s.a,i.k,i.F],{name:[0,"name"]},null),(n()(),i._5(0,null,0,2,"span",[["class","back-button-text"]],null,null,null,null,null)),i._4(278528,null,0,e.g,[i.s,i.t,i.k,i.F],{klass:[0,"klass"],ngClass:[1,"ngClass"]},null),(n()(),i._26(null,["",""])),i._17(null,0),i._17(null,1),i._17(null,2),(n()(),i._5(0,null,null,2,"div",[["class","toolbar-content"]],null,null,null,null,null)),i._4(278528,null,0,e.g,[i.s,i.t,i.k,i.F],{klass:[0,"klass"],ngClass:[1,"ngClass"]},null),i._17(null,3)],function(n,l){var u=l.component;n(l,1,0,"toolbar-background","toolbar-background-"+u._mode);n(l,3,0,"back-button","back-button-"+u._mode);n(l,6,0,"back-button-icon","back-button-icon-"+u._mode),n(l,7,0,u._bbIcon);n(l,9,0,"back-button-text","back-button-text-"+u._mode);n(l,15,0,"toolbar-content","toolbar-content-"+u._mode)},function(n,l){var u=l.component;n(l,2,0,u._hideBb),n(l,5,0,i._18(l,7)._hidden),n(l,10,0,u._backText)})}u.d(l,"a",function(){return d}),l.b=t;var i=u(1),e=u(22),o=u(56),a=u(67),r=u(25),s=u(2),_=u(46),c=u(12),f=u(9),p=u(32),d=i._3({encapsulation:2,styles:[],data:{}});i._2("ion-navbar",o.a,function(n){return i._28(0,[(n()(),i._5(0,null,null,1,"ion-navbar",[["class","toolbar"]],[[8,"hidden",0],[2,"statusbar-padding",null]],null,null,t,d)),i._4(49152,null,0,o.a,[c.a,[2,f.a],[2,p.a],s.a,i.k,i.F],null,null)],null,function(n,l){n(l,0,0,i._18(l,1)._hidden,i._18(l,1)._sbPadding)})},{color:"color",mode:"mode",hideBackButton:"hideBackButton"},{},["[menuToggle],ion-buttons[left]","ion-buttons[start]","ion-buttons[end],ion-buttons[right]","*"])},552:function(n,l,u){"use strict";function t(n){return i._28(2,[(n()(),i._5(0,null,null,2,"div",[["class","toolbar-title"]],null,null,null,null,null)),i._4(278528,null,0,e.g,[i.s,i.t,i.k,i.F],{klass:[0,"klass"],ngClass:[1,"ngClass"]},null),i._17(null,0)],function(n,l){n(l,1,0,"toolbar-title","toolbar-title-"+l.component._mode)},null)}u.d(l,"a",function(){return _}),l.b=t;var i=u(1),e=u(22),o=u(135),a=u(2),r=u(47),s=u(56),_=i._3({encapsulation:2,styles:[],data:{}});i._2("ion-title",o.a,function(n){return i._28(0,[(n()(),i._5(0,null,null,1,"ion-title",[],null,null,null,t,_)),i._4(49152,null,0,o.a,[a.a,i.k,i.F,[2,r.a],[2,s.a]],null,null)],null,null)},{color:"color",mode:"mode"},{},["*"])},553:function(n,l,u){"use strict";u.d(l,"a",function(){return t});u(1),u(134),u(550);var t=function(){return function(){}}()},555:function(n,l,u){"use strict";function t(n){return i._28(0,[(n()(),i._5(0,null,null,9,"div",[["class","slide-in-animate"],["text-center",""]],null,null,null,null,null)),(n()(),i._26(null,["\n  "])),(n()(),i._5(0,null,null,0,"img",[["src","./assets/logo-rhs.svg"]],null,null,null,null,null)),(n()(),i._26(null,["\n  "])),(n()(),i._5(0,null,null,1,"h2",[],null,null,null,null,null)),(n()(),i._26(null,["",""])),(n()(),i._26(null,["\n  "])),(n()(),i._5(0,null,null,1,"h5",[],null,null,null,null,null)),(n()(),i._26(null,["",""])),(n()(),i._26(null,["\n"])),(n()(),i._26(null,["\n"]))],null,function(n,l){var u=l.component;n(l,5,0,u.message),n(l,8,0,u.detail)})}u.d(l,"a",function(){return o}),l.b=t;var i=u(1),e=u(550),o=i._3({encapsulation:2,styles:[],data:{}});i._2("information",e.a,function(n){return i._28(0,[(n()(),i._5(0,null,null,1,"information",[],null,null,null,t,o)),i._4(49152,null,0,e.a,[],null,null)],null,null)},{message:"message",detail:"detail"},{},[])},556:function(n,l,u){"use strict";function t(n){return o._28(0,[(n()(),o._5(0,null,null,2,"div",[["class","infinite-loading-spinner"]],null,null,null,null,null)),(n()(),o._5(0,null,null,1,"ion-spinner",[],[[2,"spinner-paused",null]],null,null,a.b,a.a)),o._4(114688,null,0,r.a,[s.a,o.k,o.F],{name:[0,"name"]},null)],function(n,l){n(l,2,0,l.component.loadingSpinner)},function(n,l){n(l,1,0,o._18(l,2)._paused)})}function i(n){return o._28(0,[(n()(),o._5(0,null,null,0,"div",[["class","infinite-loading-text"]],[[8,"innerHTML",1]],null,null,null,null))],null,function(n,l){n(l,0,0,l.component.loadingText)})}function e(n){return o._28(0,[(n()(),o._5(0,null,null,4,"div",[["class","infinite-loading"]],null,null,null,null,null)),(n()(),o._1(16777216,null,null,1,null,t)),o._4(16384,null,0,_.i,[o.P,o.M],{ngIf:[0,"ngIf"]},null),(n()(),o._1(16777216,null,null,1,null,i)),o._4(16384,null,0,_.i,[o.P,o.M],{ngIf:[0,"ngIf"]},null)],function(n,l){var u=l.component;n(l,2,0,u.loadingSpinner),n(l,4,0,u.loadingText)},null)}u.d(l,"a",function(){return p}),l.b=e;var o=u(1),a=u(223),r=u(69),s=u(2),_=u(22),c=u(136),f=u(101),p=o._3({encapsulation:2,styles:[],data:{}});o._2("ion-infinite-scroll-content",c.a,function(n){return o._28(0,[(n()(),o._5(0,null,null,1,"ion-infinite-scroll-content",[],[[1,"state",0]],null,null,e,p)),o._4(114688,null,0,c.a,[f.a,s.a],null,null)],function(n,l){n(l,1,0)},function(n,l){n(l,0,0,o._18(l,1).inf.state)})},{loadingSpinner:"loadingSpinner",loadingText:"loadingText"},{},[])},559:function(n,l,u){"use strict";function t(n){return a._28(0,[(n()(),a._5(0,null,null,2,"div",[["class","refresher-pulling-icon"]],null,null,null,null,null)),(n()(),a._5(0,null,null,1,"ion-icon",[["role","img"]],[[2,"hide",null]],null,null,null,null)),a._4(147456,null,0,r.a,[s.a,a.k,a.F],{name:[0,"name"]},null)],function(n,l){n(l,2,0,l.component.pullingIcon)},function(n,l){n(l,1,0,a._18(l,2)._hidden)})}function i(n){return a._28(0,[(n()(),a._5(0,null,null,0,"div",[["class","refresher-pulling-text"]],[[8,"innerHTML",1]],null,null,null,null))],null,function(n,l){n(l,0,0,l.component.pullingText)})}function e(n){return a._28(0,[(n()(),a._5(0,null,null,0,"div",[["class","refresher-refreshing-text"]],[[8,"innerHTML",1]],null,null,null,null))],null,function(n,l){n(l,0,0,l.component.refreshingText)})}function o(n){return a._28(0,[(n()(),a._5(0,null,null,4,"div",[["class","refresher-pulling"]],null,null,null,null,null)),(n()(),a._1(16777216,null,null,1,null,t)),a._4(16384,null,0,_.i,[a.P,a.M],{ngIf:[0,"ngIf"]},null),(n()(),a._1(16777216,null,null,1,null,i)),a._4(16384,null,0,_.i,[a.P,a.M],{ngIf:[0,"ngIf"]},null),(n()(),a._5(0,null,null,5,"div",[["class","refresher-refreshing"]],null,null,null,null,null)),(n()(),a._5(0,null,null,2,"div",[["class","refresher-refreshing-icon"]],null,null,null,null,null)),(n()(),a._5(0,null,null,1,"ion-spinner",[],[[2,"spinner-paused",null]],null,null,c.b,c.a)),a._4(114688,null,0,f.a,[s.a,a.k,a.F],{name:[0,"name"]},null),(n()(),a._1(16777216,null,null,1,null,e)),a._4(16384,null,0,_.i,[a.P,a.M],{ngIf:[0,"ngIf"]},null)],function(n,l){var u=l.component;n(l,2,0,u.pullingIcon),n(l,4,0,u.pullingText),n(l,8,0,u.refreshingSpinner),n(l,10,0,u.refreshingText)},function(n,l){n(l,7,0,a._18(l,8)._paused)})}u.d(l,"a",function(){return g}),l.b=o;var a=u(1),r=u(46),s=u(2),_=u(22),c=u(223),f=u(69),p=u(141),d=u(108),g=a._3({encapsulation:2,styles:[],data:{}});a._2("ion-refresher-content",p.a,function(n){return a._28(0,[(n()(),a._5(0,null,null,1,"ion-refresher-content",[],[[1,"state",0]],null,null,o,g)),a._4(114688,null,0,p.a,[d.a,s.a],null,null)],function(n,l){n(l,1,0)},function(n,l){n(l,0,0,a._18(l,1).r.state)})},{pullingIcon:"pullingIcon",pullingText:"pullingText",refreshingSpinner:"refreshingSpinner",refreshingText:"refreshingText"},{},[])}});
+webpackJsonp([4],{
+
+/***/ 628:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PostsPageModule", function() { return PostsPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__posts__ = __webpack_require__(648);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_information_information_module__ = __webpack_require__(633);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_post_card_post_card_module__ = __webpack_require__(635);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+var PostsPageModule = (function () {
+    function PostsPageModule() {
+    }
+    return PostsPageModule;
+}());
+PostsPageModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
+        declarations: [__WEBPACK_IMPORTED_MODULE_2__posts__["a" /* PostsPage */]],
+        imports: [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__posts__["a" /* PostsPage */]), __WEBPACK_IMPORTED_MODULE_4__components_post_card_post_card_module__["a" /* PostsCardComponentModule */], __WEBPACK_IMPORTED_MODULE_3__components_information_information_module__["a" /* InformationComponentModule */]],
+    })
+], PostsPageModule);
+
+//# sourceMappingURL=posts.module.js.map
+
+/***/ }),
+
+/***/ 633:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InformationComponentModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__information__ = __webpack_require__(634);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var InformationComponentModule = (function () {
+    function InformationComponentModule() {
+    }
+    return InformationComponentModule;
+}());
+InformationComponentModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
+        declarations: [__WEBPACK_IMPORTED_MODULE_2__information__["a" /* InformationComponent */]],
+        imports: [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicModule */]],
+        exports: [__WEBPACK_IMPORTED_MODULE_2__information__["a" /* InformationComponent */]]
+    })
+], InformationComponentModule);
+
+//# sourceMappingURL=information.module.js.map
+
+/***/ }),
+
+/***/ 634:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InformationComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var InformationComponent = (function () {
+    function InformationComponent() {
+    }
+    return InformationComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])('message'),
+    __metadata("design:type", String)
+], InformationComponent.prototype, "message", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])('detail'),
+    __metadata("design:type", String)
+], InformationComponent.prototype, "detail", void 0);
+InformationComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'information',template:/*ion-inline-start:"/home/orpheus/rhs-app/src/components/information/information.html"*/'<div text-center class="slide-in-animate">\n  <img src="./assets/logo-rhs.svg">\n  <h2>{{ message }}</h2>\n  <h5>{{ detail }}</h5>\n</div>\n'/*ion-inline-end:"/home/orpheus/rhs-app/src/components/information/information.html"*/
+    }),
+    __metadata("design:paramtypes", [])
+], InformationComponent);
+
+//# sourceMappingURL=information.js.map
+
+/***/ }),
+
+/***/ 635:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PostsCardComponentModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_post_card_post_card__ = __webpack_require__(636);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var PostsCardComponentModule = (function () {
+    function PostsCardComponentModule() {
+    }
+    return PostsCardComponentModule;
+}());
+PostsCardComponentModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
+        declarations: [__WEBPACK_IMPORTED_MODULE_2__components_post_card_post_card__["a" /* PostCardComponent */]],
+        imports: [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicModule */]],
+        exports: [__WEBPACK_IMPORTED_MODULE_2__components_post_card_post_card__["a" /* PostCardComponent */]]
+    })
+], PostsCardComponentModule);
+
+//# sourceMappingURL=post-card.module.js.map
+
+/***/ }),
+
+/***/ 636:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PostCardComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(140);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var PostCardComponent = (function () {
+    function PostCardComponent(api, navCtrl) {
+        this.api = api;
+        this.navCtrl = navCtrl;
+    }
+    PostCardComponent.prototype.goToAuthorPage = function (event, userId) {
+        event.stopPropagation(); // Avoids the click event to propagate to the card, and then go to post page.
+        if (userId == this.api.getUserId()) {
+            this.navCtrl.push('ProfilePage');
+        }
+        else {
+            this.navCtrl.push('UserPage', { 'userId': userId });
+        }
+    };
+    return PostCardComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["E" /* Input */])('post-data'),
+    __metadata("design:type", Object)
+], PostCardComponent.prototype, "post", void 0);
+PostCardComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
+        selector: 'post-card',template:/*ion-inline-start:"/home/orpheus/rhs-app/src/components/post-card/post-card.html"*/'<ion-card>   \n  <img  *ngIf="this.post[\'_embedded\'][\'wp:featuredmedia\'] !== undefined" [src]="this.post[\'_embedded\'][\'wp:featuredmedia\'][0][\'source_url\']">\n  <ion-card-header text-wrap [innerHtml]="post[\'title\'][\'rendered\']"></ion-card-header>\n  <ion-card-content *ngIf="post[\'excerpt\'][\'rendered\'] != \'\' && post[\'excerpt\'][\'rendered\'] != null" [innerHtml]="post[\'excerpt\'][\'rendered\']"></ion-card-content>\n  <ion-item color="light">\n    <ion-avatar item-start (click)="goToAuthorPage($event, post[\'_embedded\'][\'author\'][0][\'id\'])">\n      <img src="{{ post[\'_embedded\'][\'author\'][0][\'avatar_urls\'][48] }}">\n    </ion-avatar>\n    <ion-grid>\n      <ion-row align-items-baseline>\n        <ion-col col-8>\n          <h2 (click)="goToAuthorPage($event, post[\'_embedded\'][\'author\'][0][\'id\'])">{{ post[\'_embedded\'][\'author\'][0][\'name\'] }}</h2>\n          <p class="data">{{ post[\'date\'] | date: \'dd/MM/yyyy\' }}</p>\n        </ion-col>\n        <ion-col col-4 class="votos_comentarios">\n          <strong>{{ post[\'total_votes\'] }}</strong> votos<br>\n          <strong>{{ post[\'comment_count\'] }}</strong>{{ post[\'comment_count\'] == 1 ? \' comentário\' : \' comentários\' }}\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-item>\n</ion-card>\n'/*ion-inline-end:"/home/orpheus/rhs-app/src/components/post-card/post-card.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["k" /* NavController */]])
+], PostCardComponent);
+
+//# sourceMappingURL=post-card.js.map
+
+/***/ }),
+
+/***/ 648:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PostsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_firebase_analytics__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_authentication_authentication__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_api_api__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_update_update__ = __webpack_require__(275);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var PostsPage = (function () {
+    function PostsPage(navCtrl, navParams, api, authentication, update, platform, analytics) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.api = api;
+        this.authentication = authentication;
+        this.update = update;
+        this.platform = platform;
+        this.analytics = analytics;
+        this.postsView = 'home';
+        // Results from API calls
+        this.homePostList = new Array();
+        this.queuePostList = new Array();
+        this.followingPostList = new Array();
+        // Queris to be passed to API calls
+        this.homePostQueries = {};
+        this.queuePostQueries = { 'status': 'voting-queue' };
+        this.followingPostQueries = {};
+        // Flags to controll infinite scroll calls
+        this.noMoreResultsOnHome = false;
+        this.noMoreResultsOnQueue = false;
+        this.noMoreResultsOnFollowing = false;
+        // Flag to controll loading spinner
+        this.showSpinnerOnHome = false;
+        this.showSpinnerOnQueue = false;
+        this.showSpinnerOnFollowing = false;
+        this.loadingFromRefresher = false;
+        this.isUserLogged = false;
+        this.returnFromPostPage = function (_params) {
+            return new Promise(function (resolve, reject) {
+                console.log(_params);
+                if (_params !== null) {
+                    for (var _i = 0, _a = _this.homePostList; _i < _a.length; _i++) {
+                        var post = _a[_i];
+                        if (post['id'] == _params.id) {
+                            post['comment_count'] = _params.commentCount;
+                            post['total_votes'] = _params.totalVotes;
+                        }
+                    }
+                    for (var _b = 0, _c = _this.queuePostList; _b < _c.length; _b++) {
+                        var post = _c[_b];
+                        if (post['id'] == _params.id) {
+                            post['comment_count'] = _params.commentCount;
+                            post['total_votes'] = _params.totalVotes;
+                        }
+                    }
+                    for (var _d = 0, _e = _this.followingPostList; _d < _e.length; _d++) {
+                        var post = _e[_d];
+                        if (post['id'] == _params.id) {
+                            post['comment_count'] = _params.commentCount;
+                            post['total_votes'] = _params.totalVotes;
+                        }
+                    }
+                }
+                resolve();
+            });
+        };
+        this.isUserLogged = this.api.isLogged();
+        this.authentication.userLogged.subscribe(function (value) {
+            if (value === true) {
+                _this.isUserLogged = _this.api.isLogged();
+                if (_this.postsView !== 'home') {
+                    _this.loadPosts(_this.postsView, false);
+                }
+            }
+        });
+    }
+    PostsPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        this.loadPosts(this.postsView, false);
+        // Uses update service to re-load after a time period without loading.
+        this.update.homePostsOutdated.subscribe(function () {
+            if (_this.postsView === 'home') {
+                _this.loadPosts(_this.postsView, false);
+                _this.getUnreadNotifications();
+            }
+        });
+        this.update.queuePostsOutdated.subscribe(function () {
+            if (_this.postsView === 'queue') {
+                _this.loadPosts(_this.postsView, false);
+                _this.getUnreadNotifications();
+            }
+        });
+        this.update.followingPostsOutdated.subscribe(function () {
+            if (_this.postsView === 'following') {
+                _this.loadPosts(_this.postsView, false);
+                _this.getUnreadNotifications();
+            }
+        });
+    };
+    PostsPage.prototype.ionViewWillEnter = function () {
+        this.getUnreadNotifications();
+        // Tells analytics that user accessed this screen.
+        this.analytics.setCurrentScreen("Posts ")
+            .then(function (res) { return console.log(res); })
+            .catch(function (error) { return console.error(error); });
+    };
+    PostsPage.prototype.getUnreadNotifications = function () {
+        var _this = this;
+        this.api.getUnreadNotificationsNumber().subscribe(function (response) { return _this.unreadNotifications = response; }, function (err) { return console.log('Error ' + err + ' - On Getting Number of Unread Notifications.'); });
+    };
+    PostsPage.prototype.goToPostPage = function (id) {
+        this.navCtrl.push('PostPage', { 'postId': id, 'returnFromPostFunction': this.returnFromPostPage });
+    };
+    PostsPage.prototype.goToSearchPage = function () {
+        this.navCtrl.push('SearchPage');
+    };
+    PostsPage.prototype.goToNotificationsPage = function () {
+        this.navCtrl.push('NotificationsPage');
+    };
+    PostsPage.prototype.changeSegment = function (postView) {
+        this.postsView = postView;
+        this.list.scrollToTop();
+        this.loadPosts(postView, null);
+    };
+    PostsPage.prototype.loadPosts = function (postView, isLoadingMore) {
+        var _this = this;
+        this.postsView = postView;
+        return new Promise(function (resolve) {
+            switch (_this.postsView) {
+                case 'home':
+                    _this.showSpinnerOnHome = true;
+                    // Informs the update service that this has been checked
+                    _this.update.checkedHomePosts(Date.now());
+                    // Sets page query load more or refresh posts
+                    //  Pull to refresh or update service calls.
+                    if (isLoadingMore === false) {
+                        _this.homePostQueries['page'] = '1';
+                    }
+                    else if (isLoadingMore === true) {
+                        _this.showSpinnerOnHome = false;
+                        _this.homePostQueries['page'] = Number(_this.homePostQueries['page']) + 1 + '';
+                    }
+                    else {
+                        if (_this.homePostList.length === 0) {
+                            _this.homePostQueries['page'] = '1';
+                        }
+                        else {
+                            _this.showSpinnerOnHome = false;
+                            break;
+                        }
+                    }
+                    // Perform the request to the api service
+                    _this.api.getPostList(_this.api.isLogged(), _this.homePostQueries).subscribe(function (postList) {
+                        if (isLoadingMore === false) {
+                            _this.homePostList = new Array();
+                        }
+                        _this.homePostList = _this.homePostList.concat(postList);
+                        _this.noMoreResultsOnHome = false;
+                        console.log(_this.homePostList);
+                    }, function (err) {
+                        if (err === 400) {
+                            _this.noMoreResultsOnHome = true;
+                        }
+                        console.log('Error ' + err + ' - On User Data Request.');
+                    }, function () { _this.showSpinnerOnHome = false; _this.loadingFromRefresher = false; resolve(); });
+                    break;
+                case 'queue':
+                    if (_this.api.isLogged()) {
+                        _this.showSpinnerOnQueue = true;
+                        // Informs the update service that this has been checked
+                        _this.update.checkedHomePosts(Date.now());
+                        // Sets page query load more or refresh posts
+                        //  Pull to refresh or update service calls.
+                        if (isLoadingMore === false) {
+                            _this.queuePostQueries['page'] = '1';
+                        }
+                        else if (isLoadingMore === true) {
+                            _this.showSpinnerOnQueue = false;
+                            _this.queuePostQueries['page'] = Number(_this.queuePostQueries['page']) + 1 + '';
+                        }
+                        else {
+                            if (_this.queuePostList.length === 0) {
+                                _this.queuePostQueries['page'] = '1';
+                            }
+                            else {
+                                _this.showSpinnerOnQueue = false;
+                                break;
+                            }
+                        }
+                        // Perform the request to the api service
+                        _this.api.getPostList(true, _this.queuePostQueries).subscribe(function (postList) {
+                            if (isLoadingMore === false) {
+                                _this.queuePostList = new Array();
+                            }
+                            _this.queuePostList = _this.queuePostList.concat(postList);
+                            console.log(_this.queuePostList);
+                            _this.noMoreResultsOnQueue = false;
+                        }, function (err) {
+                            if (err === 400) {
+                                _this.noMoreResultsOnQueue = true;
+                            }
+                            console.log('Error ' + err + ' - On User Data Request.');
+                        }, function () { _this.showSpinnerOnQueue = false; _this.loadingFromRefresher = false; resolve(); });
+                    }
+                    else {
+                        _this.authentication.userLogged.subscribe(function (value) {
+                            if (value === true) {
+                                _this.isUserLogged = _this.api.isLogged();
+                                _this.loadPosts('queue', isLoadingMore);
+                            }
+                        });
+                    }
+                    break;
+                case 'following':
+                    if (_this.api.isLogged()) {
+                        _this.showSpinnerOnFollowing = true;
+                        // Informs the update service that this has been checked
+                        _this.update.checkedFollowingPosts(Date.now());
+                        // Sets page query load more or refresh posts
+                        //  Pull to refresh or update service calls.
+                        if (isLoadingMore === false) {
+                            _this.followingPostQueries['page'] = '1';
+                        }
+                        else if (isLoadingMore === true) {
+                            _this.showSpinnerOnFollowing = false;
+                            _this.followingPostQueries['page'] = Number(_this.followingPostQueries['page']) + 1 + '';
+                        }
+                        else {
+                            if (_this.followingPostList.length === 0) {
+                                _this.followingPostQueries['page'] = '1';
+                            }
+                            else {
+                                _this.showSpinnerOnFollowing = false;
+                                break;
+                            }
+                        }
+                        // Adds array of following posts to query
+                        if (_this.api.followingUsers.length > 0) {
+                            _this.followingPostQueries['author'] = String(_this.api.followingUsers.join(','));
+                            // Perform the request to the api service
+                            _this.api.getPostList(true, _this.followingPostQueries).subscribe(function (postList) {
+                                if (isLoadingMore === false) {
+                                    _this.followingPostList = new Array();
+                                }
+                                _this.followingPostList = _this.followingPostList.concat(postList);
+                                _this.noMoreResultsOnFollowing = false;
+                            }, function (err) {
+                                if (err === 400) {
+                                    _this.noMoreResultsOnFollowing = true;
+                                }
+                                console.log('Error ' + err + ' - On User Data Request.');
+                            }, function () { _this.showSpinnerOnFollowing = false; _this.loadingFromRefresher = false; resolve(); });
+                        }
+                    }
+                    else {
+                        _this.authentication.userLogged.subscribe(function (value) {
+                            if (value === true) {
+                                _this.isUserLogged = true;
+                                _this.loadPosts('queue', isLoadingMore);
+                            }
+                        });
+                    }
+                    break;
+            }
+        });
+    };
+    PostsPage.prototype.doRefresh = function (refresher) {
+        this.loadingFromRefresher = true;
+        this.loadPosts(this.postsView, false).then(function () { return refresher.complete(); });
+    };
+    PostsPage.prototype.doInfinite = function () {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.loadPosts(_this.postsView, true).then(function () { return resolve(); });
+        });
+    };
+    return PostsPage;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */]),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */])
+], PostsPage.prototype, "list", void 0);
+PostsPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-posts',template:/*ion-inline-start:"/home/orpheus/rhs-app/src/pages/posts/posts.html"*/'<ion-header>\n  \n  <ion-navbar align-title="center" color="secondary">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>\n      <img *ngIf="platform.is(\'tablet\') || platform.is(\'ipad\')" alt="RHS" height="36" src="./assets/logo-rhs-full.svg"/>\n      <img *ngIf="!platform.is(\'tablet\') && !platform.is(\'ipad\')" alt="RHS" height="36" src="./assets/logo-rhs.svg"/>      \n    </ion-title>\n    <ion-buttons end>\n      <button ion-button class="notification-button" icon-only (click)="goToNotificationsPage()">\n        <ion-icon name="notifications">\n          <ion-badge *ngIf="unreadNotifications > 0" item-start>{{ unreadNotifications }}</ion-badge>\n        </ion-icon>\n      </button>\n      <button ion-button class="search-button" icon-only (click)="goToSearchPage()">\n        <ion-icon name="search"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n  <ion-toolbar class="toolbar-rhs" color="primary">\n    <ion-segment [(ngModel)]="postsView" color="secondary">\n      <ion-segment-button value="home" (ionSelect)="changeSegment(\'home\')">\n        Principal\n      </ion-segment-button>\n      <ion-segment-button value="queue" (ionSelect)="changeSegment(\'queue\')">\n        Fila de Votação\n      </ion-segment-button>\n      <ion-segment-button value="following" (ionSelect)="changeSegment(\'following\')">\n        Seguindo\n      </ion-segment-button>\n    </ion-segment>\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-refresher pullMin="100" \n                (ionRefresh)="doRefresh($event)"\n                [enabled]="postsView === \'home\' ? true : postsView === \'queue\' ? isUserLogged : isUserLogged">\n    <ion-refresher-content\n      pullingText="Puxe e solte para atualizar."\n      refreshingText="Buscando novos posts...">\n    </ion-refresher-content>\n  </ion-refresher>\n\n  <ion-grid no-padding [ngSwitch]="postsView">\n    \n    <ion-row #list *ngSwitchCase="\'home\'">\n      <ion-col col-md-6 push-md-3 col-sm-8 push-sm-2 col-12>\n        <div *ngIf="showSpinnerOnHome && !loadingFromRefresher && !noMoreResultsOnHome"><ion-spinner class="center-spinner"></ion-spinner></div>     \n        <post-card ion-stop-event="click" [post-data]="post" *ngFor="let post of homePostList" (click)="goToPostPage(post[\'id\'])"></post-card>           \n        <ion-item-divider *ngIf="noMoreResultsOnHome && !loadingFromRefresher">\n          Não foram encontrados mais resultados.  \n        </ion-item-divider>\n      </ion-col>\n    </ion-row>\n    <ion-row #list *ngSwitchCase="\'queue\'">\n      <ion-col col-md-6 push-md-3 col-sm-8 push-sm-2 col-12>\n        <div *ngIf="!isUserLogged">\n          <information [message]="\'Somente para usuários da RHS\'" [detail]="\'É preciso estar logado para acessar essa sessão.\'"></information>\n        </div>\n        <div *ngIf="isUserLogged">\n          <div *ngIf="showSpinnerOnQueue && !loadingFromRefresher && !noMoreResultsOnQueue"><ion-spinner class="center-spinner"></ion-spinner></div>\n            <post-card ion-stop-event="click" [post-data]="post" *ngFor="let post of queuePostList" (click)="goToPostPage(post[\'id\'])"></post-card>   \n            <ion-item-divider *ngIf="noMoreResultsOnQueue && !loadingFromRefresher">\n              Não foram encontrados mais resultados.  \n            </ion-item-divider>\n            <div *ngIf="queuePostList.length == 0 && !showSpinnerOnQueue">\n              <information [message]="\'Ainda não encontramos nenhum post na fila de votação.\'"></information>\n            </div>\n          </div>\n      </ion-col>\n    </ion-row>\n    <ion-row #list *ngSwitchCase="\'following\'">\n      <ion-col col-md-6 push-md-3 col-sm-8 push-sm-2 col-12>\n        <div *ngIf="!isUserLogged">\n          <information [message]="\'Somente para usuários da RHS\'" [detail]="\'É preciso estar logado para acessar essa sessão.\'"></information>\n        </div> \n        <div *ngIf="isUserLogged">\n          <div *ngIf="showSpinnerOnFollowing && !loadingFromRefresher && !noMoreResultsOnFollowing"><ion-spinner class="center-spinner"></ion-spinner></div>\n          <post-card ion-stop-event="click" [post-data]="post" *ngFor="let post of followingPostList" (click)="goToPostPage(post[\'id\'])"></post-card>   \n          <ion-item-divider *ngIf="noMoreResultsOnFollowing && !loadingFromRefresher">\n            Não foram encontrados mais resultados.  \n          </ion-item-divider>\n          <div *ngIf="followingPostList.length == 0 && !showSpinnerOnFollowing">\n            <information [message]="\'Ainda encontramos não há nenhum post sendo seguido.\'"></information>\n          </div>\n        </div>\n      </ion-col>\n    </ion-row>\n\n    <ion-infinite-scroll \n        [enabled]="postsView === \'home\' ? !noMoreResultsOnHome : postsView === \'queue\' ? isUserLogged && !noMoreResultsOnQueue : isUserLogged && !noMoreResultsOnFollowing" \n        (ionInfinite)="$event.waitFor(doInfinite())">\n      <ion-infinite-scroll-content\n        loadingText="Buscando mais posts...">\n      </ion-infinite-scroll-content>\n    </ion-infinite-scroll>\n    \n  </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"/home/orpheus/rhs-app/src/pages/posts/posts.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_4__providers_api_api__["a" /* ApiProvider */],
+        __WEBPACK_IMPORTED_MODULE_3__providers_authentication_authentication__["a" /* AuthenticationProvider */],
+        __WEBPACK_IMPORTED_MODULE_5__providers_update_update__["a" /* UpdateProvider */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */],
+        __WEBPACK_IMPORTED_MODULE_2__ionic_native_firebase_analytics__["a" /* FirebaseAnalytics */]])
+], PostsPage);
+
+//# sourceMappingURL=posts.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=4.js.map

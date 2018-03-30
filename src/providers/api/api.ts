@@ -153,7 +153,7 @@ export class ApiProvider {
 
     let queries = new URLSearchParams();
     queries['post'] = postId;
-    //queries['post'] = 63578;
+    queries['order'] = 'asc';
     queries['offset'] = '' + offset;
     queries['per_page'] = this.settings.commentsPerPage;
 

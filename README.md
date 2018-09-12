@@ -2,10 +2,12 @@
 
   ![Logo da RHS](https://raw.githubusercontent.com/medialab-ufg/rhs-app/master/src/assets/logo-rhs.svg?sanitize=true)
 
-Aplicativo Android e iOS para a [Rede Humaniza SUS](http://redehumanizasus.net/) (RHS).
-Versão Android: [https://play.google.com/store/apps/details?id=com.redehumanizasus.app](https://play.google.com/store/apps/details?id=com.redehumanizasus.app).
-Versão iOS:_(em desenvolvimento)_.
-Desenvolvido em Ionic, integra dados através da WP-API do Wordpress.
+Aplicativo Android e iOS para a [Rede Humaniza SUS](http://redehumanizasus.net/) (RHS), desenvolvido em Ionic, e integrando dados através da WP-API do Wordpress.
+
+Baixe a versão Android: [https://play.google.com/store/apps/details?id=com.redehumanizasus.app](https://play.google.com/store/apps/details?id=com.redehumanizasus.app).
+
+E a versão iOS:[https://itunes.apple.com/us/app/rede-humaniza-sus-m%C3%B3vel/id1342800271?mt=8](https://itunes.apple.com/us/app/rede-humaniza-sus-m%C3%B3vel/id1342800271?mt=8).
+
 
 -----------------------------------
 ## Como contribuir com este App:

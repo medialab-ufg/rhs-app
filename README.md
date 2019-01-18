@@ -197,6 +197,11 @@ Após a etapa de build, um arquivo *.xcworkspace* será gerado em seu projeto, d
 
 Tendo o projeto selecionado, aperte o botão de rodar para executar o simulador iOS.
 
+### Deploy para a Play Store
+
+Lembres-se de compilar para produção, como explicado acima. Abra então seu XCode. É preciso estr logado com as credenciais de desenvolvedor. Certifique-se de que a versão do App está pronta no arquivo `.plist`. Configure o target, dispositov destino para compilação como Generic iOS Device (Dispositivo Genérico iOS). Se a compilação ocorrer sem problemas, você poderá arquivar o Bundle clicando no menu Product --> Archive. Na tela do Gerenciador dos arquivos há o botão "Enviar para App Store".
+
+Acesse o [paneil de desenvolvedores da Apple](https://developer.apple.com/account/#/welcome) com as credenciais necessárias para produção (Apple ID _msallesoliveira@gmail.com_, senha obtida com a coordenadora do projeto). De lá acesse a *App Store Connect*. Você vai ver o App da RHS na lista de Apps. Clique nele e na tela seguinte, procure pelo botão "Criar Nova Versão". Preencha as informações necessárias. De volta ao XCode, você pode clicar no botão de enviar para a App Store. Se tudo estiver ok, este será listado na página do App Store. Clique então no botão de "Enviar para revisão" e aguarde o retorno sobre o App.
 
 -------
 ## Possíveis Problemas encontrados:

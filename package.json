@@ -2,7 +2,7 @@
   "name": "rhs-app",
   "version": "0.0.1",
   "author": "RHS",
-  "homepage": "http://ionicframework.com/",
+  "homepage": "https://redehumanizasus.net/",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -59,7 +59,7 @@
     "ionic": "^5.4.16",
     "typescript": "2.3.4"
   },
-  "description": "An Ionic project",
+  "description": "RHS mobile App",
   "cordova": {
     "plugins": {
       "cordova-plugin-console": {},

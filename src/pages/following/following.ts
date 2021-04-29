@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage, AlertController, ToastController } from 'ionic-angular';
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
+// import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { ApiProvider } from './../../providers/api/api';
@@ -27,17 +27,16 @@ export class FollowingPage {
   noMoreResultsOnPosts: boolean = false;
   noMoreResultsOnPeople: boolean = false;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public api: ApiProvider,
               public authentication: AuthenticationProvider,
               public alertCtrl: AlertController,
-              public toastCtrl: ToastController,
-              public analytics: FirebaseAnalytics) {
+              public toastCtrl: ToastController) {
 
       this.isUserLogged = this.api.isLogged();
       this.authentication.userLogged.subscribe(value => {
-      
+
         if (value === true) {
 
         this.isUserLogged = this.api.isLogged();
@@ -53,7 +52,7 @@ export class FollowingPage {
 
   ionViewDidLoad() {
 
-    if (this.api.isLogged() === true) { 
+    if (this.api.isLogged() === true) {
      if (this.followingView == 'posts') {
         this.loadPosts(false);
       } else {
@@ -63,10 +62,12 @@ export class FollowingPage {
   }
 
   ionViewDidEnter() {
+    /*
     // Tells analytics that user accessed this screen.
     this.analytics.setCurrentScreen("Following")
     .then((res: any) => console.log(res))
     .catch((error: any) => console.error(error));
+     */
   }
 
   loadPosts(isLoadingMore: boolean) {}
@@ -80,17 +81,17 @@ export class FollowingPage {
       if (isLoadingMore === false) {
         this.userList = new Array<any>();
         this.userQueries['page'] = '1';
-      } 
+      }
       //  Infinite scroll calls
       else if (isLoadingMore === true) {
         this.userQueries['page'] = Number(this.userQueries['page']) + 1 + '';
-      } 
+      }
       //  Switching segment controller calls
       else {
         if (this.userList.length === 0) {
           this.showSpinner = true;
           this.userQueries['page'] = '1';
-        }     
+        }
       }
       // Adds array of following posts to query
       if (this.api.followingUsers.length > 0) {
@@ -153,7 +154,7 @@ export class FollowingPage {
         {
           text: 'Parar',
           handler: data => {
-            this.unFollowUser(index);  
+            this.unFollowUser(index);
           }
         }
       ]

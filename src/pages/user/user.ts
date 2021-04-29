@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage, AlertController, ToastController } from 'ionic-angular';
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
+// import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 import { ApiProvider } from './../../providers/api/api';
 
@@ -27,12 +27,11 @@ export class UserPage {
   userInfoView: string = 'posts';
 
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public api: ApiProvider,
               public alertCtrl: AlertController,
-              public toastCtrl: ToastController,
-              public analytics: FirebaseAnalytics) {
+              public toastCtrl: ToastController) {
 
     this.userId = this.navParams.get('userId');
     this.loadUser();
@@ -48,10 +47,12 @@ export class UserPage {
   }
 
   ionViewDidEnter(){
+    /*
     // Tells analytics that user accessed this screen.
     this.analytics.setCurrentScreen("User:" + this.userId)
     .then((res: any) => console.log(res))
     .catch((error: any) => console.error(error));
+     */
   }
 
   followUser() {
@@ -60,7 +61,7 @@ export class UserPage {
     this.api.followUser(this.userId).subscribe(
       response => {
         console.log(response);
-        
+
         this.isFollowing = true;
         this.api.followingUsers.push(response.follow_id);
 
@@ -85,7 +86,7 @@ export class UserPage {
     this.api.unFollowUser(this.userId).subscribe(
       response => {
         console.log(response);
-        
+
         this.isFollowing = false;
         this.api.followingUsers.unshift(response.follow_id);
 
@@ -104,7 +105,7 @@ export class UserPage {
     );
 
   }
-            
+
   loadUser() {
     this.isLoadingUser = true;
 
@@ -116,11 +117,11 @@ export class UserPage {
     err => {
       console.log('Error ' + err +  ' - On User Data Request.');
     },
-    () => this.isLoadingUser = false);    
+    () => this.isLoadingUser = false);
   }
 
   loadUserPosts(isLoadingMore: boolean): Promise<any> {
-    
+
     return new Promise((resolve) => {
 
       this.postQueries['author'] = String(this.user['id']);
@@ -131,15 +132,15 @@ export class UserPage {
       if (isLoadingMore === false) {
         this.userPostsList = new Array<any>();
         this.postQueries['page'] = '1';
-      } 
+      }
       //  Infinite scroll calls
       else if (isLoadingMore === true) {
         this.postQueries['page'] = Number(this.postQueries['page']) + 1 + '';
-      } 
+      }
 
       this.api.getPostList(this.api.isLogged(), this.postQueries).subscribe(
         postList => {
-        this.userPostsList = this.userPostsList.concat(postList);    
+        this.userPostsList = this.userPostsList.concat(postList);
         this.noMoreResults = false;
       },
       err => {

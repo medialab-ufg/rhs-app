@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
+// import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 import { ApiProvider } from './../../providers/api/api';
 
@@ -25,11 +25,10 @@ export class CommentPage {
 
   returnFromCommentFunction: any;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public api: ApiProvider,
-              public statusBar: StatusBar,
-              public analytics: FirebaseAnalytics) {
+              public statusBar: StatusBar) {
     this.postId = this.navParams.get('postId');
     this.comment = this.navParams.get('comment');
     this.commentId = this.navParams.get('commentId'); // If null, we came from post page, instead of notification.
@@ -44,10 +43,13 @@ export class CommentPage {
       this.responseInput.setFocus();
     }, 150);
 
+    /*
     // Tells analytics that user accessed this screen.
     this.analytics.setCurrentScreen("Comments")
     .then((res: any) => console.log(res))
     .catch((error: any) => console.error(error));
+
+     */
   }
 
   ionViewWillEnter() {
@@ -78,19 +80,21 @@ export class CommentPage {
   }
 
   postResponse() {
-    
+
     this.isPostingResponse = true;
 
     this.api.commentOnPost(this.comment['post'], this.responseContent, this.comment['id']).subscribe(
       commentResponse => {
-      
+
         this.responseContent = '';
         this.response = commentResponse;
         this.didResponded = true;
 
+        /*
         this.analytics.logEvent('new_comment', {post_id: this.postId, user_id: this.api.getUserId()})
         .then((res: any) => console.log(res))
         .catch((error: any) => console.error(error));
+         */
     },
     err => {
       console.log('Error ' + err +  ' - On Response Data posting.');

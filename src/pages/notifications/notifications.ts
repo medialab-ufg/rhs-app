@@ -1,10 +1,9 @@
 import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
+// import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 import { ApiProvider } from './../../providers/api/api';
-
 
 @IonicPage()
 @Component({
@@ -23,11 +22,10 @@ export class NotificationsPage {
   showSpinner: boolean = false;
   loadingFromRefresher: boolean = false;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public api: ApiProvider,
-              public authentication: AuthenticationProvider,
-              public analytics: FirebaseAnalytics) {
+              public authentication: AuthenticationProvider) {
 
     this.notifications = new Array<any>();
     this.authentication.userLogged.subscribe(value => {
@@ -42,7 +40,7 @@ export class NotificationsPage {
 
     this.isUserLogged = this.api.isLogged();
 
-    if (this.isUserLogged === true) { 
+    if (this.isUserLogged === true) {
       this.loadNotifications(false);
     }
 
@@ -53,27 +51,29 @@ export class NotificationsPage {
   }
 
   ionViewDidEnter() {
+    /*
     // Tells analytics that user accessed this screen.
     this.analytics.setCurrentScreen("Notifications")
     .then((res: any) => console.log(res))
     .catch((error: any) => console.error(error));
+     */
   }
 
   loadNotifications(isLoadingMore: boolean): Promise<any> {
-    
+
     return new Promise((resolve) => {
-      
+
       this.showSpinner = true;
 
       if (isLoadingMore === false) {
         this.notifications = new Array<any>();
         this.queries['page'] = '1';
-      } 
+      }
       // Infinite scroll calls
       else if (isLoadingMore === true) {
         this.showSpinner = false;
         this.queries['page'] = Number(this.queries['page']) + 1 + '';
-      } 
+      }
 
       this.api.getNotificationList(true, this.queries['page']).subscribe(
         notificationList => {
@@ -91,7 +91,7 @@ export class NotificationsPage {
             console.log('Error ' + err +  ' - On Notifications Data Request.');
           },
           () => { this.showSpinner = false; this.loadingFromRefresher = false; resolve() });
-        
+
     });
   }
 
@@ -99,10 +99,10 @@ export class NotificationsPage {
 
     if (this.notifications[index]['type'] == 'comments_in_post') {
         this.navCtrl.push('CommentPage', { 'commentId': this.notifications[index]['object_id'] });
-    } else if (this.notifications[index]['type'] == 'new_community_post' || 
-               this.notifications[index]['type'] == 'post_followed' || 
-               this.notifications[index]['type'] == 'post_promoted' || 
-               this.notifications[index]['type'] == 'replied_ticket' || 
+    } else if (this.notifications[index]['type'] == 'new_community_post' ||
+               this.notifications[index]['type'] == 'post_followed' ||
+               this.notifications[index]['type'] == 'post_promoted' ||
+               this.notifications[index]['type'] == 'replied_ticket' ||
                this.notifications[index]['type'] == 'new_post_from_user') {
         this.navCtrl.push('PostPage', { 'postId': this.notifications[index]['object_id'] });
     } else if(this.notifications[index]['type'] == 'user_follow_author') {

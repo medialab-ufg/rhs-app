@@ -122,8 +122,7 @@ InformationComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_authentication_authentication__ = __webpack_require__(144);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_firebase_analytics__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_api_api__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_api_api__ = __webpack_require__(142);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -136,16 +135,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
+// import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 var NotificationsPage = (function () {
-    function NotificationsPage(navCtrl, navParams, api, authentication, analytics) {
+    function NotificationsPage(navCtrl, navParams, api, authentication) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.api = api;
         this.authentication = authentication;
-        this.analytics = analytics;
         this.notifications = new Array();
         this.queries = {};
         this.isUserLogged = false;
@@ -169,10 +167,12 @@ var NotificationsPage = (function () {
         this.api.markNotificationsAsRead().subscribe(function (response) { return console.log('Notifications marked as read for user ' + response); }, function (err) { return console.log('Error ' + err + ' - On Notifications Data Request.'); });
     };
     NotificationsPage.prototype.ionViewDidEnter = function () {
+        /*
         // Tells analytics that user accessed this screen.
         this.analytics.setCurrentScreen("Notifications")
-            .then(function (res) { return console.log(res); })
-            .catch(function (error) { return console.error(error); });
+        .then((res: any) => console.log(res))
+        .catch((error: any) => console.error(error));
+         */
     };
     NotificationsPage.prototype.loadNotifications = function (isLoadingMore) {
         var _this = this;
@@ -232,13 +232,10 @@ NotificationsPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
         selector: 'page-notifications',template:/*ion-inline-start:"/Users/rodrigodeoliveira/code/self/ufg/rhs-app/src/pages/notifications/notifications.html"*/'<ion-header>\n\n  <ion-navbar color="secondary">\n    <ion-title>Notificações</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n  <div *ngIf="!isUserLogged">\n    <information [message]="\'Somente para usuários da RHS\'" [detail]="\'É preciso estar logado para acessar essa sessão.\'"></information>\n  </div>\n\n  <div *ngIf="isUserLogged">\n\n    <ion-refresher pullMin="100" \n                    (ionRefresh)="doRefresh($event)">\n      <ion-refresher-content\n        pullingText="Puxe e solte para atualizar."\n        refreshingText="Carregando dados...">\n      </ion-refresher-content>\n    </ion-refresher>\n\n    <div *ngIf="!showSpinner && notifications.length == 0">\n      <information [message]="\'Nenhuma notificação.\'"></information>\n    </div>\n\n    <div *ngIf="showSpinner && !isLoadingMore && !loadingFromRefresher"><ion-spinner class="center-spinner"></ion-spinner></div>\n    <div *ngIf="!showSpinner && notifications.length > 0">\n      <div *ngFor="let notification of notifications; let i = index">\n      <ion-item *ngIf="notification[\'type\'] == \'new_post_from_user\' || notification[\'type\'] == \'comments_in_post\' || notification[\'type\'] == \'user_follow_author\'" (click)="goToNotificationContent(i)">\n        <ion-avatar item-start [innerHtml]="notification[\'image\']"> \n        </ion-avatar>\n        <h2 color="secondary" text-wrap [innerHtml]="notification[\'text\'] | innerHtmlNotification"></h2>\n        <p>{{ notification[\'datetime\'].split(" ")[0] | date: \'dd/MM/yyyy\' }}</p>\n      </ion-item>\n      <ion-item *ngIf="notification[\'type\'] != \'comments_in_post\' && notification[\'type\'] != \'user_follow_author\' && notification[\'type\'] != \'new_post_from_user\'" (click)="goToNotificationContent(i)">\n        <ion-thumbnail item-start  [innerHtml]="notification[\'image\']"> \n        </ion-thumbnail>\n        <h2 color="secondary"  text-wrap  [innerHtml]="notification[\'text\'] | innerHtmlNotification">></h2>\n        <p>{{ notification[\'datetime\'].split(" ")[0] | date: \'dd/MM/yyyy\' }}</p>\n      </ion-item>\n      </div>\n      <ion-item-divider *ngIf="noMoreResults">\n        Não foram encontradas mais notificações.\n      </ion-item-divider>\n    </div>\n\n    <ion-infinite-scroll [enabled]="!noMoreResults" (ionInfinite)="$event.waitFor(doInfinite())">\n      <ion-infinite-scroll-content\n      loadingText="Buscando mais notificações...">\n    </ion-infinite-scroll-content>\n    </ion-infinite-scroll>\n\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/rodrigodeoliveira/code/self/ufg/rhs-app/src/pages/notifications/notifications.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_4__providers_api_api__["a" /* ApiProvider */],
-        __WEBPACK_IMPORTED_MODULE_0__providers_authentication_authentication__["a" /* AuthenticationProvider */],
-        __WEBPACK_IMPORTED_MODULE_3__ionic_native_firebase_analytics__["a" /* FirebaseAnalytics */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_api_api__["a" /* ApiProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_api_api__["a" /* ApiProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__providers_authentication_authentication__["a" /* AuthenticationProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__providers_authentication_authentication__["a" /* AuthenticationProvider */]) === "function" && _d || Object])
 ], NotificationsPage);
 
+var _a, _b, _c, _d;
 //# sourceMappingURL=notifications.js.map
 
 /***/ }),

@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, IonicPage, Content, Platform } from 'ionic-angular';
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
+// import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { ApiProvider } from './../../providers/api/api';
@@ -14,7 +14,7 @@ import { UpdateProvider } from './../../providers/update/update';
 export class PostsPage {
 
   @ViewChild(Content) list: Content;
-  
+
   postsView = 'home';
 
   // Results from API calls
@@ -42,13 +42,12 @@ export class PostsPage {
 
   unreadNotifications: number;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public api: ApiProvider,
               public authentication: AuthenticationProvider,
               public update: UpdateProvider,
-              public platform: Platform,
-              public analytics: FirebaseAnalytics) {
+              public platform: Platform) {
 
     this.isUserLogged = this.api.isLogged();
     this.authentication.userLogged.subscribe(value => {
@@ -62,7 +61,7 @@ export class PostsPage {
   }
 
   ionViewDidLoad() {
-    
+
     this.loadPosts(this.postsView, false);
 
     // Uses update service to re-load after a time period without loading.
@@ -89,11 +88,12 @@ export class PostsPage {
 
   ionViewWillEnter(){
     this.getUnreadNotifications();
-
+/*
     // Tells analytics that user accessed this screen.
     this.analytics.setCurrentScreen("Posts ")
     .then((res: any) => console.log(res))
     .catch((error: any) => console.error(error));
+ */
   }
 
   getUnreadNotifications() {
@@ -139,12 +139,12 @@ export class PostsPage {
           //  Pull to refresh or update service calls.
           if (isLoadingMore === false) {
             this.homePostQueries['page'] = '1';
-          } 
+          }
           //  Infinite scroll calls
           else if (isLoadingMore === true) {
             this.showSpinnerOnHome = false;
             this.homePostQueries['page'] = Number(this.homePostQueries['page']) + 1 + '';
-          } 
+          }
           //  Switching segment controller calls
           else {
             if (this.homePostList.length === 0) {
@@ -154,7 +154,7 @@ export class PostsPage {
               break;
             }
           }
-          
+
           // Perform the request to the api service
           this.api.getPostList(this.api.isLogged(), this.homePostQueries).subscribe(
             postList => {
@@ -162,7 +162,7 @@ export class PostsPage {
               this.homePostList = new Array<any>();
             }
             this.homePostList = this.homePostList.concat(postList);
-            this.noMoreResultsOnHome = false;     
+            this.noMoreResultsOnHome = false;
             console.log(this.homePostList);
           },
           err => {
@@ -185,12 +185,12 @@ export class PostsPage {
             //  Pull to refresh or update service calls.
             if (isLoadingMore === false) {
               this.queuePostQueries['page'] = '1';
-            } 
+            }
             //  Infinite scroll calls
             else if (isLoadingMore === true) {
               this.showSpinnerOnQueue = false;
               this.queuePostQueries['page'] = Number(this.queuePostQueries['page']) + 1 + '';
-            } 
+            }
             //  Switching segment controller calls
             else {
               if (this.queuePostList.length === 0) {
@@ -226,24 +226,24 @@ export class PostsPage {
             });
           }
         break;
-        
+
         case 'following':
           if (this.api.isLogged()){
             this.showSpinnerOnFollowing = true;
 
             // Informs the update service that this has been checked
             this.update.checkedFollowingPosts(Date.now());
-            
+
             // Sets page query load more or refresh posts
             //  Pull to refresh or update service calls.
             if (isLoadingMore === false) {
               this.followingPostQueries['page'] = '1';
-            } 
+            }
             //  Infinite scroll calls
             else if (isLoadingMore === true) {
               this.showSpinnerOnFollowing = false;
               this.followingPostQueries['page'] = Number(this.followingPostQueries['page']) + 1 + '';
-            } 
+            }
             //  Switching segment controller calls
             else {
               if (this.followingPostList.length === 0) {
@@ -255,7 +255,7 @@ export class PostsPage {
             }
             // Adds array of following posts to query
             if (this.api.followingUsers.length > 0) {
-              
+
               this.followingPostQueries['author'] = String(this.api.followingUsers.join(','));
 
               // Perform the request to the api service
@@ -274,7 +274,7 @@ export class PostsPage {
                 console.log('Error ' + err +  ' - On User Data Request.');
               },
               () => { this.showSpinnerOnFollowing = false; this.loadingFromRefresher = false; resolve() });
-            } 
+            }
           } else {
             this.authentication.userLogged.subscribe(value => {
               if (value === true) {
@@ -287,7 +287,7 @@ export class PostsPage {
       }
 
     });
- 
+
   }
 
   doRefresh(refresher) {

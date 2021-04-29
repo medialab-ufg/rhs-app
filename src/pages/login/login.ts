@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Storage } from '@ionic/storage';
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
+// import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { SettingsProvider } from './../../providers/settings/settings';
@@ -17,21 +17,22 @@ export class LoginPage {
 
   isRegistered: boolean = false;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public authentication: AuthenticationProvider,
               public storage: Storage,
               public inAppBrowser: InAppBrowser,
               public settings: SettingsProvider,
-              public api: ApiProvider,
-              public analytics: FirebaseAnalytics) {
+              public api: ApiProvider) {
   }
 
   ionViewDidEnter() {
+    /*
     // Tells analytics that user accessed this screen.
     this.analytics.setCurrentScreen("Login")
     .then((res: any) => console.log(res))
     .catch((error: any) => console.error(error));
+     */
   }
 
   login() {
@@ -40,15 +41,15 @@ export class LoginPage {
       temporaryCredentials => {
 
         if (temporaryCredentials.oauthToken !== null && temporaryCredentials.oauthTokenSecret !== null) {
-          
+
           const browser = this.inAppBrowser.create(this.settings.apiURL + '/oauth1/authorize?oauth_token=' + temporaryCredentials.oauthToken + '&oauth_token_secret=' + temporaryCredentials.oauthTokenSecret + '&device=mobile-app', '_blank', { zoom: 'no', location: 'no', toolbarposition: 'top' });
-          
+
           browser.on("loadstop").subscribe((event)=>{
-              
+
               // The 3 lines above only work for Android 4.4.4 above...
               //let url = new URL(event.url);
               //let oauth_verifier = url.searchParams.get('oauth_verifier');
-              //let oauth_token = url.searchParams.get('oauth_token'); 
+              //let oauth_token = url.searchParams.get('oauth_token');
 
               // So we use a custom function
               let url = event.url;
@@ -57,16 +58,16 @@ export class LoginPage {
 
               if (oauth_verifier !== null && oauth_verifier !== undefined) {
 
-                browser.close(); 
-                
+                browser.close();
+
                 this.authentication.getAccessCredentials(temporaryCredentials.oauthToken, temporaryCredentials.oauthTokenSecret, oauth_verifier).subscribe(
                   finalCredentials => {
                     if (finalCredentials.oauthToken !== null  && finalCredentials.oauthTokenSecret !== null) {
-                      
+
                       // Saves in local storage, for obtaining on app load.
                       this.storage.set('oauth_token', { key: finalCredentials.oauthToken, secret: finalCredentials.oauthTokenSecret });
                       this.storage.set('is_user_logged', true);
-                      
+
                       // Saves in Api Service, for using during requests.
                       this.api.setLogged(true);
                       this.api.setTokenKey(finalCredentials.oauthToken);
@@ -74,7 +75,7 @@ export class LoginPage {
 
                       // Informs the subscribed components (as the sidemenu) that use has logged.
                       this.authentication.userLogged.emit(true);
-                      
+
                       // Sends the push notification ID to server
                       if (this.settings.pushDeviceId !== '') {
                         this.api.sendPushDeviceID(this.settings.pushDeviceId).subscribe(
@@ -122,7 +123,7 @@ export class LoginPage {
         this.isRegistered = true;
       }
     });
-     
+
   }
 
   getParameterByName(name, url) {

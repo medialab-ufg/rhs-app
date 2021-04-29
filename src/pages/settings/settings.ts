@@ -15,13 +15,13 @@ import { ApiProvider } from './../../providers/api/api';
 })
 export class SettingsPage {
 
-  isUserLogged: boolean = false; 
+  isUserLogged: boolean = false;
 
   articleFontSizeRange: number = 3;
 
   notificationTypes: Array<any> = new Array<any>();
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public alertCtrl: AlertController,
               public storage: Storage,
@@ -37,12 +37,14 @@ export class SettingsPage {
     });
 
   }
-  
+
   ionViewDidEnter(){
     // Tells analytics that user accessed this screen.
-    this.analytics.setCurrentScreen("Settings")
-    .then((res: any) => console.log(res))
-    .catch((error: any) => console.error(error));
+    /*
+      this.analytics.setCurrentScreen("Settings")
+      .then((res: any) => console.log(res))
+      .catch((error: any) => console.error(error));
+     */
   }
 
   ionViewDidLoad() {
@@ -86,7 +88,7 @@ export class SettingsPage {
 
   logout() {
 
-    this.api.deletePushDeviceID(this.settings.pushDeviceId).subscribe( 
+    this.api.deletePushDeviceID(this.settings.pushDeviceId).subscribe(
       response => {
       console.log(response);
     },
@@ -102,7 +104,7 @@ export class SettingsPage {
     this.storage.set('oauth_token', null);
     this.storage.set('is_user_logged', false);
     this.storage.set('desired_notifications', null);
-    
+
     // Saves in Api Service, for using during requests.
     this.api.setLogged(false);
     this.api.setTokenKey(null);
@@ -123,13 +125,13 @@ export class SettingsPage {
     this.api.getNotificationTypes(false).subscribe(response => {
 
       let types = response['types'];
-      
+
       // Passes notification types to the settings notifications type list and updates view array
       for (var key in types) {
         if (types.hasOwnProperty(key)) {
           this.settings.desiredNotifications[key] = types[key];
           this.notificationTypes.push( { key: key, value: types[key]}  );
-          
+
           // If there is not set value to this type (first-run app or new type created) sets it to true
           if (this.settings.desiredNotifications[key]['valueBool'] == undefined || this.settings.desiredNotifications[key]['valueBool'] == undefined) {
             this.settings.desiredNotifications[key]['valueBool'] = true;
@@ -137,14 +139,14 @@ export class SettingsPage {
           }
         }
       };
-       
+
       // Obtains the current OneSignal tags associated to the user from OneSignal
-      this.oneSignal.getTags().then((tags) => {     
-        
+      this.oneSignal.getTags().then((tags) => {
+
         // Updates the values os desired notifications, based on the obtained tags
         for (var key in tags) {
-          if (tags.hasOwnProperty(key)) {  
-            for (let notificationType of this.notificationTypes) {    
+          if (tags.hasOwnProperty(key)) {
+            for (let notificationType of this.notificationTypes) {
               if ('notf_type_' + notificationType.key == key) {
                 this.settings.desiredNotifications[notificationType.key]['valueBool'] = (tags[key] == '1' ? true : false);
               }
@@ -153,7 +155,7 @@ export class SettingsPage {
         }
 
       });
-  
+
     },
     err => {
       console.log('Error ' + err + ' - Getting notifications type list.');
@@ -165,7 +167,7 @@ export class SettingsPage {
     if (this.settings.desiredNotifications[desiredNotification.key]['valueBool'] === true) {
 
       this.oneSignal.sendTag(desiredNotification.value['onesginal_tag'], '1');
-      
+
       this.analytics.logEvent('notification_enabled', {notification_type: this.settings.desiredNotifications[desiredNotification.key]['onesginal_tag']})
       .then((res: any) => console.log(res))
       .catch((error: any) => console.error(error));
@@ -183,19 +185,19 @@ export class SettingsPage {
     this.storage.set('desired_notifications', this.settings.desiredNotifications);
   }
 
-  
+
   // Related to Font Size Settings ----------------------------------------------------
   translateFontSize(fontSize: string) {
     switch (fontSize) {
-      case 'extra-small': 
+      case 'extra-small':
       return 'muito pequeno';
-      case 'small': 
+      case 'small':
       return 'pequeno';
-      case 'medium': 
+      case 'medium':
       return 'médio';
-      case 'large': 
+      case 'large':
       return 'grande';
-      case 'extra-large': 
+      case 'extra-large':
       return 'muito grande';
       default:
       return 'médio';
@@ -209,20 +211,20 @@ export class SettingsPage {
     this.analytics.logEvent('font_size_change', {new_font_size: this.settings.currentFontSize})
     .then((res: any) => console.log(res))
     .catch((error: any) => console.error(error));
-  
+
   }
 
   rangeToFontSize(range: number) {
     switch (range) {
-      case 1: 
+      case 1:
       return 'extra-small';
-      case 2: 
+      case 2:
       return 'small';
-      case 3: 
+      case 3:
       return 'medium';
-      case 4: 
+      case 4:
       return 'large';
-      case 5: 
+      case 5:
       return 'extra-large';
       default:
       return 'medium';
@@ -231,15 +233,15 @@ export class SettingsPage {
 
   fontSizeToRange(fontSize: string) {
     switch (fontSize) {
-      case 'extra-small': 
+      case 'extra-small':
       return 1;
-      case 'small': 
+      case 'small':
       return 2;
-      case 'medium': 
+      case 'medium':
       return 3;
-      case 'large': 
+      case 'large':
       return 4;
-      case 'extra-large': 
+      case 'extra-large':
       return 5;
       default:
       return 3;

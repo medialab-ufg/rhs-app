@@ -204,8 +204,7 @@ PostCardComponent = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfilePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_firebase_analytics__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_api_api__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(142);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -217,17 +216,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
+// import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 var ProfilePage = (function () {
     function ProfilePage(navCtrl, navParams, 
         //public modalCtrl: ModalController,
-        alertCtrl, api, analytics) {
+        alertCtrl, api) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.alertCtrl = alertCtrl;
         this.api = api;
-        this.analytics = analytics;
         this.isUserLogged = false;
         this.userPostsList = new Array();
         this.postQueries = {};
@@ -241,10 +239,12 @@ var ProfilePage = (function () {
         }
     }
     ProfilePage.prototype.ionViewWillEnter = function () {
+        /*
         // Tells analytics that user accessed this screen.
         this.analytics.setCurrentScreen("Posts ")
-            .then(function (res) { return console.log(res); })
-            .catch(function (error) { return console.error(error); });
+        .then((res: any) => console.log(res))
+        .catch((error: any) => console.error(error));
+         */
     };
     ProfilePage.prototype.loadUser = function () {
         var _this = this;
@@ -295,7 +295,7 @@ var ProfilePage = (function () {
           profileModal.present();
     
         } else {
-          
+    
           let commentAlert = this.alertCtrl.create({
             title: 'Ops... você não está logado!',
             subTitle: 'Entre na RHS para poder editar seu usuário.',
@@ -318,13 +318,10 @@ ProfilePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-profile',template:/*ion-inline-start:"/Users/rodrigodeoliveira/code/self/ufg/rhs-app/src/pages/profile/profile.html"*/'<ion-header no-border>\n\n  <ion-navbar color="secondary">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Meu Perfil da RHS</ion-title>\n    <!--<ion-buttons end>\n      <button ion-button icon-only (click)="openEditProfileModal()">\n        <ion-icon name="create"></ion-icon>\n      </button>\n    </ion-buttons>-->\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n  \n  <div *ngIf="!isUserLogged">\n    <information [message]="\'Somente para usuários da RHS\'" [detail]="\'É preciso estar logado para acessar essa sessão.\'"></information>\n  </div>\n  <div *ngIf="isUserLogged">\n\n    <div *ngIf="isLoadingUser"><ion-spinner class="center-spinner"></ion-spinner></div>\n    \n    <div *ngIf="!isLoadingUser">\n      <div class="user-info">\n        <img [src]="user[\'avatar_urls\'][96]"> \n        <h2>{{ user[\'name\'] }}</h2>\n        <ion-grid>\n          <ion-row nowrap>\n            <ion-col>\n              {{ user[\'total_posts\'] }}  \n              <!--<ion-icon color="primary" name="document"></ion-icon>-->\n              <br>\n              Posts\n            </ion-col>\n            <ion-col>\n              {{ user[\'total_votes\'] }}  \n              <br>\n              Votos\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </div>\n\n      <ion-toolbar class="toolbar-rhs" color="primary">\n        <ion-segment [(ngModel)]="userInfoView" color="secondary">\n          <ion-segment-button value="posts">\n            Publicações\n          </ion-segment-button>\n          <ion-segment-button value="personal">\n            Pessoal\n          </ion-segment-button>\n          <ion-segment-button value="interests">\n            Interesses\n          </ion-segment-button>\n        </ion-segment>\n      </ion-toolbar>\n\n      <div [ngSwitch]="userInfoView">\n        \n        <ion-list *ngSwitchCase="\'posts\'">\n          <div *ngIf="isLoadingUserPosts"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n          <post-card [post-data]="post" *ngFor="let post of userPostsList" (click)="goToPostPage(post[\'id\'])"></post-card>   \n          <div *ngIf="userPostsList.length == 0 && !isLoadingUserPosts">\n            <information [message]="\'Não possui nenhuma publicação.\'"></information>\n          </div>\n          <ion-item-divider *ngIf="noMoreResults">\n            Não foram encontrados mais resultados.  \n          </ion-item-divider>\n        </ion-list>\n\n        <ion-infinite-scroll [enabled]="userInfoView == \'posts\' && !noMoreResults" (ionInfinite)="$event.waitFor(doInfinite())">\n          <ion-infinite-scroll-content></ion-infinite-scroll-content>\n        </ion-infinite-scroll>\n\n        <ion-list *ngSwitchCase="\'personal\'" padding>\n          <ion-item [innerHtml]="user[\'description\'] !== \'\' ? user[\'description\'] : \'Nenhuma descrição fornecida.\'">\n          </ion-item>\n        </ion-list>\n\n        <ion-list *ngSwitchCase="\'interests\'">\n          <ion-list>\n            <ion-list-header>Sobre</ion-list-header>\n            <ion-item [innerHtml]="user[\'description\'] !== \'\' ? user[\'description\'] : \'Nenhuma informação encontrada.\'">\n            </ion-item>\n            \n            <ion-list-header>Interesses</ion-list-header>\n            <ion-item [innerHtml]="user[\'interst\'] !== \'\' ? user[\'interst\'] : \'Nenhum interesse informado.\'">\n            </ion-item>\n\n            <ion-list-header>Formação</ion-list-header>\n            <ion-item [innerHtml]="user[\'formation\'] !== \'\' ? user[\'formation\'] : \'Nenhuma formação informada.\'">\n            </ion-item>\n          </ion-list>\n        </ion-list>\n\n      </div>\n    </div>\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/rodrigodeoliveira/code/self/ufg/rhs-app/src/pages/profile/profile.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_3__providers_api_api__["a" /* ApiProvider */],
-        __WEBPACK_IMPORTED_MODULE_2__ionic_native_firebase_analytics__["a" /* FirebaseAnalytics */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */]) === "function" && _d || Object])
 ], ProfilePage);
 
+var _a, _b, _c, _d;
 //# sourceMappingURL=profile.js.map
 
 /***/ })

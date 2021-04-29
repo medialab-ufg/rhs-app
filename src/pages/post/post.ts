@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, ActionSheetController, AlertController, IonicPage, ToastController, Platform } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
+// import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 import { SettingsProvider } from './../../providers/settings/settings';
 import { ApiProvider } from './../../providers/api/api';
@@ -61,8 +61,7 @@ export class PostPage {
               public toastCtrl: ToastController,
               public socialSharing: SocialSharing,
               public settings: SettingsProvider,
-              public platform: Platform,
-              public analytics: FirebaseAnalytics) {
+              public platform: Platform) {
 
     this.postId = this.navParams.get('postId');
     this.loadPost();
@@ -81,10 +80,12 @@ export class PostPage {
   }
 
   ionViewDidEnter() {
+    /*
     // Tells analytics that user accessed this screen.
     this.analytics.setCurrentScreen("Post: " + this.postId)
     .then((res: any) => console.log(res))
     .catch((error: any) => console.error(error));
+     */
   }
 
   loadPost() {
@@ -112,7 +113,7 @@ export class PostPage {
     err => {
       console.log('Error ' + err +  ' - On Post Data Request.');
     },
-    () => this.isLoadingPost = false);    
+    () => this.isLoadingPost = false);
   }
 
   loadComments() {
@@ -146,7 +147,7 @@ export class PostPage {
     err => {
       console.log('Error ' + err +  ' - On Categories Data Request.');
     },
-    () => this.isLoadingCategories = false); 
+    () => this.isLoadingCategories = false);
   }
 
   loadTags() {
@@ -163,13 +164,13 @@ export class PostPage {
   }
 
   commentPost() {
-    
+
     if (this.api.isLogged()) {
 
       this.commentInput.setFocus();
 
     } else {
-      
+
       let commentAlert = this.alertCtrl.create({
         title: 'Ops... você não está logado!',
         subTitle: 'Entre na RHS para poder comentar neste post.',
@@ -187,7 +188,7 @@ export class PostPage {
       this.navCtrl.push('CommentPage', {'comment': this.commentBoxes[commentIndex], 'postId': this.postId, 'returnFromCommentFunction': this.returnFromCommentPage });
 
     } else {
-      
+
       let commentAlert = this.alertCtrl.create({
         title: 'Ops... você não está logado!',
         subTitle: 'Entre na RHS para poder comentar neste post.',
@@ -201,7 +202,7 @@ export class PostPage {
   votePost() {
 
     this.isVoting = true;
- 
+
     this.api.voteOnPost(this.postId).subscribe(
       voteResponse => {
         this.totalVotes = Number(this.totalVotes) + 1;
@@ -215,7 +216,7 @@ export class PostPage {
 
         this.isVoting = false;
         this.hasVoted = true;
-      }, 
+      },
       err => {
         console.log(err);
         this.isVoting = false;
@@ -227,17 +228,17 @@ export class PostPage {
         voteAlert.present();
           }
     );
-   
+
   }
 
-  postComment() {  
+  postComment() {
     this.isPostingComment = true;
 
     if (this.isEditingComment) {
 
       this.api.editCommentOnPost(this.postId, this.commentContent, this.editedCommentId).subscribe(
         commentResponse => {
-        
+
           let index = this.comments.findIndex(editedComment => editedComment.id === commentResponse.id);
           if (index >= 0) {
               this.comments[index] = commentResponse;
@@ -247,9 +248,11 @@ export class PostPage {
           this.postDidUpdated = true;
           this.generateCommentBoxes();
 
+          /*
           this.analytics.logEvent('comment_edited', {post_id: this.postId, user_id: this.api.getUserId()})
           .then((res: any) => console.log(res))
           .catch((error: any) => console.error(error));
+           */
       },
       err => {
         console.log('Error ' + err +  ' - On Comment Editing.');
@@ -260,21 +263,23 @@ export class PostPage {
         this.editedCommentId = 0;
       });
 
-    } else {  
+    } else {
       this.api.commentOnPost(this.postId, this.commentContent, 0).subscribe(
         commentResponse => {
-        
+
           this.comments.unshift(commentResponse);
           this.commentContent = '';
           this.reduceInputSize();
           this.commentCount = Number(this.commentCount) + 1;
-          
+
           this.postDidUpdated = true;
           this.generateCommentBoxes();
 
+          /*
           this.analytics.logEvent('new_comment', {post_id: this.postId, user_id: this.api.getUserId()})
           .then((res: any) => console.log(res))
           .catch((error: any) => console.error(error));
+           */
       },
       err => {
         console.log('Error ' + err +  ' - On Comment Data posting.');
@@ -283,7 +288,7 @@ export class PostPage {
     }
   }
 
-  editComment(commentIndex: any) {  
+  editComment(commentIndex: any) {
     this.commentInput.value = String(this.commentBoxes[commentIndex]['content']['rendered']).replace(/<[^>]+>/gm, '');
     this.changeInputSize();
     this.commentInput.setFocus();
@@ -319,13 +324,13 @@ export class PostPage {
   }
 
   fillCommentBox(parentId: number, commentDepth: number) {
-    
+
     for (let comment of this.comments) {
 
-      if (comment['parent'] != parentId ) {    
+      if (comment['parent'] != parentId ) {
         continue;
-      } 
-      
+      }
+
       comment.depth = commentDepth;
       this.commentBoxes.push(comment);
 
@@ -345,7 +350,7 @@ export class PostPage {
     // Get elements
     let element   = document.getElementById('commentInput');
     let textarea  = element.getElementsByTagName('textarea')[0];
-    
+
     // Set default style for textarea
     textarea.style.minHeight  = '18px';
     textarea.style.height     = 'auto';
@@ -365,7 +370,7 @@ export class PostPage {
     // Get elements
     let element   = document.getElementById('commentInput');
     let textarea  = element.getElementsByTagName('textarea')[0];
-    
+
     // Set default style for textarea
     element.style.height     = "18px";
     textarea.style.minHeight  = '18px';

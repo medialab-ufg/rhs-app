@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage, AlertController } from 'ionic-angular';
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
+// import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 import { ApiProvider } from './../../providers/api/api';
 
@@ -11,7 +11,7 @@ import { ApiProvider } from './../../providers/api/api';
 })
 export class ProfilePage {
 
-  isUserLogged: boolean = false; 
+  isUserLogged: boolean = false;
 
   user: any;
   userPostsList: Array<any> = new Array<any>();
@@ -24,23 +24,24 @@ export class ProfilePage {
 
   userInfoView: string = 'posts';
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
               public navParams: NavParams,
               //public modalCtrl: ModalController,
               public alertCtrl: AlertController,
-              public api: ApiProvider,
-              public analytics: FirebaseAnalytics) {
+              public api: ApiProvider) {
     this.isUserLogged = this.api.isLogged();
-    
+
     if (this.isUserLogged) { this.loadUser() }
   }
 
 
   ionViewWillEnter(){
+    /*
     // Tells analytics that user accessed this screen.
     this.analytics.setCurrentScreen("Posts ")
     .then((res: any) => console.log(res))
     .catch((error: any) => console.error(error));
+     */
   }
 
   loadUser() {
@@ -54,11 +55,11 @@ export class ProfilePage {
     err => {
       console.log('Error ' + err +  ' - On User Data Request.');
     },
-    () => this.isLoadingUser = false);    
+    () => this.isLoadingUser = false);
   }
 
   loadUserPosts(isLoadingMore: boolean): Promise<any> {
-    
+
     return new Promise((resolve) => {
 
       this.postQueries['author'] = String(this.user['id']);
@@ -67,15 +68,15 @@ export class ProfilePage {
       if (isLoadingMore === false) {
         this.userPostsList = new Array<any>();
         this.postQueries['page'] = '1';
-      } 
+      }
       //  Infinite scroll calls
       else if (isLoadingMore === true) {
         this.postQueries['page'] = Number(this.postQueries['page']) + 1 + '';
-      } 
+      }
 
       this.api.getPostList(this.api.isLogged(), this.postQueries).subscribe(
         postList => {
-        this.userPostsList = this.userPostsList.concat(postList);    
+        this.userPostsList = this.userPostsList.concat(postList);
         this.noMoreResults = false;
       },
       err => {
@@ -105,7 +106,7 @@ export class ProfilePage {
       profileModal.present();
 
     } else {
-      
+
       let commentAlert = this.alertCtrl.create({
         title: 'Ops... você não está logado!',
         subTitle: 'Entre na RHS para poder editar seu usuário.',
@@ -121,5 +122,5 @@ export class ProfilePage {
       this.loadUserPosts(true).then(() => resolve());
     });
   }
-  
+
 }

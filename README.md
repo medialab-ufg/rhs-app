@@ -75,6 +75,8 @@ $ npm install
 ```
 Os módulos necessários são informados no `package.json`, de onde `npm install` automaticamente resolve suas dependências. Possíveis erros na instalação costumam acontecer por incompatilidades nas versões dos módulos. Caso isso ocorra, verifique no console qual a versão do módulo necessária e instale via `npm install`.
 
+Alternativamente, instale as dependências do projeto com [yarn](https://yarnpkg.com/), simplesmente com: `yarn`, ao invés de `npm install`
+
 ## Executando em local server
 Para obter um server de desenvolvimento rodando no navegador, execute:
 ```

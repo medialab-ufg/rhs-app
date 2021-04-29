@@ -23,7 +23,7 @@ export class SearchPage {
 
   searchTerm = '';
   searchControl: FormControl;
-  
+
   showSpinner = false;
   noMoreResults = false;
 
@@ -31,26 +31,26 @@ export class SearchPage {
   tagFiltering = false;
   filterName = '';
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public api: ApiProvider,
               public platform: Platform,
               public statusBar: StatusBar,
               public analytics: FirebaseAnalytics,
               public keyboard: Keyboard) {
-      
+
     this.searchControl = new FormControl();
-    
-    if (this.navParams.get('tagId')) { 
-      this.postQueries['tags'] = this.navParams.get('tagId'); 
-      this.filterName = this.navParams.get('tagName'); 
+
+    if (this.navParams.get('tagId')) {
+      this.postQueries['tags'] = this.navParams.get('tagId');
+      this.filterName = this.navParams.get('tagName');
       this.tagFiltering = true;
 
       this.searchPosts(false);
     }
     if (this.navParams.get('categoryId')) {
-      this.postQueries['categories'] = this.navParams.get('categoryId'); 
-      this.filterName = this.navParams.get('categoryName'); 
+      this.postQueries['categories'] = this.navParams.get('categoryId');
+      this.filterName = this.navParams.get('categoryName');
       this.categoryFiltering = true;
       this.searchPosts(false);
     }
@@ -59,7 +59,7 @@ export class SearchPage {
 
   ngAfterViewInit() {
     this.content.ionScroll.subscribe((event)=>{
-      this.keyboard.close();
+      this.keyboard.hide();
     });
   }
 
@@ -104,16 +104,16 @@ export class SearchPage {
           this.postQueries['search'] = this.searchTerm;
 
           this.showSpinner = true;
-        } 
+        }
         //  Infinite scroll calls
         else if (isLoadingMore === true) {
           this.postQueries['page'] = Number(this.postQueries['page']) + 1 + '';
-        } 
+        }
 
         // Perform the request to the api service
         this.api.getPostList(this.api.isLogged(), this.postQueries).subscribe(
           postList => {
-          this.postList = this.postList.concat(postList);     
+          this.postList = this.postList.concat(postList);
           this.noMoreResults = false;
         },
         err => {
@@ -125,7 +125,7 @@ export class SearchPage {
         () => { this.showSpinner = false; resolve() });
 
       }
-      // Empty string or whitespace only 
+      // Empty string or whitespace only
       else {
         this.showSpinner = false;
 

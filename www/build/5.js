@@ -1,17 +1,17 @@
 webpackJsonp([5],{
 
-/***/ 627:
+/***/ 633:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PostPageModule", function() { return PostPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__post__ = __webpack_require__(645);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_shrink_header_shrink_header__ = __webpack_require__(646);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_social_sharing__ = __webpack_require__(637);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pipes_inner_html_post_inner_html_post__ = __webpack_require__(647);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__post__ = __webpack_require__(651);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_shrink_header_shrink_header__ = __webpack_require__(652);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_social_sharing__ = __webpack_require__(643);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pipes_inner_html_post_inner_html_post__ = __webpack_require__(653);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -37,7 +37,7 @@ PostPageModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_5__pipes_inner_html_post_inner_html_post__["a" /* InnerHtmlPostPipe */]
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__post__["a" /* PostPage */])
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__post__["a" /* PostPage */])
         ],
         providers: [__WEBPACK_IMPORTED_MODULE_4__ionic_native_social_sharing__["a" /* SocialSharing */]]
     })
@@ -47,13 +47,13 @@ PostPageModule = __decorate([
 
 /***/ }),
 
-/***/ 637:
+/***/ 643:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SocialSharing; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(41);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -80,7 +80,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * @description
  * Share text, files, images, and links via social networks, sms, and email.
  *
- * For Browser usage check out the Web Share API docs: https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin#web-share-api
+ * For Browser usage check out the Web Share API docs: https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin#5-web-share-api
  *
  * @usage
  * ```typescript
@@ -118,13 +118,43 @@ var SocialSharing = (function (_super) {
      * @param url {string} A URL to share
      * @returns {Promise<any>}
      */
-    SocialSharing.prototype.share = function (message, subject, file, url) { return; };
+    /**
+       * Shares using the share sheet
+       * @param message {string} The message you would like to share.
+       * @param subject {string} The subject
+       * @param file {string|string[]} URL(s) to file(s) or image(s), local path(s) to file(s) or image(s), or base64 data of an image. Only the first file/image will be used on Windows Phone.
+       * @param url {string} A URL to share
+       * @returns {Promise<any>}
+       */
+    SocialSharing.prototype.share = /**
+       * Shares using the share sheet
+       * @param message {string} The message you would like to share.
+       * @param subject {string} The subject
+       * @param file {string|string[]} URL(s) to file(s) or image(s), local path(s) to file(s) or image(s), or base64 data of an image. Only the first file/image will be used on Windows Phone.
+       * @param url {string} A URL to share
+       * @returns {Promise<any>}
+       */
+    function (message, subject, file, url) {
+        return;
+    };
     /**
      * Shares using the share sheet with additional options and returns a result object or an error message (requires plugin version 5.1.0+)
      * @param options {object} The options object with the message, subject, files, url and chooserTitle properties.
      * @returns {Promise<any>}
      */
-    SocialSharing.prototype.shareWithOptions = function (options) { return; };
+    /**
+       * Shares using the share sheet with additional options and returns a result object or an error message (requires plugin version 5.1.0+)
+       * @param options {object} The options object with the message, subject, files, url and chooserTitle properties.
+       * @returns {Promise<any>}
+       */
+    SocialSharing.prototype.shareWithOptions = /**
+       * Shares using the share sheet with additional options and returns a result object or an error message (requires plugin version 5.1.0+)
+       * @param options {object} The options object with the message, subject, files, url and chooserTitle properties.
+       * @returns {Promise<any>}
+       */
+    function (options) {
+        return;
+    };
     /**
      * Checks if you can share via a specific app.
      * @param appName {string} App name or package name. Examples: instagram or com.apple.social.facebook
@@ -134,7 +164,27 @@ var SocialSharing = (function (_super) {
      * @param url {string}
      * @returns {Promise<any>}
      */
-    SocialSharing.prototype.canShareVia = function (appName, message, subject, image, url) { return; };
+    /**
+       * Checks if you can share via a specific app.
+       * @param appName {string} App name or package name. Examples: instagram or com.apple.social.facebook
+       * @param message {string}
+       * @param subject {string}
+       * @param image {string}
+       * @param url {string}
+       * @returns {Promise<any>}
+       */
+    SocialSharing.prototype.canShareVia = /**
+       * Checks if you can share via a specific app.
+       * @param appName {string} App name or package name. Examples: instagram or com.apple.social.facebook
+       * @param message {string}
+       * @param subject {string}
+       * @param image {string}
+       * @param url {string}
+       * @returns {Promise<any>}
+       */
+    function (appName, message, subject, image, url) {
+        return;
+    };
     /**
      * Shares directly to Twitter
      * @param message {string}
@@ -142,7 +192,23 @@ var SocialSharing = (function (_super) {
      * @param url {string}
      * @returns {Promise<any>}
      */
-    SocialSharing.prototype.shareViaTwitter = function (message, image, url) { return; };
+    /**
+       * Shares directly to Twitter
+       * @param message {string}
+       * @param image {string}
+       * @param url {string}
+       * @returns {Promise<any>}
+       */
+    SocialSharing.prototype.shareViaTwitter = /**
+       * Shares directly to Twitter
+       * @param message {string}
+       * @param image {string}
+       * @param url {string}
+       * @returns {Promise<any>}
+       */
+    function (message, image, url) {
+        return;
+    };
     /**
      * Shares directly to Facebook
      * @param message {string}
@@ -150,7 +216,23 @@ var SocialSharing = (function (_super) {
      * @param url {string}
      * @returns {Promise<any>}
      */
-    SocialSharing.prototype.shareViaFacebook = function (message, image, url) { return; };
+    /**
+       * Shares directly to Facebook
+       * @param message {string}
+       * @param image {string}
+       * @param url {string}
+       * @returns {Promise<any>}
+       */
+    SocialSharing.prototype.shareViaFacebook = /**
+       * Shares directly to Facebook
+       * @param message {string}
+       * @param image {string}
+       * @param url {string}
+       * @returns {Promise<any>}
+       */
+    function (message, image, url) {
+        return;
+    };
     /**
      * Shares directly to Facebook with a paste message hint
      * @param message {string}
@@ -159,14 +241,46 @@ var SocialSharing = (function (_super) {
      * @param pasteMessageHint {string}
      * @returns {Promise<any>}
      */
-    SocialSharing.prototype.shareViaFacebookWithPasteMessageHint = function (message, image, url, pasteMessageHint) { return; };
+    /**
+       * Shares directly to Facebook with a paste message hint
+       * @param message {string}
+       * @param image {string}
+       * @param url {string}
+       * @param pasteMessageHint {string}
+       * @returns {Promise<any>}
+       */
+    SocialSharing.prototype.shareViaFacebookWithPasteMessageHint = /**
+       * Shares directly to Facebook with a paste message hint
+       * @param message {string}
+       * @param image {string}
+       * @param url {string}
+       * @param pasteMessageHint {string}
+       * @returns {Promise<any>}
+       */
+    function (message, image, url, pasteMessageHint) {
+        return;
+    };
     /**
      * Shares directly to Instagram
      * @param message {string}
      * @param image {string}
      * @returns {Promise<any>}
      */
-    SocialSharing.prototype.shareViaInstagram = function (message, image) { return; };
+    /**
+       * Shares directly to Instagram
+       * @param message {string}
+       * @param image {string}
+       * @returns {Promise<any>}
+       */
+    SocialSharing.prototype.shareViaInstagram = /**
+       * Shares directly to Instagram
+       * @param message {string}
+       * @param image {string}
+       * @returns {Promise<any>}
+       */
+    function (message, image) {
+        return;
+    };
     /**
      * Shares directly to WhatsApp
      * @param message {string}
@@ -174,7 +288,23 @@ var SocialSharing = (function (_super) {
      * @param url {string}
      * @returns {Promise<any>}
      */
-    SocialSharing.prototype.shareViaWhatsApp = function (message, image, url) { return; };
+    /**
+       * Shares directly to WhatsApp
+       * @param message {string}
+       * @param image {string}
+       * @param url {string}
+       * @returns {Promise<any>}
+       */
+    SocialSharing.prototype.shareViaWhatsApp = /**
+       * Shares directly to WhatsApp
+       * @param message {string}
+       * @param image {string}
+       * @param url {string}
+       * @returns {Promise<any>}
+       */
+    function (message, image, url) {
+        return;
+    };
     /**
      * Shares directly to a WhatsApp Contact
      * @param receiver {string} Pass phone number on Android, and Addressbook ID (abid) on iOS
@@ -183,19 +313,61 @@ var SocialSharing = (function (_super) {
      * @param url {string} Link to send
      * @returns {Promise<any>}
      */
-    SocialSharing.prototype.shareViaWhatsAppToReceiver = function (receiver, message, image, url) { return; };
+    /**
+       * Shares directly to a WhatsApp Contact
+       * @param receiver {string} Pass phone number on Android, and Addressbook ID (abid) on iOS
+       * @param message {string} Message to send
+       * @param image {string} Image to send (does not work on iOS
+       * @param url {string} Link to send
+       * @returns {Promise<any>}
+       */
+    SocialSharing.prototype.shareViaWhatsAppToReceiver = /**
+       * Shares directly to a WhatsApp Contact
+       * @param receiver {string} Pass phone number on Android, and Addressbook ID (abid) on iOS
+       * @param message {string} Message to send
+       * @param image {string} Image to send (does not work on iOS
+       * @param url {string} Link to send
+       * @returns {Promise<any>}
+       */
+    function (receiver, message, image, url) {
+        return;
+    };
     /**
      * Share via SMS
      * @param messge {string} message to send
      * @param phoneNumber {string} Number or multiple numbers seperated by commas
      * @returns {Promise<any>}
      */
-    SocialSharing.prototype.shareViaSMS = function (messge, phoneNumber) { return; };
+    /**
+       * Share via SMS
+       * @param messge {string} message to send
+       * @param phoneNumber {string} Number or multiple numbers seperated by commas
+       * @returns {Promise<any>}
+       */
+    SocialSharing.prototype.shareViaSMS = /**
+       * Share via SMS
+       * @param messge {string} message to send
+       * @param phoneNumber {string} Number or multiple numbers seperated by commas
+       * @returns {Promise<any>}
+       */
+    function (messge, phoneNumber) {
+        return;
+    };
     /**
      * Checks if you can share via email
      * @returns {Promise<any>}
      */
-    SocialSharing.prototype.canShareViaEmail = function () { return; };
+    /**
+       * Checks if you can share via email
+       * @returns {Promise<any>}
+       */
+    SocialSharing.prototype.canShareViaEmail = /**
+       * Checks if you can share via email
+       * @returns {Promise<any>}
+       */
+    function () {
+        return;
+    };
     /**
      * Share via Email
      * @param message {string}
@@ -206,7 +378,29 @@ var SocialSharing = (function (_super) {
      * @param files {string|string[]} Optional URL or local path to file(s) to attach
      * @returns {Promise<any>}
      */
-    SocialSharing.prototype.shareViaEmail = function (message, subject, to, cc, bcc, files) { return; };
+    /**
+       * Share via Email
+       * @param message {string}
+       * @param subject {string}
+       * @param to {string[]}
+       * @param cc {string[]} Optional
+       * @param bcc {string[]} Optional
+       * @param files {string|string[]} Optional URL or local path to file(s) to attach
+       * @returns {Promise<any>}
+       */
+    SocialSharing.prototype.shareViaEmail = /**
+       * Share via Email
+       * @param message {string}
+       * @param subject {string}
+       * @param to {string[]}
+       * @param cc {string[]} Optional
+       * @param bcc {string[]} Optional
+       * @param files {string|string[]} Optional URL or local path to file(s) to attach
+       * @returns {Promise<any>}
+       */
+    function (message, subject, to, cc, bcc, files) {
+        return;
+    };
     /**
      * Share via AppName
      * @param appName {string} App name or package name. Examples: instagram or com.apple.social.facebook
@@ -216,174 +410,256 @@ var SocialSharing = (function (_super) {
      * @param url {string}
      * @returns {Promise<any>}
      */
-    SocialSharing.prototype.shareVia = function (appName, message, subject, image, url) { return; };
+    /**
+       * Share via AppName
+       * @param appName {string} App name or package name. Examples: instagram or com.apple.social.facebook
+       * @param message {string}
+       * @param subject {string}
+       * @param image {string}
+       * @param url {string}
+       * @returns {Promise<any>}
+       */
+    SocialSharing.prototype.shareVia = /**
+       * Share via AppName
+       * @param appName {string} App name or package name. Examples: instagram or com.apple.social.facebook
+       * @param message {string}
+       * @param subject {string}
+       * @param image {string}
+       * @param url {string}
+       * @returns {Promise<any>}
+       */
+    function (appName, message, subject, image, url) {
+        return;
+    };
     /**
      * defines the popup position before call the share method.
      * @param targetBounds {string} left, top, width, height
      */
-    SocialSharing.prototype.setIPadPopupCoordinates = function (targetBounds) { };
+    /**
+       * defines the popup position before call the share method.
+       * @param targetBounds {string} left, top, width, height
+       */
+    SocialSharing.prototype.setIPadPopupCoordinates = /**
+       * defines the popup position before call the share method.
+       * @param targetBounds {string} left, top, width, height
+       */
+    function (targetBounds) { };
+    /**
+     * Save an array of images to the camera roll
+     * @param  {string|string[]} fileOrFileArray Single or multiple files
+     * @returns {Promise<any> }
+     */
+    /**
+       * Save an array of images to the camera roll
+       * @param  {string|string[]} fileOrFileArray Single or multiple files
+       * @returns {Promise<any> }
+       */
+    SocialSharing.prototype.saveToPhotoAlbum = /**
+       * Save an array of images to the camera roll
+       * @param  {string|string[]} fileOrFileArray Single or multiple files
+       * @returns {Promise<any> }
+       */
+    function (fileOrFileArray) {
+        return;
+    };
+    SocialSharing.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */] },
+    ];
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
+            successIndex: 4,
+            errorIndex: 5
+        }),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [String, String, Object, String]),
+        __metadata("design:returntype", Promise)
+    ], SocialSharing.prototype, "share", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
+            platforms: ['iOS', 'Android']
+        }),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Object]),
+        __metadata("design:returntype", Promise)
+    ], SocialSharing.prototype, "shareWithOptions", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
+            successIndex: 5,
+            errorIndex: 6,
+            platforms: ['iOS', 'Android']
+        }),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [String, String, String, String, String]),
+        __metadata("design:returntype", Promise)
+    ], SocialSharing.prototype, "canShareVia", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
+            successIndex: 3,
+            errorIndex: 4,
+            platforms: ['iOS', 'Android']
+        }),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [String, String, String]),
+        __metadata("design:returntype", Promise)
+    ], SocialSharing.prototype, "shareViaTwitter", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
+            successIndex: 3,
+            errorIndex: 4,
+            platforms: ['iOS', 'Android']
+        }),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [String, String, String]),
+        __metadata("design:returntype", Promise)
+    ], SocialSharing.prototype, "shareViaFacebook", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
+            successIndex: 4,
+            errorIndex: 5,
+            platforms: ['iOS', 'Android']
+        }),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [String, String, String, String]),
+        __metadata("design:returntype", Promise)
+    ], SocialSharing.prototype, "shareViaFacebookWithPasteMessageHint", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
+            platforms: ['iOS', 'Android']
+        }),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [String, String]),
+        __metadata("design:returntype", Promise)
+    ], SocialSharing.prototype, "shareViaInstagram", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
+            successIndex: 3,
+            errorIndex: 4,
+            platforms: ['iOS', 'Android']
+        }),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [String, String, String]),
+        __metadata("design:returntype", Promise)
+    ], SocialSharing.prototype, "shareViaWhatsApp", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
+            successIndex: 4,
+            errorIndex: 5,
+            platforms: ['iOS', 'Android']
+        }),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [String, String, String, String]),
+        __metadata("design:returntype", Promise)
+    ], SocialSharing.prototype, "shareViaWhatsAppToReceiver", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
+            platforms: ['iOS', 'Android']
+        }),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [String, String]),
+        __metadata("design:returntype", Promise)
+    ], SocialSharing.prototype, "shareViaSMS", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
+            platforms: ['iOS', 'Android']
+        }),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", Promise)
+    ], SocialSharing.prototype, "canShareViaEmail", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
+            platforms: ['iOS', 'Android'],
+            successIndex: 6,
+            errorIndex: 7
+        }),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [String, String, Array, Array, Array, Object]),
+        __metadata("design:returntype", Promise)
+    ], SocialSharing.prototype, "shareViaEmail", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
+            successIndex: 5,
+            errorIndex: 6,
+            platforms: ['iOS', 'Android']
+        }),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [String, String, String, String, String]),
+        __metadata("design:returntype", Promise)
+    ], SocialSharing.prototype, "shareVia", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
+            sync: true,
+            platforms: ['iOS']
+        }),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [String]),
+        __metadata("design:returntype", void 0)
+    ], SocialSharing.prototype, "setIPadPopupCoordinates", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
+            platforms: ['iOS']
+        }),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Object]),
+        __metadata("design:returntype", Promise)
+    ], SocialSharing.prototype, "saveToPhotoAlbum", null);
+    /**
+     * @name Social Sharing
+     * @description
+     * Share text, files, images, and links via social networks, sms, and email.
+     *
+     * For Browser usage check out the Web Share API docs: https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin#5-web-share-api
+     *
+     * @usage
+     * ```typescript
+     * import { SocialSharing } from '@ionic-native/social-sharing';
+     *
+     * constructor(private socialSharing: SocialSharing) { }
+     *
+     * ...
+     *
+     * // Check if sharing via email is supported
+     * this.socialSharing.canShareViaEmail().then(() => {
+     *   // Sharing via email is possible
+     * }).catch(() => {
+     *   // Sharing via email is not possible
+     * });
+     *
+     * // Share via email
+     * this.socialSharing.shareViaEmail('Body', 'Subject', ['recipient@example.org']).then(() => {
+     *   // Success!
+     * }).catch(() => {
+     *   // Error!
+     * });
+     * ```
+     */
+    SocialSharing = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["g" /* Plugin */])({
+            pluginName: 'SocialSharing',
+            plugin: 'cordova-plugin-x-socialsharing',
+            pluginRef: 'plugins.socialsharing',
+            repo: 'https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin',
+            platforms: ['Android', 'Browser', 'iOS', 'Windows', 'Windows Phone']
+        })
+    ], SocialSharing);
     return SocialSharing;
 }(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["f" /* IonicNativePlugin */]));
-SocialSharing.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */] },
-];
-/** @nocollapse */
-SocialSharing.ctorParameters = function () { return []; };
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
-        successIndex: 4,
-        errorIndex: 5
-    }),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, Object, String]),
-    __metadata("design:returntype", Promise)
-], SocialSharing.prototype, "share", null);
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
-        platforms: ['iOS', 'Android']
-    }),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], SocialSharing.prototype, "shareWithOptions", null);
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
-        successIndex: 5,
-        errorIndex: 6,
-        platforms: ['iOS', 'Android']
-    }),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String, String, String]),
-    __metadata("design:returntype", Promise)
-], SocialSharing.prototype, "canShareVia", null);
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
-        successIndex: 3,
-        errorIndex: 4,
-        platforms: ['iOS', 'Android']
-    }),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String]),
-    __metadata("design:returntype", Promise)
-], SocialSharing.prototype, "shareViaTwitter", null);
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
-        successIndex: 3,
-        errorIndex: 4,
-        platforms: ['iOS', 'Android']
-    }),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String]),
-    __metadata("design:returntype", Promise)
-], SocialSharing.prototype, "shareViaFacebook", null);
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
-        successIndex: 4,
-        errorIndex: 5,
-        platforms: ['iOS', 'Android']
-    }),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String, String]),
-    __metadata("design:returntype", Promise)
-], SocialSharing.prototype, "shareViaFacebookWithPasteMessageHint", null);
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
-        platforms: ['iOS', 'Android']
-    }),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String]),
-    __metadata("design:returntype", Promise)
-], SocialSharing.prototype, "shareViaInstagram", null);
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
-        successIndex: 3,
-        errorIndex: 4,
-        platforms: ['iOS', 'Android']
-    }),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String]),
-    __metadata("design:returntype", Promise)
-], SocialSharing.prototype, "shareViaWhatsApp", null);
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
-        successIndex: 4,
-        errorIndex: 5,
-        platforms: ['iOS', 'Android']
-    }),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String, String]),
-    __metadata("design:returntype", Promise)
-], SocialSharing.prototype, "shareViaWhatsAppToReceiver", null);
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
-        platforms: ['iOS', 'Android']
-    }),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String]),
-    __metadata("design:returntype", Promise)
-], SocialSharing.prototype, "shareViaSMS", null);
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
-        platforms: ['iOS', 'Android']
-    }),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], SocialSharing.prototype, "canShareViaEmail", null);
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
-        platforms: ['iOS', 'Android'],
-        successIndex: 6,
-        errorIndex: 7
-    }),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, Array, Array, Array, Object]),
-    __metadata("design:returntype", Promise)
-], SocialSharing.prototype, "shareViaEmail", null);
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
-        successIndex: 5,
-        errorIndex: 6,
-        platforms: ['iOS', 'Android']
-    }),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String, String, String]),
-    __metadata("design:returntype", Promise)
-], SocialSharing.prototype, "shareVia", null);
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
-        sync: true,
-        platforms: ['iOS']
-    }),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], SocialSharing.prototype, "setIPadPopupCoordinates", null);
-SocialSharing = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["g" /* Plugin */])({
-        pluginName: 'SocialSharing',
-        plugin: 'cordova-plugin-x-socialsharing',
-        pluginRef: 'plugins.socialsharing',
-        repo: 'https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin',
-        platforms: ['Android', 'Browser', 'iOS', 'Windows', 'Windows Phone']
-    })
-], SocialSharing);
 
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 645:
+/***/ 651:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PostPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_social_sharing__ = __webpack_require__(637);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_firebase_analytics__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_settings_settings__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_api_api__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_social_sharing__ = __webpack_require__(643);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_firebase_analytics__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_settings_settings__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_api_api__ = __webpack_require__(142);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -696,19 +972,18 @@ __decorate([
     __metadata("design:type", Object)
 ], PostPage.prototype, "commentInput", void 0);
 PostPage = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-post',template:/*ion-inline-start:"/home/orpheus/rhs-app/src/pages/post/post.html"*/'<ion-header id="shrinkHeader">\n\n  <ion-navbar color="secondary">\n    <ion-title>\n      <img *ngIf="platform.is(\'tablet\') || platform.is(\'ipad\')" alt="RHS" height="36" src="./assets/logo-rhs-full.svg"/>\n      <img *ngIf="!platform.is(\'tablet\') && !platform.is(\'ipad\')" alt="RHS" height="36" src="./assets/logo-rhs.svg"/>      \n    </ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="openShareActionSheet()">\n        <ion-icon name="share"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content fullscreen shrink-header="12px" class="content has-header">\n\n  <div *ngIf="isLoadingPost"><ion-spinner class="center-spinner"></ion-spinner></div>\n  <div *ngIf="!isLoadingPost">\n\n    <!-- POST TITLE -->\n    <h1 padding-horizontal [innerHTML]="post[\'title\'][\'rendered\']"></h1>\n\n    <!-- POST AUTHOR NAME -->\n    <div *ngIf="isLoadingAuthor"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div class="author-above-title" text-right *ngIf="!isLoadingAuthor" (click)="goToAuthorPage(author[\'id\'])">\n        por <span >{{ author[\'name\'] }}</span>\n    </div>\n\n    <!-- POST CONTENT -->\n    <article [ngStyle]="{ \'font-size\': settings.postContentFontSizeOptions[settings.currentFontSize] }" [innerHTML]="post[\'content\'][\'rendered\'] | innerHtmlPost"></article>\n\n    <!-- POST CATEGORIES -->\n    <div *ngIf="isLoadingCategories"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingCategories && categories.length > 0" class="category">\n      <h4><ion-icon name="pricetags"></ion-icon> Categorias</h4>\n      <ion-buttons class="categoria">\n        <button ion-button round small clear *ngFor="let category of categories" (click)="goToSearchWithCategory(category)" id="button">{{ category[\'name\'] }}</button>\n      </ion-buttons>\n    </div>\n    <!-- POST TAGS -->\n    <div *ngIf="isLoadingTags"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingTags && tags.length > 0" class="tags">\n      <h4><ion-icon name="bookmark"></ion-icon> Tags</h4>\n      <ion-buttons>\n        <button ion-button round small outline *ngFor="let tag of tags" (click)="goToSearchWithTag(tag)" id="button">{{ tag[\'name\'] }}</button>\n      </ion-buttons>\n    </div>\n\n    <!--DIVISOR-->\n    <div no-lines class="top-border"></div>\n\n    <!-- POST AUTHOR-->\n    <div *ngIf="isLoadingAuthor"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingAuthor" class="author" (click)="goToAuthorPage(author[\'id\'])">\n      <ion-item>\n        <ion-avatar item-start>\n          <img src="{{ author[\'avatar_urls\'][48] }}">\n        </ion-avatar>\n        <h2>{{ author[\'name\'] }}</h2>\n        <p>Publicado em {{ post[\'date\'] | date: \'dd/MM/yyyy\' }}</p>\n      </ion-item>\n    </div>\n\n    <!--DIVISOR-->\n    <div no-lines class="top-border"></div>\n\n    <!-- POST ACTION BUTTONS-->\n    <ion-buttons class="action_buttons">\n      <ion-grid>\n        <ion-row text-center>\n          <ion-col col-4 class="divide">\n            <p>{{ commentCount }} Comentários</p>\n            <button small ion-button (click)="commentPost()" class="comentar">Comentar</button>\n          </ion-col>\n          <ion-col col-3>\n            <p>{{ totalVotes }} Votos</p>\n            <button small ion-button (click)="votePost()" class="votar" [disabled]="hasVoted"><ion-spinner name="ios-small" class="button-loader" *ngIf="isVoting"></ion-spinner>{{ isVoting ? \'\' : \'Votar\' }}</button>\n          </ion-col>\n          <ion-col col-5>\n            <p>{{ totalShares }} Compartilhamentos</p>\n            <button small ion-button (click)="openShareActionSheet()" class="compartilhar">Compartilhar</button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </ion-buttons>\n\n    <!-- POST COMMENTS -->\n    <div *ngIf="isLoadingComments"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingComments && commentBoxes.length > 0" class="comentarios">\n      <ion-list>\n        <ion-item *ngFor="let comment of commentBoxes; let i = index" text-wrap [ngStyle]="{ \'padding-left\': comment.depth*20 + \'px\'} ">\n          <ion-avatar item-start class="avatar" [ngClass]="{\'avatar-author\': author ? comment[\'author_name\'] == author[\'name\'] : false }" (click)="goToAuthorPage(comment[\'author\'])">\n            <img src="{{ comment[\'author_avatar_urls\'][24] }}">\n          </ion-avatar>\n            <h2 (click)="goToAuthorPage(comment[\'author\'])">{{ comment[\'author_name\'] }} <span>{{ comment[\'date\'] | date: \'dd/MM/yyyy\' }}</span></h2>\n            <p [innerHtml]="comment[\'content\'][\'rendered\']"></p>\n            <button *ngIf="comment[\'author\'] == api.getUserId()" class="edit-button" ion-button clear (click)="editComment(i)">\n              Editar \n            </button>\n            <button ion-button clear icon-only item-end (click)="commentOnComment(i)">\n              <ion-icon name="redo"></ion-icon>\n            </button>\n        </ion-item>\n      </ion-list>\n      <div text-center *ngIf="post[\'comment_count\'] > commentBoxes.length"><button clear round ion-button (click)="commentsOffset = commentsOffset + settings.commentsPerPage; loadComments();">Mais comentários</button></div>\n    </div>\n  </div>\n\n</ion-content>\n\n<ion-footer *ngIf="this.api.isLogged()">\n  <ion-toolbar>\n    <ion-textarea rows="1" #commentInput id="commentInput" (input)="changeInputSize()" required type="text" [(ngModel)]="commentContent" placeholder="Digite aqui seu comentário."></ion-textarea>\n    <ion-buttons end>\n      <ion-spinner *ngIf="isPostingComment"></ion-spinner>\n      <button *ngIf="!isPostingComment" [disabled]="commentContent.length <= 0 " [color]="commentContent.length > 0 ? \'primary\' : \'default\'" ion-button icon-only (click)="postComment()">\n        <ion-icon name="send"></ion-icon>\n      </button>\n    </ion-buttons> \n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"/home/orpheus/rhs-app/src/pages/post/post.html"*/,
+        selector: 'page-post',template:/*ion-inline-start:"/Users/rodrigodeoliveira/code/self/ufg/rhs-app/src/pages/post/post.html"*/'<ion-header id="shrinkHeader">\n\n  <ion-navbar color="secondary">\n    <ion-title>\n      <img *ngIf="platform.is(\'tablet\') || platform.is(\'ipad\')" alt="RHS" height="36" src="./assets/logo-rhs-full.svg"/>\n      <img *ngIf="!platform.is(\'tablet\') && !platform.is(\'ipad\')" alt="RHS" height="36" src="./assets/logo-rhs.svg"/>      \n    </ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="openShareActionSheet()">\n        <ion-icon name="share"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content fullscreen shrink-header="12px" class="content has-header">\n\n  <div *ngIf="isLoadingPost"><ion-spinner class="center-spinner"></ion-spinner></div>\n  <div *ngIf="!isLoadingPost">\n\n    <!-- POST TITLE -->\n    <h1 padding-horizontal [innerHTML]="post[\'title\'][\'rendered\']"></h1>\n\n    <!-- POST AUTHOR NAME -->\n    <div *ngIf="isLoadingAuthor"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div class="author-above-title" text-right *ngIf="!isLoadingAuthor" (click)="goToAuthorPage(author[\'id\'])">\n        por <span >{{ author[\'name\'] }}</span>\n    </div>\n\n    <!-- POST CONTENT -->\n    <article [ngStyle]="{ \'font-size\': settings.postContentFontSizeOptions[settings.currentFontSize] }" [innerHTML]="post[\'content\'][\'rendered\'] | innerHtmlPost"></article>\n\n    <!-- POST CATEGORIES -->\n    <div *ngIf="isLoadingCategories"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingCategories && categories.length > 0" class="category">\n      <h4><ion-icon name="pricetags"></ion-icon> Categorias</h4>\n      <ion-buttons class="categoria">\n        <button ion-button round small clear *ngFor="let category of categories" (click)="goToSearchWithCategory(category)" id="button">{{ category[\'name\'] }}</button>\n      </ion-buttons>\n    </div>\n    <!-- POST TAGS -->\n    <div *ngIf="isLoadingTags"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingTags && tags.length > 0" class="tags">\n      <h4><ion-icon name="bookmark"></ion-icon> Tags</h4>\n      <ion-buttons>\n        <button ion-button round small outline *ngFor="let tag of tags" (click)="goToSearchWithTag(tag)" id="button">{{ tag[\'name\'] }}</button>\n      </ion-buttons>\n    </div>\n\n    <!--DIVISOR-->\n    <div no-lines class="top-border"></div>\n\n    <!-- POST AUTHOR-->\n    <div *ngIf="isLoadingAuthor"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingAuthor" class="author" (click)="goToAuthorPage(author[\'id\'])">\n      <ion-item>\n        <ion-avatar item-start>\n          <img src="{{ author[\'avatar_urls\'][48] }}">\n        </ion-avatar>\n        <h2>{{ author[\'name\'] }}</h2>\n        <p>Publicado em {{ post[\'date\'] | date: \'dd/MM/yyyy\' }}</p>\n      </ion-item>\n    </div>\n\n    <!--DIVISOR-->\n    <div no-lines class="top-border"></div>\n\n    <!-- POST ACTION BUTTONS-->\n    <ion-buttons class="action_buttons">\n      <ion-grid>\n        <ion-row text-center>\n          <ion-col col-4 class="divide">\n            <p>{{ commentCount }} Comentários</p>\n            <button small ion-button (click)="commentPost()" class="comentar">Comentar</button>\n          </ion-col>\n          <ion-col col-3>\n            <p>{{ totalVotes }} Votos</p>\n            <button small ion-button (click)="votePost()" class="votar" [disabled]="hasVoted"><ion-spinner name="ios-small" class="button-loader" *ngIf="isVoting"></ion-spinner>{{ isVoting ? \'\' : \'Votar\' }}</button>\n          </ion-col>\n          <ion-col col-5>\n            <p>{{ totalShares }} Compartilhamentos</p>\n            <button small ion-button (click)="openShareActionSheet()" class="compartilhar">Compartilhar</button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </ion-buttons>\n\n    <!-- POST COMMENTS -->\n    <div *ngIf="isLoadingComments"><ion-spinner class="center-spinner-relative"></ion-spinner></div>\n    <div padding *ngIf="!isLoadingComments && commentBoxes.length > 0" class="comentarios">\n      <ion-list>\n        <ion-item *ngFor="let comment of commentBoxes; let i = index" text-wrap [ngStyle]="{ \'padding-left\': comment.depth*20 + \'px\'} ">\n          <ion-avatar item-start class="avatar" [ngClass]="{\'avatar-author\': author ? comment[\'author_name\'] == author[\'name\'] : false }" (click)="goToAuthorPage(comment[\'author\'])">\n            <img src="{{ comment[\'author_avatar_urls\'][24] }}">\n          </ion-avatar>\n            <h2 (click)="goToAuthorPage(comment[\'author\'])">{{ comment[\'author_name\'] }} <span>{{ comment[\'date\'] | date: \'dd/MM/yyyy\' }}</span></h2>\n            <p [innerHtml]="comment[\'content\'][\'rendered\']"></p>\n            <button *ngIf="comment[\'author\'] == api.getUserId()" class="edit-button" ion-button clear (click)="editComment(i)">\n              Editar \n            </button>\n            <button ion-button clear icon-only item-end (click)="commentOnComment(i)">\n              <ion-icon name="redo"></ion-icon>\n            </button>\n        </ion-item>\n      </ion-list>\n      <div text-center *ngIf="post[\'comment_count\'] > commentBoxes.length"><button clear round ion-button (click)="commentsOffset = commentsOffset + settings.commentsPerPage; loadComments();">Mais comentários</button></div>\n    </div>\n  </div>\n\n</ion-content>\n\n<ion-footer *ngIf="this.api.isLogged()">\n  <ion-toolbar>\n    <ion-textarea rows="1" #commentInput id="commentInput" (input)="changeInputSize()" required type="text" [(ngModel)]="commentContent" placeholder="Digite aqui seu comentário."></ion-textarea>\n    <ion-buttons end>\n      <ion-spinner *ngIf="isPostingComment"></ion-spinner>\n      <button *ngIf="!isPostingComment" [disabled]="commentContent.length <= 0 " [color]="commentContent.length > 0 ? \'primary\' : \'default\'" ion-button icon-only (click)="postComment()">\n        <ion-icon name="send"></ion-icon>\n      </button>\n    </ion-buttons> \n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"/Users/rodrigodeoliveira/code/self/ufg/rhs-app/src/pages/post/post.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */],
         __WEBPACK_IMPORTED_MODULE_5__providers_api_api__["a" /* ApiProvider */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* ToastController */],
         __WEBPACK_IMPORTED_MODULE_2__ionic_native_social_sharing__["a" /* SocialSharing */],
         __WEBPACK_IMPORTED_MODULE_4__providers_settings_settings__["a" /* SettingsProvider */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Platform */],
         __WEBPACK_IMPORTED_MODULE_3__ionic_native_firebase_analytics__["a" /* FirebaseAnalytics */]])
 ], PostPage);
 
@@ -716,7 +991,7 @@ PostPage = __decorate([
 
 /***/ }),
 
-/***/ 646:
+/***/ 652:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -778,14 +1053,14 @@ ShrinkHeader = __decorate([
 
 /***/ }),
 
-/***/ 647:
+/***/ 653:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InnerHtmlPostPipe; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_settings_settings__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_settings_settings__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(40);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
